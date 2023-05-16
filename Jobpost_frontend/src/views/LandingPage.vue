@@ -1,11 +1,15 @@
 <template>
     <div>
         <PageLayout>
+
+
             <component :is="headerComponent"></component>
              <component :is="regflow"></component>
             <component :is="categories"></component>
+            <component :is="jobPortal"></component>
             <component :is="testimonialsComponent"></component>
              <component :is="footer"></component>
+
         </PageLayout>
     </div>
 </template>
@@ -16,15 +20,16 @@ import TestimonialsComponent from '../components/TestimonialsComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue';
 import PageLayout from '../components/PageLayout.vue';
 import RegFlow from '../components/RegFlow.vue';
-import CategorySection from '../components/CategorySection.vue';       
+import CategorySection from '../components/CategorySection.vue'; 
+import JobPortalComponent from '@/components/JobPortalComponent.vue
 
-
-export default {
+      export default {
     components: {
         PageLayout,
         HeaderComponent,
         RegFlow,
-        CategorySection
+        CategorySection,
+         JobPortalComponent,
         TestimonialsComponent,
          FooterComponent
   },
@@ -33,8 +38,10 @@ export default {
             headerComponent: HeaderComponent,
             regflow:'RegFlow',
             categories:'CategorySection',
+            jobPortal: 'JobPortalComponent',
             testimonialsComponent: TestimonialsComponent,
             footer: 'FooterComponent'
+
         };
     },
 }
