@@ -2,6 +2,7 @@
     <div>
         <PageLayout>
             <component :is="headerComponent"></component>
+            <component :is="testimonialsComponent"></component>
         </PageLayout>
     </div>
 </template>
@@ -9,15 +10,18 @@
 <script>
 import PageLayout from '../components/PageLayout.vue';
 import HeaderComponent from '../components/HeaderComponent.vue';
+import TestimonialsComponent from '../components/TestimonialsComponent.vue'
 export default {
     components: {
         PageLayout,
-        HeaderComponent
+        HeaderComponent,
+        TestimonialsComponent
     },
 
     data() {
         return {
-            headerComponent: HeaderComponent
+            headerComponent: HeaderComponent,
+            testimonialsComponent: TestimonialsComponent
         };
     },
 
