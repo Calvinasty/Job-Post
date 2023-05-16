@@ -17,5 +17,6 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 151px;
+    width: 100%;
 }
 </style>
