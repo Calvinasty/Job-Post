@@ -3,7 +3,7 @@
         <NavComponent />
         <section>
             <aside class="head">
-                <h1>Find the <span class="color">job</span><br> that fits <span class="color">your</span> <br> life</h1>
+                <h1>Find the <span class="color">job</span><br> that fits <span class="color">your</span> <br> career</h1>
             </aside>
             <aside class="tag">
                 <p>

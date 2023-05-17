@@ -1,6 +1,7 @@
 <template>
     <div class="job-portal">
         <div class="img-section">
+            <div class="main-image"></div>
             <!-- <img src="/young-businessmen.jpg"  alt="image"> -->
         </div>
         <div class="text-section">
@@ -53,17 +54,20 @@ export default {
 }
 
 .img-section {
-    width: 469px;
+    width: 50%;   
+    /* border: 1px solid red;  */
+}
+.img-section .main-image{
+    float: right;
+    width: 500px;
     height: 524px;
     border: none;
-    border-radius: 15px;
-    background-image: url("/images/young-businessmen.jpeg");
     background-position: right;
     background-size: cover;
     background-color: rgba(73, 91, 55, 0.5);
     background-blend-mode: overlay;
-
-
+    background-image: url("/images/young-businessmen.jpeg");
+    border-radius: 15px;
 }
 
 .icon-img img {
@@ -78,7 +82,7 @@ export default {
     justify-content: center;
     padding: 80px 20px;
     gap: 30px;
-    width: 500px;
+    width: 50%;
     height: 600px;
 
 
@@ -89,7 +93,8 @@ export default {
 }
 
 .text h1 {
-    font-size: 2rem;
+    /* font-size: 2rem; */
+    font-size: 70px;
     font: Raleway;
 }
 

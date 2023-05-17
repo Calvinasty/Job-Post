@@ -34,21 +34,21 @@
                 client:[
                     {
                         message: 'FIRST osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
-                        name: 'Daniella Momo',
-                        role: 'Front-End Developer',
+                        name: 'Lisette Baas',
+                        role: 'Product Owner',
                         image: 'client1.jpeg'
                     },
                     {
                         message: 'SECOND osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
                         name: 'Daniel K. Tetteh',
                         role: 'UI/UX Designer',
-                        image: 'client2.jpeg'
+                        image: 'client3.jpeg'
                     },
                     {
                         message: 'THIRD osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
-                        name: 'Razak Ayariga',
+                        name: 'Razak Adams',
                         role: 'Back-End Engineer',
-                        image: 'client3.jpeg'
+                        image: 'client2.jpeg'
                     },
                 ]
             }
@@ -165,7 +165,7 @@
     .right .image img{
         width: 100%;
         height: 100%;
-        animation: fading 10s ease-in-out forwards infinite;
+        /* animation: fading 10s ease-in-out forwards infinite; */
     }
     @keyframes fading {
         0%{opacity: 0;}
