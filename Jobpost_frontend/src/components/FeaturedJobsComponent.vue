@@ -34,10 +34,11 @@ export default {
 .container {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     flex-direction: column;
-    padding-top: 30px;
+    padding: 30px 0;
     width: 100%;
-    background: rgba(123, 166, 89, 0.61);
+    background-color: #88CC0029;
 }
 
 .container header {
@@ -48,10 +49,15 @@ export default {
 }
 
 .container header h1 {
+    font-family: 'Noto Sans';
     font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 54px;
+    /* font-style: normal;
     font-weight: 800;
     font-size: 60px;
-    line-height: 70px;
+    line-height: 70px; */
 }
 
 /* .container header p {
@@ -73,10 +79,10 @@ export default {
     column-gap: 20px;
 }
 
-.box-sub {
+/* .box-sub {
     display: flex;
 
-}
+} */
 
 .btn {
     margin-top: 50px;

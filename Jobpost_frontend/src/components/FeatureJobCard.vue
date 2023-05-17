@@ -91,7 +91,8 @@ export default {
 
 .btn {
     padding: 10px;
-    background: rgb(174, 201, 153)
+    /* background: rgb(174, 201, 153) */
+    background-color: #ECF7D6;
 }
 
 .btn:hover {
