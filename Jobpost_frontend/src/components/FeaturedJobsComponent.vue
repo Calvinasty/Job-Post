@@ -37,7 +37,6 @@ export default {
     flex-direction: column;
     padding-top: 30px;
     width: 100%;
-    height: 100dvh;
     background: rgba(123, 166, 89, 0.61);
 }
 
