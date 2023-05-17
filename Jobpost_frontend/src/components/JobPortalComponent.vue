@@ -57,10 +57,10 @@ export default {
     height: 524px;
     border: none;
     border-radius: 15px;
-    background-image: url("/images/young-businessmen.jpg");
+    background-image: url("/images/young-businessmen.jpeg");
     background-position: right;
     background-size: cover;
-    background-color: rgba(73, 91, 55, 0.41);
+    background-color: rgba(73, 91, 55, 0.5);
     background-blend-mode: overlay;
 
 
