@@ -4,31 +4,78 @@
             <h3 class="headline"> Testimonial </h3>
             <h1 class="head-text"> What Our Clients <br> Are Saying </h1>
             <p class="message">
-                Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig 
-                Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig 
-                Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig 
-                Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig 
+                {{ client[count].message }} 
             </p>
             <div class="action">
                 <div class="client">
-                    <h3>Daniella Momo</h3>
-                    <h5>Front-End Developer</h5>
+                    <h3>{{ client[count].name }}</h3>
+                    <h5> {{ client[count].role }}</h5>
                 </div>
                 <div class="btn">
-                    <button> <img src="/images/lt_sign.svg" alt="lt_sgin"> </button>
-                    <button> <img src="/images/gt_sign.svg" alt="gt_sign"> </button>
+                    <button @click="minus()"> <img src="/images/lt_sign.svg" alt="lt_sgin"> </button>
+                    <button @click="plus()"> <img src="/images/gt_sign.svg" alt="gt_sign"> </button>
                 </div>
             </div>
         </aside>
         <aside class="right">
-            <div class="image"></div>
+            <div class="image">
+                <img :src="`/images/${client[count].image}`" alt="client">
+            </div>
         </aside>
     </section>
 </template>
 
 <script>
     export default {
-        
+        data(){
+            return{
+                count: 0,
+                display: true,
+                client:[
+                    {
+                        message: 'FIRST osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
+                        name: 'Daniella Momo',
+                        role: 'Front-End Developer',
+                        image: 'client1.jpg'
+                    },
+                    {
+                        message: 'SECOND osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
+                        name: 'Daniel K. Tetteh',
+                        role: 'UI/UX Designer',
+                        image: 'job_banner.jpg'
+                    },
+                    {
+                        message: 'THIRD osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
+                        name: 'Razak Ayariga',
+                        role: 'Back-End Engineer',
+                        image: 'young-businessmen.jpg'
+                    },
+                ]
+            }
+        },
+        mounted() {
+            this.toggle()
+        },
+        methods:{
+            minus(){
+                if(this.count == 0){
+                    this.count = this.client.length - 1
+                }else{
+                    this.count += -1
+                }
+            },
+            plus(){
+                if(this.count == this.client.length -1)
+                    this.count = 0
+                else
+                    this.count += 1
+            },
+            toggle() {
+                setInterval(() => {
+                    this.plus()
+                }, 10000);
+            }
+        }
     }
 </script>
 
@@ -75,6 +122,9 @@
         align-items: center;
         margin-top: 30px;
     }
+    .left .action .client{
+        /* animation: fading 10s infinite; */
+    }
     .left .action .client h3{
         font-size: 25px;
         font-weight: 800;
@@ -90,6 +140,7 @@
         height: 60px;
         border: none;
         border-radius: 50%;
+        cursor: pointer;
     }
     .action .btn button:last-child{
         background-color: #000;
@@ -105,22 +156,37 @@
         height: 552px;
         position: relative;
         float: right;
-        background-color: #7BA659;
+        top: -10%;
+        left: -10%;
+        object-fit: contain;
         /* border: 2px solid red; */
+        /* background-image: url('/images/client1.jpg'); */
     }
-    .right .image::before{
+    .right .image img{
+        width: 100%;
+        height: 100%;
+        animation: fading 10s ease-in-out forwards infinite;
+    }
+    @keyframes fading {
+        0%{opacity: 0;}
+        25%{opacity: 1;}
+        50%{opacity: 1;}
+        75%{opacity: 0.5;}
+        100%{opacity: 0;}
+    }
+    .right .image::after{
         content: '';
         display: block;
         width: 563px;
         height: 552px;
         position: absolute;
-        top: -10%;
-        left: -10%;
-        background-image: url('/images/client1.jpg');
+        top: 10%;
+        left: 10%;
+        background-color: #7BA659;
         background-size:cover;
         background-repeat: no-repeat;
         background-position: 70%;
-        
+        z-index: -1;
     }
 
 </style>
