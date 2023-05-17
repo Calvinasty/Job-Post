@@ -16,7 +16,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 151px;
+    gap: 120px;
     width: 100%;
 }
 </style>
