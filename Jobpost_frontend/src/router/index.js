@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '@/views/LandingPage.vue'
-import TestimonialsCopy from '@/components/TestimonialsCopy.vue'
 
 
 const router = createRouter({
@@ -11,12 +10,6 @@ const router = createRouter({
       name: 'Landing',
       component: LandingPage
     },
-    {
-      path: '/testimonial',
-      name: 'Tetimonial',
-      component: TestimonialsCopy
-    }
-
   ]
 })
 
