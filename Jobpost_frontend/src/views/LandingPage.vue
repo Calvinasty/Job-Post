@@ -1,12 +1,11 @@
 <template>
     <div>
         <PageLayout>
-
-
             <component :is="headerComponent"></component>
             <component :is="jobPortal"></component>
             <component :is="regflow"></component>
             <component :is="categories"></component>
+            <component :is="featuredJob"></component>
             <component :is="testimonialsComponent"></component>
             <component :is="footer"></component>
 
@@ -22,6 +21,7 @@ import PageLayout from '../components/PageLayout.vue';
 import RegFlow from '../components/RegFlow.vue';
 import CategorySection from '../components/CategorySection.vue';
 import JobPortalComponent from '@/components/JobPortalComponent.vue';
+import FeaturedJobsComponent from '@/components/FeaturedJobsComponent.vue';
 
 export default {
     components: {
@@ -29,6 +29,7 @@ export default {
         HeaderComponent,
         RegFlow,
         CategorySection,
+        FeaturedJobsComponent,
         JobPortalComponent,
         TestimonialsComponent,
         FooterComponent
@@ -38,6 +39,7 @@ export default {
             headerComponent: HeaderComponent,
             regflow: 'RegFlow',
             categories: 'CategorySection',
+            featuredJob: 'FeaturedJobsComponent',
             jobPortal: 'JobPortalComponent',
             testimonialsComponent: TestimonialsComponent,
             footer: 'FooterComponent'
