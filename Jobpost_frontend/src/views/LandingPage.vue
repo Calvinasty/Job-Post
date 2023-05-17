@@ -1,11 +1,11 @@
 <template>
     <div>
         <PageLayout>
-            <component :is="headerComponent"></component>
+            <component :is="header"></component>
             <component :is="jobPortal"></component>
             <component :is="categories"></component>
             <component :is="featuredJob"></component>
-            <component :is="testimonialsComponent"></component>
+            <component :is="testimonials"></component>
             <component :is="footer"></component>
 
         </PageLayout>
@@ -33,11 +33,11 @@ export default {
     },
     data() {
         return {
-            headerComponent: HeaderComponent,
+            header: HeaderComponent,
             categories: 'CategorySection',
             featuredJob: 'FeaturedJobsComponent',
             jobPortal: 'JobPortalComponent',
-            testimonialsComponent: TestimonialsComponent,
+            testimonials: 'TestimonialsComponent',
             footer: 'FooterComponent'
 
         };

@@ -122,27 +122,19 @@ export default {
     cursor: pointer;
 }
 
-
-
-
 .footer-sec2 {
     /* background-color: antiquewhite; */
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     width: 430px;
-
-
 }
-
 
 .footer-sec2 h2 {
     color: #FFFFFF;
     font-weight: 500;
     font-size: 25px;
 }
-
-
 
 .footer-link {
     padding-top: 36px;
@@ -166,5 +158,26 @@ export default {
     font-size: 20px;
     font-weight: 400;
     color: #FFFFFF;
+}
+
+@media screen and (max-width:360px) {
+    .footer-container {
+        background-color: #363636;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    .footer-before {
+        padding-top: 47px;
+        /* padding-right: 290px; */
+        padding: 37px 27px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+    }
+
 }
 </style>
