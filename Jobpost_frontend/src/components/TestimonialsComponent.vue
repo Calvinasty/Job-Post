@@ -36,19 +36,19 @@
                         message: 'FIRST osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
                         name: 'Daniella Momo',
                         role: 'Front-End Developer',
-                        image: 'client1.jpg'
+                        image: 'client1.jpeg'
                     },
                     {
                         message: 'SECOND osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
                         name: 'Daniel K. Tetteh',
                         role: 'UI/UX Designer',
-                        image: 'job_banner.jpg'
+                        image: 'client2.jpeg'
                     },
                     {
                         message: 'THIRD osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
                         name: 'Razak Ayariga',
                         role: 'Back-End Engineer',
-                        image: 'young-businessmen.jpg'
+                        image: 'client3.jpeg'
                     },
                 ]
             }
