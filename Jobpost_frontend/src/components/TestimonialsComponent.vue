@@ -81,7 +81,6 @@
 
 <style lang="css" scoped>
     .container{
-        font-family: 'Raleway';
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -89,13 +88,9 @@
         width: 100%;
         height: 100dvh;
         padding: 195px 125px;
-        /* border: 2px solid #7FBF4C; */
-
-        /* background-color: brown; */
     }
     .left{
         width: 40%;
-        /* border: 1px solid brown; */
         display: flex;
         flex-direction: column;
         gap: 35px;
@@ -158,14 +153,11 @@
         float: right;
         top: -10%;
         left: -10%;
-        object-fit: contain;
-        /* border: 2px solid red; */
-        /* background-image: url('/images/client1.jpg'); */
     }
     .right .image img{
         width: 100%;
         height: 100%;
-        /* animation: fading 10s ease-in-out forwards infinite; */
+        object-fit: cover;
     }
     @keyframes fading {
         0%{opacity: 0;}

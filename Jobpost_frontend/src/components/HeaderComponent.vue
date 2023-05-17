@@ -46,7 +46,6 @@ export default {
 }
 
 .container {
-    font-family: 'Raleway';
     width: 100%;
     height: 100dvh;
     padding: 55px 105px;
@@ -84,14 +83,14 @@ export default {
 
 section .head {
     width: 60%;
-    font-size: 90px;
+    font-size: 80px;
     font-weight: bolder;
     color: #fff;
 }
 
 section .tag {
     width: 40%;
-    font-size: 25px;
+    font-size: 23px;
     color: #d1d1d1;
 }
 
