@@ -158,13 +158,14 @@
         float: right;
         top: -10%;
         left: -10%;
-        object-fit: contain;
         /* border: 2px solid red; */
         /* background-image: url('/images/client1.jpg'); */
     }
     .right .image img{
         width: 100%;
         height: 100%;
+        object-fit: cover;
+
         /* animation: fading 10s ease-in-out forwards infinite; */
     }
     @keyframes fading {
