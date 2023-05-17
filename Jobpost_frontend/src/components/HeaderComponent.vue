@@ -50,24 +50,28 @@ export default {
     width: 100%;
     height: 100dvh;
     padding: 55px 105px;
-    background-color: rgba(0, 0, 0, 0.56);
-    /* border: 2px solid red; */
+    background-color: rgba(0, 0, 0, 0.65);
+    background-image: url('/images/job_banner.jpeg');
+    /* background-position: 90%; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: overlay;
 }
 
-.container::before {
+/* .container::before {
     content: '';
     display: block;
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url('/images/job_banner.jpg');
+    background-image: url('/images/job_banner.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 60%;
     top: 0;
     left: 0;
     z-index: -1;
-}
+} */
 
 .container section {
     display: flex;
@@ -124,6 +128,7 @@ section .action div {
 }
 
 .action div span:first-child {
+    padding-right: 5px;
     border-right: 2px solid #2C2D2B;
 }
 
