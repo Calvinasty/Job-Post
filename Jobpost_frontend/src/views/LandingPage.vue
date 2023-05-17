@@ -33,7 +33,7 @@ export default {
     },
     data() {
         return {
-            header: HeaderComponent,
+            header: 'HeaderComponent',
             categories: 'CategorySection',
             featuredJob: 'FeaturedJobsComponent',
             jobPortal: 'JobPortalComponent',
