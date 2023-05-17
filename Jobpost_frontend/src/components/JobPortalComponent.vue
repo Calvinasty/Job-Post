@@ -39,7 +39,6 @@ export default {
 
 <style lang="css" scoped>
 .job-portal {
-    font-family: 'Raleway';
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +94,6 @@ export default {
 .text h1 {
     /* font-size: 2rem; */
     font-size: 70px;
-    font: Raleway;
 }
 
 .text p {
