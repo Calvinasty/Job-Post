@@ -8,7 +8,7 @@
 <script>
     import AuthLayout from '../components/authpage/AuthLayout.vue';
     import SignInPage from '../components/authpage/SignInPage.vue';
-    import SignUpPage from '../components/authpage/SignUpPage.vue';
+    import SignUpPage from '../components/authpage/signupComponents/SignUpPage.vue';
     export default {
         components: {
             AuthLayout,
