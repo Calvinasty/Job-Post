@@ -4,12 +4,16 @@
 
         <section class="job-details-section1">
             <div>
-                <img src="/black-location.svg" alt="">
+                <span class="material-symbols-outlined">
+                    location_on
+                </span>
                 <p>Dome, Accra</p>
             </div>
 
             <div>
-                <img src="/black-clock.svg" alt="">
+                <span class="material-symbols-outlined">
+                    pace
+                </span>
                 <p>Part-time</p>
             </div>
         </section>
@@ -46,16 +50,16 @@ export default {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    width: 362px;
-    height: 30dvh;
+    width: 350px;
+    height: 35dvh;
 }
 
 .job h2 {
-    padding: 10px;
     font-style: normal;
-    font-weight: 500;
-    font-size: 36px;
-    line-height: 47px;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 54px;
+    margin-left: 15px;
 }
 
 .job:hover {
@@ -82,16 +86,21 @@ export default {
 .job-details-section2 {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-    padding-top: 30px;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding-top: 20px;
     width: 80%;
     margin-left: 10px;
-    border-top: 1px solid white
+    border-top: 2px solid rgb(0, 0, 0)
+}
+
+.job:hover .job-details-section2 {
+    border-top: 2px solid rgb(255, 255, 255)
 }
 
 .btn {
     padding: 10px;
-    /* background: rgb(174, 201, 153) */
     background-color: #ECF7D6;
 }
 
@@ -108,5 +117,29 @@ export default {
 .company-logo {
     background-color: black;
     width: 44px;
+}
+
+.job:hover .company-logo {
+    background-color: white;
+}
+
+@media screen and (max-width: 480px) {
+    .job {
+        width: 350px;
+        height: 26dvh;
+    }
+
+    .job h2 {
+        font-size: 23px;
+        
+    }
+
+    .job-details-section1 p {
+        font-size: 15px;
+    }
+
+    .job-details-section1 span {
+        font-size: 17px;
+    }
 }
 </style>
