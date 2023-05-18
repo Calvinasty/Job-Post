@@ -47,7 +47,6 @@ export default {
     align-items: center;
     gap: 70px;
     height: 100dvh;
-    border: 1px solid blue;
 }
 
 .img-section img {
@@ -133,10 +132,7 @@ a {
         flex-direction: column;
         padding: 20px;
         width: 100dvw;
-        /* justify-content: center;
-        align-items: center; */
         gap: 70px;
-        /* height: 100dvh; */
     }
     .img-section img {
         padding: 50px;
@@ -166,7 +162,6 @@ a {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        border: 1px solid green;
     }
     .icon-img img {
         width: 10%;
@@ -185,7 +180,6 @@ a {
     .text {
         width: 100%;
         font-size: 20px;
-        border: 1px solid black;
     }
 
     .text p {
@@ -199,7 +193,6 @@ a {
         flex-direction: row;
         justify-content: center;
         column-gap: 20px;
-        background-color: #000;
     }
 
     .button span {
@@ -220,9 +213,148 @@ a {
 
     a {
         text-decoration: none;
-    }
-
-
-    
+    }   
 }
+
+@media screen and (min-width: 481px) and (max-width: 600px){
+    .job-portal {
+        width: 100%;
+        
+    }
+    .img-section {
+    width: 50%;   
+}
+.img-section img {
+    padding: 30px;
+}
+.img-section .main-image{
+    float: right;
+    width: 350px;
+    height: 326px;
+    border: none;
+    background-position: right;
+    background-size: cover;
+    background-color: rgba(73, 91, 55, 0.5);
+    background-blend-mode: overlay;
+    background-image: url("/images/young-businessmen.jpeg");
+    border-radius: 15px;
+}
+.icon-img img {
+    width: 30px;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    justify-content: center;
+    padding: 50px 10px;
+    gap: 8px;
+    width: 40%;
+    height: 80px;
+}
+.text {
+    font-size: 16px;
+}
+
+.text h1 {
+    font-size: 70px;
+}
+
+.text p {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 20px;
+}
+
+}
+
+@media screen and (min-width: 601px) and (max-width: 768px){
+
+    .job-portal {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    height: 100dvh;
+}
+
+.img-section img {
+    padding: 30px;
+}
+
+.img-section {
+    width: 50%;   
+}
+.img-section .main-image{
+    float: right;
+    width: 350px;
+    height: 326px;
+    border: none;
+    background-position: right;
+    background-size: cover;
+    background-color: rgba(73, 91, 55, 0.5);
+    background-blend-mode: overlay;
+    background-image: url("/images/young-businessmen.jpeg");
+    border-radius: 15px;
+}
+
+.icon-img img {
+    width: 30px;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    justify-content: center;
+    padding: 50px 10px;
+    gap: 8px;
+    width: 40%;
+    height: 150px;
+}
+
+.text {
+    font-size: 16px;
+}
+
+.text h1 {
+    font-size: 70px;
+}
+
+.text p {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 20px;
+}
+
+.button span {
+    border: 1px solid;
+    border-radius: 8px;
+    font-size: 10px;
+    padding: 15px;
+    text-decoration: none;
+    background-color: #000;
+    color: #fff
+}
+
+.button span:hover {
+    background-color: #b4cda1;
+    transition: ease-in-out 0.2s;
+}
+
+}
+
 </style>
