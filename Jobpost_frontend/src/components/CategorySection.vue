@@ -102,7 +102,7 @@ export default {
         gap: 2rem;
     }
 
-    @media screen and (max-width:480px){
+    @media screen and (max-width:700px){
         .category-section{
             display: none;
     }

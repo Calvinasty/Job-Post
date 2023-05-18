@@ -191,7 +191,8 @@ export default {
         padding-top: 47px;
         /* padding-right: 290px; */
         padding: 37px 39px;
-        width: 296px;
+        /* width: 296px; */
+        width: 100vdw;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
@@ -204,7 +205,9 @@ export default {
         justify-content: space-between;
         flex-direction: column;
         /* width: 296px; */
+        width: 100%;
         gap: 28px;
+        /* border: 1px solid blue; */
     }
 
     .footer-sec1-input {
@@ -239,9 +242,18 @@ export default {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
-        width: 380px;
+        /* width: 380px; */
+        width: 100%;
         padding: 0 20px;
+        /* border: 1px solid red; */
     }
+
+    .footer-sec2 h2 {
+        font-size: 20px;
+        text-align: center;
+
+    }
+
 
     .footer-link {
         padding-top: 36px;
@@ -260,6 +272,7 @@ export default {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        text-align: center;
         padding: 13px 0;
         font-size: 16px;
         color: #FFFFFF;
