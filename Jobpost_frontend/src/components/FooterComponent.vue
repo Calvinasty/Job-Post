@@ -6,7 +6,7 @@
             <div class="footer-sec1">
 
                 <div class="logo">
-                    <img src="/images/Jobpost_logo.png" alt="" width="100px">
+                    <img src="/images/logo.png" alt="" width="100px">
                 </div>
 
                 <div class="footer-sec1-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="putsmthere">
-                    <h2>Put Something Here</h2>
+                    <h2>Put Smth Here</h2>
                     <div class="footer-link">
                         <router-link to="">Link #</router-link>
                         <router-link to="">Link #</router-link>
@@ -84,6 +84,20 @@ export default {
 
 }
 
+.logo {
+    position: relative;
+    /* background-color: antiquewhite; */
+    height: 50px;
+
+}
+
+.logo>img {
+    position: absolute;
+    /* background-color: aqua; */
+    top: -24px;
+    left: -25px;
+}
+
 .footer-sec1 {
     /* background-color: #000000; */
     display: flex;
@@ -96,6 +110,7 @@ export default {
 .footer-sec1-text {
     font-weight: 200;
     font-size: 25px;
+    text-align: left;
     color: #FFFFFF;
 }
 
@@ -110,6 +125,7 @@ export default {
     border-radius: 15px;
     height: 82px;
     width: 358px;
+
 }
 
 .footer-sec1-input img {
@@ -165,6 +181,7 @@ export default {
         background-color: #363636;
         width: 100%;
         display: flex;
+        font-weight: 200;
         font-size: 16px;
         justify-content: space-around;
         flex-direction: column;
@@ -173,7 +190,7 @@ export default {
     .footer-before {
         padding-top: 47px;
         /* padding-right: 290px; */
-        padding: 37px 27px;
+        padding: 37px 39px;
         width: 296px;
         display: flex;
         justify-content: space-between;
@@ -183,16 +200,16 @@ export default {
     }
 
     .footer-sec1 {
-        /* background-color: #000000; */
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-        width: 296px;
-        gap: 50px;
+        /* width: 296px; */
+        gap: 28px;
     }
 
     .footer-sec1-input {
         position: relative;
+        margin: auto;
         /* align-items: center; */
 
     }
@@ -202,6 +219,10 @@ export default {
         border-radius: 15px;
         height: 55px;
         width: 238px;
+        /* justify-content: center; */
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
     }
 
     .footer-sec1-input img {
@@ -214,7 +235,22 @@ export default {
         cursor: pointer;
     }
 
+    .footer-sec2 {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 380px;
+        padding: 0 20px;
+    }
 
+    .footer-link {
+        padding-top: 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
 
 
 
@@ -226,7 +262,6 @@ export default {
         align-items: center;
         padding: 13px 0;
         font-size: 16px;
-        font-weight: 200;
         color: #FFFFFF;
     }
 
