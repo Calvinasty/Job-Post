@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="jobsearch-page">
         
     </div>
 </template>
@@ -24,6 +24,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="css" scoped>
+    .jobsearch-page{
+        background: rgba(242, 242, 242, 1);
+    }
 </style>

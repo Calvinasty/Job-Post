@@ -19,7 +19,7 @@ const router = createRouter({
 
     },
     {
-      path:'/',
+      path:'/jobsearch',
       name:'JobSearch',
       component:JobSearchPage
     },
