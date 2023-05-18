@@ -9,12 +9,12 @@
             <FeatureJobCard />
             <FeatureJobCard />
             <FeatureJobCard />
-            <FeatureJobCard class="mobile-hide"/>
-            <FeatureJobCard class="mobile-hide"/>
-            <FeatureJobCard class="mobile-hide"/>
+            <FeatureJobCard class="mobile-hide" />
+            <FeatureJobCard class="mobile-hide" />
+            <FeatureJobCard class="mobile-hide" />
         </div>
 
-        <button class="btn mobile-hide" >Find More Jobs <img src="/images/arrow.svg" alt=""></button>
+        <button class="btn mobile-hide">Find More Jobs <img src="/images/arrow.svg" alt=""></button>
 
         <router-link class="mobile-show" to="">see more</router-link>
 
@@ -57,11 +57,11 @@ export default {
 }
 
 .container header p {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 15px;
-        line-height: 34px;
-    } 
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 34px;
+}
 
 .box {
     display: flex;
