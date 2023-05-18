@@ -1,6 +1,6 @@
 <template>
-    <div>
-        filter card
+    <div class="">
+        
     </div>
 </template>
 
@@ -24,6 +24,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
 
 </style>
