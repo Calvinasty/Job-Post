@@ -7,8 +7,8 @@
             </aside>
             <aside class="tag">
                 <p>
-                    lorem isjafj kajfoajf asodjassofjda aojdhfoiahdfuaif
-                    lorem isjafj kajfoajf asodjassofjda aojdhfoiahdfuaif Ojsdfghang
+                    Connecting Talent to Opportunity: 
+                    Your Path to Success Begins Here!
                 </p>
             </aside>
             <aside class="action">
@@ -26,6 +26,11 @@
                         Search
                     </button>
                 </div>
+                <!-- button displays only on mobile -->
+                <button class="mobile-search">
+                    <img src="/images/search.svg" alt="search">
+                    Get started
+                </button>
             </aside>
         </section>
     </header>
@@ -131,8 +136,80 @@
         font-weight: 400;
         background-color: #2C2D2B;
         border-radius: 15px;
+        border: none;
     }
     .action div button img {
         width: 20px;
+    }
+    .mobile-search{
+        display: none;
+    }
+
+    /* Mobile Media Queries*/
+    @media screen and (max-width: 480px) {
+        .container {
+            width: 100%;
+            height: 100dvh;
+            padding: 50px 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            background-image: url('/images/job_banner.jpeg');
+            background-position: 75% 0%;
+            background-repeat: no-repeat;
+            background-size: 300%;
+            background-blend-mode: overlay;
+        }
+        .container section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 80dvh;
+            /* border: 5px solid green; */
+        }
+        section .head {
+            width: 100dvw;
+            padding: 30px;
+            font-size: 42px;
+            text-align: center;
+            font-weight: bolder;
+            color: #fff;
+            margin-top: 80px;
+            /* border: 1px solid red; */
+        }
+        section .tag {
+            width: 100dvw;
+            padding: 30px;
+            font-size: 20px;
+            text-align: center;
+            color: #d1d1d1;
+            margin-top: -50px;
+        }
+        section .action div {
+            display: none;
+        }
+        .mobile-search{
+            display: block;
+            
+        }
+        .action button.mobile-search {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 190px;
+            padding: 20px;
+            cursor: pointer;
+            /* color: #7FBF4C; */
+            color: #fff;
+            font-size: 18px;
+            font-weight: 400;
+            background-color: #2C2D2B;
+            border-radius: 20px;
+            border: none;
+        }
+        .action button.mobile-search img{
+            /* filter: brightness(0) saturate(100%) invert(63%) sepia(8%) saturate(2334%) hue-rotate(50deg) brightness(103%) contrast(100%); */
+        }
     }
 </style>
