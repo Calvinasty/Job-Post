@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <button class="btn">Apply Now</button>
+            <button class="card-btn">Apply Now</button>
 
         </section>
     </div>
@@ -65,10 +65,12 @@ export default {
 .job:hover {
     background-color: black;
     color: white;
+    transition: all 0.4s;
 }
 
-.job:hover .btn {
+.job:hover .card-btn {
     background-color: #fff;
+    transition: all 0.4s;
 }
 
 .job-details-section1 {
@@ -99,14 +101,15 @@ export default {
     border-top: 2px solid rgb(255, 255, 255)
 }
 
-.btn {
+.card-btn {
     padding: 10px;
     background-color: #ECF7D6;
+    cursor: pointer;
 }
 
-.btn:hover {
+/* .btn:hover {
     background: white;
-}
+} */
 
 .company-section {
     display: flex;
