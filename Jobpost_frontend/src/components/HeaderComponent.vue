@@ -154,8 +154,8 @@
             height: 100dvh;
             padding: 50px 0;
             background-color: rgba(0, 0, 0, 0.75);
-            background-image: url('/images/job_banner.jpeg');
-            background-position: 75% 0%;
+            background-image: url('/images/job_banner2.jpeg');
+            background-position: 60% 0%;
             background-repeat: no-repeat;
             background-size: 300%;
             background-blend-mode: overlay;

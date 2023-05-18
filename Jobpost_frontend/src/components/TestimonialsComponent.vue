@@ -181,4 +181,10 @@
         z-index: -1;
     }
 
+    /* Mobile Media Queries*/
+    @media screen and (max-width: 480px) {
+        .container{
+            display: none
+        }
+    }
 </style>
