@@ -32,7 +32,7 @@
         width: 150px;
         top:2%;
     }
-    .auth-btns{
+    /* .auth-btns{
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -49,6 +49,29 @@
         border-radius: 15px;
         cursor: pointer;
         font-size: 14px;
+    } */
+    .auth-btns{
+        display: flex;
+        width: 100%;
+        height: 50px;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+        gap: 10px;
+        /* border: 1px solid blue; */
+    }
+    .auth-btns a{
+        color: #fff;
+        text-decoration: none;
+        font-size: larger;
+        margin-left: 20px;
+        text-decoration: underline;
+    }
+    .auth-btns a:hover{
+        background-color: #7FBF4C;
+        padding: 15px 25px;
+        border-radius: 20px;
+        text-decoration: none;
     }
 
     /* Mobile Media Queries*/

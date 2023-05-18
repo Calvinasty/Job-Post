@@ -3,11 +3,11 @@
         <NavComponent />
         <section>
             <aside class="head">
-                <h1>Find the <span class="color">job</span><br> that fits <span class="color">your</span> <br> career</h1>
+                <h1>Find the <span class="color">jobs</span><br> that fits <span class="color">your</span> <br> career</h1>
             </aside>
             <aside class="tag">
                 <p>
-                    Connecting Talent to Opportunity: 
+                    Connecting Talent to Opportunity:<br>
                     Your Path to Success Begins Here!
                 </p>
             </aside>
@@ -53,7 +53,7 @@
         width: 100%;
         height: 100dvh;
         padding: 55px 105px;
-        background-color: rgba(0, 0, 0, 0.65);
+        background-color: rgba(0, 0, 0, 0.75);
         background-image: url('/images/job_banner.jpeg');
         /* background-position: 90%; */
         background-repeat: no-repeat;
@@ -77,16 +77,18 @@
     .container section {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
         align-items: flex-start;
+        gap: 40px;
         height: 100%;
         /* border: 5px solid green; */
     }
     section .head {
         width: 60%;
-        font-size: 70px;
+        font-size: 65px;
         font-weight: bolder;
         color: #fff;
+        letter-spacing:normal;
     }
     section .tag {
         width: 40%;
