@@ -119,4 +119,30 @@
         }
     }
 
+    /* Mini Tablets */
+    @media screen and (min-width: 481px) and (max-width: 600px) {
+        .auth-btns{
+            display: flex;
+            width: 100%;
+            height: 20px;
+            padding-right: 20px;
+            padding-top: 40px;
+            flex-direction: row;
+            justify-content: end;
+            align-items: center;
+            gap: 10px;
+            /* border: 1px solid blue; */
+        }
+    }
+
+    /* Large Tablet Media Queries*/
+    @media screen and (min-width: 660px) and (max-width: 768px) {
+        .navbar div img{
+            position: absolute;
+            width: 150px;
+            top:1%;
+            left:8%
+        }
+    }
+
 </style>

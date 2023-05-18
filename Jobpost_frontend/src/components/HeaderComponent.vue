@@ -181,7 +181,7 @@
         section .tag {
             width: 100dvw;
             padding: 30px;
-            font-size: 20px;
+            font-size: 25px;
             text-align: center;
             color: #d1d1d1;
             margin-top: -50px;
@@ -215,16 +215,83 @@
         }
     }
 
-    /* Large Tablet Media Queries*/
-    @media screen and (min-width: 481px) and (max-width: 768px) {
+    /* Mini Tablets */
+    @media screen and (min-width: 481px) and (max-width: 600px) {
         .container {
-            display: none;
             width: 100%;
+            height: 100%;
+            padding: 50px 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            background-image: url('/images/job_banner2.jpeg');
+            background-position: 60% 0%;
+            background-repeat: no-repeat;
+            background-size: 300%;
+            background-blend-mode: overlay;
+        }
+        .container section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 80dvh;
+            /* border: 5px solid green; */
+        }
+        section .head {
+            width: 100dvw;
+            padding: 10px;
+            font-size: 50px;
+            text-align: center;
+            font-weight: bolder;
+            color: #fff;
+            margin-top: 80px;
+            /* border: 1px solid red; */
+        }
+        section .tag {
+            width: 100dvw;
+            padding: 30px;
+            font-size: 40px;
+            text-align: center;
+            color: #d1d1d1;
+            margin-top: -50px;
+        }
+        section .action div {
+            display: none;
+        }
+        .mobile-search{
+            display: block;
+        }
+        .action button.mobile-search {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 190px;
+            padding: 20px;
+            cursor: pointer;
+            /* color: #7FBF4C; */
+            color: #fff;
+            font-size: 18px;
+            font-weight: 400;
+            background-color: #2C2D2B;
+            border-radius: 20px;
+            border: none;
+        }
+        .action button.mobile-search img{
+            /* filter: brightness(0) saturate(100%) invert(63%) sepia(8%) saturate(2334%) hue-rotate(50deg) brightness(103%) contrast(100%); */
+        }
+    }
+
+    /* Large Tablet Media Queries*/
+    @media screen and (min-width: 601px) and (max-width: 768px) {
+        .container {
+            width: 100dvw;
             height: 100dvh;
             padding: 55px 100px;
+            /* padding: 0; */
             background-color: rgba(0, 0, 0, 0.75);
             background-image: url('/images/job_banner.jpeg');
-            /* background-position: 90%; */
+            background-position: 80% 10%;
             background-repeat: no-repeat;
             background-size: cover;
             background-blend-mode: overlay;
@@ -243,19 +310,39 @@
         }
         section .action div {
             display: flex;
-            width: 90%;
+            width: 100%;
             flex-direction: row;
             justify-content: center;
             gap: 5px;
             padding: 19px;
             background-color: #fff;
             border-radius: 15px;
+            position: relative;
             /* border: 1px solid red; */
+        }
+        .action div span label {
+            margin-left: 10px;
         }
         .action div span input {
             /* border: none; */
+            width: 100%;
             padding: 10px 10px 10px 10px;
             border: none;
         }
+        .action div button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            /* width: 100px; */
+            cursor: pointer;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 400;
+            background-color: #2C2D2B;
+            border-radius: 15px;
+            border: none;
+        }
+
     }
 </style>
