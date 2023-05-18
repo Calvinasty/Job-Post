@@ -47,7 +47,6 @@ export default {
     align-items: center;
     gap: 70px;
     height: 100dvh;
-    border: 1px solid blue;
 }
 
 .img-section img {
@@ -166,7 +165,6 @@ a {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        border: 1px solid green;
     }
     .icon-img img {
         width: 10%;
@@ -185,7 +183,6 @@ a {
     .text {
         width: 100%;
         font-size: 20px;
-        border: 1px solid black;
     }
 
     .text p {
@@ -199,7 +196,6 @@ a {
         flex-direction: row;
         justify-content: center;
         column-gap: 20px;
-        background-color: #000;
     }
 
     .button span {
