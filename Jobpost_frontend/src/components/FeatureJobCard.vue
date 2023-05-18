@@ -123,6 +123,30 @@ export default {
     background-color: white;
 }
 
+@media screen and (min-width: 1622px) {
+    .job {
+        width: 600px;
+        padding: 20px;
+    }
+
+    .job h2 {
+    font-weight: 600;
+    font-size: 40px;
+    }
+
+    .job-details-section1 div {
+        padding-top: 18px;
+    }
+
+    .job-details-section1 p {
+        font-size: 24px;
+    }
+
+    .job-details-section1 span {
+        font-size: 35px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .job {
         width: 350px;

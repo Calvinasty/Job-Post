@@ -98,6 +98,20 @@ export default {
     display: none;
 }
 
+@media screen and (min-width: 1622px) {
+    .container header {
+        row-gap: 20px;
+    }
+    .container header h1 {
+        font-size: 60px;
+    }
+
+    .container header p {
+        font-size: 30px;
+    }
+}
+
+
 @media screen and (max-width: 480px) {
     .mobile-hide {
         display: none;
