@@ -151,7 +151,7 @@
     @media screen and (max-width: 480px) {
         .container {
             width: 100%;
-            height: 100dvh;
+            height: 100%;
             padding: 50px 0;
             background-color: rgba(0, 0, 0, 0.75);
             background-image: url('/images/job_banner2.jpeg');
@@ -212,6 +212,50 @@
         }
         .action button.mobile-search img{
             /* filter: brightness(0) saturate(100%) invert(63%) sepia(8%) saturate(2334%) hue-rotate(50deg) brightness(103%) contrast(100%); */
+        }
+    }
+
+    /* Large Tablet Media Queries*/
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+        .container {
+            display: none;
+            width: 100%;
+            height: 100dvh;
+            padding: 55px 100px;
+            background-color: rgba(0, 0, 0, 0.75);
+            background-image: url('/images/job_banner.jpeg');
+            /* background-position: 90%; */
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-blend-mode: overlay;
+        }
+        section .head {
+            width: 100%;
+            font-size: 65px;
+            font-weight: bolder;
+            color: #fff;
+            letter-spacing:normal;
+        }
+        section .tag {
+            width: 70%;
+            font-size: 20px;
+            color: #d1d1d1;
+        }
+        section .action div {
+            display: flex;
+            width: 90%;
+            flex-direction: row;
+            justify-content: center;
+            gap: 5px;
+            padding: 19px;
+            background-color: #fff;
+            border-radius: 15px;
+            /* border: 1px solid red; */
+        }
+        .action div span input {
+            /* border: none; */
+            padding: 10px 10px 10px 10px;
+            border: none;
         }
     }
 </style>

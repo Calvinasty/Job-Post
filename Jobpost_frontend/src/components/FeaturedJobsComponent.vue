@@ -14,9 +14,9 @@
             <FeatureJobCard class="mobile-hide" />
         </div>
 
-        <button class="btn mobile-hide">Find More Jobs <img src="/images/arrow.svg" alt=""></button>
+        <button class="main-btn mobile-hide">Find More Jobs <span class="material-symbols-outlined">arrow_right_alt</span> </button>
 
-        <router-link class="mobile-show" to="">see more</router-link>
+        <router-link class="mobile-show see-more" to="">see more</router-link>
 
     </div>
 </template>
@@ -80,23 +80,47 @@ export default {
 
 } */
 
-.btn {
+.main-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 50px;
     padding: 15px;
     width: 200px;
     background-color: black;
-    border-radius: 20px;
     color: white;
     border-radius: 10px;
+    font-weight: bolder;
+    cursor: pointer;
 }
 
-.btn img {
-    padding-left: 20px;
+.main-btn span {
+    padding-left: 5px;
+}
+
+.main-btn:hover {
+    background-color: #ECF7D6;
+    color: black;
+    transition: all 0.4s;
 }
 
 .mobile-show {
     display: none;
 }
+
+@media screen and (min-width: 1622px) {
+    .container header {
+        row-gap: 20px;
+    }
+    .container header h1 {
+        font-size: 60px;
+    }
+
+    .container header p {
+        font-size: 30px;
+    }
+}
+
 
 @media screen and (max-width: 480px) {
     .mobile-hide {
@@ -105,6 +129,17 @@ export default {
 
     .mobile-show {
         display: block;
+    }
+
+    .see-more {
+        color: black;
+        padding-top: 15px;
+        font-size: 20px;
+    }
+
+    .container header p {
+        padding: 0 15px;
+        text-align: center;
     }
 }
 </style>
