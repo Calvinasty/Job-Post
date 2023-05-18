@@ -16,7 +16,7 @@
 
         <button class="btn mobile-hide">Find More Jobs <img src="/images/arrow.svg" alt=""></button>
 
-        <router-link class="mobile-show" to="">see more</router-link>
+        <router-link class="mobile-show see-more" to="">see more</router-link>
 
     </div>
 </template>
@@ -88,6 +88,7 @@ export default {
     border-radius: 20px;
     color: white;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .btn img {
@@ -119,6 +120,17 @@ export default {
 
     .mobile-show {
         display: block;
+    }
+
+    .see-more {
+        color: black;
+        padding-top: 15px;
+        font-size: 20px;
+    }
+
+    .container header p {
+        padding: 0 15px;
+        text-align: center;
     }
 }
 </style>
