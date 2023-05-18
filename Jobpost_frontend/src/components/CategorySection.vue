@@ -101,6 +101,14 @@ export default {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
     }
+
+    @media screen and (max-width:480px){
+        .category-section{
+            display: none;
+    }
+        
+    }
+
     @media screen and (max-width:662px) {
         .category-title{
             font-size: 40px;
