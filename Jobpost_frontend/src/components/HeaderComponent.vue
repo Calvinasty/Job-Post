@@ -151,7 +151,7 @@
     @media screen and (max-width: 480px) {
         .container {
             width: 100%;
-            height: 100dvh;
+            height: 100%;
             padding: 50px 0;
             background-color: rgba(0, 0, 0, 0.75);
             background-image: url('/images/job_banner2.jpeg');
