@@ -27,5 +27,6 @@ export default {
 <style lang="css" scoped>
     .jobsearch-page{
         background: rgba(242, 242, 242, 1);
+        
     }
 </style>
