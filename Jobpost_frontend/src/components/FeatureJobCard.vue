@@ -51,7 +51,7 @@ export default {
     flex-direction: column;
     border: 1px solid black;
     width: 350px;
-    height: 35dvh;
+    padding-bottom: 15px;
 }
 
 .job h2 {
@@ -126,7 +126,6 @@ export default {
 @media screen and (max-width: 480px) {
     .job {
         width: 350px;
-        height: 26dvh;
     }
 
     .job h2 {
