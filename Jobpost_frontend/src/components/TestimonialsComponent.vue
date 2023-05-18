@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section class="container desktop-view">
         <aside class="left">
             <h3 class="headline"> Testimonial </h3>
             <h1 class="head-text"> What Our Clients <br> Are Saying </h1>
@@ -23,6 +23,30 @@
             </div>
         </aside>
     </section>
+
+    <!-- this section is for mobile view -->
+    <section class="container mobile-view-only">
+        <aside class="main">
+            <h3 class="headline"> Testimonial </h3>
+            <h1 class="head-text"> What Our Clients <br> Are Saying </h1>
+            <div class="image">
+                <img :src="`/images/${client[count].image}`" alt="client">
+            </div>
+            <p class="message">
+                {{ client[count].message }} 
+            </p>
+            <div class="action">
+                <div class="client">
+                    <h3>{{ client[count].name }}</h3>
+                    <h5> {{ client[count].role }}</h5>
+                </div>
+                <div class="btn">
+                    <button @click="minus()"> <img src="/images/lt_sign.svg" alt="lt_sgin"> </button>
+                    <button @click="plus()"> <img src="/images/gt_sign.svg" alt="gt_sign"> </button>
+                </div>
+            </div>
+        </aside>
+    </section>
 </template>
 
 <script>
@@ -33,19 +57,19 @@
                 display: true,
                 client:[
                     {
-                        message: 'FIRST osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
+                        message: 'FIRST osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf',
                         name: 'Lisette Baas',
                         role: 'Product Owner',
                         image: 'client1.jpeg'
                     },
                     {
-                        message: 'SECOND osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
+                        message: 'SECOND osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf',
                         name: 'Daniel K. Tetteh',
                         role: 'UI/UX Designer',
                         image: 'client3.jpeg'
                     },
                     {
-                        message: 'THIRD osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig',
+                        message: 'THIRD osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf',
                         name: 'Razak Adams',
                         role: 'Back-End Engineer',
                         image: 'client2.jpeg'
@@ -89,6 +113,10 @@
         height: 100dvh;
         padding: 195px 125px;
     }
+    
+    .mobile-view-only{
+        display: none;
+    }
     .left{
         width: 40%;
         display: flex;
@@ -98,7 +126,7 @@
     .left .headline{
         color: #7FBF4C;
         font-size: 25px;
-        font-weight: 500;
+        font-weight: bold;
     }
     .left .head-text{
         color: #000;
@@ -136,6 +164,7 @@
         border: none;
         border-radius: 50%;
         cursor: pointer;
+        margin-top: 20px;
     }
     .action .btn button:last-child{
         background-color: #000;
@@ -184,7 +213,70 @@
     /* Mobile Media Queries*/
     @media screen and (max-width: 480px) {
         .container{
-            display: none
+            display: block;
+            /* flex-direction: column-reverse;
+            justify-content: space-between; */
+            /* align-items: center; */
+            width: 100%;
+            height: 100dvh;
+            padding: 20px; 
+            /* border: 1px solid red; */
+            height: 100%;
+        }
+        .desktop-view{
+            display: none;
+        }
+        .main{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            /* float: left; */
+        }
+        .main .headline{
+            font-weight: bold;
+            color: #7FBF4C;
+        }
+        .main .head-text{
+            color: #000;
+            font-size: 40px;
+            font-weight: 800px;
+        }
+        .main .message{
+            color: #4B4B4B;
+            font-size: 20px;
+            font-weight: 400;
+            margin-top: 30px;
+        }
+        .right{
+            width:100%;
+            /* border: 1px solid blue; */
+        }
+        .main .image{
+            width: 313px;
+            height: 302px;
+            position: relative;
+            /* top: -5%;
+            left: -5%; */
+        }
+        .main .image::after{
+            content: '';
+            display: block;
+            width: 313px;
+            height: 302px;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            background-color: #7BA659;
+            background-size:cover;
+            background-repeat: no-repeat;
+            background-position: 70%;
+            z-index: -1;
+        }
+        .main .image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 </style>
