@@ -14,7 +14,7 @@
             <FeatureJobCard class="mobile-hide"/>
         </div>
 
-        <button class="btn mobile-job" >Find More Jobs <img src="/images/arrow.svg" alt=""></button>
+        <button class="btn mobile-hide" >Find More Jobs <img src="/images/arrow.svg" alt=""></button>
 
         <router-link class="mobile-show" to="">see more</router-link>
 
@@ -99,7 +99,7 @@ export default {
 }
 
 @media screen and (max-width: 480px) {
-    .mobile-job {
+    .mobile-hide {
         display: none;
     }
 
