@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>SignIn</h1>
+        <h1>Desktop</h1>
     </div>
 </template>
 

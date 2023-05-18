@@ -13,7 +13,7 @@
         components: {
             AuthLayout,
             SignInPage,
-            SignUpPage
+            SignUpPage,
         },
         data(){
             return {
