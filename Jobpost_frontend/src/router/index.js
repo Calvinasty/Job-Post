@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '@/views/LandingPage.vue'
-import UserProfile from '@/views/UserProfile.vue'
+import UserProfile from '@/views/UserProfilePage.vue'
 import JobSearchPage from '@/views/JobSearchPage.vue'
+import AuthPage from '@/views/AuthPage.vue'
 
 
 const router = createRouter({
@@ -13,7 +14,7 @@ const router = createRouter({
       component: LandingPage
     },
     {
-      path:'/',
+      path:'/userprofile',
       name:'Userprofile',
       component:UserProfile
 
@@ -23,6 +24,12 @@ const router = createRouter({
       name:'JobSearch',
       component:JobSearchPage
     },
+    {
+      path:'/auth/:id',
+      name:'AuthPage',
+      component:AuthPage
+    },
+
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
