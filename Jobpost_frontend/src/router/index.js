@@ -22,7 +22,6 @@ const router = createRouter({
       path:'/',
       name:'JobSearch',
       component:JobSearchPage
-
     },
   ],
   scrollBehavior(to, from, savedPosition) {

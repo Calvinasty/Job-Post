@@ -1,6 +1,6 @@
 <template>
     <div>
-        jobe search
+        
     </div>
 </template>
 
