@@ -46,6 +46,7 @@ export default {
     align-items: center;
     gap: 70px;
     height: 100dvh;
+    background-color: #88CC0029;
 }
 
 .img-section img {
