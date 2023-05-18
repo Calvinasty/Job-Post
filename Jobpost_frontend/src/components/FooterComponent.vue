@@ -250,6 +250,8 @@ export default {
 
     .footer-sec2 h2 {
         font-size: 20px;
+        text-align: center;
+
     }
 
 
@@ -270,6 +272,7 @@ export default {
         display: flex;
         justify-content: space-around;
         align-items: center;
+        text-align: center;
         padding: 13px 0;
         font-size: 16px;
         color: #FFFFFF;
