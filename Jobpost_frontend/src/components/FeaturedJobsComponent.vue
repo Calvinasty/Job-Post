@@ -9,13 +9,14 @@
             <FeatureJobCard />
             <FeatureJobCard />
             <FeatureJobCard />
-            <FeatureJobCard />
-            <FeatureJobCard />
-            <FeatureJobCard />
+            <FeatureJobCard class="mobile-hide"/>
+            <FeatureJobCard class="mobile-hide"/>
+            <FeatureJobCard class="mobile-hide"/>
         </div>
 
-        <button class="btn">Find More Jobs <img src="/images/arrow.svg" alt=""></button>
+        <button class="btn mobile-job" >Find More Jobs <img src="/images/arrow.svg" alt=""></button>
 
+        <router-link class="mobile-show" to="">see more</router-link>
 
     </div>
 </template>
@@ -36,7 +37,7 @@ export default {
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    padding: 30px 0;
+    padding: 40px 0;
     width: 100%;
     background-color: #88CC0029;
 }
@@ -49,23 +50,18 @@ export default {
 }
 
 .container header h1 {
-    font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 600;
     font-size: 40px;
     line-height: 54px;
-    /* font-style: normal;
-    font-weight: 800;
-    font-size: 60px;
-    line-height: 70px; */
 }
 
-/* .container header p {
+.container header p {
         font-style: normal;
         font-weight: 400;
-        font-size: 25px;
-        line-height: 29px;
-    } */
+        font-size: 15px;
+        line-height: 34px;
+    } 
 
 .box {
     display: flex;
@@ -96,5 +92,19 @@ export default {
 
 .btn img {
     padding-left: 20px;
+}
+
+.mobile-show {
+    display: none;
+}
+
+@media screen and (max-width: 480px) {
+    .mobile-job {
+        display: none;
+    }
+
+    .mobile-show {
+        display: block;
+    }
 }
 </style>
