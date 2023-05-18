@@ -160,11 +160,12 @@ export default {
     color: #FFFFFF;
 }
 
-@media screen and (max-width:360px) {
+@media screen and (max-width:480px) {
     .footer-container {
         background-color: #363636;
         width: 100%;
         display: flex;
+        font-size: 16px;
         justify-content: space-around;
         flex-direction: column;
     }
@@ -173,10 +174,60 @@ export default {
         padding-top: 47px;
         /* padding-right: 290px; */
         padding: 37px 27px;
+        width: 296px;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
+        gap: 33px;
 
+    }
+
+    .footer-sec1 {
+        /* background-color: #000000; */
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 296px;
+        gap: 50px;
+    }
+
+    .footer-sec1-input {
+        position: relative;
+        /* align-items: center; */
+
+    }
+
+    .footer-sec1-input input {
+        padding-left: 15px;
+        border-radius: 15px;
+        height: 55px;
+        width: 238px;
+    }
+
+    .footer-sec1-input img {
+        position: absolute;
+        display: inline-block;
+        width: 43px;
+        height: 32px;
+        left: 187px;
+        top: 11px;
+        cursor: pointer;
+    }
+
+
+
+
+
+
+
+    .copyright {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 13px 0;
+        font-size: 16px;
+        font-weight: 200;
+        color: #FFFFFF;
     }
 
 }
