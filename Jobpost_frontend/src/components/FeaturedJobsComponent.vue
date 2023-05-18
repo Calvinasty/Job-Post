@@ -14,7 +14,7 @@
             <FeatureJobCard class="mobile-hide" />
         </div>
 
-        <button class="btn mobile-hide">Find More Jobs <img src="/images/arrow.svg" alt=""></button>
+        <button class="main-btn mobile-hide">Find More Jobs <span class="material-symbols-outlined">arrow_right_alt</span> </button>
 
         <router-link class="mobile-show see-more" to="">see more</router-link>
 
@@ -80,19 +80,28 @@ export default {
 
 } */
 
-.btn {
+.main-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 50px;
     padding: 15px;
     width: 200px;
     background-color: black;
-    border-radius: 20px;
     color: white;
     border-radius: 10px;
+    font-weight: bolder;
     cursor: pointer;
 }
 
-.btn img {
-    padding-left: 20px;
+.main-btn span {
+    padding-left: 5px;
+}
+
+.main-btn:hover {
+    background-color: #ECF7D6;
+    color: black;
+    transition: all 0.4s;
 }
 
 .mobile-show {
