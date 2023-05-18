@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import HeaderComponent from '../components/HeaderComponent.vue';
-import TestimonialsComponent from '../components/TestimonialsComponent.vue'
+import HeaderComponent from '../components/landingpage/HeaderComponent.vue';
+import TestimonialsComponent from '../components/landingpage/TestimonialsComponent.vue'
 import FooterComponent from '../components/FooterComponent.vue';
-import PageLayout from '../components/PageLayout.vue';
-import CategorySection from '../components/CategorySection.vue';
-import JobPortalComponent from '@/components/JobPortalComponent.vue';
-import FeaturedJobsComponent from '@/components/FeaturedJobsComponent.vue';
+import PageLayout from '../components/landingpage/PageLayout.vue';
+import CategorySection from '../components/landingpage/CategorySection.vue';
+import JobPortalComponent from '@/components/landingpage/JobPortalComponent.vue';
+import FeaturedJobsComponent from '@/components/landingpage/FeaturedJobsComponent.vue';
 
 export default {
     components: {

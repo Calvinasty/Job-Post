@@ -1,5 +1,7 @@
 <template>
     <div class="jobsearch-page">
+        
+
         <main class="jobs-section">
             <FilterSection/>
             <JobsSection/>       
