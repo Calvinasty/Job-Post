@@ -1,6 +1,8 @@
 <template>
     <div class="navbar"> 
-        <img src="" alt="Logo">
+        <div>
+            <img src="/images/logo.png" alt="Logo">
+        </div>
         <div class="auth-btns">
             <button>Sign In</button>
             <button>Sign Up</button>
@@ -23,6 +25,13 @@
         /* background-color: black; */
         width: 100%;
         color: #fff;
+        /* border: 2px solid #7FBF4C; */
+    }
+    .navbar div img{
+        position: absolute;
+        width: 150px;
+        top:2%;
+        /* border: 1px solid blue */
     }
     .auth-btns{
         display: flex;
