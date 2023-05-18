@@ -279,4 +279,86 @@
             object-fit: cover;
         }
     }
+
+    /* Mini Tablets */
+    @media screen and (min-width: 481px) and (max-width: 1440px) {
+        .container{
+            display: block;
+            /* flex-direction: column-reverse;
+            justify-content: space-between; */
+            /* align-items: center; */
+            width: 100%;
+            /* height: 100dvh; */
+            padding: 40px; 
+            /* border: 1px solid red; */
+            height: 100%;
+        }
+        .desktop-view{
+            display: none;
+        }
+        .main{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            /* float: left; */
+        }
+        .main .headline{
+            font-weight: bold;
+            color: #7FBF4C;
+        }
+        .main .head-text{
+            color: #000;
+            font-size: 40px;
+            font-weight: 800px;
+            /* border: 1px solid black; */
+        }
+        .main .message{
+            color: #4B4B4B;
+            font-size: 20px;
+            font-weight: 400;
+            margin-top: 35px;
+        }
+        .right{
+            width:100%;
+            /* border: 1px solid blue; */
+        }
+        .main .image{
+            width: 313px;
+            height: 302px;
+            position: relative;
+            top: -5%;
+            left: 13%;
+        }
+        .main .image::after{
+            content: '';
+            display: block;
+            width: 313px;
+            height: 302px;
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            background-color: #7BA659;
+            background-size:cover;
+            background-repeat: no-repeat;
+            background-position: 70%;
+            z-index: -1;
+        }
+        .main .image img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    /* Mini Tablets */
+    @media screen and (min-width: 1401px) {
+        .mobile-view-only{
+            display: none
+        }
+        .desktop-view{
+            display: flex;
+        }
+
+    }
 </style>
