@@ -25,44 +25,44 @@ export default {
         "headText",
         "subText"
     ]
-
   
 };
 </script>
 
 <style lang="css" scoped>
-   
 .category-card{
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-   width: 250px;
-   padding: 5px;
+    justify-content:center;
+   width: 300px;
+   padding: 0px 5px;
     height: 120px;
     background: #FFFFFF;
     border: 1px solid #7FBF4C;
-    box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     color: #000000;
-    column-gap: 20px;
+    column-gap: 15px;
     box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 }
-.category-card >img{
+.category-card img{
     width: 50px;
 }
-
 .card-text{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-end;
     text-align: left;
     font-size: 1.2rem;
+    text-align: left;
 }
 .card-text h4{
+    width: fit-content;
     font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
     /* background: #000; */
 }
-
 .card-text p{
     font-weight: 200;
     font-size: 1rem;

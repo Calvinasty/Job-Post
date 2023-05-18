@@ -10,7 +10,20 @@ const router = createRouter({
       name: 'Landing',
       component: LandingPage
     },
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      }
+    }else{
+      return{
+        top: 0,
+        behavior: 'smooth'
+      }
+    }
+  }
 })
 
 export default router

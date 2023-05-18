@@ -61,17 +61,20 @@
         /* border: 1px solid blue; */
     }
     .auth-btns a{
-        color: #fff;
+        color: #7FBF4C;
         text-decoration: none;
         font-size: larger;
+        font-weight: bold;
         margin-left: 20px;
-        text-decoration: underline;
+        /* text-decoration: underline; */
     }
     .auth-btns a:hover{
+        color: #fff;
         background-color: #7FBF4C;
         padding: 15px 25px;
         border-radius: 20px;
         text-decoration: none;
+        transition: 0.6s ease-in-out;
     }
 
     /* Mobile Media Queries*/
@@ -85,9 +88,9 @@
             padding: 30px;
         }
         .navbar div img{
-            position:fixed;
+            position:absolute;
             width: 120px;
-            top:2.5%;
+            top:-20%;
             left: 0%;
         }
         .auth-btns{
@@ -101,13 +104,14 @@
             /* border: 1px solid blue; */
         }
         .auth-btns a{
-            color: #fff;
+            color: #7FBF4C;
             text-decoration: none;
             font-size: large;
             margin-left: 20px;
-            text-decoration: underline;
+            /* text-decoration: underline; */
         }
         .auth-btns a:hover{
+            color: #fff;
             background-color: #7FBF4C;
             padding: 10px;
             border-radius: 10px;
