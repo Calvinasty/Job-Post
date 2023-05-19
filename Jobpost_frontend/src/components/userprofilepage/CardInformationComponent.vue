@@ -7,8 +7,22 @@
             <div>
                 <h3>Personal Information</h3>
                 <div>
-                    <label for="">Full Name</label>
-                    <input type="text">
+                    <div>
+                        <label for="">Full Name</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="">Email</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="">Contact</label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label for="">Social Media URL</label>
+                        <input type="text">
+                    </div>
                 </div>
             </div>
         </aside>
