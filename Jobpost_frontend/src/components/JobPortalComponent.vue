@@ -131,6 +131,7 @@ a {
         flex-direction: column;
         padding: 20px;
         width: 100dvw;
+        height: 100%;
         gap: 70px;
     }
     .img-section img {
@@ -215,11 +216,17 @@ a {
     }   
 }
 
+
+
+
 @media screen and (min-width: 481px) and (max-width: 600px){
     .job-portal {
-        display: block;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 0;
         width: 100%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         /* padding: 20px; */
         font-size: 10px;
         
@@ -227,7 +234,7 @@ a {
     .img-section {
         width: 50%;  
         font-size: 20px; 
-        border: 10px solid green;
+        /* border: 10px solid green; */
     }
     .img-section .main-image{
         /* float: right; */
@@ -249,12 +256,13 @@ a {
         display: flex;
         flex-direction: column;
         font-size: 10px;
+        gap:10px;
         justify-content: center;
-        /* padding: 0px 10px; */
+        /* padding: 0px 50px; */
         /* gap: 8px; */
         width: 50%;
         /* height: 80%; */
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
     }
     .text {
         font-size: 16px;
@@ -270,6 +278,7 @@ a {
 
     }
     .button {
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
@@ -277,6 +286,16 @@ a {
         /* padding: 10px; */
         /* width: 10%; */
     }
+    .button a span {
+        width: 50px;
+        font-size: 10px;
+        gap: 0;
+        /* display: none; */
+    }
+    .button a span img{
+        width: 8px;
+    }
+
 
 }
 
