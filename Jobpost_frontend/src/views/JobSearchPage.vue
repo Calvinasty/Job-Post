@@ -42,13 +42,15 @@ export default {
         min-height: 100dvh;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
-        width: 100dvw;
+        width: 98dvw;
+        margin: 0 auto;
     }
 
     .jobs-section{
-        margin: 85px;
+        position: relative;
+        margin-top: 85px;
         max-width: 1460px;
         height: 100%;
         display: flex;
@@ -56,5 +58,15 @@ export default {
         align-items: flex-start;
         column-gap: 100px;
         width: 100%;
+    }
+    @media screen and (max-width:871px) {
+        .jobsearch-page{
+            width: 100dvw;
+        }
+        .jobs-section{
+            column-gap: 10px;
+            justify-content: space-between;
+        }
+        
     }
 </style>

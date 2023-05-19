@@ -21,8 +21,9 @@
              </div>
         </main>
 
-        <footer>
-
+        <footer class="flex-center-row">
+            <div class="slots-availab">6 of 10 filled</div>
+            <div class="updated-at">Updated 2 hours ago</div>
         </footer>
     </div>
 </template>
@@ -69,21 +70,19 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/* utitlity class */
-
-.flex-align-start{
-
-}
     .job-card{     
-        width: 429px;
+        width: 400px;
         min-width: 429px;   
         background: #F9F8F8;
         border-radius: 10px;
-        padding: 10px;
+        padding: 15px;
         gap:20px;
     }
     .job-card >*{
         width: 100%;
+    }
+    .job-card :is(header,main){
+        padding: 0px 5px;
     }
 
     .job-card header{
@@ -105,12 +104,20 @@ export default {
     }
 
     .job-card main{
-        /* background: #c97e7e; */
         align-items: flex-start;
+        row-gap: 19px;
     }
 
     .job-detail{
         column-gap: 44px;
+    }
+    .job-card footer{
+        justify-content: space-between;
+        border-top: 2px solid #7fbf4c;
+        padding: 10px 0px;
+        font-weight: 400;
+        font-size: 15px;
+
     }
 
 

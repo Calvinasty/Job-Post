@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="/images/mn_logo.png" alt="logo">
+            <img src="/images/logo.png" alt="logo">
         </div>
         <div class="search-bar">
             <!-- <form class="search-bar">
@@ -34,7 +34,7 @@ export default {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding:20px;
     width: 100%;
     gap: 10px;
     
@@ -52,7 +52,7 @@ export default {
     position: absolute;
     padding: 0px;
     width: 150px;
-    height: 120px;
+    /* height: 120px; */
     left: 50px;
 }
 
@@ -88,11 +88,15 @@ export default {
 
 }
 .btn {
+    display: flex;
     padding: 12px;
     align-items: center;
     border-radius: 30px;
     width: 50px;
     height: 50px;
     background-color: #88CC00;
+    margin-left: 120px;
+    justify-content: center;
+    
 }
 </style>
