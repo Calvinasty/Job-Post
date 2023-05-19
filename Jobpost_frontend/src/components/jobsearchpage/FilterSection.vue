@@ -3,24 +3,57 @@
         
         <header>
             <h2>Filters</h2>
-            <button>Reset</button>
+            <button class="filter-btn">Reset</button>
         </header>
-        <FilterCard/>
-       
-        
+        <FilterCard :title="filterList[0]">
+           <SalaryFilter/>
+        </FilterCard>
+
+        <FilterCard :title="filterList[1]">
+            <JobTypeFilter/>
+        </FilterCard>
+
+        <FilterCard :title="filterList[2]">
+            <JobCategoryFilter/>
+        </FilterCard>
+
+        <FilterCard :title="filterList[3]">
+            <LocationFilter/>
+        </FilterCard>
+
+        <FilterCard :title="filterList[4]">
+            <ExperinceFilter/>
+        </FilterCard>
     </section>
 </template>
 
 <script>
+import SalaryFilter from './SalaryFIlter.vue'
 import FilterCard from './FilterCard.vue';
+import JobCategoryFilter from './JobCategoryFilter.vue';
+import JobTypeFilter from './JopTypeFilter.vue'
+import ExperinceFilter from './ExperinceFilter.vue';
+import LocationFilter from './LocationFilter.vue';
 export default {
     name: 'JobPostFilterSection',
     components:{
-        FilterCard
+        FilterCard,
+        SalaryFilter,
+        JobTypeFilter,
+        JobCategoryFilter,
+        ExperinceFilter,
+        LocationFilter
     },
     data() {
-        return {
-            
+         return {
+            filterList:[
+                'Salary Range',
+                'Job Type',
+                'Job Categories',
+                'Location',
+                'Experience'
+            ],
+                    
         };
     },
 
@@ -52,14 +85,21 @@ export default {
 
 .filter-section >header{
     height: 108px;
-    justify-content: space-around;
+    font-size: 15px;
+    font-weight: 700;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 22px;
+    justify-content: space-between;
     border-bottom: 2px solid rgba(217, 217, 217, 1)
 }
 .filter-section header button{
     font-size: 15px;
     line-height: 20px;
     padding: 8px 16px;
-    color: #7FBF4C;
+    color: #88CC00;
     border: 1px solid #B9B9B9;
     border-radius: 15px;
     cursor: pointer;
@@ -67,15 +107,11 @@ export default {
 
 }
 .filter-section header button:hover{
-    background: #7FBF4C;
+    background: #88CC00;
     color: #f1f1f1;
     border: 1px solid #7FBF4C;
 }
 
-.filter-section >*{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
+
 </style>
