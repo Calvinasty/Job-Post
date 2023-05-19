@@ -1,7 +1,6 @@
 <template>
     <div class="jobsearch-page">
-        
-
+        <JobSearchNavVue />
         <main class="jobs-section">
             <FilterSection/>
             <JobsSection/>       
@@ -12,11 +11,13 @@
 <script>
 import FilterSection from '../components/jobsearchpage/FilterSection.vue';
 import JobsSection from '../components/jobsearchpage/JobsSection.vue';
+import JobSearchNavVue from '../components/jobsearchpage/JobSearchNav.vue';
 export default {
     name: 'JobPostJobSearchPage',
     components:{
         FilterSection,
-        JobsSection
+        JobsSection,
+        JobSearchNavVue
     },
     data() {
         return {
@@ -43,6 +44,7 @@ export default {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        width: 100dvw;
     }
 
     .jobs-section{
