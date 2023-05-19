@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="putsmthere">
-                    <h2>Put Smth Here</h2>
+                    <h2>Useful Links</h2>
                     <div class="footer-link">
                         <router-link to="">Link #</router-link>
                         <router-link to="">Link #</router-link>
