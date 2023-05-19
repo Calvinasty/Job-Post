@@ -26,22 +26,22 @@
                     <h2>Find Jobs</h2>
 
                     <div class="footer-link">
-                        <router-link to="">Link #</router-link>
-                        <router-link to="">Link #</router-link>
-                        <router-link to="">Link #</router-link>
-                        <router-link to="">Link #</router-link>
-                        <router-link to="">Link #</router-link>
+                        <router-link to="">Health</router-link>
+                        <router-link to="">Agriculture</router-link>
+                        <router-link to="">Business</router-link>
+                        <router-link to="">Tecnology</router-link>
+                        <router-link to="">Oil and Gas</router-link>
                     </div>
                 </div>
 
                 <div class="putsmthere">
                     <h2>Useful Links</h2>
                     <div class="footer-link">
-                        <router-link to="">Link #</router-link>
-                        <router-link to="">Link #</router-link>
-                        <router-link to="">Link #</router-link>
-                        <router-link to="">Link #</router-link>
-                        <router-link to="">Link #</router-link>
+                        <router-link to="">Home</router-link>
+                        <router-link to="">Contact us</router-link>
+                        <router-link to="">What we do</router-link>
+                        <router-link to="">Charity Partners</router-link>
+                        <router-link to="">Faqs</router-link>
                     </div>
                 </div>
 
