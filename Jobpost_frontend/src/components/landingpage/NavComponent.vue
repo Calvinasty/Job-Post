@@ -4,8 +4,6 @@
             <router-link to="/"> <img src="/images/logo.png" alt="Logo"> </router-link>
         </div>
         <div class="auth-btns">
-            <!-- <button>Sign In</button>
-            <button>Sign Up</button> -->
             <router-link to="/auth/login">Sign in</router-link>
             <router-link to="/auth/register">Sign up</router-link>
         </div>
@@ -30,7 +28,7 @@
     .navbar div img{
         position: absolute;
         width: 150px;
-        top:2%;
+        top:7%;
     }
     /* .auth-btns{
         display: flex;
@@ -90,7 +88,7 @@
         .navbar div img{
             position:absolute;
             width: 120px;
-            top:-20%;
+            top: 20%;
             left: 0%;
         }
         .auth-btns{
