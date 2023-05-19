@@ -2,7 +2,6 @@
     <div class="job-portal">
         <div class="img-section">
             <div class="main-image"></div>
-            <!-- <img src="/young-businessmen.jpg"  alt="image"> -->
         </div>
         <div class="text-section">
                 <section class="icon-img">
@@ -218,60 +217,66 @@ a {
 
 @media screen and (min-width: 481px) and (max-width: 600px){
     .job-portal {
+        display: block;
         width: 100%;
+        border: 1px solid red;
+        /* padding: 20px; */
+        font-size: 10px;
         
     }
     .img-section {
-    width: 50%;   
-}
-.img-section img {
-    padding: 30px;
-}
-.img-section .main-image{
-    float: right;
-    width: 350px;
-    height: 326px;
-    border: none;
-    background-position: right;
-    background-size: cover;
-    background-color: rgba(73, 91, 55, 0.5);
-    background-blend-mode: overlay;
-    background-image: url("/images/young-businessmen.jpeg");
-    border-radius: 15px;
-}
-.icon-img img {
-    width: 30px;
-}
+        width: 50%;  
+        font-size: 20px; 
+        border: 10px solid green;
+    }
+    .img-section .main-image{
+        /* float: right; */
+        width: 250px;
+        height: 226px;
+        border: none;
+        background-position: right;
+        background-size: cover;
+        background-color: rgba(73, 91, 55, 0.5);
+        background-blend-mode: overlay;
+        background-image: url("/images/young-businessmen.jpeg");
+        border-radius: 15px;
+    }
+    .icon-img img {
+        width: 30px;
+    }
 
-.text-section {
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    justify-content: center;
-    padding: 50px 10px;
-    gap: 8px;
-    width: 40%;
-    height: 80px;
-}
-.text {
-    font-size: 16px;
-}
+    .text-section {
+        display: flex;
+        flex-direction: column;
+        font-size: 10px;
+        justify-content: center;
+        /* padding: 0px 10px; */
+        /* gap: 8px; */
+        width: 50%;
+        /* height: 80%; */
+        border: 1px solid blue;
+    }
+    .text {
+        font-size: 16px;
+    }
 
-.text h1 {
-    font-size: 70px;
-}
+    .text h1 {
+        font-size: 70px;
+    }
 
-.text p {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    .text p {
+        padding-top: 20px;
+        padding-bottom: 20px;
 
-}
-.button {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    column-gap: 20px;
-}
+    }
+    .button {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        column-gap: 20px;
+        /* padding: 10px; */
+        /* width: 10%; */
+    }
 
 }
 
