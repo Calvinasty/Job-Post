@@ -6,43 +6,46 @@
             <button class="filter-btn">Reset</button>
         </header>
         <FilterCard :title="filterList[0]">
-            <img src="/images/salary_range.svg" alt="salary range">
-            <span  class="salary-btn">
-                <button>
-                    <span>MIN</span>
-                    <span> GH¢{{ minSalary }}  </span>
-                </button>
-                <button >
-                    <span>MAX</span>
-                    <span> GH¢{{ maxSalary }}  </span>
-                </button>
-            </span>
+           <SalaryFilter/>
         </FilterCard>
 
         <FilterCard :title="filterList[1]">
-            
+            <JobTypeFilter/>
         </FilterCard>
 
         <FilterCard :title="filterList[2]">
+            <JobCategoryFilter/>
         </FilterCard>
 
         <FilterCard :title="filterList[3]">
+            <LocationFilter/>
         </FilterCard>
 
         <FilterCard :title="filterList[4]">
+            <ExperinceFilter/>
         </FilterCard>
     </section>
 </template>
 
 <script>
+import SalaryFilter from './SalaryFIlter.vue'
 import FilterCard from './FilterCard.vue';
+import JobCategoryFilter from './JobCategoryFilter.vue';
+import JobTypeFilter from './JopTypeFilter.vue'
+import ExperinceFilter from './ExperinceFilter.vue';
+import LocationFilter from './LocationFilter.vue';
 export default {
     name: 'JobPostFilterSection',
     components:{
-        FilterCard
+        FilterCard,
+        SalaryFilter,
+        JobTypeFilter,
+        JobCategoryFilter,
+        ExperinceFilter,
+        LocationFilter
     },
     data() {
-        return {
+         return {
             filterList:[
                 'Salary Range',
                 'Job Type',
@@ -50,9 +53,7 @@ export default {
                 'Location',
                 'Experience'
             ],
-            minSalary:200,
-            maxSalary:1000
-            
+                    
         };
     },
 
@@ -111,37 +112,6 @@ export default {
     border: 1px solid #7FBF4C;
 }
 
-.salary-btn{
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
-}
-.salary-btn button{
-    font-weight: 300;
-    font-size: 13px;
-    line-height: 18px;
-    color: #706A6A;
-    padding: 5px 25px ;
-    background: rgba(217, 217, 217, 0.4);
-    border-radius: 8px;
-    border:none;
-    cursor: pointer;
-    box-shadow: 1px 1px 2px #000;
-    
-}
-.salary-btn button span{
-    display: block;
-    width: 100%;
-    text-align: left;
-}
-.salary-btn button:hover{
-    background: #88CC00;
-    transition: background .3s ease-in-out;
-}
-.salary-btn button:active{
-    box-shadow: -1px -1px 2px #000;
-}
 
 
 </style>

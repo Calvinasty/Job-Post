@@ -1,6 +1,6 @@
 <template>
     <div class="jobsearch-page">
-        
+
 
         <main class="jobs-section">
             <FilterSection/>
@@ -43,6 +43,7 @@ export default {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        width: 100dvw;
     }
 
     .jobs-section{

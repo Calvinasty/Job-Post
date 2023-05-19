@@ -35,6 +35,7 @@ export default {
 
 <style lang="css" scoped>
 .filter-card{
+    position:relative;
     transition: all .3s ease-in-out;
     padding:0px 22px;
     width: 100%;
@@ -44,7 +45,7 @@ export default {
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    padding: 5px 0px;
+    padding: 10px 0px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -62,17 +63,22 @@ export default {
 
 .filter-card .filter-card-body{
     overflow: hidden;
-    height: 200px;
+    position: relative;
+    height: 240px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    row-gap: 40px;
+    padding-top: 20px;
     transition: all .3s ease;
     transition: height .3s ease;
+    
 }
+
+
 .filter-card.hide .filter-card-body{
     height: 0px;
+    padding-top: 0px;
     transition: height .3s ease;
 }
 
