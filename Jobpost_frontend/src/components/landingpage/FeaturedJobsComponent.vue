@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <header>
-            <h1>Featured Jobs</h1>
+            <h2>Featured Jobs</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi perferendis</p>
         </header>
 
@@ -14,7 +14,8 @@
             <FeatureJobCard class="mobile-hide" />
         </div>
 
-        <button class="main-btn mobile-hide">Find More Jobs <span class="material-symbols-outlined">arrow_right_alt</span> </button>
+        <button class="main-btn mobile-hide">Find More Jobs <span class="material-symbols-outlined">arrow_right_alt</span>
+        </button>
 
         <router-link class="mobile-show see-more" to="">see more</router-link>
 
@@ -49,7 +50,7 @@ export default {
     flex-direction: column;
 }
 
-.container header h1 {
+.container header h2 {
     font-style: normal;
     font-weight: 600;
     font-size: 40px;
@@ -112,7 +113,8 @@ export default {
     .container header {
         row-gap: 20px;
     }
-    .container header h1 {
+
+    .container header h2 {
         font-size: 60px;
     }
 

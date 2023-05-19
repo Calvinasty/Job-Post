@@ -34,7 +34,7 @@
 
 
     /*================ MOBILE VIEW ====================*/
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 500px) {
         .desktop-view {
             /* Desktop display none for mobile view */
             display: none;
