@@ -1,9 +1,9 @@
 <template>
     <div class="container">
 
-        <form @submit.prevent="handleRegister()">
+        <form @submit.prevent="handleRegister()" v-if="next !== 2">
             <Transition name="slide-fade">
-                <div v-if="next == false" class="first">
+                <div v-if="next == 0" class="first">
                     <h1>Sign Up</h1>
                     <h3>Enter your details</h3>
 
@@ -23,25 +23,25 @@
                     </aside>
                     <span>
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email">
+                        <input type="email" name="email" id="">
                     </span>
                     <span>
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="">
                     </span>
                     <span>
                         <label for="confirmPass">Confirm Password</label>
-                        <input type="password" name="confirmPass" id="confirmPass">
+                        <input type="password" name="confirmPass" id="">
                     </span>
 
-                    <button type="button" @click="setNext()">
+                    <button type="button" @click="setNext(1)">
                         Continue <span class="material-symbols-outlined">arrow_right_alt</span>
                     </button>
                 </div>
             </Transition>
 
             <Transition name="slide-fade">
-                <div v-if="next == true" class="second">
+                <div v-if="next == 1" class="second">
                     <h1>Sign Up Continue</h1>
                     <h3>Enter additional details</h3>
 
@@ -68,13 +68,29 @@
                     </button>
 
                     
-                    <button class="prev-btn" type="button" @click="setPrev()">
+                    <button class="prev-btn" type="button" @click="setPrev(0)">
                         <span class="material-symbols-outlined"> arrow_back_ios_new</span> Back 
                     </button>
                 </div>
             </Transition>
 
         </form>
+        
+        <Transition>
+            <section class="complete" v-if="next == 2">
+                <img src="/images/maxim-logo.jpeg" alt="logo">
+                <h1>Registration Complete</h1>
+                <div>
+                    <span class="material-symbols-outlined">mark_email_unread</span>
+                    <h2>Thank you</h2>
+                    <h3>We have sent a confirm email</h3>
+                    <h3>email@gmail.com</h3>
+                </div>
+                <button type="button" @click="handleHome()">
+                    View dashboard <span class="material-symbols-outlined"> dashboard</span>
+                </button>
+            </section>
+        </Transition>
 
     </div>
 </template>
@@ -83,18 +99,22 @@
     export default {
         data(){
             return{
-                next: false
+                next: 0
             }
         },
         methods:{
-            setNext(){
-                this.next = true
+            setNext(num){
+                this.next = num
             },
-            setPrev(){
-                this.next = false
+            setPrev(num){
+                this.next = num
             },
             handleRegister(){
+                this.next = 2
                 console.log('Register')
+            },
+            handleHome(){
+                this.$router.push('/userprofile')
             }
         }
     }
@@ -104,6 +124,11 @@
     .container{
         width: 100dvw;
         padding: 10px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* border:1px solid red */
     }
     form div{
         display: flex;
@@ -112,9 +137,8 @@
         justify-content: center;
         width: 100%;
         gap: 20px;
-        padding-top: 50px;
+        padding: 50px 0;
         /* border: 1px solid blue; */
-        
     }
     form div h1{
         color: #7FBF4C;
@@ -150,7 +174,7 @@
     ::-webkit-calendar-picker-indicator{
         background-color: #fff;
     }
-    form div button{
+    form div button, .complete button{
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -182,6 +206,53 @@
     }
     .prev-btn span{
         /* transform: scaleX(-1) */
+    }
+
+    /* Registeration complete */
+    .complete{
+        width: 100%;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 50px 0px;
+        /* border: 1px solid red; */
+    }
+    .complete img{
+        width: 40%
+    }
+    .complete h1{
+        font-size: 25px;
+        font-weight: 500;
+        margin-top:50px;
+        color: #7FBF4C;
+    }
+    .complete div{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+    .complete div .material-symbols-outlined{
+        font-size: 50px;
+        color: #7FBF4C;
+    }
+    .complete div h2{
+        font-size: 20px;
+        font-weight: 300;
+        color: #7FBF4C;
+    }
+    .complete div h3{
+        font-size: 16px;
+    }
+    .complete div h3:first-of-type{
+        font-weight: 300;
+    }
+    .complete button{
+        margin-top: 50px;
     }
 
     /* Transition Animation */
