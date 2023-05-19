@@ -8,7 +8,7 @@
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form> -->
             <span> <i class="fa fa-fw fa-search"></i> <input  type="text" value=""
-                    placeholder="Search for a job post. company. location"> <label for=""></label></span>
+                    placeholder="Search for a job post. company. location"> </span>
             <!-- <button>CK</button> -->
         </div>
         <div class="btn">
@@ -62,22 +62,25 @@ export default {
     align-items: center;
     width: 60%;
     padding:5px;
-    /* background-color: brown; */
-    /* border: 3px solid green; */
+    
 
 
 }
 
 .search-bar span {
-    /* border: 1px solid black; */
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
     border-radius: 30px;
-    padding: 8px;
+    padding: 8px 0px 8px 25px;
     background-color: white;
+    /* background-color: aqua; */
    
  }
 
 .search-bar span input {
     padding: 10px;
+    /* cursor: pointer; */
     width: 350px;
     border: none;
     outline: none;
@@ -87,7 +90,6 @@ export default {
 .btn {
     padding: 12px;
     align-items: center;
-    /* border: 1px solid black; */
     border-radius: 30px;
     width: 50px;
     height: 50px;
