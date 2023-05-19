@@ -14,19 +14,13 @@
 
             <div class="signin-desktop-field">
                 <div class="user-field">
-                    <label for="">Username</label>
-                    <span class="material-symbols-outlined">
-                    check
-                    </span>
-                    <input type="text" placeholder="Username">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Username" id="username">
                 </div>
 
                 <div class="password-field">
-                    <label for="">Password</label>
-                    <span class="material-symbols-outlined">
-                    check
-                    </span>
-                    <input type="password" placeholder="Password">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Password" id="password">
                 </div>
 
                 <div class="desk-links">
@@ -63,7 +57,7 @@
         justify-content: center;
         align-items: center;
         width: 40%;
-        height: 90dvh;
+        padding: 40px;
         row-gap: 20px;
         border-radius: 10px;
     }
@@ -111,15 +105,13 @@
         display: flex;
         flex-direction: column;
         row-gap: 25px;
-        width: 80%;
+        width: 100%; 
     }
 
     .user-field, .password-field {
         display: flex;
         flex-direction: column;
-        position: relative;
         row-gap: 10px;
-        position: relative;
     }
 
     .user-field label, .password-field label {
@@ -129,23 +121,16 @@
     }
 
     .user-field input, .password-field input {
-        padding: 14px;
-        border: 1px solid #7FBF4C;
-        border-radius: 10px;
+        padding: 10px;
+        border: 2px solid #7FBF4C;
+        border-radius: 8px;
     }
-    .user-field span, .password-field span {
-        position: absolute;
-        top: 40px;
-        left: 350px;
-        color: #88CC00;
-    }
-
     .desk-links {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        width: 70%;
+        width: 80%;
     }
 
     .desk-links p {
@@ -160,6 +145,31 @@
         background: #7FBF4C;
         color: #fff;
         border: #7FBF4C;
+        width: 30%;
+    }
+
+    @media screen and (max-width:1200px) and (min-width:1024px) {
+        .signin{
+            width: 45%;
+        }
+
+        .desk-links {
+            width: 80%;
+        }
+    }
+
+    @media screen and (max-width: 1024px) and (min-width: 500px) {
+        .signin {
+            width: 50%;
+        }
+
+        .desk-links {
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            row-gap: 5px;
+        }
     }
     
 </style>
