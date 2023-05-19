@@ -2,27 +2,32 @@
     <div class="userprofile">
 
 
-
+        <JobSearchNav />
 
         <section class="user-profile">
             <div class="title">
                 <h1>{{ title }}</h1>
             </div>
-            <div class="profile">
-                <div class="profile-card">
-                    <img src="images/userprofile.svg" alt="pic">
-                    <h3>Daniella McDan</h3>
-                    <span>Software Developer</span>
+            <div class="profile-section">
+                <div class="profile">
+                    <div class="profile-card">
+                        <img src="images/userprofile.svg" alt="pic">
+                        <h3>Daniella McDan</h3>
+                        <span>Software Developer</span>
+                    </div>
+                    <div class="jobsapplied">
+                        <div class="jobsapplied-1">
+                            <img src="images/user_profile_icon.svg" alt="">
+                            <p>Jobs Applied</p>
+                        </div>
+                        <div class="jobsapplied-1">
+                            <img src="images/user_profile_icon.svg" alt="">
+                            <p>Jobs Applied</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="">
-                    <div>
-                        <img src="images/user_profile_icon.svg" alt="">
-                        <p>Jobs Applied</p>
-                    </div>
-                    <div>
-                        <img src="images/user_profile_icon.svg" alt="">
-                        <p>Jobs Applied</p>
-                    </div>
+                <div class="profile-details">
+                    <CardInformationComponent />
                 </div>
             </div>
             <div class="btnsec">
@@ -37,10 +42,15 @@
 </template>
 
 <script>
+import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
+import CardInformationComponent from '../components/userprofilepage/CardInformationComponent.vue';
+
 export default {
     components: {
         FooterComponent,
+        JobSearchNav,
+        CardInformationComponent,
 
     },
 
@@ -54,22 +64,46 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.title {
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.profile-section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 43px;
+    background-color: aqua;
+
+}
+
 .userprofile {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    gap: 50px;
+    gap: 70px;
     /* background-color: #367192; */
 }
 
 .user-profile {
-    padding: 66px 146px;
+    padding: 0px 146px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 50px;
+    /* background-color: red; */
+
 }
 
 .profile {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    padding-top: 66px;
+    /* padding-top: 66px; */
+    /* width: 42%; */
+    background-color: #FFFFFF;
+
 }
 
 .profile-card {
@@ -79,7 +113,9 @@ export default {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 42px 99px;
+    padding: 42px 59px;
+    width: 363px;
+    height: 404px;
 }
 
 .profile-card h3 {
@@ -98,11 +134,24 @@ export default {
     margin-bottom: 51px;
 }
 
-.title {
-
-    font-weight: 600;
-    font-size: 50px;
+.jobsapplied {
+    display: flex;
+    flex-direction: column;
+    gap: 51px;
+    padding: 57px 20px;
 }
+
+.jobsapplied-1 {
+    display: flex;
+    flex-direction: row;
+}
+
+.jobsapplied-1 p {
+    margin-left: 33px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
 
 
 
