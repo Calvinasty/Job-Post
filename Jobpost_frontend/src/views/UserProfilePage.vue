@@ -9,7 +9,21 @@
                 <h1>{{ title }}</h1>
             </div>
             <div class="profile">
-
+                <div class="profile-card">
+                    <img src="images/userprofile.svg" alt="pic">
+                    <h3>Daniella McDan</h3>
+                    <span>Software Developer</span>
+                </div>
+                <div class="">
+                    <div>
+                        <img src="images/user_profile_icon.svg" alt="">
+                        <p>Jobs Applied</p>
+                    </div>
+                    <div>
+                        <img src="images/user_profile_icon.svg" alt="">
+                        <p>Jobs Applied</p>
+                    </div>
+                </div>
             </div>
             <div class="btnsec">
                 <button class="btn">Save</button>
@@ -48,8 +62,44 @@ export default {
     /* background-color: #367192; */
 }
 
-.title {
+.user-profile {
     padding: 66px 146px;
+}
+
+.profile {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 66px;
+}
+
+.profile-card {
+    border: 2px solid #ededed;
+    border-bottom: 5px solid #88CC00;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 42px 99px;
+}
+
+.profile-card h3 {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.profile-card span {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.profile-card>img {
+    width: 165px;
+    height: 160px;
+    margin-bottom: 51px;
+}
+
+.title {
+
     font-weight: 600;
     font-size: 50px;
 }
