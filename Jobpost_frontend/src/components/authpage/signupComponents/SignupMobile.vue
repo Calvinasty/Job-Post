@@ -78,7 +78,7 @@
         
         <Transition>
             <section class="complete" v-if="next == 2">
-                <img src="/images/maxim-logo.jpeg" alt="logo">
+                <img src="/images/logo.png" alt="logo">
                 <h1>Registration Complete</h1>
                 <div>
                     <span class="material-symbols-outlined">mark_email_unread</span>

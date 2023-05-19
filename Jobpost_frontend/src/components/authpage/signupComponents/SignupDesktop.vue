@@ -5,7 +5,7 @@
             <Transition name="slide-fade">
                 <div v-if="next == 0" class="first">
                     <div class="headers">
-                        <img src="/images/maxim-logo.jpeg" alt="logo">
+                        <img src="/images/logo.png" alt="logo">
                         <h1>Sign Up</h1>
                         <h3>Enter your details</h3>
                     </div>
@@ -49,7 +49,7 @@
             <Transition name="slide-fade">
                 <div v-if="next == 1" class="second">
                     <div class="headers">
-                        <img src="/images/maxim-logo.jpeg" alt="logo">
+                        <img src="/images/logo.png" alt="logo">
                         <h1>Sign Up Continue</h1>
                         <h3>Enter additional details</h3>
                     </div>
@@ -93,7 +93,7 @@
 
         <Transition>
             <section class="complete" v-if="next == 2">
-                <img src="/images/maxim-logo.jpeg" alt="logo">
+                <img src="/images/logo.png" alt="logo">
                 <h1>Registration Complete</h1>
                 <div>
                     <span class="material-symbols-outlined">mark_email_unread</span>
@@ -170,7 +170,7 @@
         position: relative;
     }
     form div img{
-        width: 50%;
+        width: 30%;
     }
     form div h1{
         color: #7FBF4C;

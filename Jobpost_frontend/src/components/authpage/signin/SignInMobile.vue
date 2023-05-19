@@ -1,7 +1,7 @@
 <template>
     <div class="signin-mobile">
         <header>
-            <img src="/images/maxim-logo.jpeg" alt="">
+            <img src="/images/logo.png" alt="">
             <h2>JOB POSTS</h2>
         </header>
 
