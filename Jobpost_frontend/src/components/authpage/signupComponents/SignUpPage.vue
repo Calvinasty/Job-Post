@@ -22,6 +22,14 @@
 </script>
 
 <style lang="css" scoped>
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100dvh;
+        width: 100%;
+    }
+
     @media screen and (max-width:480px) {
         .container .mobile-show{
             display: block;
@@ -36,7 +44,7 @@
             display: none;
         }
         .container .desktop-show{
-            display: block;
+            display: flex;
         }
     }
 </style>

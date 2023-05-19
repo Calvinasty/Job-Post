@@ -64,7 +64,7 @@
                     </span>
 
                     <button type="submit">
-                        SignUp <span class="material-symbols-outlined">arrow_right_alt</span>
+                        SignUp <span class="material-symbols-outlined">how_to_reg </span>
                     </button>
 
                     
@@ -163,6 +163,9 @@
         background-color: #7FBF4C;
         color: #fff;
         font-size: 15px;
+    }
+    form div button span{
+        width: fit-content;
     }
     .other-names{
         display: flex;
