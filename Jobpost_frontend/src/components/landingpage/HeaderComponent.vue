@@ -21,13 +21,13 @@
                         <label for="location">Type</label>
                         <input type="text" placeholder="Enter type of job">
                     </span>
-                    <button>
+                    <button type="button" @click="handleSearch()">
                         <img src="/images/search.svg" alt="search">
                         Search
                     </button>
                 </div>
                 <!-- button displays only on mobile -->
-                <button class="mobile-search">
+                <button class="mobile-search" @click="handleSearch()">
                     <img src="/images/search.svg" alt="search">
                     Get started
                 </button>
@@ -41,6 +41,11 @@
     export default {
         components: {
             NavComponent
+        },
+        methods:{
+            handleSearch(){
+                this.$router.push('/jobsearch')
+            }
         }
     }
 </script>
@@ -200,14 +205,15 @@
             justify-content: center;
             gap: 10px;
             width: 190px;
-            padding: 20px;
+            padding: 15px;
             cursor: pointer;
             /* color: #7FBF4C; */
             color: #fff;
             font-size: 18px;
+            font-weight: bold;
             font-weight: 400;
-            background-color: #2C2D2B;
-            border-radius: 20px;
+            background-color: #7FBF4C;
+            border-radius: 10px;
             border: none;
         }
         .action button.mobile-search img{
