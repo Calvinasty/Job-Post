@@ -1,9 +1,10 @@
 <template>
     <section class="jobs-listing flex-center">
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
-        <JobCard/>
+        <JobCard :jobExperince="jobsList[0].jobExperince" :job-location="jobsList[0].jobLocation" :jobSalary="jobsList[0].jobSalary" />
+        <JobCard :jobExperince="jobsList[0].jobExperince" :job-location="jobsList[0].jobLocation" :jobSalary="jobsList[0].jobSalary" />
+        <JobCard :jobExperince="jobsList[0].jobExperince" :job-location="jobsList[0].jobLocation" :jobSalary="jobsList[0].jobSalary" />
+        <JobCard :jobExperince="jobsList[0].jobExperince" :job-location="jobsList[0].jobLocation" :jobSalary="jobsList[0].jobSalary" />
+        
     </section>
 </template>
 
@@ -17,8 +18,9 @@ export default {
         return {
             jobsList:[
                 {
-                    jobName:'',
-                    jobPoster:''
+                    jobSalary:'GH¢ 20k-40k',
+                    jobExperince:'3 Years',
+                    jobLocation:'Tantra Hills',
                 }
             ]
             
@@ -37,7 +39,7 @@ export default {
 
 <style lang="css" scoped>
  .jobs-listing{
-    background: #b83939;
+    /* background: #b83939; */
     flex: 1;
     width: 100%;
     flex-direction: row;

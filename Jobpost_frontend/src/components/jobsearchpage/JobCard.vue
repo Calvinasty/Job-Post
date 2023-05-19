@@ -80,6 +80,7 @@ export default {
         background: #F9F8F8;
         border-radius: 10px;
         padding: 10px;
+        gap:20px;
     }
     .job-card >*{
         width: 100%;
@@ -104,7 +105,7 @@ export default {
     }
 
     .job-card main{
-        background: #c97e7e;
+        /* background: #c97e7e; */
         align-items: flex-start;
     }
 
