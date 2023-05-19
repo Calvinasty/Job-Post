@@ -15,6 +15,11 @@ export default {
 
     data() {
         return {
+            jobsList:[
+                {
+                    jobName:''
+                }
+            ]
             
         };
     },
