@@ -17,7 +17,8 @@ export default {
         return {
             jobsList:[
                 {
-                    jobName:''
+                    jobName:'',
+                    jobPoster:''
                 }
             ]
             
