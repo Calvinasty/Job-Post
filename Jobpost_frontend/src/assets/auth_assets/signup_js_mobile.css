@@ -1,3 +1,4 @@
+/* mobile and desktop containers */
 .auth-mobile-container{
     width: 100%;
     padding: 10px 40px;
@@ -5,9 +6,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border:1px solid red */
 }
-form div{
+.auth-desk-container {
+    width: 100dvw;
+    height: 100dvh;
+    padding: 55px 105px;
+    background-color: rgba(0, 0, 0, 0.75);
+    background-image: url('/images/maxim-auth-background.jpeg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-blend-mode: overlay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* mobile and desktop forms */
+.auth-mobile-container form div{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -15,8 +30,29 @@ form div{
     width: 100%;
     gap: 20px;
     padding: 50px 0;
-    /* border: 1px solid blue; */
 }
+.auth-desk-container form{
+    background-color: #f1f1f1;
+    padding: 50px 70px;
+    border-radius: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.auth-desk-container form div{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative;
+}
+.auth-desk-container form div img{
+    width: 30%;
+}
+
+/* Both screens form headers*/
 form div h1{
     color: #7FBF4C;
     font-size: 20px;
@@ -32,7 +68,6 @@ form div span{
     align-items: flex-start;
     gap: 5px;
     width: 100%;
-    /* border: 1px solid red; */
 }
 form div span label{
     color: #666;
@@ -51,13 +86,14 @@ input[type="date"]{
 ::-webkit-calendar-picker-indicator{
     background-color: #fff;
 }
+
+/* mobile and desktop buttons */
 form div button, .complete button{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    /* width: 0%; */
     padding: 14px 18px;
     border-radius: 5px;
     border: none;
@@ -65,7 +101,49 @@ form div button, .complete button{
     color: #fff;
     font-size: 15px;
 }
+.auth-desk-container form div button, .complete button{
+    width: 40%;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+/* Desktop Only components */
+.auth-desk-container form div .headers{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.progress{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    bottom: -20px;
+    right: -50%;
+}
+.progress span{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #7FBF4C;
+}
+.progress span:last-child{
+    background-color: #666;
+}
+.progress-2 span:last-child{
+    background-color: #7FBF4C;
+}
+.progress-2 span:first-child{
+    background-color: #666;
+}
+
+/* Both screens */
 form div button span{
+    margin: 0;
     width: fit-content;
 }
 .other-names{
@@ -75,25 +153,36 @@ form div button span{
     align-items: center;
     gap: 10px;
 }
-.prev-btn{
+button.prev-btn{
     /* width: 50%; */
     text-align: center;
-    background-color: #666;
-    margin-top: 30px;
-}
-.prev-btn span{
-    /* transform: scaleX(-1) */
+    background-color: #666 !important;
+    margin-top: 30px !important;
 }
 
-/* Transition Animation */
+/* Transition Animation Both screens*/
 .slide-fade-enter-active {
     transition: all 0.3s ease-out;
 }
 .slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter-from,
 .slide-fade-leave-to {
     transform: translateX(20px);
     opacity: 0;
+}
+
+/* Desktop screen only */
+/* increase form width on mini tablets */
+@media screen and (min-width:481px) and (max-width:768px) {
+    form{
+        width: 80%;
+    }
+}
+/* increase form width on tablets */
+@media screen and (min-width:769px) and (max-width:1024px) {
+    form{
+        width: 60%;
+    }
 }

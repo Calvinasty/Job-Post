@@ -8,12 +8,7 @@
 <script>
     export default {
         props:[
-            "label",
-            "type",
-            "name",
-            "value",
-            "inputId",
-            "placeHolder"
+            "label", "type", "name", "value", "inputId", "placeHolder"
         ]
     }
 </script>
@@ -25,7 +20,6 @@
         align-items: flex-start;
         gap: 5px;
         width: 100%;
-        /* border: 1px solid red; */
     }
     span label{
         color: #666;
