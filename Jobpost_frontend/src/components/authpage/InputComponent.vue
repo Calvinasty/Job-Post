@@ -1,0 +1,45 @@
+<template>
+    <span>
+        <label for="fname">{{label}}</label>
+        <input :type="type" :name="name" :value="value">
+    </span>
+</template>
+
+<script>
+    export default {
+        props:[
+            "label",
+            "type",
+            "name",
+            "value"
+        ]
+    }
+</script>
+<style lang="css" scoped>
+    span{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 5px;
+        width: 100%;
+        /* border: 1px solid red; */
+    }
+    span label{
+        color: #666;
+        font-size: 14px;
+    }
+    span input, select{
+        width: 100%;
+        padding: 14px;
+        border: 2px solid #7FBF4C;
+        border-radius: 5px;
+    }
+    input[type="date"]{
+        background-color: #7FBF4C;
+        color: #fff;
+    }
+    ::-webkit-calendar-picker-indicator{
+        background-color: #fff;
+    }
+</style>

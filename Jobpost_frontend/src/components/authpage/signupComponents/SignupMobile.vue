@@ -6,7 +6,7 @@
                 <div v-if="next == 0" class="first">
                     <h1>Sign Up</h1>
                     <h3>Enter your details</h3>
-
+                    <InputComponent label="Hello" type="password" name="password"/>
                     <span>
                         <label for="fname">First Name</label>
                         <input type="text" name="fname" value="">
@@ -33,6 +33,7 @@
                         <label for="confirmPass">Confirm Password</label>
                         <input type="password" name="confirmPass" id="">
                     </span>
+
 
                     <button type="button" @click="setNext(1)">
                         Continue <span class="material-symbols-outlined">arrow_right_alt</span>
@@ -96,7 +97,11 @@
 </template>
 
 <script>
+    import InputComponent from '../InputComponent.vue'
     export default {
+        components:{
+            InputComponent
+        },
         data(){
             return{
                 next: 0
