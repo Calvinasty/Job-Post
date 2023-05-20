@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SelectUserMobile from './SelectUserMobile.vue';
+    import SelectUserMobile from './SelectUserMobile.vue';
     export default {
         components: {
             SelectUserMobile,
