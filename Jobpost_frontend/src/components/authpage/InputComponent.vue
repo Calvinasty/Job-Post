@@ -1,7 +1,7 @@
 <template>
     <span>
         <label :for="inputId">{{label}}</label>
-        <input :type="type" :name="name" :value="value" :id="inputId">
+        <input :type="type" :name="name" :value="value" :id="inputId" :placeholder="placeHolder">
     </span>
 </template>
 
@@ -12,7 +12,8 @@
             "type",
             "name",
             "value",
-            "inputId"
+            "inputId",
+            "placeHolder"
         ]
     }
 </script>
