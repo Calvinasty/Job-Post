@@ -3,6 +3,7 @@ import LandingPage from '@/views/LandingPage.vue'
 import UserProfile from '@/views/UserProfilePage.vue'
 import JobSearchPage from '@/views/JobSearchPage.vue'
 import AuthPage from '@/views/AuthPage.vue'
+// import SelectUserPage from '@/components/authpage/SelectUserPage.vue'
 
 
 const router = createRouter({
@@ -24,6 +25,11 @@ const router = createRouter({
       name:'JobSearch',
       component:JobSearchPage
     },
+    // {
+    //   path:'/auth',
+    //   name:'AuthPage',
+    //   component:SelectUserPage
+    // },
     {
       path:'/auth/:id',
       name:'AuthPage',
