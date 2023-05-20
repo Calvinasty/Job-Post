@@ -56,7 +56,7 @@ export default {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
-        column-gap: 100px;
+        column-gap: 50px;
         width: 100%;
     }
     @media screen and (max-width:871px) {

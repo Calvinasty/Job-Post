@@ -2,10 +2,10 @@
     <div class="job-card flex-center">
         <header class="flex-center-row" >
             <span class="title flex-center-row">
-            <img src="/images/icon_microsoft.svg" alt="company-logo">
+            <img :src="jobInfomation.jobPosterLogo" alt="company-logo">
                 <span class="title-text">
-                    <h3>Job TItle</h3>
-                    <h4>company name</h4>
+                    <h3>{{ jobInfomation.jobTitle }}</h3>
+                    <h4>{{ jobInfomation.jobPoster }}</h4>
                 </span>
             </span>
             <img src="/images/save_job_icon.svg" alt="save job for later">            
@@ -13,17 +13,17 @@
 
         <main class="flex-center">
         
-             <JobDetailItem :detailIcon="jobDetailInfo[0].icon" :detailName="jobDetailInfo[0].altText" :detailText="jobLocation"/>
+             <JobDetailItem :detailIcon="jobDetailInfo[0].icon" :detailName="jobDetailInfo[0].altText" :detailText="jobInfomation.jobLocation"/>
              
              <div class="job-detail flex-center-row">
-                 <JobDetailItem :detailIcon="jobDetailInfo[1].icon" :detailName="jobDetailInfo[1].altText" :detailText="jobExperince"/>
-                 <JobDetailItem :detailIcon="jobDetailInfo[2].icon" :detailName="jobDetailInfo[2].altText" :detailText="jobSalary"/>
+                 <JobDetailItem :detailIcon="jobDetailInfo[1].icon" :detailName="jobDetailInfo[1].altText" :detailText="jobInfomation.jobExperince"/>
+                 <JobDetailItem :detailIcon="jobDetailInfo[2].icon" :detailName="jobDetailInfo[2].altText" :detailText="jobInfomation.jobSalary"/>
              </div>
         </main>
 
         <footer class="flex-center-row">
-            <div class="slots-availab">6 of 10 filled</div>
-            <div class="updated-at">Updated 2 hours ago</div>
+            <div class="slots-availab">{{jobInfomation.jobPositionsAvailable}}</div>
+            <div class="updated-at">Updated {{ jobInfomation.jobUpdatedAt }} ago</div>
         </footer>
     </div>
 </template>
@@ -48,15 +48,14 @@ export default {
                     icon:"/images/icon_salary.svg",
                     altText:"salary range"
                 }
-            ]
+            ],
+            
             
             
         };
     },
     props:[
-        'jobLocation',
-        'jobExperince',
-        'jobSalary'
+        'jobInfomation',
     ],
 
     mounted() {
@@ -97,6 +96,10 @@ export default {
         font-weight: 600;
         font-size: 20px;
         margin-bottom: 7px;
+    }
+    .title img{
+        width: auto;
+        height: 35px;
     }
     .title-text h4{
         font-weight: 200;
