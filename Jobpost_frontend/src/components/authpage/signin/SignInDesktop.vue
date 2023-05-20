@@ -71,7 +71,7 @@
     }
 
     header img {
-        width: 30%;
+        width: 50%;
         padding-bottom: 13px;
     }
 
@@ -121,7 +121,7 @@
     }
 
     .user-field input, .password-field input {
-        padding: 10px;
+        padding: 15px;
         border: 2px solid #7FBF4C;
         border-radius: 8px;
     }
