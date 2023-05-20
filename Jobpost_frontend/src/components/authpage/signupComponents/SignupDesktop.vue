@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="auth-desk-container">
 
         <form @submit.prevent="handleRegister()" v-if="next !== 2">
             <Transition name="slide-fade">
@@ -136,7 +136,7 @@
 </script>
 
 <style lang="css" scoped>
-    .container {
+    .auth-desk-container {
         width: 100dvw;
         height: 100dvh;
         padding: 55px 105px;

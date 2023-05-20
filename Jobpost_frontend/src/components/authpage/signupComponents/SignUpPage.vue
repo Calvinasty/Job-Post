@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="auth-container">
         <SignupMobile class="mobile-show"/>
         <SignupDesktop class="desktop-show"/>
     </div>
@@ -22,28 +22,28 @@
 </script>
 
 <style lang="css" scoped>
-    .container{
+    .auth-container{
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100dvh;
-        width: 100%;
+        /* height: 100dvh;
+        width: 100%; */
     }
 
     @media screen and (max-width:480px) {
-        .container .mobile-show{
+        .auth-container .mobile-show{
             display: block;
         }
-        .container .desktop-show{
+        .auth-container .desktop-show{
             display: none;
         }
     }
 
     @media screen and (min-width:481px) {
-        .container .mobile-show{
+        .auth-container .mobile-show{
             display: none;
         }
-        .container .desktop-show{
+        .auth-container .desktop-show{
             display: flex;
         }
     }
