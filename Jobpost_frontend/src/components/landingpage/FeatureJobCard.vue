@@ -52,6 +52,8 @@ export default {
     border: 1px solid black;
     width: 350px;
     padding-bottom: 15px;
+    box-shadow: 5px 5px 9px #a5a5a5,
+    -5px -5px 9px #ECF7D6;
 }
 
 .job h2 {

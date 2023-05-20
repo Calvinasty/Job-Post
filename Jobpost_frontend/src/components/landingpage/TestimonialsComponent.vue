@@ -1,7 +1,5 @@
 <template>
     <div>
-
-
         <section class="container desktop-view">
             <aside class="left">
                 <h3 class="headline"> Testimonial </h3>
@@ -115,7 +113,8 @@ export default {
     align-items: center;
     width: 100%;
     height: 100dvh;
-    padding: 195px 125px;
+    padding: 70px;
+    background-color: #f1f1f1;
 }
 
 .mobile-view-only {

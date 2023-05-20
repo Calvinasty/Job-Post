@@ -78,19 +78,21 @@ export default {
 </script>
 
 <style lang="css" scoped>
- .category-section{
+    .category-section{
         width: 100%;
-        max-width: 1460px;
+        padding: 70px;
+        /* max-width: 1460px; */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         row-gap:5rem;
+        background-color: #f1f1f1;
     }
     .category-title{
-        font-weight: 800;
-        font-size: 90px;
-        line-height: 106px;
+        /* font-weight: 800; */
+        font-size: 65px;
+        /* line-height: 106px; */
         text-align: center;
     }
     .category-list{
