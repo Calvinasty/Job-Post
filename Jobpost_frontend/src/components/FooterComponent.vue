@@ -153,7 +153,7 @@ export default {
 .footer-sec2 h2 {
     color: #FFFFFF;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .footer-link {
@@ -164,9 +164,10 @@ export default {
     gap: 33px;
 }
 
-.router-link-exact-active {
+a.router-link-exact-active {
     text-decoration: none;
-    color: #FFFFFF7A;
+    /* color: #FFFFFF7A; */
+    color: #FFFFFF;
 
 }
 
@@ -228,8 +229,8 @@ export default {
         width: 238px;
         /* justify-content: center; */
         /* display: flex;
-        justify-content: center;
-        align-items: center; */
+    justify-content: center;
+    align-items: center; */
     }
 
     .footer-sec1-input img {
@@ -257,7 +258,6 @@ export default {
         text-align: center;
     }
 
-
     .footer-link {
         padding-top: 36px;
         display: flex;
@@ -266,10 +266,6 @@ export default {
         align-items: center;
         gap: 20px;
     }
-
-
-
-
 
     .copyright {
         display: flex;
