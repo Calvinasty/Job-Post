@@ -38,3 +38,7 @@
         }
     }
 </script>
+
+<style lang="css" scoped>
+    @import '../../assets/landing_assets/headerComponent.css';
+</style>

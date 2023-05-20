@@ -12,7 +12,6 @@
 </template>
 
 <script>
-    import '../../assets/header_assets/headerComponent.css'
     import NavComponent from './NavComponent.vue';
     import HeaderSearch from './HeaderSearch.vue'
     export default {
@@ -33,3 +32,7 @@
         }
     }
 </script>
+
+<style lang="css" scoped>
+    @import '../../assets/landing_assets/headerComponent.css';
+</style>

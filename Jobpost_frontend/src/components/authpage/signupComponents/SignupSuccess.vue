@@ -1,6 +1,6 @@
 <template>
     <section class="complete">
-        <img src="/images/maxim-logo.jpeg" alt="logo">
+        <img src="/images/logo.png" alt="logo">
         <h1>Registration Complete</h1>
         <div>
             <span class="material-symbols-outlined">mark_email_unread</span>
@@ -16,7 +16,11 @@
 
 <script>
     export default {
-        
+        methods:{
+            handleHome(){
+                this.$router.push('/userprofile')
+            }
+        }
     }
 </script>
 
@@ -89,7 +93,24 @@
             align-items: center;
             gap: 20px;
             padding: 50px 0px;
+            background-color: #fff;
             /* border: 1px solid red; */
+        }
+        .complete img{
+            /* margin-top: -150px; */
+        }
+        .complete h1{
+            font-size: 23px;
+        }
+        .complete div h3{
+            font-size: 14px;
+        }
+        .complete div h2{
+            font-size: 20px;
+        }
+        .complete button{
+            font-size: 10;
+            padding: 10px 14px;
         }
     }
 
