@@ -1,7 +1,13 @@
 <template>
     <span>
         <label :for="inputId">{{label}}</label>
-        <input :type="type" :name="name" :value="value" :id="inputId" :placeholder="placeHolder">
+        <input 
+            :type="type" 
+            :name="name" 
+            :value="value" 
+            :id="inputId" 
+            :placeholder="placeHolder"
+        >
     </span>
 </template>
 
@@ -12,6 +18,8 @@
         ]
     }
 </script>
+
+<!-- styles -->
 <style lang="css" scoped>
     span{
         display: flex;
