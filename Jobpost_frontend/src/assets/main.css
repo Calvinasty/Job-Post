@@ -5,15 +5,26 @@
   font-family: 'Noto Sans', sans-serif;
 }
 .flex-center{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flex-col-start{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 .flex-center-row{
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+.flex-row-start{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 .filter-card-wrapper{
   display: flex;
