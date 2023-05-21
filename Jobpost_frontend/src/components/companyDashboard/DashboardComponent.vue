@@ -1,17 +1,30 @@
 <template>
     <main>
-        <SideBarComponent />
-        <TopBarComponent />
+        <SideBarComponent :setShow="setShow" />
+        <TopBarComponent @toggle="toggle" :setShow="setShow" />
     </main>
+    <ModalComponent />
 </template>
 
 <script>
     import SideBarComponent from './SideBarComponent.vue';
     import TopBarComponent from './TopBarComponent.vue';
+    import ModalComponent from './ModalComponent.vue';
     export default {
         components:{
             SideBarComponent,
-            TopBarComponent
+            TopBarComponent,
+            ModalComponent
+        },
+        data(){
+            return{
+                setShow: true
+            }
+        },
+        methods:{
+            toggle(){
+                this.setShow = !this.setShow
+            }
         }
     }
 </script>
