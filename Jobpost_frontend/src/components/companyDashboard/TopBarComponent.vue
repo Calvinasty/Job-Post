@@ -38,9 +38,7 @@
         box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633);
     }
     .top-bar div{
-        /* position: relative; */
         display: flex;
-
     }
     .top-bar div img{
         position: absolute;
