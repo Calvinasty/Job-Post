@@ -1,16 +1,16 @@
 <template>
     <aside class="settings flex-center">
         <button type="button">
-            <span class="material-symbols-outlined">settings</span>
+            <span class="material-symbols-outlined">{{ settings[0].icon }}</span>
             {{ settings[0].name }}
         </button>
         <button type="button">
-            <span class="material-symbols-outlined">support_agent</span>
+            <span class="material-symbols-outlined">{{ settings[1].icon }}</span>
             {{ settings[1].name }}
         </button>
 
         <div class="profile flex-center-row ">
-            <span>K</span>
+            <span></span>
             <div class="name">
                 <span>{{ user.name }}</span>
                 <span>{{ user.email }}</span>
@@ -64,8 +64,6 @@
         display: none;
         background-color: #7FBF4C;
     }
-    .material-symbols-outlined{
-    }
     .profile{
         gap: 10px;
         width: 100%;
@@ -81,10 +79,14 @@
         border: 2px solid #7FBF4C;
     }
     .settings .profile > span{
+        background-image: url('/images/company_logo.png');
+        background-size: 300%;
+        background-position: 50% 45%;
+        display: inline-block;
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        border: 1px solid;
+        border: 0.1px solid #666;
         display: flex;
         justify-content: center;
         align-items: center;

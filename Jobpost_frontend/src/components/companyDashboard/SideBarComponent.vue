@@ -1,17 +1,17 @@
 <template>
-    <section class="side-bar flex-col-start">
-        <aside class="logo flex-center">
-            <img src="/images/logo.png" alt="logo">
-        </aside>
-        <!-- <h2 class="side-title">Job Post</h2> -->
-        <aside class="nav-items">
-            <NavItemComponent :navItems="navItems"/>
-        </aside>
-        <aside class="nav-items">
-            <!-- <h4 style="color: #7FBF4C;text-align: center;">SETTINGS</h4> -->
-            <SettingsComponent :settings="settings" :user="user"/>
-        </aside>
-    </section>
+    <Transition name="slide-fade">
+        <section class="side-bar flex-col-start" v-show="setShow">
+            <aside class="logo flex-center">
+                <img :src="user.image" alt="logo">
+            </aside>
+            <aside class="nav-items">
+                <NavItemComponent :navItems="navItems"/>
+            </aside>
+            <aside class="nav-items">
+                <SettingsComponent :settings="settings" :user="user"/>
+            </aside>
+        </section>
+    </Transition>
 </template>
 
 <script>
@@ -22,27 +22,30 @@
             NavItemComponent,
             SettingsComponent
         },
+        props:['setShow'],
         data() {
             return {
+                show: true,
                 navItems: [
-                    { name: "Dasboard", link: "/analytics" },
-                    { name: "View/Edit Jobs", link: "/jobs" },
-                    { name: "View Other Jobs", link: "/alljobs" },
-                    { name: "View All Aplicants", link: "/applicants" },
-                    { name: "Company Profile", link: "/profile" },
-                    { name: "View/Edit Employers", link: "/employers" },
-                    { name: "View/Edit Job Seekers", link: "/jobseeker" },
+                    { name: "Dasboard", icon: "bar_chart_4_bars", link: "/analytics"},
+                    { name: "View/Edit Jobs",icon: "edit", link: "/jobs" },
+                    { name: "View Other Jobs", icon: "work", link: "/alljobs" },
+                    { name: "View All Aplicants", icon: "group", link: "/applicants" },
+                    { name: "Company Profile", icon: "apartment", link: "/profile" },
+                    { name: "View/Edit Employers", icon: "supervisor_account", link: "/employers" },
+                    { name: "View/Edit Job Seekers", icon: "work_alert", link: "/jobseeker" },
                 ],
                 settings:[
-                    { name: "Settings", link: "/analytics" },
-                    { name: "Help Center", link: "/analytics" }
+                    { name: "Settings", icon: 'settings', link: "/settins" },
+                    { name: "Help Center", icon: 'support_agent', link: "/settings" }
                 ],
                 user:{
                     name: 'Profile',
-                    email: 'user@email.com'
+                    email: 'user@email.com',
+                    image: '/images/logo.png'
                 }
             };
-        },
+        }
     }
 </script>
 
@@ -50,9 +53,9 @@
     .side-bar{
         height: 100vh;
         width: 20%;
-        padding: 15px 25px;
+        padding: 15px 20px;
         background-color: #fff;
-        box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633);
+        box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
     }
     .logo{
         width: 100%;
@@ -72,6 +75,17 @@
         width:100%;
         /* border-bottom: 0.1px solid #666; */
         margin-bottom: 20px;
+    }
+    .slide-fade-enter-active{
+        transition: 0.3s ease-out;
+    }
+    .slide-fade-leave-active{
+        transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+    .slide-fade-enter-from,
+    .slide-fade-leave-to{
+        transform: translate(-20px);
+        opacity: 0;
     }
 
 </style>

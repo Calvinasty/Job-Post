@@ -1,7 +1,7 @@
 <template>
     <aside class="nav-item flex-center">
-        <button type="button" v-for="navItem in navItems">
-            <span class="material-symbols-outlined"> radio_button_unchecked </span>
+        <button type="button" v-for="navItem in navItems" @click="goto(navItem.link)">
+            <span class="material-symbols-outlined"> {{navItem.icon}} </span>
             {{ navItem.name }}
         </button>
     </aside>
@@ -11,7 +11,12 @@
     export default {
         props:[
             "navItems"
-        ]
+        ],
+        methods:{
+            goto(link){
+                alert(link)
+            }
+        }
     }
 </script>
 
@@ -30,7 +35,8 @@
         outline: none;
         border: none;
         font-size: 15px;
-        font-weight: 600;
+        font-weight: 500;
+        color: #666;
         margin: 5px 0;
         border-radius: 5px;
         cursor: pointer;
@@ -42,6 +48,7 @@
         box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633);
         background-color: #7FBF4C;
         color: #fff;
+        font-weight: bold;
     }
     .nav-item button span{
         margin-right: 10px;
