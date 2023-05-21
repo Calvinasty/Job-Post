@@ -1,13 +1,7 @@
 <template>
-    <span>
+    <span class="inputfield-component">
         <label :for="inputId">{{label}}</label>
-        <input 
-            :type="type" 
-            :name="name" 
-            :value="value" 
-            :id="inputId" 
-            :placeholder="placeHolder"
-        >
+        <input :type="type" :name="name" :value="value" :id="inputId" :placeholder="placeHolder">
     </span>
 </template>
 
@@ -38,7 +32,9 @@
         padding: 14px;
         border: 2px solid #7FBF4C;
         border-radius: 5px;
+        /* outline: none; */
     }
+   
     input[type="date"]{
         background-color: #7FBF4C;
         color: #fff;
@@ -46,4 +42,6 @@
     ::-webkit-calendar-picker-indicator{
         background-color: #fff;
     }
+
+    
 </style>

@@ -1,44 +1,36 @@
 <template>
     <AuthLayout class="auth-container">
-
         <div class="form-container">
-            <header class="flex-center">
-                <img src="/images/logo.png" alt="logo">
-                <span style="text-align: center;">
-                    <h1>Sign Up</h1>
-                    <h3>Enter your details</h3>
-                </span>
-            </header>
-            <main>
-                <form action="">
-                    <InputComponent />
-                </form>
-            </main>
+           <JobPosterFormHeader/>
+            <JobPosterForm/>
+           <PageIndicator :isActive="pageNum"/>
         </div>
+
     </AuthLayout>
 </template>
 
 <script>
 import AuthLayout from '../AuthLayout.vue';
-import InputComponent from '../InputComponent.vue';
+import PageIndicator from '../signupComponents/PageIndicator.vue';
+import JobPosterFormHeader from './JobPosterFormHeader.vue';
+import JobPosterForm from './JobPosterForm.vue';
 export default {
-  components: { AuthLayout, InputComponent },
+  components: { 
+    AuthLayout, 
+    JobPosterFormHeader,
+    JobPosterForm,
+    PageIndicator },
     name: 'JobPostJobPosterSignup',
+    pageNum:0,
 
-    data() {
-        return {
-            
-        };
-    },
-
-    mounted() {
-        
-    },
-
-    methods: {
-        
-    },
+    methods:{
+            handlePageNavigation(page){
+                this.pageNum=page
+            }
+}
 };
+
+
 </script>
 
 <style lang="css" scoped>
@@ -46,7 +38,9 @@ export default {
     background-image: url(/images/maxim-auth-background.jpeg);
     width:100dvw;
     height:100vh;
-    padding:90px 300px;
+    padding: 55px 105px;
+    background-color: rgba(28, 48, 12, 0.55);
+    background-blend-mode: overlay;
 }
 .auth-container h1{
     color: #7FBF4C;
@@ -54,26 +48,40 @@ export default {
 }
 
 .auth-container h3{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-size: 13px;
 }
 
 .form-container{
     background: #ffff;
+    align-items: flex-start;
     flex:1;
     height: 100%;
     max-width: 1123px;
-    padding: 60px;
+    padding: 30px 60px;
     border-radius: 60px;
+    position :relative;
+}
+
+@media screen and (max-width:786px) {
+    .auth-container{ padding: 20px 50px; }
+    .form-container{ padding: 15px 30px; }
+
+    
+}
+@media screen and (max-width:600px) {
+    .auth-container{
+    padding:0;
+    background: #fff;
+}
 
 }
 
-.form-container header{
-   row-gap:60px;
-}
-.form-container img{
-    height: 35px;
-    width: auto;
+@media screen and (max-width:480px){
+.form-container{
+    row-gap: 5px;
+    padding: 0px 10px;
 }
 
+}
 </style>
