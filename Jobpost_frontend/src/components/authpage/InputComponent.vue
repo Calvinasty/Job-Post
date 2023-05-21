@@ -36,7 +36,10 @@
         padding: 14px;
         border: 2px solid #7FBF4C;
         border-radius: 5px;
+        /* outline: none; */
+       
     }
+   
     input[type="date"]{
         background-color: #7FBF4C;
         color: #fff;
@@ -44,4 +47,5 @@
     ::-webkit-calendar-picker-indicator{
         background-color: #fff;
     }
+    
 </style>
