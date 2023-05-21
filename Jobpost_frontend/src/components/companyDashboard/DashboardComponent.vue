@@ -28,7 +28,7 @@
         data(){
             return{
                 toggleNav: true,
-                showModal: true
+                showModal: false
             }
         },
         methods:{
