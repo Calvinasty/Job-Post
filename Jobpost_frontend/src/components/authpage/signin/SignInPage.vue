@@ -25,10 +25,12 @@
 </script>
 
 <style lang="css" scoped>
-    
-    .mobile-view {
-        /* Mobile display none for Desktop view */
-        display: none;
+
+    @media screen and (min-width: 501px) {
+            .mobile-view {
+            /* Mobile display none for Desktop view */
+            display: none;
+        }
     }
 
 

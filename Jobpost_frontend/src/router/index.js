@@ -4,6 +4,7 @@ import UserProfile from '@/views/UserProfilePage.vue'
 import JobSearchPage from '@/views/JobSearchPage.vue'
 import AuthPage from '@/views/AuthPage.vue'
 import SelectUserPage from '@/components/authpage/SelectUserPage.vue'
+import CompanyPage from '@/views/CompanyPage.vue'
 
 
 const router = createRouter({
@@ -35,6 +36,11 @@ const router = createRouter({
       name:'Auth',
       component:AuthPage
     },
+    {
+      path:'/admin/:id',
+      name:'Dashboard',
+      component: CompanyPage
+    }
 
   ],
   scrollBehavior(to, from, savedPosition) {

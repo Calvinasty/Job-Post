@@ -12,12 +12,7 @@
         components:{
             SignupMobile,
             SignupDesktop
-        },
-        data(){
-            return{
-
-            }
-        }        
+        }     
     }
 </script>
 
@@ -26,10 +21,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        /* height: 100dvh;
-        width: 100%; */
     }
-
     @media screen and (max-width:480px) {
         .auth-container .mobile-show{
             display: block;
@@ -38,7 +30,6 @@
             display: none;
         }
     }
-
     @media screen and (min-width:481px) {
         .auth-container .mobile-show{
             display: none;

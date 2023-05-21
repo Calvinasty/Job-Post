@@ -1,22 +1,25 @@
 <template>
     <span>
         <label :for="inputId">{{label}}</label>
-        <input :type="type" :name="name" :value="value" :id="inputId" :placeholder="placeHolder">
+        <input 
+            :type="type" 
+            :name="name" 
+            :value="value" 
+            :id="inputId" 
+            :placeholder="placeHolder"
+        >
     </span>
 </template>
 
 <script>
     export default {
         props:[
-            "label",
-            "type",
-            "name",
-            "value",
-            "inputId",
-            "placeHolder"
+            "label", "type", "name", "value", "inputId", "placeHolder"
         ]
     }
 </script>
+
+<!-- styles -->
 <style lang="css" scoped>
     span{
         display: flex;
@@ -25,7 +28,6 @@
         align-items: flex-start;
         gap: 5px;
         width: 100%;
-        /* border: 1px solid red; */
     }
     span label{
         color: #666;
