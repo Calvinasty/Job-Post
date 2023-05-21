@@ -1,9 +1,18 @@
 <template>
     <main>
-        <SideBarComponent :setShow="setShow" />
-        <TopBarComponent @toggle="toggle" :setShow="setShow" />
+        <SideBarComponent :toggleNav="toggleNav" />
+        <TopBarComponent 
+            @toggle="toggleNav = !toggleNav" 
+            @add-post="showModal=true" 
+            :toggleNav="toggleNav" 
+        />
     </main>
-    <ModalComponent />
+    <Transition name="slide-fade">
+        <ModalComponent 
+            v-show="showModal" 
+            @modal-close="showModal=false"
+        />
+    </Transition>
 </template>
 
 <script>
@@ -18,13 +27,11 @@
         },
         data(){
             return{
-                setShow: true
+                toggleNav: true,
+                showModal: true
             }
         },
         methods:{
-            toggle(){
-                this.setShow = !this.setShow
-            }
         }
     }
 </script>
@@ -35,5 +42,16 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
+    }
+    .slide-fade-enter-active{
+        transition: 0.3s ease-out;
+    }
+    .slide-fade-leave-active{
+        transition: all 0.6s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+    .slide-fade-enter-from,
+    .slide-fade-leave-to{
+        transform: translateY(-20px);
+        opacity: 0;
     }
 </style>

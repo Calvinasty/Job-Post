@@ -1,5 +1,5 @@
 <template>
-    <header class="top-bar" :style="!setShow && {width: '100%'}">
+    <header class="top-bar" :style="!toggleNav && {width: '100%'}">
         <div class="flex-center-row">
             <!-- <img @click="toggle" style="cursor: pointer;" src="/images/company_logo.png" alt="c-logo"> -->
             <span @click="toggle" class="material-symbols-outlined"> menu </span>
@@ -14,13 +14,13 @@
 
 <script>
     export default {
-        props: [ 'setShow' ],
+        props: [ 'toggleNav' ],
         methods:{
             toggle(){
                 this.$emit("toggle")
             },
             addPost(){
-                alert('Add a job!')
+                this.$emit("add-post")
             }
         }
     }

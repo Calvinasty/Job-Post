@@ -1,8 +1,9 @@
 <template>
     <div class="overlay">
         <div class="modal">
+            <span @click="$emit('modal-close')">X</span>
             <h1>Post a Job</h1>
-            <p>Hello Momo!</p>
+
         </div>
     </div>
 </template>
@@ -32,5 +33,18 @@
         height: 30%;
         padding: 20px;
         border-radius: 10px;
+    }
+    .modal span{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bolder;
+        cursor: pointer;
+        height: 40px;
+        width: 40px;
+        background-color: #7FBF4C;
+        color: #fff;
+        border-radius: 50%;
+        box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
     }
 </style>
