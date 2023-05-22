@@ -7,15 +7,17 @@
             <p><span>Already registered?</span> <router-link :to="{name:'Auth', params:{id:'login'}}">Sign in</router-link></p>
         </div>
         <div class="oauth flex-center-row">
-            <button class="flex-center-row">
-                <img src="/images/social-linkedin.svg" alt="linkedin">
-                <span>Sign up with LinkedIn</span>
-            </button>
-            <span>OR</span>
             <button  class="flex-center-row">
                 <img src="/images/social-google.svg" alt="google">
                 <span>Sign up with Google</span>
             </button>
+            <span>OR</span>
+            <button class="flex-center-row">
+                <img src="/images/social-linkedin.svg" alt="linkedin">
+                <span>Sign up with LinkedIn</span>
+            </button>
+           
+        
             
         </div>
     </div>
