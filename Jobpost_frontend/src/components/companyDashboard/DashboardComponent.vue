@@ -3,7 +3,7 @@
         <SideBarComponent :setShow="setShow" />
         <TopBarComponent @toggle="toggle" :setShow="setShow" />
     </main>
-    <ModalComponent />
+    <!-- <ModalComponent /> -->
 </template>
 
 <script>
