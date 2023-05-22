@@ -28,6 +28,12 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    padding: 20px;
+    width: 100%;
+    gap: 100px;
+    
+
     padding:20px 50px;
     width: 100dvw;
     gap: 10px;    
@@ -81,12 +87,14 @@ export default {
     font-size: 13px;
 }
 .btn {
+    padding: 12px;  
     display: flex;
     padding: 12px;
     align-items: center;
     border-radius: 30px;
     width: 50px;
     height: 50px;
+    /* gap: 50px; */
     background-color: #88CC00;
     margin-left: 50px;
     justify-content: center;
