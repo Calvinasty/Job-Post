@@ -14,13 +14,11 @@
 
             <div class="signin-desktop-field">
                 <div class="user-field">
-                    <label for="username">Username</label>
-                    <input type="text" placeholder="Username" id="username">
+                    <InputComponent label="Username" text="text" placeHolder="Username"/>
                 </div>
 
                 <div class="password-field">
-                    <label for="password">Password</label>
-                    <input type="password" placeholder="Password" id="password">
+                    <InputComponent label="Password" text="password" placeHolder="Password"/>
                 </div>
 
                 <div class="desk-links">
@@ -35,8 +33,11 @@
 </template>
 
 <script>
+    import InputComponent from '../InputComponent.vue';
     export default {
-        
+        components: {
+            InputComponent,
+        }
     }
 </script>
 
