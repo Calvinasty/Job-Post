@@ -36,7 +36,7 @@ export default {
     align-items: center;
     padding: 20px;
     width: 100%;
-    gap: 10px;
+    gap: 100px;
     
 }
 
@@ -88,11 +88,12 @@ export default {
 
 }
 .btn {
-    padding: 12px;
+    padding: 12px;  
     align-items: center;
     border-radius: 30px;
     width: 50px;
     height: 50px;
+    /* gap: 50px; */
     background-color: #88CC00;
 }
 </style>
