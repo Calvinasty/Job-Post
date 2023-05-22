@@ -12,8 +12,8 @@
                 <div class="profile">
                     <div class="profile-card">
                         <img src="images/userprofile.svg" alt="pic">
-                        <h3>Daniella McDan</h3>
-                        <span>Software Developer</span>
+                        <h3>{{ usersName }}</h3>
+                        <span>{{ userOccupation }}</span>
                     </div>
                     <div class="jobsapplied">
                         <div class="jobsapplied-1">
@@ -27,7 +27,56 @@
                     </div>
                 </div>
                 <div class="profile-details">
-                    <CardInformationComponent />
+                    <CardInformationComponent :detailsTitle="inputCardDetails[0].cardTitle"
+                        :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true">
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputOne.id" />
+
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputTwo?.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputTwo.type"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputTwo.id" />
+
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputThree?.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputThree.type"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputThree.id" />
+
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputFour?.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputFour.type"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputFour.id" />
+                    </CardInformationComponent>
+
+                    <CardInformationComponent :detailsTitle="inputCardDetails[1].cardTitle">
+                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" />
+                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputTwo.name"
+                            :inputType="inputCardDetails[1].cardInputInformation.inputTwo.type"
+                            :inputId="inputCardDetails[1].cardInputInformation.inputTwo.id" />
+                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputThree.name"
+                            :inputType="inputCardDetails[1].cardInputInformation.inputThree.type"
+                            :inputId="inputCardDetails[1].cardInputInformation.inputThree.id" />
+
+                    </CardInformationComponent>
+                    <CardInformationComponent :detailsTitle="inputCardDetails[2].cardTitle">
+                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" />
+                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
+                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
+
+                    </CardInformationComponent>
+                    <CardInformationComponent :detailsTitle="inputCardDetails[3].cardTitle">
+                        <div class="select-field">
+                            <label for="skills">Skills</label>
+                            <select name="skill" id="skills">
+                                <option value="">Vue Js</option>
+                                <option value="">Node Js</option>
+                                <option value="">Full Stack </option>
+                            </select>
+                        </div>
+                    </CardInformationComponent>
                 </div>
             </div>
             <div class="btnsec">
@@ -45,18 +94,122 @@
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
 import CardInformationComponent from '../components/userprofilepage/CardInformationComponent.vue';
-
+import InputComponent from '../components/userprofilepage/inputComponent.vue';
 export default {
     components: {
         FooterComponent,
         JobSearchNav,
         CardInformationComponent,
+        InputComponent
 
     },
 
     data() {
         return {
-            title: 'User Profile'
+            title: 'User Profile',
+            usersName: 'Daniella McDan',
+            userOccupation: 'Software Developer',
+
+            inputCardDetails: [
+                {
+                    cardTitle: "Personal Information",
+                    cardInputInformation: {
+                        inputOne: {
+                            id: "full-name",
+                            name: "Full Name",
+                            type: "text",
+
+                        },
+                        inputTwo: {
+                            id: "email",
+                            name: "Email",
+                            type: "email",
+
+                        },
+                        inputThree: {
+                            id: "contact",
+                            name: "Contact",
+                            type: "tel",
+
+                        },
+                        inputFour: {
+                            id: "social-media",
+                            name: "Social Media URL",
+                            type: "text",
+
+                        },
+                        inputFive: {
+                            id: "date",
+                            name: "DD/MM/YYYY",
+                            type: "date",
+
+                        },
+                        inputSix: {
+                            id: "male",
+                            name: "Male",
+                            type: "radio",
+                            radio: 'gender'
+
+                        },
+                        inputSeven: {
+                            id: "female",
+                            name: "Female",
+                            type: "radio",
+                            radio: 'gender'
+
+                        },
+                    }
+
+                },
+
+                {
+                    cardTitle: "Education History",
+                    cardInputInformation: {
+                        inputOne: {
+                            id: "level-of-study",
+                            name: "Level of Study",
+                            type: "text",
+                        },
+                        inputTwo: {
+                            id: "degree-type",
+                            name: "Degree Type",
+                            type: "text",
+                        },
+                        inputThree: {
+                            id: "year-graduated",
+                            name: "Year Graduated",
+                            type: "text",
+                        },
+
+                    }
+                },
+
+                {
+                    cardTitle: "Work Experience",
+                    cardInputInformation: {
+                        inputOne: {
+                            id: 'years-of-experience',
+                            name: 'Year of experience',
+                            type: 'text',
+
+
+                        },
+                        inputTwo: {
+                            id: 'resume',
+                            name: 'Resume/CV',
+                            type: 'file',
+                        }
+
+                    }
+                },
+
+                {
+                    cardTitle: "Skills/Interests",
+
+                }
+
+
+            ]
         }
     },
 
@@ -74,7 +227,7 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 43px;
-    background-color: aqua;
+    /* background-color: aqua; */
 
 }
 
@@ -87,7 +240,7 @@ export default {
 }
 
 .user-profile {
-    padding: 0px 146px;
+    padding: 0px 50px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -146,14 +299,48 @@ export default {
     flex-direction: row;
 }
 
-.jobsapplied-1 p {
+.jobsapplied-1>p {
     margin-left: 33px;
     font-size: 20px;
     font-weight: 600;
 }
 
 
+.profile-details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+    flex: 1;
 
+}
+
+.select-field {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.select-field label {
+    font-weight: 500;
+    font-size: 15px;
+    color: #898989;
+
+}
+
+.select-field select {
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+    outline: none;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border-bottom: 1px solid #D9D9D9;
+
+}
 
 
 
