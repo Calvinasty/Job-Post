@@ -2,7 +2,7 @@
     <AuthLayout class="auth-container">
         <div class="form-container">
            <JobPosterFormHeader/>
-            <JobPosterForm/>
+            <JobPosterForm :pageNavigation="handlePageNavigation" :pageNumber="pageNum"/>
            <PageIndicator :isActive="pageNum"/>
         </div>
 

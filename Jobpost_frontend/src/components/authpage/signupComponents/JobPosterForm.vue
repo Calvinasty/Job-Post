@@ -1,6 +1,7 @@
 <template>         
  
-        <main>
+        <main >
+            <Transition name="slide-fade">
             <form class="flex-center">
                 <div class=" input-container flex-center-row">
                     <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
@@ -19,27 +20,29 @@
                 </div>
                 <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType"/>
             </form>
+        </Transition>
+        <!-- <Transition name="slide-fade">
+            <form v-if="pageNumber==1" class="flex-center">
+                <div class=" input-container flex-center-row">
+                    <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
+                    <InputComponent :type="inputData[1].type" :label="inputData[1].label" :inputId="inputData[1].inputId" :name="inputData[1].name" :placeHolder="inputData[1].placeholder" />
+
+                </div>
+                <div class="input-container pass  flex-center-row">
+                    <InputComponent :type="inputData[2].type" :label="inputData[2].label" :inputId="inputData[2].inputId" :name="inputData[2].name" :placeHolder="inputData[2].placeholder" />
+                    <InputComponent :type="inputData[3].type" :label="inputData[3].label" :inputId="inputData[3].inputId" :name="inputData[3].name" :placeHolder="inputData[3].placeholder" />
+
+                </div>
+                <div class="input-container flex-center-row">
+                    <InputComponent :type="inputData[4].type" :label="inputData[4].label" :inputId="inputData[4].inputId" :name="inputData[4].name" :placeHolder="inputData[4].placeholder" />
+                    <InputComponent :type="inputData[5].type" :label="inputData[5].label" :inputId="inputData[5].inputId" :name="inputData[5].name" :placeHolder="inputData[5].placeholder" />
+
+                </div>
+                <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType"/>
+            </form>
+        </Transition> -->
         </main>
-        <!-- <main>
-            <form class="flex-center">
-                <div class=" input-container flex-center-row">
-                    <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
-                    <InputComponent :type="inputData[1].type" :label="inputData[1].label" :inputId="inputData[1].inputId" :name="inputData[1].name" :placeHolder="inputData[1].placeholder" />
-
-                </div>
-                <div class="input-container pass  flex-center-row">
-                    <InputComponent :type="inputData[2].type" :label="inputData[2].label" :inputId="inputData[2].inputId" :name="inputData[2].name" :placeHolder="inputData[2].placeholder" />
-                    <InputComponent :type="inputData[3].type" :label="inputData[3].label" :inputId="inputData[3].inputId" :name="inputData[3].name" :placeHolder="inputData[3].placeholder" />
-
-                </div>
-                <div class="input-container flex-center-row">
-                    <InputComponent :type="inputData[4].type" :label="inputData[4].label" :inputId="inputData[4].inputId" :name="inputData[4].name" :placeHolder="inputData[4].placeholder" />
-                    <InputComponent :type="inputData[5].type" :label="inputData[5].label" :inputId="inputData[5].inputId" :name="inputData[5].name" :placeHolder="inputData[5].placeholder" />
-
-                </div>
-                <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType"/>
-            </form>
-        </main> -->
+        
         
 
    
@@ -119,6 +122,10 @@ export default {
     mounted() {
         
     },
+    props:[
+        'pageNavigation',
+        'pageNumber'
+    ],
 
     methods: {        
     },
