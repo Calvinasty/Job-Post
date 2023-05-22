@@ -1,50 +1,50 @@
 <template>         
  
-        <main >
+ 
+     <main >
+         <Transition name="slide-fade">
+            <form v-if="pageNumber==0" class="form-animation flex-center">
+                    <div class=" input-container flex-center-row">
+                        <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
+                        <InputComponent :type="inputData[1].type" :label="inputData[1].label" :inputId="inputData[1].inputId" :name="inputData[1].name" :placeHolder="inputData[1].placeholder" />
+
+                    </div>
+                    <div class="input-container pass  flex-center-row">
+                        <InputComponent :type="inputData[2].type" :label="inputData[2].label" :inputId="inputData[2].inputId" :name="inputData[2].name" :placeHolder="inputData[2].placeholder" />
+                        <InputComponent :type="inputData[3].type" :label="inputData[3].label" :inputId="inputData[3].inputId" :name="inputData[3].name" :placeHolder="inputData[3].placeholder" />
+
+                    </div>
+                    <div class="input-container flex-center-row">
+                        <InputComponent :type="inputData[4].type" :label="inputData[4].label" :inputId="inputData[4].inputId" :name="inputData[4].name" :placeHolder="inputData[4].placeholder" />
+                        <InputComponent :type="inputData[5].type" :label="inputData[5].label" :inputId="inputData[5].inputId" :name="inputData[5].name" :placeHolder="inputData[5].placeholder" />
+                        
+                    </div>
+                    <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType" :pageNavigation="pageNavigation"/>
+                </form>
+            </Transition>
+       
             <Transition name="slide-fade">
-            <form class="flex-center">
-                <div class=" input-container flex-center-row">
-                    <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
-                    <InputComponent :type="inputData[1].type" :label="inputData[1].label" :inputId="inputData[1].inputId" :name="inputData[1].name" :placeHolder="inputData[1].placeholder" />
-
-                </div>
-                <div class="input-container pass  flex-center-row">
-                    <InputComponent :type="inputData[2].type" :label="inputData[2].label" :inputId="inputData[2].inputId" :name="inputData[2].name" :placeHolder="inputData[2].placeholder" />
-                    <InputComponent :type="inputData[3].type" :label="inputData[3].label" :inputId="inputData[3].inputId" :name="inputData[3].name" :placeHolder="inputData[3].placeholder" />
-
-                </div>
-                <div class="input-container flex-center-row">
-                    <InputComponent :type="inputData[4].type" :label="inputData[4].label" :inputId="inputData[4].inputId" :name="inputData[4].name" :placeHolder="inputData[4].placeholder" />
-                    <InputComponent :type="inputData[5].type" :label="inputData[5].label" :inputId="inputData[5].inputId" :name="inputData[5].name" :placeHolder="inputData[5].placeholder" />
-
-                </div>
-                <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType"/>
-            </form>
-        </Transition>
-        <!-- <Transition name="slide-fade">
-            <form v-if="pageNumber==1" class="flex-center">
-                <div class=" input-container flex-center-row">
-                    <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
-                    <InputComponent :type="inputData[1].type" :label="inputData[1].label" :inputId="inputData[1].inputId" :name="inputData[1].name" :placeHolder="inputData[1].placeholder" />
-
-                </div>
-                <div class="input-container pass  flex-center-row">
-                    <InputComponent :type="inputData[2].type" :label="inputData[2].label" :inputId="inputData[2].inputId" :name="inputData[2].name" :placeHolder="inputData[2].placeholder" />
-                    <InputComponent :type="inputData[3].type" :label="inputData[3].label" :inputId="inputData[3].inputId" :name="inputData[3].name" :placeHolder="inputData[3].placeholder" />
-
-                </div>
-                <div class="input-container flex-center-row">
-                    <InputComponent :type="inputData[4].type" :label="inputData[4].label" :inputId="inputData[4].inputId" :name="inputData[4].name" :placeHolder="inputData[4].placeholder" />
-                    <InputComponent :type="inputData[5].type" :label="inputData[5].label" :inputId="inputData[5].inputId" :name="inputData[5].name" :placeHolder="inputData[5].placeholder" />
-
-                </div>
-                <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType"/>
-            </form>
-        </Transition> -->
+                <form v-if="pageNumber==1" class=" form-animation flex-center">
+                    <div class=" input-container flex-center-row">
+                        <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
+                        <InputComponent :type="inputData[1].type" :label="inputData[1].label" :inputId="inputData[1].inputId" :name="inputData[1].name" :placeHolder="inputData[1].placeholder" />
+                        
+                    </div>
+                    <div class="input-container pass  flex-center-row">
+                        <InputComponent :type="inputData[2].type" :label="inputData[2].label" :inputId="inputData[2].inputId" :name="inputData[2].name" :placeHolder="inputData[2].placeholder" />
+                        <InputComponent :type="inputData[3].type" :label="inputData[3].label" :inputId="inputData[3].inputId" :name="inputData[3].name" :placeHolder="inputData[3].placeholder" />
+                        
+                    </div>
+                    <div class="input-container flex-center-row">
+                        <InputComponent :type="inputData[4].type" :label="inputData[4].label" :inputId="inputData[4].inputId" :name="inputData[4].name" :placeHolder="inputData[4].placeholder" />
+                        <InputComponent :type="inputData[5].type" :label="inputData[5].label" :inputId="inputData[5].inputId" :name="inputData[5].name" :placeHolder="inputData[5].placeholder" />
+                        
+                    </div>
+                    <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType" :pageNavigation="pageNavigation"/>
+                </form>
+            </Transition>
+      
         </main>
-        
-        
-
    
 </template>
 
@@ -139,9 +139,24 @@ export default {
     width: 100%;
     column-gap: 49px;
     min-width:200px;
+    overflow: hidden;
     row-gap: 19px;
 
 }
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
 
 @media screen and (max-width:786px) {
 .input-container{ column-gap: 30px;}    

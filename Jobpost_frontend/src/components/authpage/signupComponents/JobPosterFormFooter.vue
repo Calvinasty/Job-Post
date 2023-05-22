@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="buttons flex-center-row">
-            <button :type="actionBtnType" class="flex-center-row">
+            <button :type="actionBtnType" v-on:click="()=>pageNavigation(actionBtnText)" class="flex-center-row">
                 {{ actionBtnText }} <span class="material-symbols-outlined">arrow_right_alt</span>
             </button>
             <p><span>Already registered?</span> <router-link :to="{name:'Auth', params:{id:'login'}}">Sign in</router-link></p>
@@ -24,8 +24,10 @@
 export default {
    props:[
         'actionBtnText',
-        'actionBtnType'
-   ]
+        'actionBtnType',
+        'pageNavigation'
+   ],
+
 }
 </script>
 <style lang="css" scoped>

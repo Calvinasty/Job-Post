@@ -2,8 +2,8 @@
     <AuthLayout class="auth-container">
         <div class="form-container">
            <JobPosterFormHeader/>
-            <JobPosterForm/>
-           <PageIndicator :isActive="pageNum"/>
+            <JobPosterForm :pageNumber="pageNum" :pageNavigation="handlePageNavigation"/>
+           <PageIndicator  :activeClass="activeClass"/>
         </div>
 
     </AuthLayout>
@@ -21,12 +21,38 @@ export default {
     JobPosterForm,
     PageIndicator },
     name: 'JobPostJobPosterSignup',
-    pageNum:0,
+   
+    data(){
+        return{
+            activeClass:[false,false,false],
+            pageNum:0,
+        }
+    },
+    mounted(){
+        this.handleActivePage()
+
+    },
 
     methods:{
-            handlePageNavigation(page){
-                this.pageNum=page
-            }
+            handlePageNavigation(btn){
+                const actionText=btn.toLowerCase()
+                if(actionText=='next'||actionText=='register'){
+                    this.pageNum>=2
+                    ?this.pageNum
+                    :++this.pageNum
+                    this.handleActivePage(this.pageNum)
+                }else{
+                    this.pageNum<=0
+                    ?this.pageNum
+                    :--this.pageNum
+                    this.handleActivePage(this.pageNum)
+                }
+                // console.log(this.pageNum,actionText);
+            },
+            handleActivePage(page=0){
+                this.activeClass.map((_activeItem,index)=>(index==page?this.activeClass[index]=true:this.activeClass[index]=false))
+                // console.log(this.activeClass);
+        }
 }
 };
 
