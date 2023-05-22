@@ -40,6 +40,7 @@
     }
 </script>
 
+<!--styles-->
 <style lang="css" scoped>
     .user-selector {
         background-color: #ffffff;
@@ -51,7 +52,6 @@
         height: 100dvh;
         width: 100dvw;
     }
-
     header {
         display: flex;
         flex-direction: column;
@@ -60,18 +60,15 @@
         text-align: center;
         row-gap: 10px;
     }
-
     header img {
         width: 40%;
     }
-
     header h2 {
         font-weight: 700;
         font-size: 20px;
         line-height: 27px;
         color: #88CC00;
     }
-
     .selector-header {
         display: flex;
         flex-direction: column;
@@ -79,7 +76,6 @@
         align-items: center;
         text-align: center;
     }
-
     .selector-header h3 {
         font-weight: 600;
         font-size: 16px;
@@ -87,14 +83,12 @@
         text-align: center;
         color: #88CC00;
     }
-
     .selector-header p {
         font-size: 10px;
         line-height: 14px;
         text-align: center;
         color: #7D7474;
     }
-
     .user-select {
         display: flex;
         flex-direction: column;
@@ -102,7 +96,6 @@
         justify-content: center;
         row-gap: 50px;
     }
-
     .jobseeker, .poster {
         display: flex;
         flex-direction: column;
@@ -113,17 +106,14 @@
         row-gap: 10px;
         padding: 30px;
     }
-
     .jobseeker div img {
         width: 100%;
     }
-
     .poster div {
         background-color: #88CC00;
         padding: 15px;
         border-radius: 35px;
     }
-
     .jobseeker button, .poster button {
         padding: 10px 20px;
         background: #7FBF4C;
@@ -132,5 +122,4 @@
         color: #fff;
         font-weight: bolder;
     }
-
 </style>

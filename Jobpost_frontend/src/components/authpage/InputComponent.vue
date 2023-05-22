@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <span class="inputfield-component">
         <label :for="inputId">{{label}}</label>
         <input :type="type" :name="name" :value="value" :id="inputId" :placeholder="placeHolder">
     </span>
@@ -8,15 +8,12 @@
 <script>
     export default {
         props:[
-            "label",
-            "type",
-            "name",
-            "value",
-            "inputId",
-            "placeHolder"
+            "label", "type", "name", "value", "inputId", "placeHolder"
         ]
     }
 </script>
+
+<!-- styles -->
 <style lang="css" scoped>
     span{
         display: flex;
@@ -25,7 +22,6 @@
         align-items: flex-start;
         gap: 5px;
         width: 100%;
-        /* border: 1px solid red; */
     }
     span label{
         color: #666;
@@ -36,7 +32,9 @@
         padding: 14px;
         border: 2px solid #7FBF4C;
         border-radius: 5px;
+        /* outline: none; */
     }
+   
     input[type="date"]{
         background-color: #7FBF4C;
         color: #fff;
@@ -44,4 +42,6 @@
     ::-webkit-calendar-picker-indicator{
         background-color: #fff;
     }
+
+    
 </style>

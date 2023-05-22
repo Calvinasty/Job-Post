@@ -3,9 +3,7 @@
         <NavComponent />
         <section>
             <aside class="head" v-html="headerMessage"></aside>
-            <aside class="tag">
-                <p v-html="tagMessage"></p>
-            </aside>
+            <aside class="tag"> <p v-html="tagMessage"></p> </aside>
             <HeaderSearch />
         </section>
     </header>
