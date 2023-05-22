@@ -72,6 +72,7 @@
                             <div class="select-field">
                                 <label for="skills">Skills</label>
                                 <select name="skill" id="skills">
+                                    <option value="">Select</option>
                                     <option value="">Vue Js</option>
                                     <option value="">Node Js</option>
                                     <option value="">Full Stack </option>
