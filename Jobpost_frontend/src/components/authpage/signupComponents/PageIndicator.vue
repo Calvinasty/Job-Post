@@ -15,9 +15,6 @@ export default {
     props:[
         'isActive'
     ],
-    beforeMount:{
-
-    },
     methods:{
        
     }
