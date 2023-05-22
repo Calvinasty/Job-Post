@@ -50,6 +50,7 @@
         border-radius: 5px;
         cursor: pointer;
         text-align: left;
+        transition: 0.2s ease-in-out;
         /* background-color: transparent; */
     }
     .settings button:hover{
@@ -73,6 +74,7 @@
         border: 1px solid #7FBF4C;
         border-radius: 5px;
         cursor: pointer;
+        transition: 0.2s ease-in-out;
     }
     .profile:hover{
         box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633);

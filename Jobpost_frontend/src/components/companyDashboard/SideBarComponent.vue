@@ -1,6 +1,6 @@
 <template>
     <Transition name="slide-fade">
-        <section class="side-bar flex-col-start" v-show="setShow">
+        <section class="side-bar flex-col-start" v-show="toggleNav">
             <aside class="logo flex-center">
                 <img :src="user.image" alt="logo">
             </aside>
@@ -22,7 +22,7 @@
             NavItemComponent,
             SettingsComponent
         },
-        props:['setShow'],
+        props:['toggleNav'],
         data() {
             return {
                 show: true,
@@ -60,7 +60,6 @@
     .logo{
         width: 100%;
         margin: 10px 20px 20px 20px;
-        /* border: 1px solid red; */
     }
     .side-bar .logo img{
         width: 130px;
@@ -73,18 +72,17 @@
     }
     .side-bar .nav-items{
         width:100%;
-        /* border-bottom: 0.1px solid #666; */
         margin-bottom: 20px;
     }
     .slide-fade-enter-active{
-        transition: 0.3s ease-out;
+        transition: 0.3s ease-out !important;
     }
     .slide-fade-leave-active{
-        transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+        transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1) !important;
     }
     .slide-fade-enter-from,
     .slide-fade-leave-to{
-        transform: translate(-20px);
+        transform: translate(-20px) !important;
         opacity: 0;
     }
 
