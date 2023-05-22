@@ -12,19 +12,11 @@
 
         <div class="signin-field">
             <div>
-                <label for="">Username</label>
-                <span class="material-symbols-outlined">
-                check
-                </span>
-                <input type="text" placeholder="Username">
+                <InputComponent label="Username" type="text" placeHolder="Username"/>
             </div>
 
             <div>
-                <label for="">Password</label>
-                <span class="material-symbols-outlined">
-                check
-                </span>
-                <input type="password" placeholder="Password">
+                <InputComponent label="Password" type="password" placeHolder="Password"/>
             </div>
 
             <button class="mbn-btn">Sign In</button>
@@ -35,7 +27,11 @@
 </template>
 
 <script>
+    import InputComponent from '../InputComponent.vue';
     export default {
+        components: {
+            InputComponent,
+        }
         
     }
 </script>
@@ -92,13 +88,13 @@
         width: 80%;
     }
 
-    .signin-field div {
+    /* .signin-field div {
         display: flex;
         flex-direction: column;
         row-gap: 10px;
         position: relative;
-    }
-    .signin-field div label {
+    } */
+    /* .signin-field div label {
         font-weight: 400;
         font-size: 18px;
         line-height: 16px;
@@ -115,7 +111,7 @@
         top: 40px;
         left: 260px;
         color: #88CC00;
-    }
+    } */
 
     .mbn-btn {
         padding: 13px;

@@ -43,6 +43,7 @@
         text-align: left;
         background-color: transparent;
         border-bottom: 0.5px solid #666;
+        transition: 0.2s ease-in-out;
     }
     .nav-item button:hover{
         box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633);

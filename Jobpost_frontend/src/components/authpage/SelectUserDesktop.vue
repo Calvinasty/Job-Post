@@ -40,7 +40,12 @@
 
 <script>
     export default {
-        
+        data() {
+            return {
+                jobSeekerLabel: "Sign up as a job seeker",
+                jobPosterLabel: "Sign up as a job poster"
+            }
+        }
     }
 </script>
 
@@ -64,11 +69,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        row-gap: 30px;
+        row-gap: 25px;
         background-color: #fff;
         border-radius: 20px;
         width: 40%;
-        padding: 90px 40px;
+        padding: 60px 40px;
     }
 
     header {
