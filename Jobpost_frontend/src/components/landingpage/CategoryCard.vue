@@ -36,7 +36,7 @@ export default {
     justify-content:center;
    width: 300px;
    padding: 0px 5px;
-    height: 120px;
+    height: 150px;
     background: #FFFFFF;
     border: 1px solid #7FBF4C;
     border-radius: 10px;
