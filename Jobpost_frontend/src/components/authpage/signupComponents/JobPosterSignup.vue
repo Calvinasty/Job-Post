@@ -11,7 +11,7 @@
 
 <script>
 import AuthLayout from '../AuthLayout.vue';
-import PageIndicator from '../signupComponents/PageIndicator.vue';
+import PageIndicator from './PageIndicator.vue';
 import JobPosterFormHeader from './JobPosterFormHeader.vue';
 import JobPosterForm from './JobPosterForm.vue';
 export default {

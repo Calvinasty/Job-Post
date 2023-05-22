@@ -48,6 +48,7 @@ const router = createRouter({
       name:'Jobsview',
       component: JobsViewComponent
     },
+    
 
     // {
     //   path:'/jobdescrip/:id',
