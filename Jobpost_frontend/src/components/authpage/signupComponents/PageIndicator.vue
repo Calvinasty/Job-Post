@@ -9,16 +9,14 @@
 export default {
     data() {
         return{
-            activeClass:[false,false,false]
+          
         }
     },
     props:[
-        'isActive'
+        'activeClass'
     ],
-    beforeMount:{
-
-    },
     methods:{
+      
        
     }
 }
@@ -36,9 +34,9 @@ export default {
 }
 .dot{
     display: flex;
-    width: 13px;
+    width: 15px;
     height: 12px;
-    border-radius:50%;
+    border-radius:100%;
     background: #D9D9D9;
     
 }
