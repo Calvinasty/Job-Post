@@ -59,21 +59,30 @@
         /* border: 1px solid blue; */
     }
     .auth-btns a{
-        color: #7FBF4C;
+        /* color: #7FBF4C; */
         text-decoration: none;
         font-size: larger;
         font-weight: bold;
         margin-left: 20px;
+        color: #fff;
         /* text-decoration: underline; */
     }
-    .auth-btns a:hover{
+    .auth-btns a:nth-child(2){
+        background-color: #7FBF4C;
+        padding: 15px 25px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    /* .auth-btns a:hover{
         color: #fff;
         background-color: #7FBF4C;
         padding: 15px 25px;
         border-radius: 20px;
         text-decoration: none;
         transition: 0.6s ease-in-out;
-    }
+    } */
 
     /* Mobile Media Queries*/
     @media screen and (max-width: 480px){
