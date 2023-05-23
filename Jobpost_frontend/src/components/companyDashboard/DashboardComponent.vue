@@ -1,7 +1,8 @@
 <template>
-    <main>
-        <SideBarComponent :toggleNav="toggleNav" />
-        <TopBarComponent 
+    <!-- <div> -->
+        <main>
+            <SideBarComponent :toggleNav="toggleNav" />
+            <TopBarComponent 
             @toggle="toggleNav = !toggleNav" 
             @add-post="showModal=true" 
             :toggleNav="toggleNav" 
@@ -9,10 +10,11 @@
     </main>
     <Transition name="slide-fade">
         <ModalComponent 
-            v-show="showModal" 
+        v-show="showModal" 
             @modal-close="showModal=false"
-        />
-    </Transition>
+            />
+        </Transition>
+    <!-- </div> -->
 </template>
 
 <script>

@@ -1,6 +1,5 @@
 <template>
     <div>
-        <DashBoardWelcome />
         <div class="main">
             <table class="table">
                 <thead>

@@ -1,5 +1,6 @@
 <template>
     <div>  
+        <DashBoardWelcome />
         <JobsDescriptionComponent
             :myjobs="jobs"
         />
@@ -8,10 +9,12 @@
 
 <script>
 import JobsDescriptionComponent from './JobsDescriptionComponent.vue';
+import DashBoardWelcome from './DashBoardWelcome.vue';
 export default {
     name: 'JobPostJobsViewComponent',
     components: {
         JobsDescriptionComponent,
+        DashBoardWelcome
     },
     data() {
         return {
