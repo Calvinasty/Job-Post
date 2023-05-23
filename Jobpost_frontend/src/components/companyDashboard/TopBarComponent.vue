@@ -1,7 +1,6 @@
 <template>
     <header class="top-bar" :style="!toggleNav && {width: '100%'}">
-        <div class="flex-center-row">
-            <!-- <img @click="toggle" style="cursor: pointer;" src="/images/company_logo.png" alt="c-logo"> -->
+        <div class="flex-center-row top-left">
             <span @click="toggle" class="material-symbols-outlined"> menu </span>
             <h3>Candle Technologies</h3>
         </div>
@@ -28,12 +27,12 @@
 
 <style lang="css" scoped>
     .top-bar{
-        width: 80%;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px;
-        background-color: #f9f8f8;
+        padding: 12px 20px;
+        background-color: #f1f1f1;
         text-align: right;
         box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633);
     }
@@ -46,9 +45,13 @@
         top:-140%;
         left: -15%;
     }
-    .flex-center-row span{
+    .top-left span{
         /* box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633); */
         cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        color: #5F6368;
+        background-color: #dfe0e0;
     }
     .flex-center-row h3{
         margin-left: 20px;

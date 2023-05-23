@@ -1,13 +1,19 @@
 <template>
     <main>
         <SideBarComponent :toggleNav="toggleNav" />
-        <TopBarComponent 
-            @toggle="toggleNav = !toggleNav" 
-            @add-post="showModal=true" 
-            :toggleNav="toggleNav" 
-        />
+        <!-- toggle and add-post emits from child components to parent -->
+        <section class="right-side">
+            <TopBarComponent
+                class="top-bar"
+                @toggle="toggleNav = !toggleNav" 
+                @add-post="showModal=true" 
+                :toggleNav="toggleNav" 
+            />
+            <DashboardContainer class="dash-container"/>
+        </section>
     </main>
     <Transition name="slide-fade">
+        <!-- close emits from child component to parent -->
         <ModalComponent 
             v-show="showModal" 
             @modal-close="showModal=false"
@@ -19,11 +25,13 @@
     import SideBarComponent from './SideBarComponent.vue';
     import TopBarComponent from './TopBarComponent.vue';
     import ModalComponent from './ModalComponent.vue';
+    import DashboardContainer from './dashboardPages/DashboardContainer.vue';
     export default {
         components:{
             SideBarComponent,
             TopBarComponent,
-            ModalComponent
+            ModalComponent,
+            DashboardContainer
         },
         data(){
             return{
@@ -43,11 +51,22 @@
         justify-content: space-between;
         align-items: flex-start;
     }
+    main.top-bar{
+        width: 100%;
+    }
+    main .right-side{
+        width: 100%;
+        /* border:1px solid red; */
+    }
+    .dash-container{
+        width: 100%;
+        /* border: 1px solid green */
+    }
     .slide-fade-enter-active{
         transition: 0.3s ease-out;
     }
     .slide-fade-leave-active{
-        transition: all 0.6s cubic-bezier(1, 0.5, 0.8, 1);
+        transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
     }
     .slide-fade-enter-from,
     .slide-fade-leave-to{

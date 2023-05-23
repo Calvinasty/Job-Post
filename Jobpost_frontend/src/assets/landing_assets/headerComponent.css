@@ -1,4 +1,4 @@
-.color {
+.main-color {
     color: #7FBF4C;
 }
 .container {
@@ -26,6 +26,11 @@ section .head {
     color: #fff;
     letter-spacing:normal;
 }
+/* css inner selector for v-html */
+section .head >>> h1 .color {
+    color: #7FBF4C;
+}
+
 section .tag {
     width: 40%;
     font-size: 20px;
