@@ -14,9 +14,9 @@
         ],
         methods:{
             goto(link){
-                alert(link)
+                this.$router.push(link)
             }
-        }
+        },
     }
 </script>
 

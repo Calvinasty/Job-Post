@@ -27,13 +27,13 @@
             return {
                 show: true,
                 navItems: [
-                    { name: "Dasboard", icon: "bar_chart_4_bars", link: "/analytics"},
-                    { name: "View/Edit Jobs",icon: "edit", link: "/jobs" },
-                    { name: "View Other Jobs", icon: "work", link: "/alljobs" },
-                    { name: "View All Aplicants", icon: "group", link: "/applicants" },
-                    { name: "Company Profile", icon: "apartment", link: "/profile" },
-                    { name: "View/Edit Employers", icon: "supervisor_account", link: "/employers" },
-                    { name: "View/Edit Job Seekers", icon: "work_alert", link: "/jobseeker" },
+                    { name: "Dasboard", icon: "bar_chart_4_bars", link: "analyticsView"},
+                    { name: "View/Edit Jobs",icon: "edit", link: "jobsView" },
+                    { name: "View Other Jobs", icon: "work", link: "/admin/alljobs" },
+                    { name: "View All Aplicants", icon: "group", link: "/admin/applicants" },
+                    { name: "Company Profile", icon: "apartment", link: "/admin/profile" },
+                    { name: "View Employers", icon: "supervisor_account", link: "/admin/employers" },
+                    { name: "View Job Seekers", icon: "work_alert", link: "/admin/jobseeker" },
                 ],
                 settings:[
                     { name: "Settings", icon: 'settings', link: "/settins" },
@@ -54,7 +54,7 @@
         height: 100vh;
         width: 20%;
         padding: 15px 20px;
-        background-color: #fff;
+        background-color: #f1f1f1;
         box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
     }
     .logo{
