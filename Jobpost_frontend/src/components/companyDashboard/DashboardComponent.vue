@@ -15,10 +15,11 @@
     <Transition name="slide-fade">
         <!-- close emits from child component to parent -->
         <ModalComponent 
-            v-show="showModal" 
+        v-show="showModal" 
             @modal-close="showModal=false"
-        />
-    </Transition>
+            />
+        </Transition>
+    <!-- </div> -->
 </template>
 
 <script>

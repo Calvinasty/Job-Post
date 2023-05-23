@@ -40,7 +40,23 @@ const router = createRouter({
       path:'/admin/:id',
       name:'Dashboard',
       component: CompanyPage
+<<<<<<< HEAD
     }
+=======
+    },
+    {
+      path:'/dashboard/:id',
+      name:'Jobsview',
+      component: JobsViewComponent
+    },
+    
+
+    // {
+    //   path:'/jobdescrip/:id',
+    //   name:'JobsDescription',
+    //   component: JobsDescriptionComponent
+    // }
+>>>>>>> c8c0f41eb1987044f74f9ca8501d7f1f0f8b234e
 
   ],
   scrollBehavior(to, from, savedPosition) {
