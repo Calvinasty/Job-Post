@@ -24,11 +24,9 @@
 </template>
 
 <script>
-import DashBoardWelcome from './DashBoardWelcome.vue';
 export default {
     name: 'JobPostJosDescriptionComponent',
     components: {
-        DashBoardWelcome
     },
     props: [
         'myjobs'

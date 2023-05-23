@@ -1,12 +1,16 @@
 <template>
     <div>
+        <DashBoardWelcome />
         <slot></slot>
     </div>
 </template>
 
 <script>
+    import DashBoardWelcome from '../DashBoardWelcome.vue';
     export default {
-        
+        components:{
+            DashBoardWelcome
+        }
     }
 </script>
 

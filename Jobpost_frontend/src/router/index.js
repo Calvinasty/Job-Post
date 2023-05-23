@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LandingPage from '@/views/LandingPage.vue'
 import UserProfile from '@/views/UserProfilePage.vue'
+import CompanyProfilePage from '@/views/CompanyProfilePage.vue'
 import JobSearchPage from '@/views/JobSearchPage.vue'
 import AuthPage from '@/views/AuthPage.vue'
 import SelectUserPage from '@/components/authpage/SelectUserPage.vue'
 import CompanyPage from '@/views/CompanyPage.vue'
-import JobsViewComponent from '@/components/companyDashboard/JobsViewComponent.vue'
-// import JobsDescriptionComponent from '@/components/companyDashboard/JobsDescriptionComponent.vue'
 
 
 const router = createRouter({
@@ -21,6 +20,13 @@ const router = createRouter({
       path:'/userprofile',
       name:'Userprofile',
       component:UserProfile
+
+    },
+    {
+      path:'/companyprofile',
+      name:'Companyprofile',
+      component:CompanyProfilePage,
+      
 
     },
     {
@@ -42,20 +48,7 @@ const router = createRouter({
       path:'/admin/:id',
       name:'Dashboard',
       component: CompanyPage
-    },
-    {
-      path:'/dashboard/:id',
-      name:'Jobsview',
-      component: JobsViewComponent
-    },
-    
-
-    // {
-    //   path:'/jobdescrip/:id',
-    //   name:'JobsDescription',
-    //   component: JobsDescriptionComponent
-    // }
-
+    }
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
