@@ -1,7 +1,8 @@
 <template>
-    <span class="inputfield-component">
+    <span class="inputfield-component ">
         <label :for="inputId">{{label}}</label>
-        <input :type="type" :name="name" :value="value" :id="inputId" :placeholder="placeHolder">
+        <input  :type="type" :name="name" :value="value" :id="inputId" :placeholder="placeHolder">
+        <slot></slot>
     </span>
 </template>
 

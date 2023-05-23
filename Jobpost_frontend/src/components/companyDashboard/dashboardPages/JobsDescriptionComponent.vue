@@ -1,6 +1,5 @@
 <template>
     <div>
-        <DashBoardWelcome />
         <div class="main">
             <table class="table">
                 <thead>
@@ -25,11 +24,9 @@
 </template>
 
 <script>
-import DashBoardWelcome from './DashBoardWelcome.vue';
 export default {
     name: 'JobPostJosDescriptionComponent',
     components: {
-        DashBoardWelcome
     },
     props: [
         'myjobs'

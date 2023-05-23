@@ -3,14 +3,16 @@
         <div>
             <HeaderSearchInput v-for="item in search" :title="item.title" :placeholder="item.placeholder" :type="item.type"/>
             <button type="button" @click="handleSearch()">
-                <img src="/images/search.svg" alt="search">
+                <!-- <img src="/images/search.svg" alt="search"> -->
+                <span class="material-symbols-outlined"> conditions </span>
                 Search
             </button>
         </div>
 
         <!-- button displays only on mobile -->
         <button class="mobile-search" @click="handleSearch()">
-            <img src="/images/search.svg" alt="search">
+            <!-- <img src="/images/search.svg" alt="search"> -->
+            <span class="material-symbols-outlined"> conditions </span>
             Get started
         </button>
     </aside>
