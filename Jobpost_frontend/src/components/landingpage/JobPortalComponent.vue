@@ -22,9 +22,9 @@
 
 
 
-                <router-link to=""><span class="span">Post a Job <img src="/images/arrow_right.svg"
-                            alt="arrow"></span></router-link>
-                <router-link to=""><span class="span">Find a Job <img src="/images/arrow_right.svg"
+                <span class="span" @click="handlePostJob">Post a Job <img src="/images/arrow_right.svg"
+                            alt="arrow"></span>
+                <router-link to="/jobsearch"><span class="span">Find a Job <img src="/images/arrow_right.svg"
                             alt="arrow"></span></router-link>
 
             </section>
@@ -34,6 +34,19 @@
 
 <script>
 export default {
+
+    methods:{
+        handlePostJob(){
+            const empToken = localStorage.getItem('empToken');
+            if (!empToken) {
+                this.$router.push('/auth/poster-register')
+                return
+            }
+            this.$router.push('/admin/analytics')
+
+
+        }
+    }
 
 }
 </script>
@@ -118,11 +131,12 @@ export default {
     padding: 15px;
     text-decoration: none;
     background-color: #000;
-    color: #fff
+    color: #fff;
+    cursor: pointer;
 }
 
 .button span:hover {
-    background-color: #b4cda1;
+    background-color: #88cc00;
     transition: ease-in-out 0.2s;
 }
 

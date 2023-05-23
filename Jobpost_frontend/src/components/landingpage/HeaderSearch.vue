@@ -1,7 +1,7 @@
 <template>
     <aside class="action">
         <div>
-            <HeaderSearchInput v-for="item in search" :title="item.title" :placeholder="item.placeholder" :type="item.type"/>
+            <HeaderSearchInput v-for="(item,index) in search" :title="item.title" :placeholder="item.placeholder" :type="item.type" :key="index"/>
             <button type="button" @click="handleSearch()">
                 <!-- <img src="/images/search.svg" alt="search"> -->
                 <span class="material-symbols-outlined"> conditions </span>
@@ -36,6 +36,12 @@
                         type: "text"
                     }
                 ]
+            }
+        },
+
+        methods:{
+            handleSearch(){
+                this.$router.push('/jobsearch');
             }
         }
     }
