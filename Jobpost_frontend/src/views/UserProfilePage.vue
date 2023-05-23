@@ -97,8 +97,8 @@
 <script>
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
-import CardInformationComponent from '../components/userprofilepage/CardInformationComponent.vue';
-import InputComponent from '../components/userprofilepage/inputComponent.vue';
+import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
+import InputComponent from '../components/profilepage/inputComponent.vue';
 export default {
     components: {
         FooterComponent,
