@@ -91,8 +91,13 @@ export default {
 .body{
     border-bottom: 2px solid blue;
 }
-
+tr{
+    margin: 0;
+    padding: 0;
+}
 td {
-    border-bottom: 2px solid blue;   
+    border-bottom: 2px solid blue;
+    margin: 0;
+    padding: 0;
 }
 </style>
