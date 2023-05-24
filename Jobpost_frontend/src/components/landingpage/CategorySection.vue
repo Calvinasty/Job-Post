@@ -101,9 +101,17 @@ export default {
         justify-items: center;
         grid-template-columns: repeat(4,1fr);
         /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-        gap: 2rem;
+        gap: 1rem;
     }
 
+    
+    @media screen and (max-width:1121px){
+        .category-list{
+            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            
+        }
+    }
     @media screen and (max-width:700px){
         .category-section{
             display: none;
@@ -117,7 +125,6 @@ export default {
         line-height: 36px;
         }
         .category-list{
-        display: grid;
         width: 100%;}
         
     }

@@ -118,7 +118,13 @@ export default {
     color: #000;
     font-weight: 700 ;
 }
-
+.text-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 a{
     text-decoration: none;
@@ -131,12 +137,6 @@ a{
     }
     .text-section{
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-
     }
     .main-text{
         width: 80%;
