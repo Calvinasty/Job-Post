@@ -1,16 +1,15 @@
 <template>
     <div>
-        <DashBoardWelcome />
         <div class="main">
             <table class="table">
-                <thead>
+                <thead class="head">
                     <th>Job Description</th>
                     <th>Role Type</th>
                     <th>Requirements</th>
                     <th>Location</th>
                     <th></th>
                 </thead>
-                <tbody>
+                <tbody class="body">
                     <tr v-for="(item, index) in myjobs" :key="index">
                         <td>{{ item.description }}</td>
                         <td>{{ item.role }}</td>
@@ -25,11 +24,9 @@
 </template>
 
 <script>
-import DashBoardWelcome from './DashBoardWelcome.vue';
 export default {
     name: 'JobPostJosDescriptionComponent',
     components: {
-        DashBoardWelcome
     },
     props: [
         'myjobs'
@@ -48,7 +45,7 @@ export default {
     methods: {
         show(param) {
             alert(param)
-            console.log(param)
+            // console.log(param)
         }
 
     },
@@ -69,10 +66,38 @@ export default {
 }
 
 .table {
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* justify-content: center; */
+    /* align-items: center; */
     padding: 80px;
-    border: 1px solid blue;
+    border: 1px solid rgb(35, 35, 49);
+    width: 80%;
+    height: 80vh;
 }
 .table thead{
     column-gap: 10px;
+}
+.head{
+    /* display: flex; */
+    /* justify-content: center; */
+    background-color: aquamarine;
+    /* padding-left: 50%; */
+    margin-right: 20px;
+    position: relative;
+    text-align: start;
+    
+}
+.body{
+    border-bottom: 2px solid blue;
+}
+tr{
+    margin: 0;
+    padding: 0;
+}
+td {
+    border-bottom: 2px solid blue;
+    margin: 0;
+    padding: 0;
 }
 </style>

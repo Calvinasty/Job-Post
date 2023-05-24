@@ -1,14 +1,18 @@
 <template>
     <header class="top-bar" :style="!toggleNav && {width: '100%'}">
-        <div class="flex-center-row">
-            <!-- <img @click="toggle" style="cursor: pointer;" src="/images/company_logo.png" alt="c-logo"> -->
+        <div class="flex-center-row top-left">
             <span @click="toggle" class="material-symbols-outlined"> menu </span>
             <h3>Candle Technologies</h3>
         </div>
-        <button @click="addPost()" class="post flex-center-row">
-            <span class="material-symbols-outlined">add</span>
-            Post a job
-        </button>
+        <div>
+            <button @click="$router.push('/jobsearch')" class="post flex-center-row">
+                View Other Jobs
+            </button>
+            <button @click="addPost()" class="post flex-center-row">
+                <span class="material-symbols-outlined">add</span>
+                Post a job
+            </button>
+        </div>
     </header>
 </template>
 
@@ -28,17 +32,20 @@
 
 <style lang="css" scoped>
     .top-bar{
-        width: 80%;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px;
-        background-color: #f9f8f8;
+        padding: 12px 20px;
+        background-color: #f1f1f1;
         text-align: right;
         box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633);
     }
     .top-bar div{
         display: flex;
+    }
+    .top-bar div:nth-child(2){
+        gap: 30px;
     }
     .top-bar div img{
         position: absolute;
@@ -46,9 +53,13 @@
         top:-140%;
         left: -15%;
     }
-    .flex-center-row span{
+    .top-left span{
         /* box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633); */
         cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        color: #5F6368;
+        background-color: #dfe0e0;
     }
     .flex-center-row h3{
         margin-left: 20px;

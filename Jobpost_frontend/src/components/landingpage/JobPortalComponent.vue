@@ -1,31 +1,27 @@
 <template>
     <div class="job-portal">
         <div class="img-section">
-            <div class="main-image"></div>
+            <div class="image-container"></div>
         </div>
         <div class="text-section">
-            <section class="icon-img">
+            <section class="text-heading">
                 <img src="/images/Vector.png" alt="icon">
                 <h2>Trusted & Popular <br> Job Portal</h2>
             </section>
 
-            <section class="text">
-
-
-                <p>Find your dream job from thousands daily updated job vacancies. Find the best jobs online from Ghana
+            
+                <p class="main-text">Find your dream job from thousands daily updated job vacancies. Find the best jobs online from Ghana
                     sites or apply directly on a business websites. Search and find jobs today!
                 </p>
 
-            </section>
+            <section class="buttons">
 
-            <section class="button">
-
-
-
-                <router-link to=""><span class="span">Post a Job <img src="/images/arrow_right.svg"
-                            alt="arrow"></span></router-link>
-                <router-link to=""><span class="span">Find a Job <img src="/images/arrow_right.svg"
-                            alt="arrow"></span></router-link>
+                <button class="job-btn" @click="handlePostJob">Post a Job <span class="material-symbols-outlined">
+                            arrow_right_alt
+                        </span></button>
+                <router-link to="/jobsearch"><button class="job-btn">Find a Job <span class="material-symbols-outlined">
+                            arrow_right_alt
+                        </span></button></router-link>
 
             </section>
         </div>
@@ -35,369 +31,224 @@
 <script>
 export default {
 
+    methods: {
+        handlePostJob() {
+            const empToken = localStorage.getItem('empToken');
+            if (!empToken) {
+                this.$router.push('/auth/poster-register')
+                return
+            }
+            this.$router.push('/admin/analytics')
+
+
+        }
+    }
+
 }
 </script>
 
 <style lang="css" scoped>
-* {
-    box-sizing: border-box;
-}
-
-.job-portal {
+/* mobile-view */
+.job-portal{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 70px;
-    height: 100dvh;
-    background-color: hsla(80, 100%, 40%, 0.161);
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 10px;
+    /* background-color: aqua; */
+    gap: 24px;
 }
-
-.img-section img {
-    padding: 50px;
+.img-section{
+    
 }
-
-.img-section {
-    width: 50%;
-    /* border: 1px solid red;  */
-}
-
-.img-section .main-image {
-    float: right;
-    width: 500px;
-    height: 524px;
-    border: none;
-    background-position: right;
+.image-container{
+   
     background-size: cover;
     background-color: rgba(73, 91, 55, 0.5);
     background-blend-mode: overlay;
     background-image: url("/images/young-businessmen.jpeg");
+    background-position: 100% 90%;
     border-radius: 15px;
+    width: 306px;
+    height: 236px;
 }
 
-.icon-img img {
-    width: 30px;
-}
-
-.text-section {
-    display: flex;
-    flex-direction: column;
-    font-size: 2rem;
-    justify-content: center;
-    padding: 80px 20px;
-    gap: 30px;
-    width: 50%;
-    height: 600px;
-}
-
-.text {
-    font-size: 20px;
-}
-
-.text h2 {
-    /* font-size: 2rem; */
-    font-size: 70px;
-}
-
-.text p {
-    padding-top: 20px;
-    padding-bottom: 20px;
-
-}
-
-.button {
+.text-heading{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    height: 100%;
+    font-weight: 700;
 }
-
-.button span {
-    border: 1px solid;
-    border-radius: 8px;
-    font-size: 20px;
-    padding: 15px;
-    text-decoration: none;
+.text-heading img{
+    width: 34px;
+    height: 31px;
+}
+.main-text{
+    margin: 30px 0px;
+    width: 256x;
+    font-weight: 300px;
+    
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+.job-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px 10px 16px;
+    border: 2px solid #000;
     background-color: #000;
-    color: #fff
+    color: #fff;
+    border-radius: 6px;
+    font-weight: 600;
+}
+.buttons a .job-btn{
+    background-color: #fff;
+    color: #000;
+    font-weight: 700 ;
 }
 
-.button span:hover {
-    background-color: #b4cda1;
-    transition: ease-in-out 0.2s;
-}
 
-a {
+a{
     text-decoration: none;
 }
 
-@media screen and (max-width: 480px) {
-    .job-portal {
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        width: 100dvw;
-        height: 100%;
-        gap: 70px;
+@media screen and (min-width: 481px){
+    .job-portal{
+        width: 100dvw; 
+        max-width: none;  
     }
-
-    .img-section img {
-        padding: 50px;
-    }
-
-    .img-section {
+    .text-section{
         width: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
-
-    .img-section .main-image {
-        /* float: right; */
-        width: 350px;
-        height: 376px;
-        margin: auto;
-        border: none;
-        background-position: right;
-        background-size: cover;
-        background-color: rgba(73, 91, 55, 0.5);
-        background-blend-mode: overlay;
-        background-image: url("/images/young-businessmen.jpeg");
-        border-radius: 15px;
-    }
-
-    .icon-img {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .icon-img img {
-        width: 10%;
-    }
-
-    .icon-img h1 {
         text-align: center;
-        font-size: 30px;
-        width: 90%;
-    }
 
-    .text-section {
+    }
+    .main-text{
+        width: 80%;
+
+    }
+}
+@media screen and (min-width: 768px){
+    .job-portal{
+        width: 100%; 
+        flex-direction: row; 
+        gap: 30px; 
+        height: 80vh;
+       
+    }
+    .text-section{
         width: 100%;
-        padding: 0;
-        display: inline-block;
+        align-items: flex-start;
+        text-align: left;    }
+    .img-section{
+      width: 100%;
     }
+    .img-section,.text-section{
+        flex: 1;
+        /* width: 100%; */
+    }
+    .main-text{
+        width: 80%;
 
-    .text {
+    }
+    .image-container{
         width: 100%;
-        font-size: 20px;
+        background-position: 100% 70%;
+        height: 306px;
+        border-radius: 20px;
     }
+    .buttons{
+    align-items: flex-start;
+    justify-content: flex-start;
 
-    .text p {
-        padding-top: 20px;
-        padding-bottom: 20px;
+   
+}
+}
 
+@media screen and (min-width: 900px){
+    .job-portal{
+        gap: 50px;  
+        max-width: 1720px ;  
     }
-
-    .button {
+    .text-section{
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        column-gap: 20px;
+        align-items: flex-start;
+        text-align: left;    }
+    .img-section{
+      width: 700px;
+      height: 100%;
     }
+    .img-section,.text-section{
+        flex: 1;
+        /* width: 100%; */
+    }
+    .main-text{
+        width: 80%;
 
-    .button span {
-        display: flex;
-        justify-content: center;
-        border: 1px solid;
-        border-radius: 8px;
-        font-size: 20px;
-        padding: 15px;
-        text-decoration: none;
-        background-color: #000;
-        color: #fff
     }
+    .image-container{
+        width: 100%;
+        max-width: 721px;
+        background-position: 100% 90%;
+        height: 100%;
+        max-height: 774px;
+        border-radius: 20px;
+    }
+}
 
-    .button span:hover {
-        background-color: #b4cda1;
-        transition: ease-in-out 0.2s;
-    }
+@media screen and (min-width: 1024px){
 
-    a {
-        text-decoration: none;
+    .text-section{
+        width: 100%;
+        align-items: flex-start;
+        text-align: left;    }
+    .img-section{
+      width: 100%;
     }
+    .img-section,.text-section{
+        flex: 1;
+        /* width: 100%; */
+    }
+    .main-text{
+        width: 70%;
+
+    }
+    .buttons{
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+   
+}
+
+.text-heading{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    font-size: 25px;
+}
+
 }
 
 
 
+    
 
-@media screen and (min-width: 481px) and (max-width: 600px) {
-    .job-portal {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 0;
-        width: 100%;
-        /* border: 1px solid red; */
-        /* padding: 20px; */
-        font-size: 10px;
-
-    }
-
-    .img-section {
-        width: 50%;
-        font-size: 20px;
-        /* border: 10px solid green; */
-    }
-
-    .img-section .main-image {
-        /* float: right; */
-        width: 250px;
-        height: 226px;
-        border: none;
-        background-position: right;
-        background-size: cover;
-        background-color: rgba(73, 91, 55, 0.5);
-        background-blend-mode: overlay;
-        background-image: url("/images/young-businessmen.jpeg");
-        border-radius: 15px;
-    }
-
-    .icon-img img {
-        width: 30px;
-    }
-
-    .text-section {
-        display: flex;
-        flex-direction: column;
-        font-size: 10px;
-        gap: 10px;
-        justify-content: center;
-        /* padding: 0px 50px; */
-        /* gap: 8px; */
-        width: 50%;
-        /* height: 80%; */
-        /* border: 1px solid blue; */
-    }
-
-    .text {
-        font-size: 16px;
-    }
-
-    .text h1 {
-        font-size: 70px;
-    }
-
-    .text p {
-        padding-top: 20px;
-        padding-bottom: 20px;
-
-    }
-
-    .button {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        column-gap: 20px;
-        /* padding: 10px; */
-        /* width: 10%; */
-    }
-
-    .button a span {
-        width: 50px;
-        font-size: 10px;
-        gap: 0;
-        /* display: none; */
-    }
-
-    .button a span img {
-        width: 8px;
-    }
-
-
-}
-
-@media screen and (min-width: 601px) and (max-width: 768px) {
-
-    .job-portal {
-        display: flex;
-        align-items: center;
-        gap: 70px;
-        height: 100dvh;
-    }
-
-    .img-section img {
-        padding: 30px;
-    }
-
-    .img-section {
-        width: 50%;
-    }
-
-    .img-section .main-image {
-        float: right;
-        width: 350px;
-        height: 326px;
-        border: none;
-        background-position: right;
-        background-size: cover;
-        background-color: rgba(73, 91, 55, 0.5);
-        background-blend-mode: overlay;
-        background-image: url("/images/young-businessmen.jpeg");
-        border-radius: 15px;
-    }
-
-    .icon-img img {
-        width: 30px;
-    }
-
-    .text-section {
-        display: flex;
-        flex-direction: column;
-        font-size: 16px;
-        justify-content: center;
-        padding: 50px 10px;
-        gap: 8px;
-        width: 40%;
-        height: 150px;
-    }
-
-    .text {
-        font-size: 16px;
-    }
-
-    .text h1 {
-        font-size: 70px;
-    }
-
-    .text p {
-        padding-top: 20px;
-        padding-bottom: 20px;
-
-    }
-
-    .button {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        column-gap: 20px;
-    }
-
-    .button span {
-        border: 1px solid;
-        border-radius: 8px;
-        font-size: 10px;
-        padding: 15px;
-        text-decoration: none;
-        background-color: #000;
-        color: #fff
-    }
-
-    .button span:hover {
-        background-color: #b4cda1;
-        transition: ease-in-out 0.2s;
-    }
-
-}</style>
+   
+</style>

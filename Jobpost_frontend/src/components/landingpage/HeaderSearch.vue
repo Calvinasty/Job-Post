@@ -1,16 +1,18 @@
 <template>
     <aside class="action">
         <div>
-            <HeaderSearchInput v-for="item in search" :title="item.title" :placeholder="item.placeholder" :type="item.type"/>
+            <HeaderSearchInput v-for="(item,index) in search" :title="item.title" :placeholder="item.placeholder" :type="item.type" :key="index"/>
             <button type="button" @click="handleSearch()">
-                <img src="/images/search.svg" alt="search">
+                <!-- <img src="/images/search.svg" alt="search"> -->
+                <span class="material-symbols-outlined"> search </span>
                 Search
             </button>
         </div>
 
         <!-- button displays only on mobile -->
         <button class="mobile-search" @click="handleSearch()">
-            <img src="/images/search.svg" alt="search">
+            <!-- <img src="/images/search.svg" alt="search"> -->
+            <span class="material-symbols-outlined"> search </span>
             Get started
         </button>
     </aside>
@@ -34,6 +36,12 @@
                         type: "text"
                     }
                 ]
+            }
+        },
+
+        methods:{
+            handleSearch(){
+                this.$router.push('/jobsearch');
             }
         }
     }

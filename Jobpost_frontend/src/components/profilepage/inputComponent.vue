@@ -18,8 +18,6 @@ export default {
         "inputType",
         "inputId",
         "inputName"
-
-
     ]
 
 }

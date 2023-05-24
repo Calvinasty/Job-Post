@@ -24,7 +24,7 @@
                 <div class="desk-links">
                     <button>Sign In</button>
 
-                    <p>Not Registered yet? <router-link to="">Register Now</router-link></p>
+                    <p>Not Registered yet? <router-link to="/auth">Register Now</router-link></p>
                 </div>
             </div>
         </div>
