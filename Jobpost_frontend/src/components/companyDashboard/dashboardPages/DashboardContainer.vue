@@ -21,6 +21,9 @@
                 jobsView: JobsView
             }   
         },
+        beforeMount(){
+            this.componentId = this.$route.params.id
+        },
         watch:{
             $route(to){
                 this.componentId = to.params.id
