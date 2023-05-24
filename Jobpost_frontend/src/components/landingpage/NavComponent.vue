@@ -1,7 +1,7 @@
 <template>
     <div class="navbar"> 
         <div>
-            <router-link to="/"> <img src="/images/logo.png" alt="Logo"> </router-link>
+            <router-link to="/"> <img src="/images/logo.svg" alt="Logo"> </router-link>
         </div>
         <div class="auth-btns">
             <router-link to="/auth/login">Sign in</router-link>
@@ -24,11 +24,23 @@
         align-items: center;
         width: 100%;
         color: #fff;
+        /* border: 2px solid red; */
+        padding: 0;
+    }
+    .navbar div:nth-child(1){
+        /* width: 100px; */
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        /* border: 2px solid green; */
+        /* position: relative; */
     }
     .navbar div img{
-        position: absolute;
-        width: 150px;
-        top:7%;
+        /* position: absolute; */
+        width: 80px;
+        margin: 0;
+        padding: 0;
+        /* top:7%; */
     }
     /* .auth-btns{
         display: flex;
@@ -51,7 +63,7 @@
     .auth-btns{
         display: flex;
         width: 100%;
-        height: 50px;
+        /* height: 50px; */
         flex-direction: row;
         justify-content: end;
         align-items: center;
@@ -59,21 +71,30 @@
         /* border: 1px solid blue; */
     }
     .auth-btns a{
-        color: #7FBF4C;
+        /* color: #7FBF4C; */
         text-decoration: none;
         font-size: larger;
         font-weight: bold;
         margin-left: 20px;
+        color: #fff;
         /* text-decoration: underline; */
     }
-    .auth-btns a:hover{
+    .auth-btns a:nth-child(2){
+        background-color: #88CC00;
+        padding: 15px 25px;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    /* .auth-btns a:hover{
         color: #fff;
         background-color: #7FBF4C;
         padding: 15px 25px;
         border-radius: 20px;
         text-decoration: none;
         transition: 0.6s ease-in-out;
-    }
+    } */
 
     /* Mobile Media Queries*/
     @media screen and (max-width: 480px){
@@ -83,13 +104,11 @@
             /* border: 1px solid red; */
             position: relative;
             left: 0;
-            padding: 30px;
+            padding: 0 10px;
         }
         .navbar div img{
-            position:absolute;
-            width: 120px;
-            top: 20%;
-            left: 0%;
+            /* position: absolute; */
+            width: 60px;
         }
         .auth-btns{
             display: flex;
@@ -101,22 +120,14 @@
             gap: 10px;
             /* border: 1px solid blue; */
         }
-        .auth-btns a{
-            color: #7FBF4C;
-            text-decoration: none;
-            font-size: large;
-            margin-left: 20px;
-            /* text-decoration: underline; */
+        .auth-btns a {
+            font-size: 15px;
         }
-        .auth-btns a:hover{
-            color: #fff;
-            background-color: #7FBF4C;
-            padding: 10px;
+        .auth-btns a:nth-child(2){
+            padding: 10px 20px;
             border-radius: 10px;
-            text-decoration: none;
         }
     }
-
     /* Mini Tablets */
     @media screen and (min-width: 481px) and (max-width: 600px) {
         .auth-btns{
@@ -135,11 +146,19 @@
 
     /* Large Tablet Media Queries*/
     @media screen and (min-width: 660px) and (max-width: 768px) {
-        .navbar div img{
+        /* .navbar div img{
             position: absolute;
             width: 150px;
             top:1%;
             left:8%
+        } */
+    }
+    @media screen and (min-width: 2400px) {
+        .auth-btns{
+            font-size: 30px;
+        }
+        .navbar div img{
+            width: 150px;
         }
     }
 

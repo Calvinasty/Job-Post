@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <button class="card-btn">Apply Now</button>
+            <button class="card-btn" @click="handleApply">Apply Now</button>
 
         </section>
     </div>
@@ -41,6 +41,13 @@
 
 <script>
 export default {
+
+
+    methods:{
+        handleApply(){
+            this.$router.push('/')
+        }
+    }
 
 }
 </script>
@@ -64,16 +71,16 @@ export default {
     margin-left: 15px;
 }
 
-.job:hover {
+/* .job:hover {
     background-color: black;
     color: white;
     transition: all 0.4s;
-}
+} */
 
-.job:hover .card-btn {
+/* .job:hover .card-btn {
     background-color: #fff;
     transition: all 0.4s;
-}
+} */
 
 .job-details-section1 {
     display: flex;
@@ -99,19 +106,22 @@ export default {
     border-top: 2px solid rgb(0, 0, 0)
 }
 
-.job:hover .job-details-section2 {
+/* .job:hover .job-details-section2 {
     border-top: 2px solid rgb(255, 255, 255)
-}
+} */
 
 .card-btn {
     padding: 10px;
     background-color: #ECF7D6;
     cursor: pointer;
+    font-weight: bold;
 }
 
-/* .btn:hover {
-    background: white;
-} */
+.card-btn:hover {
+    background: #88cc00;
+    color: #ffffff;
+    font-weight: bolder;
+}
 
 .company-section {
     display: flex;
@@ -124,9 +134,9 @@ export default {
     width: 44px;
 }
 
-.job:hover .company-logo {
+/* .job:hover .company-logo {
     background-color: white;
-}
+} */
 
 @media screen and (min-width: 1622px) {
     .job {

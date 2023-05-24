@@ -14,10 +14,10 @@
             <FeatureJobCard class="mobile-hide" />
         </div>
 
-        <button class="main-btn mobile-hide">Find More Jobs <span class="material-symbols-outlined">arrow_right_alt</span>
+        <button @click="handleJobs" class="main-btn mobile-hide">Find More Jobs <span class="material-symbols-outlined">arrow_right_alt</span>
         </button>
 
-        <router-link class="mobile-show see-more" to="">see more</router-link>
+        <p class="mobile-show see-more" @click="handleJobs"> see more... </p>
 
     </div>
 </template>
@@ -27,6 +27,13 @@ import FeatureJobCard from './FeatureJobCard.vue'
 export default {
     components: {
         FeatureJobCard
+    },
+
+    methods:{
+        handleJobs(){
+            this.$router.push('/jobsearch')
+        }
+            
     }
 
 }
@@ -88,8 +95,8 @@ export default {
     margin-top: 50px;
     padding: 15px;
     width: 200px;
-    background-color: black;
-    color: white;
+    background-color: #ECF7D6;
+    color: black;
     border-radius: 10px;
     font-weight: bolder;
     cursor: pointer;
@@ -100,8 +107,9 @@ export default {
 }
 
 .main-btn:hover {
-    background-color: #ECF7D6;
-    color: black;
+    background-color: #88cc00;
+    color: white;
+    font-weight: bolder;
     transition: all 0.4s;
 }
 
@@ -134,7 +142,7 @@ export default {
     }
 
     .see-more {
-        color: black;
+        color: #88cc00;
         padding-top: 15px;
         font-size: 20px;
     }

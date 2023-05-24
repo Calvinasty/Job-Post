@@ -4,10 +4,15 @@
             <span @click="toggle" class="material-symbols-outlined"> menu </span>
             <h3>Candle Technologies</h3>
         </div>
-        <button @click="addPost()" class="post flex-center-row">
-            <span class="material-symbols-outlined">add</span>
-            Post a job
-        </button>
+        <div>
+            <button @click="$router.push('/jobsearch')" class="post flex-center-row">
+                View Other Jobs
+            </button>
+            <button @click="addPost()" class="post flex-center-row">
+                <span class="material-symbols-outlined">add</span>
+                Post a job
+            </button>
+        </div>
     </header>
 </template>
 
@@ -38,6 +43,9 @@
     }
     .top-bar div{
         display: flex;
+    }
+    .top-bar div:nth-child(2){
+        gap: 30px;
     }
     .top-bar div img{
         position: absolute;

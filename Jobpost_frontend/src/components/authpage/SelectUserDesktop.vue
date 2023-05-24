@@ -20,7 +20,7 @@
                     <p>
                         Sign up as a job Seeker
                     </p>
-                    <button>Sign Up</button>
+                      <router-link :to="jobSeekSignUp"><button>Sign Up </button> </router-link>
                 </div>
 
                 <div class="poster flex-center-row">
@@ -30,7 +30,7 @@
                     <p>
                         Sign up as a job Poster
                     </p>
-                    <button>Sign Up</button>
+                    <router-link :to="jobPosterSignUp"><button>Sign Up </button> </router-link>
                 </div>
             </div>
         </section>
@@ -42,8 +42,8 @@
     export default {
         data() {
             return {
-                jobSeekerLabel: "Sign up as a job seeker",
-                jobPosterLabel: "Sign up as a job poster"
+                jobSeekSignUp: "/auth/register",
+                jobPosterSignUp: "/auth/poster-register"
             }
         }
     }
