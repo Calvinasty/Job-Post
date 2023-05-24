@@ -9,7 +9,7 @@
 <script>
     export default {
         props:[
-            "label", "type", "name", "value", "inputId", "placeHolder"
+            "type", "name", "value", "inputId", "placeHolder"
         ]
     }
 </script>
@@ -31,7 +31,7 @@
     span input, select{
         width: 100%;
         padding: 14px;
-        border: 2px solid #7FBF4C;
+        border: 1px solid #7FBF4C; 
         border-radius: 5px;
         /* outline: none; */
     }

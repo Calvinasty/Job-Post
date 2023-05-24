@@ -9,29 +9,28 @@
 
             <div class="selector-header">
                 <h3>Choose User Type</h3>
-                <p>Lorem ipsum shshshsor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa ipsam est suscipit placeat laborum facere aliquid! Aspernatur sequi molestias commodi.</p>
             </div>
 
             <div class="user-select flex-center">
-                <div class="jobseeker flex-center-row">
-                    <div>
-                        <img src="/images/jobseeker.png" alt="">
+                    <div class="jobseeker flex-center-row" @click="jobSeekSignUp">
+                        <div>
+                            <img src="/images/jobseeker.png" alt="">
+                        </div>
+                        <p>
+                            Sign up as a job Seeker
+                        </p>
+                        <button>Sign Up </button> 
                     </div>
-                    <p>
-                        Sign up as a job Seeker
-                    </p>
-                      <router-link :to="jobSeekSignUp"><button>Sign Up </button> </router-link>
-                </div>
 
-                <div class="poster flex-center-row">
-                    <div>
-                    <img src="/images/jobpost-bag-desktop.svg" alt="">
+                    <div class="poster flex-center-row" @click="jobPosterSignUp">
+                        <div>
+                        <img src="/images/jobpost-bag-desktop.svg" alt="">
+                        </div>
+                        <p>
+                            Sign up as a job Poster
+                        </p>
+                        <button>Sign Up </button> 
                     </div>
-                    <p>
-                        Sign up as a job Poster
-                    </p>
-                    <router-link :to="jobPosterSignUp"><button>Sign Up </button> </router-link>
-                </div>
             </div>
         </section>
 
@@ -40,12 +39,16 @@
 
 <script>
     export default {
-        data() {
-            return {
-                jobSeekSignUp: "/auth/register",
-                jobPosterSignUp: "/auth/poster-register"
-            }
+        methods:{
+        jobSeekSignUp(){
+            this.$router.push("/auth/register")
+        },
+
+        jobPosterSignUp(){
+            this.$router.push("/auth/poster-register")
         }
+            
+    }
     }
 </script>
 
@@ -73,7 +76,7 @@
         background-color: #fff;
         border-radius: 20px;
         width: 40%;
-        padding: 60px 40px;
+        padding: 120px 40px;
     }
 
     header {
@@ -121,15 +124,26 @@
         row-gap: 35px;
     }
 
+    a {
+        text-decoration: none;
+    }
+
     .jobseeker, .poster {
         column-gap: 30px;
         border: 1px solid #7FBF4C;
         border-radius: 10px;
         padding: 14px;
+        cursor: pointer;
     }
 
     .jobseeker div img, .poster div img {
         width: 70%;
+    }
+
+    .jobseeker p, .poster p {
+        color: #7D7474;
+        font-weight: 400;
+        font-size: 15px;
     }
 
     .jobseeker button, .poster button {
@@ -139,6 +153,7 @@
         border: #7FBF4C;
         color: #fff;
         font-weight: bolder;
+        cursor: pointer;
     }
 
     @media screen and (max-width: 800px) and (min-width: 480px) {

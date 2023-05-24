@@ -9,16 +9,15 @@
 
             <div class="signin-header">
                 <h3>Sign In</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt deserunt autem eligendi.</p>
             </div>
 
             <div class="signin-desktop-field">
                 <div class="user-field">
-                    <InputComponent label="Username" text="text" placeHolder="Username"/>
+                    <InputComponent text="text" placeHolder="Username"/>
                 </div>
 
                 <div class="password-field">
-                    <InputComponent label="Password" text="password" placeHolder="Password"/>
+                    <InputComponent text="password" placeHolder="Password"/>
                 </div>
 
                 <div class="desk-links">
@@ -58,7 +57,7 @@
         justify-content: center;
         align-items: center;
         width: 40%;
-        padding: 40px;
+        padding: 130px;
         row-gap: 20px;
         border-radius: 10px;
     }
@@ -121,17 +120,17 @@
         line-height: 19px;
     }
 
-    .user-field input, .password-field input {
+    /* .user-field input, .password-field input {
         padding: 15px;
         border: 2px solid #7FBF4C;
         border-radius: 8px;
-    }
+    } */
     .desk-links {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        width: 80%;
+        row-gap: 15px;
     }
 
     .desk-links p {
@@ -141,7 +140,7 @@
     }
 
     .desk-links button {
-        padding: 9px;
+        padding:12px 9px;
         border-radius: 10px;
         background: #7FBF4C;
         color: #fff;
