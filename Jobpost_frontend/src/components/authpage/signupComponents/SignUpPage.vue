@@ -18,6 +18,7 @@
 
 <style lang="css" scoped>
     .auth-container{
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;

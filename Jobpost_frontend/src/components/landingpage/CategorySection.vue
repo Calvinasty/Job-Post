@@ -13,6 +13,7 @@
 
 <script>
 import CategoryCard from './CategoryCard.vue';
+import {categoryCardData} from '../../data';
 export default {
     name: 'JobPostCategorySection',
     components:{
@@ -20,59 +21,8 @@ export default {
     },
     data() {
         return {
-            categoryCardData:[
-                {
-                    icon:'images/headset_icon.svg',
-                    headText:'Technical Support',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                
-            ]
-            
+            categoryCardData:categoryCardData
         };
-    },
-
-    mounted() {
-        
-    },
-
-    methods: {
-        
     },
 };
 </script>
