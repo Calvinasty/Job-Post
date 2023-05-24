@@ -112,13 +112,13 @@ a.router-link-exact-active {
 
 @media screen and (max-width: 480px) {
   .footer-container {
-    background-color: #363636;
-    width: 100%;
-    display: flex;
+    /* background-color: #363636; */
+    /* width: 100%; */
+    /* display: flex; */
     font-weight: 200;
     font-size: 16px;
-    justify-content: space-around;
-    flex-direction: column;
+    /* justify-content: space-around; */
+    /* flex-direction: column; */
   }
 
   .footer-before {
@@ -127,31 +127,31 @@ a.router-link-exact-active {
     padding: 37px 39px;
     /* width: 296px; */
     width: 100vdw;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex; */
+    /* justify-content: space-between; */
     flex-direction: column;
     gap: 33px;
   }
   .logo {
-    position: relative;
+    /* position: relative; */
     /* background-color: antiquewhite; */
     height: 70px;
   }
 
   .logo > img {
-    position: absolute;
+    /* position: absolute; */
     /* background-color: aqua; */
-    top: -0px;
+    /* top: -0px; */
     width: 180px;
     left: -45px;
   }
 
   .footer-sec1 {
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
-    flex-direction: column;
+    flex-direction: column; */
     /* width: 296px; */
-    width: 100%;
+    /* width: 100%; */
     gap: 28px;
     /* border: 1px solid blue; */
   }

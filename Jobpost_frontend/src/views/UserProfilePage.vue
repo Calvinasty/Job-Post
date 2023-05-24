@@ -3,7 +3,7 @@
         <div class="userprofile">
 
 
-            <JobSearchNav />
+            <!-- <JobSearchNav /> -->
 
             <section class="user-profile">
                 <div class="title">
@@ -95,14 +95,14 @@
 </template>
 
 <script>
-import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
+// import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
 import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
 import InputComponent from '../components/profilepage/inputComponent.vue';
 export default {
     components: {
         FooterComponent,
-        JobSearchNav,
+        // JobSearchNav,
         CardInformationComponent,
         InputComponent
 
@@ -260,7 +260,7 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     /* padding-top: 66px; */
-    /* width: 42%; */
+    width: 20%;
     /* background-color: #fa1515; */
 
 }
@@ -319,7 +319,7 @@ export default {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 40px;
+    gap: 60px;
     flex-wrap: wrap;
     flex: 1;
 
@@ -380,6 +380,37 @@ export default {
     color: #000000;
 }
 
+@media screen and (max-width:480px) {
+    .title {
+        font-size: 22px;
+    }
+
+    .user-profile {
+        gap: 30px;
+    }
+
+    .profile-card {
+        /* justify-content: space-between; */
+        font-size: 18px;
+        width: 238px;
+        height: 270px;
+    }
+
+    .profile-card h3 {
+        font-size: 18px;
+    }
+
+    .profile-card span {
+        font-size: 15px;
+    }
+
+    .profile-card>img {
+        width: 153px;
+        height: 149px;
+        margin-bottom: 0px;
+    }
+}
+
 @media screen and (max-width:755px) {
 
     .title {
@@ -403,4 +434,6 @@ export default {
     }
 
 }
+
+@media screen and (min-width:768px) and (max-width:1440px) {}
 </style>
