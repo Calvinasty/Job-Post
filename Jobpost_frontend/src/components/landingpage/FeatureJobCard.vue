@@ -138,7 +138,7 @@ export default {
     background-color: white;
 } */
 
-@media screen and (min-width: 1622px) {
+@media screen and (min-width: 1680px) {
     .job {
         width: 600px;
         padding: 20px;
