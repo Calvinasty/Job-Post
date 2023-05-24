@@ -5,7 +5,7 @@
     width: 100%;
     height: 100dvh;
     padding: 55px 105px;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.56);
     background-image: url('/images/job_banner.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -27,8 +27,8 @@ section .head {
     letter-spacing:normal;
 }
 /* css inner selector for v-html */
-section .head >>> h1 .color {
-    color: #7FBF4C;
+section .head :deep() h1 .color {
+    color: #88CC00;
 }
 
 section .tag {
@@ -105,7 +105,7 @@ section .tag {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        height: 80dvh;
+        /* height: 80dvh; */
     }
     section .head {
         width: 100dvw;
@@ -156,10 +156,7 @@ section .tag {
         width: 100%;
         height: 100%;
         padding: 50px 0;
-        background-color: rgba(0, 0, 0, 0.75);
-        background-image: url('/images/job_banner2.jpeg');
         background-position: 60% 0%;
-        background-repeat: no-repeat;
         background-size: 300%;
         background-blend-mode: overlay;
     }
@@ -168,7 +165,7 @@ section .tag {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        height: 80dvh;
+        /* height: 80dvh; */
     }
     section .head {
         width: 100dvw;
@@ -205,28 +202,23 @@ section .tag {
         color: #fff;
         font-size: 18px;
         font-weight: 400;
-        background-color: #2C2D2B;
+        background-color: #7FBF4C;
         border-radius: 20px;
         border: none;
     }
 }
 
 /* Large Tablet Media Queries*/
-@media screen and (min-width: 601px) and (max-width: 768px) {
+@media screen and (min-width: 601px) and (max-width: 1024px) {
     .container {
         width: 100dvw;
-        height: 100dvh;
+        height: 100%;
         padding: 55px 100px;
-        background-color: rgba(0, 0, 0, 0.75);
-        background-image: url('/images/job_banner.jpeg');
         background-position: 80% 10%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-blend-mode: overlay;
     }
     section .head {
         width: 100%;
-        font-size: 65px;
+        font-size: 60px;
         font-weight: bolder;
         color: #fff;
         letter-spacing:normal;
@@ -269,4 +261,23 @@ section .tag {
         border: none;
     }
 
+}
+
+@media screen and (min-width: 2400px) {
+    section .head {
+        font-size: 90px;
+    }
+    section .tag {
+        font-size: 50px;
+    }
+    .action div span input {
+        padding: 30px 30px 20px 30px;
+        font-size: 30px;
+    }
+    .action div button {
+        font-size: 30px;
+    }
+    .action div button .material-symbols-outlined{
+        font-size: 40px;
+    }
 }
