@@ -17,13 +17,15 @@ export default {
         return {
             date: "April 1st - May 30th",  
             applicants: [
-                {applicant: 'UI/UX Designer', role: 'Remote', requirements:'Intern', download:'Ghana'},
-                {applicant: 'Backend Developer', role: 'Remote', requirements:'Intern', download:'Ghana'},
-                {applicant: 'Frontend Developer', role: 'Remote', requirements:'Intern', download:'Ghana'},
-                {applicant: 'UI/UX Designer', role: 'Remote', requirements:'Intern', download:'Ghana'},
-                {applicant: 'UI/UX Designer', role: 'Remote', requirements:'Intern', download:'Ghana'},
-                {applicant: 'UI/UX Designer', role: 'Remote', requirements:'Intern', download:'Ghana'},
-                {applicant: 'UI/UX Designer', role: 'Remote', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Kwame Amponsah', role: 'Remote - Intern', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Yemi Ogbedengbey', role: 'Remote - Full Time', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Joseph Atugubah', role: 'Remote - Part Time', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Daniel McDan', role: 'Remote - Part Time', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Daniel Kofi Tetteh', role: 'On Site - Full Time', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Prince Tindan', role: 'On Site - Intern', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Father Benjamin', role: 'Hybride - Full Time', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Razark Adams', role: 'Remote - Intern', requirements:'Intern', download:'Ghana'},
+                {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
             ]          
         };
     },

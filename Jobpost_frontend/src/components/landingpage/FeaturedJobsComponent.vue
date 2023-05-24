@@ -76,7 +76,7 @@ export default {
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 30px;
     row-gap: 30px;
