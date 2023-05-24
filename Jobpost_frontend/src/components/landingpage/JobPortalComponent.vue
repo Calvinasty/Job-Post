@@ -74,7 +74,7 @@ export default {
     width: 306px;
     height: 236px;
 }
-.tex
+
 .text-heading{
     display: flex;
     flex-direction: row;
@@ -83,6 +83,7 @@ export default {
     text-align: center;
     gap: 15px;
     height: 100%;
+    font-weight: 700;
 }
 .text-heading img{
     width: 34px;
@@ -91,6 +92,7 @@ export default {
 .main-text{
     margin: 30px 0px;
     width: 256x;
+    font-weight: 300px;
     
 }
 .buttons{
@@ -109,10 +111,12 @@ export default {
     background-color: #000;
     color: #fff;
     border-radius: 6px;
+    font-weight: 600;
 }
 .buttons a .job-btn{
     background-color: #fff;
     color: #000;
+    font-weight: 700 ;
 }
 
 
@@ -144,6 +148,7 @@ a{
         width: 100%; 
         flex-direction: row; 
         gap: 30px; 
+        height: 80vh;
        
     }
     .text-section{
@@ -174,6 +179,74 @@ a{
    
 }
 }
+
+@media screen and (min-width: 900px){
+    .job-portal{
+        gap: 50px;  
+        max-width: 1720px ;  
+    }
+    .text-section{
+        width: 100%;
+        align-items: flex-start;
+        text-align: left;    }
+    .img-section{
+      width: 700px;
+      height: 100%;
+    }
+    .img-section,.text-section{
+        flex: 1;
+        /* width: 100%; */
+    }
+    .main-text{
+        width: 80%;
+
+    }
+    .image-container{
+        width: 100%;
+        max-width: 721px;
+        background-position: 100% 90%;
+        height: 100%;
+        max-height: 774px;
+        border-radius: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px){
+
+    .text-section{
+        width: 100%;
+        align-items: flex-start;
+        text-align: left;    }
+    .img-section{
+      width: 100%;
+    }
+    .img-section,.text-section{
+        flex: 1;
+        /* width: 100%; */
+    }
+    .main-text{
+        width: 70%;
+
+    }
+    .buttons{
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+   
+}
+
+.text-heading{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    font-size: 25px;
+}
+
+}
+
+
 
     
 

@@ -15,7 +15,7 @@
 
                 <div class="footer-sec1-input">
                     <input type="text" placeholder="Your email">
-                    <img src="/images/Forward Button.svg" alt="">
+                    <img src="/images/Forwardbutton.svg" alt="">
                 </div>
 
             </div>
