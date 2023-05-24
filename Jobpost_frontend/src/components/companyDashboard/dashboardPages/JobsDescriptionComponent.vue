@@ -1,25 +1,20 @@
 <template>
-    <div>
-        <div class="main">
-            <table class="table">
-                <thead class="head">
-                    <th>Job Description</th>
-                    <th>Role Type</th>
-                    <th>Requirements</th>
-                    <th>Location</th>
-                    <th></th>
-                </thead>
-                <tbody class="body">
-                    <tr v-for="(item, index) in myjobs" :key="index">
-                        <td>{{ item.description }}</td>
-                        <td>{{ item.role }}</td>
-                        <td>{{ item.requirements }}</td>
-                        <td>{{ item.location }}</td>
-                        <td><span @click="show(item.role)" class="material-symbols-outlined">edit</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="main">
+        <ul class="table-head">
+            <li>Job Description</li>
+            <li>Role Type</li>
+            <li>Requirements</li>
+            <li>Location</li>
+            <li></li>
+        </ul>
+
+        <ul v-for="(item, index) in myjobs" :key="index" class="table-body">
+            <li>{{ item.description }}</li>
+            <li>{{ item.role }}</li>
+            <li>{{ item.requirements }}</li>
+            <li>{{ item.location }}</li>
+            <li><span @click="show(item.role)" class="material-symbols-outlined">edit</span></li>
+        </ul>
     </div>
 </template>
 
@@ -53,51 +48,56 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
-.main{
+.main {
     display: flex;
-    justify-content: center;
-    align-content:center;
-    font-size: 20px;
-    gap: 100px;
-    padding: 30px;
-    padding-top: 30px;
-    background-color: aqua;
+    flex-direction: column;
+    row-gap: 20px;
+    margin-top: 20px;
+    padding: 0px 90px 0px 100px;
+    background: #F4F4F4;
+    height: 83dvh;
+    width: 100%;
+
+    /* overflow: scroll; */
+
+}
+.main ul{
+    list-style: none;
 }
 
-.table {
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    padding: 80px;
-    border: 1px solid rgb(35, 35, 49);
-    width: 80%;
-    height: 80vh;
+.table-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    /* background-color: aqua; */
+
 }
-.table thead{
-    column-gap: 10px;
+
+.table-head li{
+    width: 20%;
+    margin-left: 50px;
 }
-.head{
-    /* display: flex; */
-    /* justify-content: center; */
-    background-color: aquamarine;
-    /* padding-left: 50%; */
-    margin-right: 20px;
-    position: relative;
-    text-align: start;
+.table-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid #000;
+    padding-top: 15px;
+    /* margin-right: 10px; */
+    /* background-color: aqua; */
+    padding: 10px;
     
 }
-.body{
-    border-bottom: 2px solid blue;
+.table-body li{
+    width: 20%;
+    margin-left: 50px;
 }
-tr{
-    margin: 0;
-    padding: 0;
-}
-td {
-    border-bottom: 2px solid blue;
-    margin: 0;
-    padding: 0;
+.table-body span {
+    color: rgba(136, 204, 0, 1);
 }
 </style>
