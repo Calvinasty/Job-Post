@@ -4,9 +4,7 @@
         <div class="card-text">
             <h4 >{{ headText }}</h4>
             <p >{{ subText }}</p>
-
         </div>
-
    
     </section>
 </template>
@@ -34,7 +32,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content:center;
-   width: 300px;
+   width: 100%;
    padding: 0px 5px;
     height: 150px;
     background: #FFFFFF;

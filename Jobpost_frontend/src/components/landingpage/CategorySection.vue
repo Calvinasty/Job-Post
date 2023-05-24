@@ -81,13 +81,12 @@ export default {
     .category-section{
         width: 100%;
         padding: 70px;
-        /* max-width: 1460px; */
+        max-width: 1728px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         row-gap:5rem;
-        background-color: #f1f1f1;
     }
     .category-title{
         /* font-weight: 800; */
@@ -100,7 +99,8 @@ export default {
         width: 90%;
         align-content: center;
         justify-items: center;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(4,1fr);
+        /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
         gap: 2rem;
     }
 
