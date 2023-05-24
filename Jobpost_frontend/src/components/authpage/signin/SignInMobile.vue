@@ -7,16 +7,15 @@
 
         <div class="signin-header">
             <h3>Sign In</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt deserunt autem eligendi.</p>
         </div>
 
         <div class="signin-field">
             <div>
-                <InputComponent label="Username" type="text" placeHolder="Username"/>
+                <InputComponent type="text" placeHolder="Username"/>
             </div>
 
             <div>
-                <InputComponent label="Password" type="password" placeHolder="Password"/>
+                <InputComponent type="password" placeHolder="Password"/>
             </div>
 
             <button class="mbn-btn">Sign In</button>

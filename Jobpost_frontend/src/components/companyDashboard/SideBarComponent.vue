@@ -30,7 +30,7 @@ export default {
                 { name: "Dasboard", icon: "bar_chart_4_bars", link: "analyticsView" },
                 { name: "View/Edit Jobs", icon: "edit", link: "jobsView" },
                 { name: "View Other Jobs", icon: "work", link: "/admin/alljobs" },
-                { name: "View All Aplicants", icon: "group", link: "/admin/applicants" },
+                { name: "View All Aplicants", icon: "group", link: "viewApplicant" },
                 { name: "Company Profile", icon: "apartment", link: "/companyprofile" },
                 { name: "View Employers", icon: "supervisor_account", link: "/admin/employers" },
                 { name: "View Job Seekers", icon: "work_alert", link: "/admin/jobseeker" },

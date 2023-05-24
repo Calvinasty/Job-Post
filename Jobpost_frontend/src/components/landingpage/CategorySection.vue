@@ -13,6 +13,7 @@
 
 <script>
 import CategoryCard from './CategoryCard.vue';
+import {categoryCardData} from '../../data';
 export default {
     name: 'JobPostCategorySection',
     components:{
@@ -20,59 +21,8 @@ export default {
     },
     data() {
         return {
-            categoryCardData:[
-                {
-                    icon:'images/headset_icon.svg',
-                    headText:'Technical Support',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                {
-                    icon:'images/code_icon.svg',
-                    headText:'Software Development',
-                    subText:'59 Jobs Available'
-                },
-                
-            ]
-            
+            categoryCardData:categoryCardData
         };
-    },
-
-    mounted() {
-        
-    },
-
-    methods: {
-        
     },
 };
 </script>
@@ -81,13 +31,12 @@ export default {
     .category-section{
         width: 100%;
         padding: 70px;
-        /* max-width: 1460px; */
+        max-width: 1728px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         row-gap:5rem;
-        background-color: #f1f1f1;
     }
     .category-title{
         /* font-weight: 800; */
@@ -100,10 +49,19 @@ export default {
         width: 90%;
         align-content: center;
         justify-items: center;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(4,1fr);
+        /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+        gap: 1rem;
     }
 
+    
+    @media screen and (max-width:1121px){
+        .category-list{
+            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            
+        }
+    }
     @media screen and (max-width:700px){
         .category-section{
             display: none;
@@ -117,7 +75,6 @@ export default {
         line-height: 36px;
         }
         .category-list{
-        display: grid;
         width: 100%;}
         
     }

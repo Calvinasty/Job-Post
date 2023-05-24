@@ -8,7 +8,7 @@
             <h3>We have sent a confirm email</h3>
             <h3>email@gmail.com</h3>
         </div>                
-        <button type="button" @click="handleHome()">
+        <button type="button" @click="handleRoute">
             View dashboard <span class="material-symbols-outlined"> dashboard</span>
         </button>
     </section>
@@ -16,11 +16,8 @@
 
 <script>
     export default {
-        methods:{
-            handleHome(){
-                this.$router.push('/userprofile')
-            }
-        }
+        props:['handleRoute']        
+        
     }
 </script>
 
@@ -44,6 +41,7 @@
         font-weight: 500;
         margin-top:50px;
         color: #7FBF4C;
+        text-align: center;
     }
     .complete div{
         display: flex;
@@ -115,11 +113,12 @@
     }
 
 
+   
     /* increase form width on mini tablets */
     @media screen and (min-width:481px) and (max-width:768px) {
         .complete{
             width: 80%;
-            display: none;
+            /* display: none; */
         }
         .complete h1{
             font-size: 25px;
@@ -129,8 +128,8 @@
     @media screen and (min-width:769px) and (max-width:1024px) {
         .complete{
             width: 60%;
-            border: 1px solid red;
-            display: none;
+            /* border: 1px solid red; */
+            /* display: none; */
         }
     }
 </style>

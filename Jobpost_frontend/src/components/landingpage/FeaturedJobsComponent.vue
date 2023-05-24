@@ -76,7 +76,7 @@ export default {
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     margin-top: 30px;
     row-gap: 30px;
@@ -95,8 +95,8 @@ export default {
     margin-top: 50px;
     padding: 15px;
     width: 200px;
-    background-color: #ECF7D6;
-    color: black;
+    background-color: #000000;
+    color: #ffffff;
     border-radius: 10px;
     font-weight: bolder;
     cursor: pointer;
@@ -106,12 +106,12 @@ export default {
     padding-left: 5px;
 }
 
-.main-btn:hover {
+/* .main-btn:hover {
     background-color: #88cc00;
     color: white;
     font-weight: bolder;
     transition: all 0.4s;
-}
+} */
 
 .mobile-show {
     display: none;

@@ -4,9 +4,7 @@
         <div class="card-text">
             <h4 >{{ headText }}</h4>
             <p >{{ subText }}</p>
-
         </div>
-
    
     </section>
 </template>
@@ -14,13 +12,6 @@
 <script>
 export default {
     name: 'JobPostCategoryCard',
-
-    data() {
-        return {
-            
-        };
-    },
-
     methods:{
         handleCategory(){
             this.$router.push('/jobsearch')
@@ -41,9 +32,9 @@ export default {
     display: flex;
     align-items: center;
     justify-content:center;
-   width: 300px;
+   width: 100%;
    padding: 0px 5px;
-    height: 150px;
+    height: 120px;
     background: #FFFFFF;
     border: 1px solid #7FBF4C;
     border-radius: 10px;
