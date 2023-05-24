@@ -8,17 +8,20 @@
     import DashboardLayout from './DashboardLayout.vue';
     import AnalyticsView from './AnalyticsView.vue';
     import JobsView from './JobsViewComponent.vue';
+    import ViewApplicant from './ViewAllApplicant.vue';
     export default {
         components:{
             DashboardLayout,
             AnalyticsView,
-            JobsView
+            JobsView,
+            ViewApplicant
         },
         data(){
             return{
-                componentId: 'jobsViewComponent',
+                componentId: 'analyticsView',
                 analyticsView: AnalyticsView,
-                jobsView: JobsView
+                jobsView: JobsView,
+                viewApplicant: ViewApplicant
             }   
         },
         beforeMount(){
