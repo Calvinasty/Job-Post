@@ -19,7 +19,7 @@
 .logo {
   position: relative;
   /* background-color: antiquewhite; */
-  height: 50px;
+  height: 70px;
 }
 
 .logo > img {
@@ -28,6 +28,7 @@
   top: -0px;
   width: 220px;
   left: -50px;
+  cursor: pointer;
 }
 
 .footer-sec1 {

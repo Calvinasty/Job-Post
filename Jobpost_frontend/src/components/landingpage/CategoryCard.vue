@@ -1,5 +1,5 @@
 <template>
-    <section class="category-card">
+    <section class="category-card" @click="handleCategory">
         <img :src="icon" :alt="headText">
         <div class="card-text">
             <h4 >{{ headText }}</h4>
@@ -20,6 +20,13 @@ export default {
             
         };
     },
+
+    methods:{
+        handleCategory(){
+            this.$router.push('/jobsearch')
+        }
+    },
+
     props:[
         "icon",
         "headText",
