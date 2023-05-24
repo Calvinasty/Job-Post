@@ -7,36 +7,44 @@
 
         <div class="selector-header">
             <h3>Choose User Type</h3>
-            <p>Lorem ipsum shshshsor sit amet consectetur adipisicing elit.</p>
         </div>
 
         <div class="user-select">
-            <div class="jobseeker">
-                <div>
-                    <img src="/images/jobseeker.png" alt="">
+                <div class="jobseeker" @click="jobSeekSignUp">
+                    <div>
+                        <img src="/images/jobseeker.png" alt="">
+                    </div>
+                    <p>
+                        Sign up as a job Seeker
+                    </p>
+                    <button>Sign Up</button>
                 </div>
-                <p>
-                    Sign up as a job Seeker
-                </p>
-                <button>Sign Up</button>
-            </div>
 
-            <div class="poster">
-                <div>
-                   <img src="/images/jobpost.png" alt="">
+                <div class="poster" @click="jobPosterSignUp">
+                    <div>
+                    <img src="/images/jobpost.png" alt="">
+                    </div>
+                    <p>
+                        Sign up as a job Poster
+                    </p>
+                    <button>Sign Up</button>
                 </div>
-                <p>
-                    Sign up as a job Poster
-                </p>
-                <button>Sign Up</button>
-            </div>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        
+        methods:{
+        jobSeekSignUp(){
+            this.$router.push("/auth/register")
+        },
+
+        jobPosterSignUp(){
+            this.$router.push("/auth/poster-register")
+        }
+            
+    }
     }
 </script>
 
@@ -105,6 +113,7 @@
         border-radius: 5px;
         row-gap: 10px;
         padding: 30px;
+        cursor: pointer;
     }
     .jobseeker div img {
         width: 100%;
