@@ -12,7 +12,7 @@
             :handleHome="handleHome"
             :screen="screen"
         />
-        <SignupSuccess v-if="next == 2" />
+        <SignupSuccess :handleRoute="handleHome" v-if="next == 2" />
 
     </div>
 </template>

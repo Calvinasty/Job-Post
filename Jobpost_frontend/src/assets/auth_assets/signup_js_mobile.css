@@ -180,6 +180,9 @@ button.prev-btn{
     form{
         width: 80%;
     }
+    .auth-desk-container{
+        padding:55px;
+    }
 }
 /* increase form width on tablets */
 @media screen and (min-width:769px) and (max-width:1024px) {

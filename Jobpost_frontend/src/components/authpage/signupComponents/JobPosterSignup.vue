@@ -1,7 +1,7 @@
 <template>
     <AuthLayout class="auth-container">
-        <div class="form-container">
-           <JobPosterFormHeader/>
+        <div class="form-container" :class="{centerForm:activeClass[2]}">
+           <JobPosterFormHeader v-if="pageNum!==2"/>
             <JobPosterForm :pageNumber="pageNum" :pageNavigation="handlePageNavigation"/>
            <PageIndicator  :activeClass="activeClass"/>
         </div>
@@ -88,6 +88,12 @@ export default {
     border-radius: 60px;
     position :relative;
 }
+.form-container.centerForm{
+align-items: center;
+justify-content: center;
+margin: 0 auto;
+background: #000;}
+
 
 @media screen and (max-width:786px) {
     .auth-container{ padding: 20px 50px; }
