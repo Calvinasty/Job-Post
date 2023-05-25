@@ -8,16 +8,13 @@
 </template>
 
 <script>
-export default {
-    props: [
-        "navItems"
-    ],
-    methods: {
-        goto(link) {
-            this.$router.push(link)
-        }
-    },
-}
+    export default {
+        props:[
+            "navItems",
+            "goto"
+        ]
+        
+    }
 </script>
 
 <style lang="css" scoped>
