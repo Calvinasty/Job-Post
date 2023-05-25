@@ -5,7 +5,7 @@
                 <img :src="user.image" alt="logo">
             </aside>
             <aside class="nav-items">
-                <NavItemComponent :navItems="navItems" />
+                <NavItemComponent :navItems="navItems" :goto="goto"/>
             </aside>
             <aside class="nav-items">
                 <SettingsComponent :settings="settings" :user="user" />
@@ -45,7 +45,13 @@ export default {
                 image: '/images/logo.png'
             }
         };
-    }
+    },
+
+    methods:{
+            goto(link){
+                this.$router.push(link)
+            }
+        },
 }
 </script>
 
