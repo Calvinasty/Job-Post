@@ -12,13 +12,6 @@
 <script>
 export default {
     name: 'JobPostCategoryCard',
-
-    data() {
-        return {
-            
-        };
-    },
-
     methods:{
         handleCategory(){
             this.$router.push('/jobsearch')
