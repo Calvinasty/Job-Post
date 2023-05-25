@@ -5,17 +5,17 @@
          <Transition name="slide-fade">
             <form v-if="pageNumber==0" class=" flex-center">
                     <div class=" input-container flex-center-row">
-                        <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
-                        <InputComponent :type="inputData[1].type" :label="inputData[1].label" :inputId="inputData[1].inputId" :name="inputData[1].name" :placeHolder="inputData[1].placeholder" />
+                        <InputComponent type="text" placeHolder="Organization Name" inputId="jobposter-name" name="name"  />
+                        <InputComponent type="email" placeHolder="Organization Email" inputId="jopposter-email" name="email"/>
 
                     </div>
                     <div class="input-container pass  flex-center-row">
-                        <InputComponent :type="inputData[2].type" :label="inputData[2].label" :inputId="inputData[2].inputId" :name="inputData[2].name" :placeHolder="inputData[2].placeholder" />
-                        <InputComponent :type="inputData[3].type" :label="inputData[3].label" :inputId="inputData[3].inputId" :name="inputData[3].name" :placeHolder="inputData[3].placeholder" />
+                        <InputComponent type="password" placeHolder="Enter Password" inputId="jopposter-password" name="password"  />
+                        <InputComponent type="password" placeHolder="Confirm Password" inputId="jopposter-confirm-password" name="confirm-password"  />
 
                     </div>
                     <div class="input-container flex-center-row">
-                        <InputComponent :type="inputData[4].type" :label="inputData[4].label" :inputId="inputData[4].inputId" :name="inputData[4].name" :placeHolder="inputData[4].placeholder" />
+                        <InputComponent type="text" placeHolder="Organizations Website" :inputId="inputData[4].inputId" :name="inputData[4].name" />
                         <InputComponent :type="inputData[5].type" :label="inputData[5].label" :inputId="inputData[5].inputId" :name="inputData[5].name" :placeHolder="inputData[5].placeholder" />
                         
                     </div>
@@ -46,9 +46,9 @@
             </Transition>
 
             <Transition name="slide-fade">
-              <div class="success-form">
+              <div  v-if="pageNumber==2" class="success-form">
 
-                  <SignupSuccess  v-if="pageNumber==2" :handleRoute="handleHome"/>
+                  <SignupSuccess  :handleRoute="handleHome"/>
               </div>
                 
             </Transition>
