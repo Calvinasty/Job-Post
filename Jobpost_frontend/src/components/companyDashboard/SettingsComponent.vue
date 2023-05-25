@@ -99,4 +99,10 @@
         justify-content: center ;
         align-items: flex-start;
     }
+    /* .material-symbol-outlined{
+        color: #88CC00;
+    } */
+    button span{
+        color: #88CC00;
+    }
 </style>

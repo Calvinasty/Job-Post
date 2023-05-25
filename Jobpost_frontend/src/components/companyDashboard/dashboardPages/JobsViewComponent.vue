@@ -24,6 +24,14 @@ export default {
                 {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
                 {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
                 {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
             ]          
         };
     },
