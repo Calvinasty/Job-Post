@@ -55,7 +55,7 @@ export default {
     margin-top: 20px;
     padding: 0px 90px 0px 100px;
     background: #F4F4F4;
-    height: 83dvh;
+    height: 100%;
     width: 100%;
 
     /* overflow: scroll; */

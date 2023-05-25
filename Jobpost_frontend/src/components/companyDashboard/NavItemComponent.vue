@@ -10,13 +10,10 @@
 <script>
     export default {
         props:[
-            "navItems"
-        ],
-        methods:{
-            goto(link){
-                this.$router.push(link)
-            }
-        },
+            "navItems",
+            "goto"
+        ]
+        
     }
 </script>
 
