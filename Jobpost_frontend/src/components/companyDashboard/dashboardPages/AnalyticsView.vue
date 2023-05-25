@@ -1,17 +1,21 @@
 <template>
     <section class="main">
-        <CardComponent class="card1" v-for="(item, index) in card1Info" :key="index" :cardItem="item"/>
-        <CardComponent class="card2" v-for="(item, index) in card2Info" :key="index" :cardItem="item"/>
-        <CardComponent class="card3" v-for="(item, index) in card3Info" :key="index" :cardItem="item"/>
-        <div class="first">1</div>
+        <CardComponent v-for="(item, index) in card1Info" :key="index" :cardItem="item"/>
+        <CardComponent v-for="(item, index) in card2Info" :key="index" :cardItem="item"/>
+        <CardComponent v-for="(item, index) in card3Info" :key="index" :cardItem="item"/>
+        <div class="first">
+            <Chart />
+        </div>
     </section>
 </template>
 
 <script>
     import CardComponent from './CardComponent.vue';
+    import Chart from './Chart.vue';
     export default {
         components:{
-            CardComponent
+            CardComponent,
+            Chart
         },
         data(){
             return{
@@ -27,10 +31,10 @@
                     {type: 'card3', num: 12, title:'Applicants Summary', link:'/admin/viewApplicant', color:'#f5f5f5',
                         jobTypes:[
                             {name: 'Full time', num: 10, color: '#80D25B'},
-                            {name: 'Part time', num: 20, color: '#0596FF'},
-                            {name: 'Remote', num: 5, color: '#10BBC6'},
                             {name: 'Internship', num: 50, color: '#FF763C'},
-                            {name: 'Contract', num: 15, color: '#FF0000'}
+                            {name: 'Part time', num: 20, color: '#0596FF'},
+                            {name: 'Contract', num: 15, color: '#FF0000'},
+                            {name: 'Remote', num: 5, color: '#10BBC6'}
                         ]
                     }
                 ]
@@ -44,13 +48,20 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr;
-        gap: 20px;
-        height: 70dvh;
+        gap: 10px;
+        /* height: 70dvh; */
+        align-items: start;
+        /* overflow: scroll; */
+        /* height: 100%; */
+        height: 0;
+        
     }
-    .main .card1 {
-        grid-row: 1fr;
-        grid-column: 1fr 1fr 1fr;
-    }
+    /* .main .card1 { */
+        /* grid-row: 2 ;
+        grid-column: 1; */
+        /* background-color: #000; */
+        /* display: none; */
+    /* } */
     .main div{
         /* padding: 30px 10px; */
     }
@@ -58,6 +69,7 @@
         grid-area: 2/1/5/3;
         background-color: #F5F5F5;
         border: 1.5px solid #88CC00;
+        align-self: stretch;
     }
     .main .card2{
         grid-area: 2/3/3/4;

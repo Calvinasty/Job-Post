@@ -17,9 +17,24 @@
         <h1>{{ cardItem.title }}</h1>
         <span class="num">{{ cardItem.num }}</span>
         <div class="progress">
-            <div class="progress-bar">
-                
+            <div class="progress-bar"
+                :style="{background: `linear-gradient(to right, 
+                    ${cardItem.jobTypes[0].color} ${cardItem.jobTypes[0].num}%, 
+                    ${cardItem.jobTypes[1].color} ${cardItem.jobTypes[1].num}%, 
+                    ${cardItem.jobTypes[2].color} ${cardItem.jobTypes[2].num}%,
+                    ${cardItem.jobTypes[3].color} ${cardItem.jobTypes[3].num}%,
+                    ${cardItem.jobTypes[4].color} ${cardItem.jobTypes[4].num}%
+                )`}"
+            >
+                <div class="progress-shadow"></div>
             </div>
+        </div>
+        <div class="progress-details">
+            <span class="job-type" v-for="(item, index) in cardItem.jobTypes" :key="index">
+                <span :style="{backgroundColor:item.color}"></span>
+                <span>{{ item.name }}:&emsp;</span>
+                <span>{{ item.num }}</span>
+            </span>
         </div>
     </card>
 </template>
@@ -81,11 +96,44 @@
         border: 2px solid #88CC00;
     }
     .progress{
-        background-color: #88CC00;
+        /* background-color: #88CC00; */
         width: 306px;
         height: 17px;
+        position: relative;
     }
     .progress-bar{
-
+        position: relative;
+        /* background-size: 24em 0.25em; */
+        width: 100%;
+        height: 100%;
+        border: 1px solid;
+        /* background-image: linear-gradient(to right, #80D25B, #FF763C, #0596FF, #FF0000, #10BBC6); */
     }
+    .progress-details{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
+        /* border: 1px solid red; */
+        width: 80%;
+    }
+    .job-type{
+        display: flex;
+        flex-direction: row;
+        font-size: 10px;
+        /* border: 1px solid red; */
+        flex-basis: 45%;
+    }
+    .job-type span:first-child{
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+    }
+    .job-type span:last-child{
+        font-weight: 700;
+        color: #787272;
+    }
+
 </style>
