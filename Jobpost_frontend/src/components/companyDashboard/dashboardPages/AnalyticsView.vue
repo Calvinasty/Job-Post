@@ -1,12 +1,10 @@
 <template>
-    <div class="main">
-        <section class="top">
-            <Card1Component />
-            <Card1Component />
-            <Card1Component />
-            <Card1Component />
-        </section>
-    </div>
+    <section class="main">
+        <Card1Component class="card1" v-for="(item, index) in cardInfo" :key="index" :cardItem="item"/>
+        <div class="first">1</div>
+        <div class="second">2</div>
+        <div class="third">3</div>
+    </section>
 </template>
 
 <script>
@@ -14,22 +12,44 @@
     export default {
         components:{
             Card1Component
+        },
+        data(){
+            return{
+                cardInfo: [
+                    {num: 6, text:'New Candidates to review', link:'first', color:'#88CC00'},
+                    {num: 9, text:'New Candidates to review', link:'second', color:'#0596FF'},
+                    {num: 12, text:'New Candidates to review', link:'third', color:'#000'}
+                ]
+            }
         }
     }
 </script>
 
 <style lang="css" scoped>
-    div .main{
-        /* border: 2px solid blue; */
+    .main{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        height: 70dvh;
     }
-    main .top{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 10px;
-        /* border: 5px solid red; */
+    .main .card1 {
+        grid-row: 1fr;
+        grid-column: 1fr 1fr 1fr;
+    }
+    .main div{
+        /* padding: 30px 10px; */
+    }
+    .main div.first{
+        grid-area: 2/1/5/3;
+        background-color: aqua;
+    }
+    .main div.second{
+        grid-area: 2/3/3/4;
+        background-color: brown;
+    }
+    .main div.third{
+        grid-area: 3/3/5/4;
+        background-color: #88CC00;
     }
 </style>

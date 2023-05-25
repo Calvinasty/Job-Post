@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <DashBoardWelcome />
         <slot></slot>
     </div>
@@ -18,5 +18,8 @@
     *{
         padding: 0;
         margin: 0;
+    }
+    .container:first-child{
+        margin-bottom: 20px;
     }
 </style>
