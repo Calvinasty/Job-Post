@@ -27,17 +27,17 @@ export default {
         return {
             show: true,
             navItems: [
-                { name: "Dasboard", icon: "bar_chart_4_bars", link: "analyticsView" },
-                { name: "View/Edit Jobs", icon: "edit", link: "jobsView" },
+                { name: "Dasboard", icon: "dashboard", link: "analyticsView" },
+                { name: "View/Edit Jobs", icon: "edit_note", link: "jobsView" },
                 { name: "View Other Jobs", icon: "work", link: "/admin/alljobs" },
-                { name: "View All Aplicants", icon: "group", link: "viewApplicant" },
-                { name: "Company Profile", icon: "apartment", link: "/companyprofile" },
+                { name: "View All Aplicants", icon: "groups", link: "viewApplicant" },
+                { name: "Company Profile", icon: "account_circle", link: "/companyprofile" },
                 { name: "View Employers", icon: "supervisor_account", link: "/admin/employers" },
                 { name: "View Job Seekers", icon: "work_alert", link: "/admin/jobseeker" },
             ],
             settings: [
                 { name: "Settings", icon: 'settings', link: "/settins" },
-                { name: "Help Center", icon: 'support_agent', link: "/settings" }
+                { name: "Help Center", icon: 'help', link: "/settings" }
             ],
             user: {
                 name: 'Profile',
@@ -60,7 +60,7 @@ export default {
     height: 100vh;
     width: 20%;
     padding: 15px 20px;
-    background-color: #f1f1f1;
+    background-color: #fff;
     box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
 }
 
