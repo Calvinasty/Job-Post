@@ -60,7 +60,7 @@ export default {
     height: 100vh;
     width: 20%;
     padding: 15px 20px;
-    background-color: #f1f1f1;
+    background-color: #fff;
     box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
 }
 

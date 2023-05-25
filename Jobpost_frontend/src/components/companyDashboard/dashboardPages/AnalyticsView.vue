@@ -2,9 +2,8 @@
     <section class="main">
         <CardComponent class="card1" v-for="(item, index) in card1Info" :key="index" :cardItem="item"/>
         <CardComponent class="card2" v-for="(item, index) in card2Info" :key="index" :cardItem="item"/>
+        <CardComponent class="card3" v-for="(item, index) in card3Info" :key="index" :cardItem="item"/>
         <div class="first">1</div>
-        <!-- <div class="second">2</div> -->
-        <div class="third">3</div>
     </section>
 </template>
 
@@ -22,7 +21,10 @@
                     {type: 'card1', num: 12, text:'New Candidates to review', link:'third', color:'#000'},
                 ],
                 card2Info: [
-                    {type: 'card2', num: 12, text:'New Candidates to review', link:'third', color:'#f5f5f5'}
+                    {type: 'card2', num: 12, title:'Total Job Posts', link:'/admin/jobsView', color:'#f5f5f5'}
+                ],
+                card3Info: [
+                    {type: 'card3', num: 12, title:'Applicants Summary', link:'/admin/viewApplicant', color:'#f5f5f5'}
                 ]
             }
         }
@@ -54,7 +56,7 @@
         background-color: #F5F5F5;
         border: 1.5px solid #88CC00;
     }
-    .main div.third{
+    .main .card3{
         grid-area: 3/3/5/4;
         background-color: #F5F5F5;
         border: 1.5px solid #88CC00;
