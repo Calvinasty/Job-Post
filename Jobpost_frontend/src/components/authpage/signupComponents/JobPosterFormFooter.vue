@@ -1,17 +1,22 @@
 <template>
     <div>
-        <div class="buttons flex-center-row">
-            <button :type="actionBtnType" v-on:click="()=>pageNavigation(actionBtnText)" class="flex-center-row">
+        <div @click.prevent="" class="buttons flex-center-row">
+            <button v-if="pageNum==1"  v-on:click.prevent="()=>pageNavigation('back')" class="flex-center-row">
+                <span class="material-symbols-outlined" style="transform: rotate(180deg);">arrow_right_alt</span>
+                Back 
+            </button>
+            <button :type="actionBtnType" v-on:click.prevent="()=>pageNavigation(actionBtnText)" class="flex-center-row">
                 {{ actionBtnText }} <span class="material-symbols-outlined">arrow_right_alt</span>
             </button>
-            <p><span>Already registered?</span> <router-link :to="{name:'Auth', params:{id:'login'}}">Sign in</router-link></p>
+
+            <p v-if="pageNum==0"><span>Already registered?</span> <router-link :to="{name:'Auth', params:{id:'login'}}">Sign in</router-link></p>
         </div>
-        <div class="oauth flex-center-row">
+        <div class="oauth flex-center-row" v-if="pageNum==0">
             <button @click.prevent="" type=""   class="flex-center-row">
                 <img src="/images/social-google.svg" alt="google">
                 <span>Sign up with Google</span>
             </button>
-            <span>OR</span>
+            <span class="or">OR</span>
             <button @click.prevent="" type="" class="flex-center-row">
                 <img src="/images/social-linkedin.svg" alt="linkedin">
                 <span>Sign up with LinkedIn</span>
@@ -27,13 +32,14 @@ export default {
    props:[
         'actionBtnText',
         'actionBtnType',
-        'pageNavigation'
+        'pageNavigation',
+        'pageNum'
    ],
 
 }
 </script>
 <style lang="css" scoped>
-.oauth img{ height: 35px; width: auto;}
+.oauth img{ height: 20px; width: auto;}
 .buttons{
     width: 100%;
     gap:31px;
@@ -68,7 +74,7 @@ export default {
     width: 100%;
     padding:10px 5px;
 }
-.oauth >span{font-size:2rem; font-weight: 700;}
+.oauth >span{font-size:1.5rem; font-weight: 700;}
 .oauth button{
     background: transparent;
     color: #000;
@@ -88,6 +94,7 @@ export default {
         width: 120px;
         cursor: pointer;
 }
+
     
 }
 @media screen and (max-width:600px) {
