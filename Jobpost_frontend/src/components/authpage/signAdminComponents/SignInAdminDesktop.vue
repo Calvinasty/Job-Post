@@ -4,7 +4,7 @@
         <div class="signin">
             <header>
                 <img src="/images/logo.png" alt="">
-                <h2>JOB POSTS</h2>
+                <h2>Super Admin</h2>
             </header>
 
             <div class="signin-header">
@@ -13,18 +13,19 @@
 
             <div class="signin-desktop-field">
                 <div class="user-field">
-                    <InputComponent type="email" placeHolder="Email" name="email" id="email" />
+                    <InputComponent type="email" id="email" name="email" placeHolder="Email" />
                 </div>
 
                 <div class="password-field">
-                    <InputComponent type="password" placeHolder="Password" name="password" id="password" />
+                    <InputComponent type="password" id="password" name="password" placeHolder="Password"/>
                 </div>
 
                 <div class="desk-links">
                     <button type="submit" class="flex-center-row">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
+
                     <p>Forgotten Password? <span>Click Here</span></p>
 
-                    <p>Not Registered yet? <span @click="forward">Register Now</span></p>
+                    <p>Not Admin? <span @click="adminSignUp">Register Now</span></p>
                 </div>
             </div>
         </div>
@@ -39,8 +40,8 @@
             InputComponent,
         },
         methods: {
-        forward(){
-            this.$router.push("/auth/register")
+        adminSignUp(){
+            this.$router.push("/auth/admin-signup")
         }
        }
     }
@@ -136,7 +137,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        row-gap: 15px;
+        row-gap: 25px;
     }
 
     .desk-links p {
@@ -151,7 +152,6 @@
         background: #7FBF4C;
         color: #fff;
         border: #7FBF4C;
-        cursor: pointer;
         width: 30%;
         column-gap: 5px;
     }
@@ -171,7 +171,7 @@
         }
     }
 
-    @media screen and (max-width: 1024px) and (min-width: 680px) {
+    @media screen and (max-width: 1024px) and (min-width: 681px) {
         .signin {
             width: 80%;
         }
