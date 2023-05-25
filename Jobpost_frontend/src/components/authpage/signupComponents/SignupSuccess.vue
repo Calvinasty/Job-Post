@@ -119,7 +119,7 @@
     @media screen and (min-width:481px) and (max-width:768px) {
         .complete{
             width: 80%;
-            display: none;
+            /* display: none; */
         }
         .complete h1{
             font-size: 25px;
@@ -129,8 +129,8 @@
     @media screen and (min-width:769px) and (max-width:1024px) {
         .complete{
             width: 60%;
-            border: 1px solid red;
-            display: none;
+            /* border: 1px solid red; */
+            /* display: none; */
         }
     }
 </style>
