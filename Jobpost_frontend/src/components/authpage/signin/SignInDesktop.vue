@@ -13,7 +13,7 @@
 
             <div class="signin-desktop-field">
                 <div class="user-field">
-                    <InputComponent text="text" placeHolder="Username"/>
+                    <InputComponent :text="text" :placeHolder="Username"/>
                 </div>
 
                 <div class="password-field">
