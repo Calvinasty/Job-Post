@@ -3,6 +3,8 @@
         <component v-if="routing == 'login'" :is="signIn"></component>
         <component v-if="routing == 'register'" :is="signUp"></component>
         <component v-if="routing == 'poster-register'" :is="posterSignUp"></component>
+        <component v-if="routing == 'adminlogin'" :is="signInAdmin"></component>
+        <component v-if="routing == 'admin-signup'" :is="signUpAdmin"></component>
     </AuthLayout>
 
 </template>
@@ -12,19 +14,25 @@
     import SignInPage from '@/components/authpage/signin/SignInPage.vue'
     import SignUpPage from '../components/authpage/signupComponents/SignUpPage.vue';
     import JobPosterSignup from '../components/authpage/signupComponents/JobPosterSignup.vue'
+    import SignInAdminPage from '../components/authpage/signAdminComponents/SignInAdminPage.vue';
+    import SignUpAdminPage from '@/components/authpage/signAdminComponents/SignUpAdminPage.vue'
     export default {
         components: {
             AuthLayout,
             SignInPage,
             SignUpPage,
-            JobPosterSignup
+            JobPosterSignup,
+            SignInAdminPage,
+            SignUpAdminPage
         },
         data(){
             return {
                 routing: 'register',
                 signIn: SignInPage,
                 signUp: SignUpPage,
-                posterSignUp:JobPosterSignup
+                posterSignUp:JobPosterSignup,
+                signInAdmin: SignInAdminPage,
+                signUpAdmin: SignUpAdminPage
             }
         },
         beforeMount() {
@@ -32,7 +40,12 @@
             ? this.showLogin() 
             : this.$route.params.id=='register'
             ? this.showRegister()
-            :this.showPosterRegister()
+            : this.$route.params.id == 'poster-register'
+            ? this.showPosterRegister()
+            :this.$route.params.id == 'adminlogin'
+            ? this.showAdminLogin()
+            :this.showAdminSignUp()
+            
         },
         methods:{
             showLogin(){
@@ -43,6 +56,12 @@
             },
             showPosterRegister(){
                 this.routing='poster-register'
+            },
+            showAdminLogin() {
+                this.routing = 'adminlogin'
+            },
+            showAdminSignUp() {
+                this.routing = 'admin-signup'
             }
         }
     }
