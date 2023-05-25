@@ -21,7 +21,7 @@
         align-items: center;
         width: 100%;
         padding: 30px 10px;
-        background-color: #88CC00;
+        /* background-color: #88CC00; */
         color: #fff;
     }
     .card .num{
