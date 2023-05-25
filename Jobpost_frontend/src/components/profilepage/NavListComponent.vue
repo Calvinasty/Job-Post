@@ -13,9 +13,9 @@ export default {
             itemList: [
                 { title: 'Upload Picture', link: '/modal/uploadpicture' },
                 { title: 'Personal Information', link: '/modal/personalinfo' },
-                { title: 'Education History', link: '/userprofile/education' },
-                { title: 'Work Experience', link: '/userprofile/experience' },
-                { title: 'Skill/Interests', link: '/userprofile/skills' },
+                { title: 'Education History', link: '/modal/education' },
+                { title: 'Work Experience', link: '/modal/experience' },
+                { title: 'Skill/Interests', link: '/modal/skills' },
             ],
         }
     },

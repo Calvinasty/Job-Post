@@ -5,7 +5,7 @@
 
             <div class="footer-sec1">
 
-                <div class="logo" >
+                <div class="logo">
                     <img @click="toTop" src="/images/logo.png" alt="" width="100px">
                 </div>
 
@@ -26,7 +26,7 @@
                     <h2>Find Jobs</h2>
 
                     <div class="footer-link">
-                        <router-link to="" >Health</router-link>
+                        <router-link to="">Health</router-link>
                         <router-link to="">Agriculture</router-link>
                         <router-link to="">Business</router-link>
                         <router-link to="">Tecnology</router-link>
@@ -37,7 +37,7 @@
                 <div class="putsmthere">
                     <h2>Useful Links</h2>
                     <div class="footer-link">
-                        <router-link to="/" >Home</router-link>
+                        <router-link to="">Home</router-link>
                         <router-link to="" target="_blank">Contact us</router-link>
                         <router-link to="" target="_blank">What we do</router-link>
                         <router-link to="" target="_blank">Charity Partners</router-link>
@@ -60,8 +60,8 @@
 <script>
 export default {
 
-    methods:{
-        toTop(){
+    methods: {
+        toTop() {
             this.$router.push('/')
         }
     }

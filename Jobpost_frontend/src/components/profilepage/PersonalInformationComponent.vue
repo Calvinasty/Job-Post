@@ -3,6 +3,19 @@
         <div class="input-container">
             <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
         </div>
+        <div class="input-container">
+            <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
+            <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
+        </div>
+        <div class="input-container">
+            <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
+        </div>
+        <div class="input-container">
+            <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
+        </div>
+        <div class="input-container">
+            <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
+        </div>
     </div>
 </template>
 
@@ -20,7 +33,7 @@ export default {
                 type: 'text',
                 placeholder: 'fullname'
 
-            }
+            },
         }
     },
 }

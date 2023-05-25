@@ -9,6 +9,9 @@ import CompanyPage from '@/views/CompanyPage.vue'
 import ModalComponent from '@/components/profilepage/EditPopups.vue'
 import UploadComponent from '@/components/profilepage/UploadComponent.vue'
 import PersonalInformationComponent from '@/components/profilepage/PersonalInformationComponent.vue'
+import EducationHistoryComponent from '@/components/profilepage/EducationHistoryComponent.vue'
+import WorkExperienceComponent from '@/components/profilepage/WorkExperienceComponent.vue'
+import SkillInterestComponent from '@/components/profilepage/SkillInterestComponent.vue'
 
 
 const router = createRouter({
@@ -38,16 +41,16 @@ const router = createRouter({
           component:PersonalInformationComponent,
         },
         {
-          path:'/modal/personalinfo',
-          component:PersonalInformationComponent,
+          path:'/modal/education',
+          component:EducationHistoryComponent,
         },
         {
-          path:'/modal/personalinfo',
-          component:PersonalInformationComponent,
+          path:'/modal/experience',
+          component:WorkExperienceComponent,
         },
         {
-          path:'/modal/personalinfo',
-          component:PersonalInformationComponent,
+          path:'/modal/skills',
+          component:SkillInterestComponent,
         }
       ]
 
