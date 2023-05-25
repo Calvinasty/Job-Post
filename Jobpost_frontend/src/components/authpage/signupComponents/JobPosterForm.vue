@@ -46,9 +46,9 @@
             </Transition>
 
             <Transition name="slide-fade">
-              <div class="success-form">
+              <div  v-if="pageNumber==2" class="success-form">
 
-                  <SignupSuccess  v-if="pageNumber==2" :handleRoute="handleHome"/>
+                  <SignupSuccess  :handleRoute="handleHome"/>
               </div>
                 
             </Transition>

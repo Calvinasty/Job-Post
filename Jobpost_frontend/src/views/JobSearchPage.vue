@@ -46,6 +46,7 @@ export default {
         align-items: center;
         width: 98dvw;
         margin: 0 auto;
+        gap: 20px;
     }
 
     .jobs-section{
