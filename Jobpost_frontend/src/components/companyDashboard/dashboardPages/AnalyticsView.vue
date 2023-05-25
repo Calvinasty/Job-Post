@@ -24,7 +24,15 @@
                     {type: 'card2', num: 12, title:'Total Job Posts', link:'/admin/jobsView', color:'#f5f5f5'}
                 ],
                 card3Info: [
-                    {type: 'card3', num: 12, title:'Applicants Summary', link:'/admin/viewApplicant', color:'#f5f5f5'}
+                    {type: 'card3', num: 12, title:'Applicants Summary', link:'/admin/viewApplicant', color:'#f5f5f5',
+                        jobTypes:[
+                            {name: 'Full time', num: 10, color: '#80D25B'},
+                            {name: 'Part time', num: 20, color: '#0596FF'},
+                            {name: 'Remote', num: 5, color: '#10BBC6'},
+                            {name: 'Internship', num: 50, color: '#FF763C'},
+                            {name: 'Contract', num: 15, color: '#FF0000'}
+                        ]
+                    }
                 ]
             }
         }
