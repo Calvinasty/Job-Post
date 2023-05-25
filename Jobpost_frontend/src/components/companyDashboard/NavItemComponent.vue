@@ -59,4 +59,5 @@
 
 .material-symbols-outlined {
     /* fill: #7FBF4C; */
+    color: #88CC00;
 }</style>
