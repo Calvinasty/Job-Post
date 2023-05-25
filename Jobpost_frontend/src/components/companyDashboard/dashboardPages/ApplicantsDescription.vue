@@ -54,8 +54,9 @@ export default {
         flex-direction: column;
         row-gap: 20px;
         background: #F5F5F5;
-        height: 100%;
-        padding: 0px 90px 0px 100px;
+        flex: 1;
+        height: 100vh;
+        padding: 0px 90px 120px 100px;
         overflow: scroll;
     }
 

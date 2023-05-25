@@ -53,13 +53,12 @@ export default {
     flex-direction: column;
     row-gap: 20px;
     margin-top: 20px;
-    padding: 0px 90px 0px 100px;
     background: #F4F4F4;
-    height: 100%;
+    height: 100vh;
     width: 100%;
-
-    /* overflow: scroll; */
-
+    overflow: scroll;
+    flex: 1;
+    padding: 0px 90px 120px 100px;
 }
 .main ul{
     list-style: none;
