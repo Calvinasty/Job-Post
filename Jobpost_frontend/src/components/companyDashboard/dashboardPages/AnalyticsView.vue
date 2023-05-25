@@ -1,24 +1,28 @@
 <template>
     <section class="main">
-        <Card1Component class="card1" v-for="(item, index) in cardInfo" :key="index" :cardItem="item"/>
+        <CardComponent class="card1" v-for="(item, index) in card1Info" :key="index" :cardItem="item"/>
+        <CardComponent class="card2" v-for="(item, index) in card2Info" :key="index" :cardItem="item"/>
         <div class="first">1</div>
-        <div class="second">2</div>
+        <!-- <div class="second">2</div> -->
         <div class="third">3</div>
     </section>
 </template>
 
 <script>
-    import Card1Component from './Card1Component.vue';
+    import CardComponent from './CardComponent.vue';
     export default {
         components:{
-            Card1Component
+            CardComponent
         },
         data(){
             return{
-                cardInfo: [
-                    {num: 6, text:'New Candidates to review', link:'first', color:'#88CC00'},
-                    {num: 9, text:'New Candidates to review', link:'second', color:'#0596FF'},
-                    {num: 12, text:'New Candidates to review', link:'third', color:'#000'}
+                card1Info: [
+                    {type: 'card1', num: 6, text:'New Candidates to review', link:'first', color:'#88CC00'},
+                    {type: 'card1', num: 9, text:'New Candidates to review', link:'second', color:'#0596FF'},
+                    {type: 'card1', num: 12, text:'New Candidates to review', link:'third', color:'#000'},
+                ],
+                card2Info: [
+                    {type: 'card2', num: 12, text:'New Candidates to review', link:'third', color:'#f5f5f5'}
                 ]
             }
         }
@@ -42,14 +46,17 @@
     }
     .main div.first{
         grid-area: 2/1/5/3;
-        background-color: aqua;
+        background-color: #F5F5F5;
+        border: 1.5px solid #88CC00;
     }
-    .main div.second{
+    .main .card2{
         grid-area: 2/3/3/4;
-        background-color: brown;
+        background-color: #F5F5F5;
+        border: 1.5px solid #88CC00;
     }
     .main div.third{
         grid-area: 3/3/5/4;
-        background-color: #88CC00;
+        background-color: #F5F5F5;
+        border: 1.5px solid #88CC00;
     }
 </style>
