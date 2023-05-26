@@ -108,9 +108,6 @@
                     jobUpdatedAt:'1 min',
                     jobPositionsAvailable:'1 of 2'
                 }
-                // Object.keys(this.postjob).forEach((key, index) => {
-                //     newPost[index] = this.postjob[key]
-                // })
                 const oldData = JSON.parse(localStorage.getItem('postedjobs'))
                 if(oldData){
                     let newData = [newPost, ...[oldData]]
