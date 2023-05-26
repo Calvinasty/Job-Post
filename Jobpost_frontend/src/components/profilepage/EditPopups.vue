@@ -4,8 +4,8 @@
             <NavListComponent />
             <router-view></router-view>
             <div class="btnsec flex-center-row">
-                <button class="btn">Save</button>
-                <button class="btns">Cancel</button>
+                <button class="btn" @click="handleEdit">Save</button>
+                <button class="btns" @click="handleEdit">Cancel</button>
             </div>
 
         </div>
@@ -26,11 +26,22 @@ export default {
         }
     },
 
+    methods: {
+        handleEdit() {
+            this.$router.push('/userprofile');
+        }
+    }
+
 }
 </script>
 
 <style lang="css" scoped>
 .card-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
     background-color: rgba(70, 70, 70, 0.532);
     height: 100vh;
 }
@@ -44,13 +55,13 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 83px;
+    padding-top: 60px;
 }
 
 
 .btnsec {
     position: absolute;
-    padding: 57px 0;
+    padding-bottom: 20px;
     gap: 20px;
     bottom: 0;
     /* background-color: aqua; */

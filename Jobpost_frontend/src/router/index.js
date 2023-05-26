@@ -26,34 +26,37 @@ const router = createRouter({
       path:'/userprofile',
       name:'Userprofile',
       component:UserProfile,
-    },
-    {
-      path:'/modal', //netted route. put modal on edit button
-      name:'modal',
-      component:ModalComponent,
       children:[
         {
-          path:'/modal/uploadpicture',
-          component:UploadComponent,
-        },
-        {
-          path:'/modal/personalinfo',
-          component:PersonalInformationComponent,
-        },
-        {
-          path:'/modal/education',
-          component:EducationHistoryComponent,
-        },
-        {
-          path:'/modal/experience',
-          component:WorkExperienceComponent,
-        },
-        {
-          path:'/modal/skills',
-          component:SkillInterestComponent,
-        }
-      ]
+          path:'/userprofile/modal', //netted route. put modal on edit button
+          name:'modal',
+          component:ModalComponent,
+          children:[
+            {
+              path:'/userprofile/modal/uploadpicture',
+              component:UploadComponent,
+            },
+            {
+              path:'/userprofile/modal/personalinfo',
+              component:PersonalInformationComponent,
+            },
+            {
+              path:'/userprofile/modal/education',
+              component:EducationHistoryComponent,
+            },
+            {
+              path:'/userprofile/modal/experience',
+              component:WorkExperienceComponent,
+            },
+            {
+              path:'/userprofile/modal/skills',
+              component:SkillInterestComponent,
+            }
 
+          ]
+        }
+
+      ]
     },
     {
       path:'/companyprofile',

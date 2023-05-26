@@ -21,8 +21,8 @@ const userprofileData = [
 
             },
             inputFour: {
-                id: "social-media",
-                name: "Social Media URL",
+                id: "linkedin-link",
+                name: "LinkedIn Link",
                 type: "text",
 
             },
@@ -44,6 +44,12 @@ const userprofileData = [
                 name: "Female",
                 type: "radio",
                 radio: 'gender'
+
+            },
+            inputEight: {
+                id: "github-link",
+                name: "Git Hub Link",
+                type: "text",
 
             },
         }

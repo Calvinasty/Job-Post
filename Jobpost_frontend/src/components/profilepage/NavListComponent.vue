@@ -11,11 +11,11 @@ export default {
     data() {
         return {
             itemList: [
-                { title: 'Upload Picture', link: '/modal/uploadpicture' },
-                { title: 'Personal Information', link: '/modal/personalinfo' },
-                { title: 'Education History', link: '/modal/education' },
-                { title: 'Work Experience', link: '/modal/experience' },
-                { title: 'Skill/Interests', link: '/modal/skills' },
+                { title: 'Upload Picture', link: '/userprofile/modal/uploadpicture' },
+                { title: 'Personal Information', link: '/userprofile/modal/personalinfo' },
+                { title: 'Education History', link: '/userprofile/modal/education' },
+                { title: 'Work Experience', link: '/userprofile/modal/experience' },
+                { title: 'Skill/Interests', link: '/userprofile/modal/skills' },
             ],
         }
     },
@@ -38,12 +38,9 @@ a:hover,
     transition: all ease-in-out 0.5ms;
 }
 
-
 .navitems {
     width: 100%;
     gap: 31px;
     border-bottom: 1px solid #C2C2C2;
 }
-
-.navitem {}
 </style>

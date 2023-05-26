@@ -1,9 +1,9 @@
 <template>
     <div class="jobsearch-page">
-        <JobSearchNavVue />
+        <JobSearchNavVue :handleSearch="handleSearch" />
         <main class="jobs-section">
             <FilterSection/>
-            <JobsSection/>       
+            <JobsSection :allJobs="filteredJobs"/>       
         </main>
     </div>
 </template>
@@ -12,6 +12,7 @@
 import FilterSection from '../components/jobsearchpage/FilterSection.vue';
 import JobsSection from '../components/jobsearchpage/JobsSection.vue';
 import JobSearchNavVue from '../components/jobsearchpage/JobSearchNav.vue';
+import { jobsPosted } from '../data';
 export default {
     name: 'JobPostJobSearchPage',
     components:{
@@ -21,18 +22,29 @@ export default {
     },
     data() {
         return {
-            
+            filteredJobs:''
+
         };
+       
     },
-
-
-    mounted() {
-        
-    },
+    props:[
+            
+            ],
+            mounted(){
+                this.handleSearch()
+            },
 
     methods: {
+        handleSearch(data){
+            // console.log(data);
+            if(!data){
+                return this.filteredJobs=jobsPosted  
+            }else{
+                const result=jobsPosted.filter((item)=>(item.jobTitle.toLocaleLowerCase().includes(data.data)))
+                return this.filteredJobs=[...result]
+        }
         
-    },
+    },}
 };
 </script>
 
