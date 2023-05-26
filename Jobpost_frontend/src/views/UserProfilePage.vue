@@ -132,7 +132,7 @@ export default {
     data() {
         return {
             title: 'User Profile',
-            usersName: 'Daniella McDan',
+            usersName: 'Calvin Asantey',
             userOccupation: 'Software Developer',
             showModal: false,
             Value: {
