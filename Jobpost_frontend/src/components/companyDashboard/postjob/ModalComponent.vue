@@ -33,7 +33,7 @@
         text-align: center;
         background-color: #f1f1f1;
         width: 50%;
-        height: 80%;
+        height: 70%;
         padding: 20px 40px;
         border-radius: 10px;
     }
