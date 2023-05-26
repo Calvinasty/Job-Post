@@ -30,7 +30,7 @@ export default {
                 { name: "Dasboard", icon: "dashboard", link: "analyticsView" },
                 { name: "View/Edit Jobs", icon: "edit_note", link: "jobsView" },
                 { name: "View All Aplicants", icon: "groups", link: "viewApplicant" },
-                { name: "Company Profile", icon: "account_circle", link: "/companyprofile" },
+                { name: "Company Profile", icon: "account_circle", link: "companyProfile" },
             ],
             settings: [
                 { name: "Settings", icon: 'settings', link: "/settins" },

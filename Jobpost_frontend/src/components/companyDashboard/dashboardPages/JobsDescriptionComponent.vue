@@ -54,9 +54,9 @@ export default {
     row-gap: 20px;
     margin-top: 20px;
     background: #F4F4F4;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    overflow: scroll;
+    /* overflow: scroll; */
     flex: 1;
     padding: 0px 90px 120px 100px;
 }

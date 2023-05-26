@@ -51,8 +51,8 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
-        /* height: 100dvh; */
-        /* overflow: hidden */
+        height: 100dvh;
+        overflow:hidden
     }
     main.top-bar{
         width: 100%;
