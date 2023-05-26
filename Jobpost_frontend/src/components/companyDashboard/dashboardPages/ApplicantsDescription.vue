@@ -14,7 +14,15 @@
                     <li>{{ item.role }}</li>
                     <li>{{ item.requirements }}</li>
                     <li>{{ item.download }}</li>
-                    <li><span @click="show(item.role)" class="material-symbols-outlined">edit</span></li>
+                    <li class="eye-icon">
+                        <span v-show="item.edit"  @click="showTip(index)" class="material-symbols-outlined tooltip">visibility</span>
+                        <span v-show="!item.edit" @click="hideTip(index)" class="material-symbols-outlined tooltip">visibility_off</span>
+                        <p class="hide"  :class="{view:item.edit}">
+                            <span>View Applicant</span>
+                            <hr>
+                            <span>Download Resume</span>
+                        </p>
+                    </li>
                 </ul>
         </div>
     </div>
@@ -30,18 +38,42 @@ export default {
 
     data() {
         return {
-
+            showtip: '',
+            toolVisible: false
         };
     },
 
     mounted() {
-
+        
+        
     },
 
     methods: {
-        show(param) {
-            alert(param)
-            console.log(param)
+        showTip(index){
+            this.applicants.forEach(element => {
+                element['edit']=false        
+            });
+            this.applicants.map((item,id)=>{
+                console.log(item.edit);
+                if(id==index){
+                        return item.edit=true
+                }else{
+                   this.hideTip(index)
+                }
+            })
+            this.toolVisible=!this.toolVisible
+        },
+        
+        hideTip(index){
+            this.applicants.map((item,id)=>{
+                console.log(item.edit);
+                if(id==index){
+                        return item.edit=true
+                }else{
+                    return item.edit=false
+                }
+            })
+            this.toolVisible =! this.toolVisible
         }
 
     },
@@ -97,6 +129,29 @@ export default {
 
     .list-body span {
     color: rgba(136, 204, 0, 1);
-}
+    }
+
+    .eye-icon {
+        position: relative;
+        cursor: pointer;
+    }
+    .hide{
+        display: none;
+    }
+    .hide.view {
+        display: block;
+        background: #FFFFFF;
+        border: 1px solid #919191;
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        left: 30px;
+        bottom: 5px;
+        z-index: 10;
+    }
+
+    .hide.view span {
+        color: #7D7474;
+    }
 
 </style>

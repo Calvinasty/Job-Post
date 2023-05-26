@@ -9,7 +9,7 @@
             <h3>Sign In</h3>
         </div>
 
-        <div class="signin-field">
+        <form class="signin-field">
             <div>
                 <InputComponent type="email" placeHolder="Email"/>
             </div>
@@ -21,7 +21,7 @@
             <button type="submit" class="mbn-btn">Sign In</button>
 
             <p>Not Registered yet? <router-link to="">Register Now</router-link></p>
-        </div>
+        </form>
     </div>
 </template>
 

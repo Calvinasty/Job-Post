@@ -17,7 +17,7 @@ export default {
         return {
             date: "April 1st - May 30th",  
             applicants: [
-                {applicant: 'Kwame Amponsah', role: 'Remote - Intern', requirements:'Intern', download:'Ghana'},
+                {id:1,applicant: 'Kwame Amponsah', role: 'Remote - Intern', requirements:'Intern', download:'Ghana'},
                 {applicant: 'Yemi Ogbedengbey', role: 'Remote - Full Time', requirements:'Intern', download:'Ghana'},
                 {applicant: 'Joseph Atugubah', role: 'Remote - Part Time', requirements:'Intern', download:'Ghana'},
                 {applicant: 'Daniel McDan', role: 'Remote - Part Time', requirements:'Intern', download:'Ghana'},
