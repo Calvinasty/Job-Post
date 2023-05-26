@@ -1,7 +1,7 @@
 <template>
     <header class="top-bar" :style="!toggleNav && {width: '100%'}">
         <div class="flex-center-row top-left">
-            <span @click="toggle" class="material-symbols-outlined"> menu </span>
+            <span @click="toggleTop()" class="material-symbols-outlined"> menu </span>
             <h3>Candle Technologies</h3>
         </div>
         <div>
@@ -20,7 +20,7 @@
     export default {
         props: [ 'toggleNav' ],
         methods:{
-            toggle(){
+            toggleTop(){
                 this.$emit("toggle")
             },
             addPost(){

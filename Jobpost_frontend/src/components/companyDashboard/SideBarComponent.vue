@@ -5,7 +5,7 @@
                 <img :src="user.image" alt="logo">
             </aside>
             <aside class="nav-items">
-                <NavItemComponent :navItems="navItems" :goto="goto"/>
+                <NavItemComponent :navItems="navItems" :goto="goto" />
             </aside>
             <aside class="nav-items">
                 <SettingsComponent :settings="settings" :user="user" />
@@ -29,29 +29,27 @@ export default {
             navItems: [
                 { name: "Dasboard", icon: "dashboard", link: "analyticsView" },
                 { name: "View/Edit Jobs", icon: "edit_note", link: "jobsView" },
-                { name: "View Other Jobs", icon: "work", link: "/admin/alljobs" },
                 { name: "View All Aplicants", icon: "groups", link: "viewApplicant" },
                 { name: "Company Profile", icon: "account_circle", link: "/companyprofile" },
-                { name: "View Employers", icon: "supervisor_account", link: "/admin/employers" },
-                { name: "View Job Seekers", icon: "work_alert", link: "/admin/jobseeker" },
             ],
             settings: [
                 { name: "Settings", icon: 'settings', link: "/settins" },
                 { name: "Help Center", icon: 'help', link: "/settings" }
             ],
             user: {
-                name: 'Profile',
+                text: 'Logout',
                 email: 'user@email.com',
-                image: '/images/logo.png'
+                image: '/images/logo.png',
+                signoutIcon: 'logout'
             }
         };
     },
 
-    methods:{
-            goto(link){
-                this.$router.push(link)
-            }
-        },
+    methods: {
+        goto(link) {
+            this.$router.push(link)
+        }
+    },
 }
 </script>
 
@@ -60,13 +58,13 @@ export default {
     height: 100vh;
     width: 20%;
     padding: 15px 20px;
-    background-color: #f1f1f1;
     box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
 }
 
 .logo {
     width: 100%;
     margin: 10px 20px 20px 20px;
+    /* border: 1px solid rgba(217, 217, 217, 1); */
 }
 
 .side-bar .logo img {
@@ -98,4 +96,5 @@ export default {
     transform: translate(-20px) !important;
     opacity: 0;
 }
+
 </style>
