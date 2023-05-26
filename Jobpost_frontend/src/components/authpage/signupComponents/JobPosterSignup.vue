@@ -2,7 +2,7 @@
     <AuthLayout class="auth-container">
         <div class="form-container" :class="{centerForm:activeClass[2]}">
            <JobPosterFormHeader :pageNum="pageNum" v-if="pageNum!==2"/>
-            <JobPosterForm :pageNumber="pageNum" :pageNavigation="handlePageNavigation"/>
+            <JobPosterForm :pageNumber="pageNum" :pageNavigation="handlePageNavigation" :handleUserInput="handleUserInput"/>
            <PageIndicator  :activeClass="activeClass"/>
         </div>
 
@@ -41,6 +41,7 @@ export default {
                     ?this.pageNum
                     :++this.pageNum
                     this.handleActivePage(this.pageNum)
+                    this.handleUserInput()
                     // console.log(this.pageNum);
                 }else{
                     this.pageNum<=0
@@ -49,6 +50,9 @@ export default {
                     this.handleActivePage(this.pageNum)
                 }
                 // console.log(this.pageNum,actionText);
+            },
+            handleUserInput(data){
+                    console.log(data);
             },
             handleActivePage(page=0){
                 this.activeClass.map((_activeItem,index)=>(index==page?this.activeClass[index]=true:this.activeClass[index]=false))
