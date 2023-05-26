@@ -66,8 +66,13 @@
                 password:this.inputData.password
             }
 
-        
-            console.log(user);
+            if(user.email== '' || user.password=='') {
+               return alert('Email and Password is required')
+            }
+            else {
+                console.log(user);
+            }
+            
         }
        }
         

@@ -11,13 +11,13 @@
                 <h3>Sign In</h3>
             </div>
 
-            <form class="signin-desktop-field">
+            <form @submit.prevent="handleSignIn" class="signin-desktop-field">
                 <div class="user-field">
-                    <InputComponent type="email" id="email" name="email" placeHolder="Email" />
+                    <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
                 </div>
 
                 <div class="password-field">
-                    <InputComponent type="password" id="password" name="password" placeHolder="Password"/>
+                    <InputComponent type="password" id="password" name="password" placeHolder="Password" :handleInput="handleUserInput" />
                 </div>
 
                 <div class="desk-links">
@@ -25,7 +25,7 @@
 
                     <p>Forgotten Password? <span>Click Here</span></p>
 
-                    <p>Not Admin? <span @click="adminSignUp">Register Now</span></p>
+                    <p>Not Admin? <a href="http://localhost:5173/auth/admin-signup"><span>Register Now</span></a></p>
                 </div>
             </form>
         </div>
@@ -39,9 +39,44 @@
         components: {
             InputComponent,
         },
+
+        data() {
+            return {
+                inputData: {
+                    email: '',
+                    password: ''
+                }
+            }
+        },
+
         methods: {
         adminSignUp(){
             this.$router.push("/auth/admin-signup")
+        },
+        handleUserInput(data){
+            console.log(data);
+            if(data.inputName == 'email') {
+                this.inputData.email = data.inputValue
+            }
+
+            if(data.inputName == 'password') {
+                this.inputData.password = data.inputValue
+            }
+        },
+
+        handleSignIn() {
+            const user={
+                email:this.inputData.email,
+                password:this.inputData.password
+            }
+
+            if(user.email== '' || user.password=='') {
+               return alert('Email and Password is required')
+            }
+            else {
+                console.log(user);
+            }
+            
         }
        }
     }
