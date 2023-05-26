@@ -55,13 +55,13 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 83px;
+    padding-top: 60px;
 }
 
 
 .btnsec {
     position: absolute;
-    padding: 57px 0;
+    padding-bottom: 20px;
     gap: 20px;
     bottom: 0;
     /* background-color: aqua; */

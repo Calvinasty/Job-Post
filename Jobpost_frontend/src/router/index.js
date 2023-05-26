@@ -58,15 +58,6 @@ const router = createRouter({
 
       ]
     },
-    // {
-    //   path:'/modal', //netted route. put modal on edit button
-    //   name:'modal',
-    //   component:ModalComponent,
-    //   children:[
-        
-    //   ]
-
-    // },
     {
       path:'/companyprofile',
       name:'Companyprofile',

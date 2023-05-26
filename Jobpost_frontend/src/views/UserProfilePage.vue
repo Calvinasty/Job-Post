@@ -96,10 +96,10 @@
                         </CardInformationComponent>
                     </div>
                 </div>
-                <div class="btnsec">
+                <!-- <div class="btnsec">
                     <button class="btn">Save</button>
                     <button class="btns">Cancel</button>
-                </div>
+                </div> -->
             </section>
 
 
@@ -171,6 +171,7 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 43px;
+    margin-bottom: 50px;
     /* background-color: aqua; */
 
 }
