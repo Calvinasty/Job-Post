@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="password-field">
-                    <InputComponent type="password" id="confirm-password" name="confirm-password" placeHolder="Confirm Password"/>
+                    <InputComponent type="password" id="confirmpass" name="confirmpass" placeHolder="Confirm Password"/>
                 </div>
 
                 <div class="desk-links">
