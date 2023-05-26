@@ -7,7 +7,7 @@
                 <h1>Sign Up</h1>
                 <h3>Enter your details</h3>
             </span>
-            <span class="mobile-oauth">
+            <span v-if="pageNum==0" class="mobile-oauth">
                 <img src="/images/social-linkedin.svg" alt="linkedin">
                 <img src="/images/social-google.svg" alt="google">
             </span>
@@ -15,7 +15,11 @@
     </header>
    
 </template>
-
+<script>
+export default {
+    props:['pageNum']
+}
+</script>
 
 <style lang="css" scoped>
 h1{ color: #7FBF4C; font-size: 20px;}
@@ -24,6 +28,7 @@ header{ row-gap:20px;}
 header img{ height: 35px; width: auto;}
 
 @media screen and (max-width:600px) {
+
 header{ row-gap:10px;  padding-top: 5px;}
  h3{ margin-bottom:0px;}
 
@@ -37,7 +42,7 @@ header >span{
 }
 .mobile-oauth img{
     margin-left:10px;
-    width:40px;
+    width:20px;
     cursor: pointer;
 }
 

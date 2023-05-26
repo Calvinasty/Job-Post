@@ -1,34 +1,45 @@
 <template>
-    <div class="signin-desktop">
-
-        <div class="signin">
+    <div class="signupadmin-desktop">
+        
+        <div class="signup">
             <header>
                 <img src="/images/logo.png" alt="">
-                <h2>JOB POSTS</h2>
+                <h2>Super Admin</h2>
             </header>
 
-            <div class="signin-header">
-                <h3>Sign In</h3>
+            <div class="signup-header">
+                <h3>Sign Up</h3>
             </div>
 
-            <div class="signin-desktop-field">
+            <div class="signup-desktop-field">
+
                 <div class="user-field">
-                    <InputComponent type="email" placeHolder="Email" name="email" id="email" />
+                    <InputComponent type="text" id="fname" name="fname" placeHolder="First Name" />
+                </div>
+
+                <div class="user-field">
+                    <InputComponent type="text" id="mdname" name="mdname" placeHolder="Middle Name" />
+                    <InputComponent type="text" id="lname" name="lname" placeHolder="Last Name" />
+                </div>
+
+                <div class="user-field">
+                    <InputComponent type="email" id="email" name="email" placeHolder="Corporate Email" />
                 </div>
 
                 <div class="password-field">
-                    <InputComponent type="password" placeHolder="Password" name="password" id="password" />
+                    <InputComponent type="password" id="password" name="password" placeHolder="Password"/>
+                </div>
+
+                <div class="password-field">
+                    <InputComponent type="password" id="confirm-password" name="confirm-password" placeHolder="Confirm Password"/>
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
-                    <p>Forgotten Password? <span>Click Here</span></p>
-
-                    <p>Not Registered yet? <span @click="forward">Register Now</span></p>
+                    <button type="submit" class="flex-center-row">Continue <span class="material-symbols-outlined">arrow_right_alt</span></button>
                 </div>
             </div>
         </div>
-
+        
     </div>
 </template>
 
@@ -37,17 +48,12 @@
     export default {
         components: {
             InputComponent,
-        },
-        methods: {
-        forward(){
-            this.$router.push("/auth/register")
         }
-       }
     }
 </script>
-
+    
 <style lang="css" scoped>
-    .signin-desktop {
+    .signupadmin-desktop {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -56,14 +62,14 @@
         height: 100dvh;
     }
 
-    .signin {
+    .signup {
         background-color: #fff;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 40%;
-        padding: 130px;
+        width: 45%;
+        padding: 60px 130px;
         row-gap: 20px;
         border-radius: 10px;
     }
@@ -87,7 +93,7 @@
         color: #7FBF4C;
     }
 
-    .signin-header {
+    .signup-header {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -95,19 +101,19 @@
         text-align: center;
     }
 
-    .signin-header h3 {
+    .signup-header h3 {
         font-weight: bolder;
         line-height: 38px;
         color: #7FBF4C;
     }
 
-    .signin-header p {
+    .signup-header p {
         font-size: 14px;
         width: 70%;
         color: #7D7474;
     }
 
-    .signin-desktop-field {
+    .signup-desktop-field {
         display: flex;
         flex-direction: column;
         row-gap: 25px;
@@ -120,11 +126,17 @@
         row-gap: 10px;
     }
 
-    .user-field label, .password-field label {
+    .user-field:nth-child(2) {
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+    }
+
+    /* .user-field label, .password-field label {
         font-weight: 500;
         font-size: 14px;
         line-height: 19px;
-    }
+    } */
 
     /* .user-field input, .password-field input {
         padding: 15px;
@@ -136,7 +148,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        row-gap: 15px;
+        row-gap: 20px;
     }
 
     .desk-links p {
@@ -151,38 +163,26 @@
         background: #7FBF4C;
         color: #fff;
         border: #7FBF4C;
-        cursor: pointer;
         width: 30%;
         column-gap: 5px;
     }
 
-    .desk-links p span {
+    /* .desk-links span {
         color: #7FBF4C;
         cursor: pointer;
-    }
+    } */
 
     @media screen and (max-width:1200px) and (min-width:1024px) {
-        .signin{
-            width: 45%;
+        .signup{
+            width: 65%;
         }
+    }
 
-        .desk-links {
+    @media screen and (max-width: 1024px) and (min-width: 500px) {
+        .signup {
             width: 80%;
         }
     }
 
-    @media screen and (max-width: 1024px) and (min-width: 680px) {
-        .signin {
-            width: 80%;
-        }
 
-        .desk-links {
-            width: 100%;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            row-gap: 5px;
-        }
-    }
-    
 </style>

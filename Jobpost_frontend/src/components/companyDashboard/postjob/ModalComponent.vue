@@ -3,14 +3,17 @@
         <div class="modal">
             <span @click="$emit('modal-close')">X</span>
             <h1>Post a Job</h1>
-
+            <!-- <PostJobLayout /> -->
         </div>
     </div>
 </template>
 
 <script>
+    // import PostJobLayout from './PostJobLayout.vue';
     export default {
-        
+        components:{
+            // PostJobLayout
+        }
     }
 </script>
 

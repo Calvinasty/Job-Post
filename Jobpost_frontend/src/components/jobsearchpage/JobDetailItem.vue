@@ -33,6 +33,8 @@ export default {
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        gap: 13px;
+        gap: 5px;
+        font-size: 12px;
     }
+  
 </style>

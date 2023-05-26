@@ -2,7 +2,7 @@
     <div class="signin-mobile">
         <header>
             <img src="/images/logo.png" alt="">
-            <h2>JOB POSTS</h2>
+            <h2>Super Admin</h2>
         </header>
 
         <div class="signin-header">
@@ -11,16 +11,18 @@
 
         <div class="signin-field">
             <div>
-                <InputComponent type="email" placeHolder="Email"/>
+                <InputComponent type="email" id="email" name="email" placeHolder="Email" />
             </div>
 
             <div>
-                <InputComponent type="password" placeHolder="Password"/>
+                <InputComponent type="password" id="password" name="password" placeHolder="Password"/>
             </div>
 
             <button type="submit" class="mbn-btn">Sign In</button>
 
-            <p>Not Registered yet? <router-link to="">Register Now</router-link></p>
+            <p>Forgotten Password? <span>Click Here</span></p>
+
+            <p>Not Admin? <span @click="adminSignUp">Register Now</span></p>
         </div>
     </div>
 </template>
@@ -30,7 +32,13 @@
     export default {
         components: {
             InputComponent,
+        },
+
+        methods: {
+        adminSignUp(){
+            this.$router.push("/auth/admin-signup")
         }
+       }
         
     }
 </script>
@@ -131,5 +139,11 @@
     .signin-field p a {
         color: #7FBF4C;
     }
+
+    .signin-field span {
+        color: #7FBF4C;
+        cursor: pointer;
+    }
+
 
 </style>

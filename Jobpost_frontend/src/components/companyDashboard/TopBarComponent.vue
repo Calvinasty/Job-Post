@@ -58,8 +58,8 @@
         cursor: pointer;
         padding: 10px;
         border-radius: 50%;
-        color: #5F6368;
-        background-color: #dfe0e0;
+        color: #231F20;
+        background-color: #D9D9D9;
     }
     .flex-center-row h3{
         margin-left: 20px;
