@@ -1,9 +1,11 @@
 <template>
-    <section class="filter-section">
-        
+    <div>
+    <section class="filter-section desktop">    
         <header>
             <h2>Filters</h2>
-            <button class="filter-btn">Reset</button>
+            <span>
+                <button class="filter-btn">Reset</button>
+            </span>
         </header>
         <FilterCard :title="filterList[0]">
            <SalaryFilter/>
@@ -25,6 +27,38 @@
             <ExperinceFilter/>
         </FilterCard>
     </section>
+
+    <section class="filter-section mobile">    
+        <header :class="{showFilters:hideFilters}">
+        <h2>Filters</h2>
+        <span >
+            <button class="filter-btn">Reset</button>
+            <img v-on:click="toggleDropdown"   src="/images/dropdown_arrow.svg" alt="arrow">
+        </span>
+        </header>
+        <span class="filter-container" :class="{hide:hideFilters}">
+        <FilterCard :title="filterList[0]">
+           <SalaryFilter/>
+        </FilterCard>
+
+        <FilterCard :title="filterList[1]">
+            <JobTypeFilter/>
+        </FilterCard>
+
+        <FilterCard :title="filterList[2]">
+            <JobCategoryFilter/>
+        </FilterCard>
+
+        <FilterCard :title="filterList[3]">
+            <LocationFilter/>
+        </FilterCard>
+
+        <FilterCard :title="filterList[4]">
+            <ExperinceFilter/>
+        </FilterCard>
+    </span>
+    </section>
+</div>
 </template>
 
 <script>
@@ -53,6 +87,7 @@ export default {
                 'Location',
                 'Experience'
             ],
+            hideFilters:true,
                     
         };
     },
@@ -62,6 +97,11 @@ export default {
     },
 
     methods: {
+        toggleDropdown(){
+            // console.log('hello');
+            this.hideFilters=!this.hideFilters
+            this.hideFiltersMobile=!this.hideFiltersMobile
+        }
         
     },
 };
@@ -71,8 +111,7 @@ export default {
 
 /* utitlity classes */
 
-.filter-section{
-    /* background: #000; */
+.filter-section{   /* background: #000; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -81,6 +120,35 @@ export default {
     width: 300px;
     padding: 5px;
     border-radius: 5px;
+    margin-left: 30px;
+}
+.filter-section.mobile{
+    display: none;
+}
+.mobile .filter-container{
+    overflow: hidden;
+    /* position:absolute; */
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: all .3s ease;
+    transition: height .3s ease;
+}
+.mobile .filter-container.hide{
+    height: 0px;
+    padding-top: 0px;
+    transition: height .3s ease;
+}
+.filter-section.mobile >header{
+        height: 50px;}
+.filter-section.desktop{
+    display:flex;
+}
+.mobile .showFilters img{
+transform: rotate(-180deg);
+transition: .3s ease;
 }
 
 .filter-section >header{
@@ -112,6 +180,34 @@ export default {
     border: 1px solid #7FBF4C;
 }
 
+@media screen and (max-width:685px) {
+.filter-section.desktop{
+    display: none;
+}
+.filter-section.mobile{
+    display:flex;
+    position: relative;
+}
+    .filter-section{
+        width: 100%;
+         max-width: 429px;  ;
+        margin-left: 0px;
+        padding: 0;
+        z-index: 9;
+        top:0vh;
+    }
 
+    .filter-section.mobile >header{
+        height: 60px;
+        font-size: 12px;
+        background: rgba(242, 242, 242, 1);
+    }
+    .filter-section header button{
+        margin-right: 10px;
+        font-size: 12px;
+    border:1px solid rgba(181, 181, 181, 1);
+
+    }
+}
 
 </style>
