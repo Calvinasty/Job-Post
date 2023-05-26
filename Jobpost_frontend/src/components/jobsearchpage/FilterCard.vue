@@ -16,8 +16,7 @@ export default {
 
     data() {
         return {
-            hideOption:true
-            
+            hideOption:false  
         };
     },
     props:[

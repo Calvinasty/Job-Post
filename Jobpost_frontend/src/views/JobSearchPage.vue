@@ -46,8 +46,12 @@ export default {
         align-items: center;
         width: 98dvw;
         margin: 0 auto;
+        position:relative;
+        gap: 30px;
     }
+@media screen and (maxw-width:685){
 
+}
     .jobs-section{
         position: relative;
         margin-top: 85px;
@@ -64,9 +68,25 @@ export default {
             width: 100dvw;
         }
         .jobs-section{
-            column-gap: 10px;
+            column-gap: 30px;
             justify-content: space-between;
         }
-        
+    }
+
+    @media screen and (max-width:685px) {
+        .jobsearch-page{
+            justify-content: center;
+            align-items:center ;
+            gap: 0;
+        }
+        .jobs-section{
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0px;
+            padding: 0px 10px;
+
+        }        
     }
 </style>

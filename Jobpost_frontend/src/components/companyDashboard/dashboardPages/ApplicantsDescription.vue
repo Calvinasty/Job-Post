@@ -54,7 +54,9 @@ export default {
         flex-direction: column;
         row-gap: 20px;
         background: #F5F5F5;
-        height: 83dvh;
+        flex: 1;
+        height: 100vh;
+        padding: 0px 90px 120px 100px;
         overflow: scroll;
     }
 
@@ -83,7 +85,7 @@ export default {
         justify-content: space-around;
         line-height: 27px;
         color: #000000;
-        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
         row-gap: 10px;
         padding-top: 15px;
     }
@@ -92,5 +94,9 @@ export default {
         width: 25%;
         margin-left: 50px;
     }
+
+    .list-body span {
+    color: rgba(136, 204, 0, 1);
+}
 
 </style>

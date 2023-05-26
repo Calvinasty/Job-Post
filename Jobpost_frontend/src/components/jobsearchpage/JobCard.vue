@@ -12,7 +12,6 @@
         </header>
 
         <main class="flex-center">
-        
              <JobDetailItem :detailIcon="jobDetailInfo[0].icon" :detailName="jobDetailInfo[0].altText" :detailText="jobInfomation.jobLocation"/>
              
              <div class="job-detail flex-center-row">
@@ -70,11 +69,12 @@ export default {
 
 <style lang="css" scoped>
     .job-card{     
-        width: 400px;
-        min-width: 429px;   
+        width: 100%;
+        max-width: 429px;   
         background: #F9F8F8;
+        height: 283px;
         border-radius: 10px;
-        padding: 15px;
+        padding: 20px;
         gap:20px;
     }
     .job-card >*{
@@ -90,25 +90,32 @@ export default {
         /* background: #000; */
     }
     .title{
-        column-gap: 27px;
+        column-gap: 15px;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .title :is(h4,h3){
+        font-size: 14px;
     }
     .title h3{
         font-weight: 600;
-        font-size: 20px;
+        /* font-size: 20px; */
         margin-bottom: 7px;
+    }
+    .title-text h4{
+        font-weight: 200;
+        /* font-size: 15px; */
     }
     .title img{
         width: auto;
         height: 35px;
-    }
-    .title-text h4{
-        font-weight: 200;
-        font-size: 15px;
+        cursor: pointer;
     }
 
     .job-card main{
         align-items: flex-start;
-        row-gap: 19px;
+        row-gap: 10px;
     }
 
     .job-detail{
@@ -116,12 +123,20 @@ export default {
     }
     .job-card footer{
         justify-content: space-between;
-        border-top: 2px solid #7fbf4c;
-        padding: 10px 0px;
+        align-items: center;
+        border-top: 3px solid #7fbf4c;
+        padding-top: 20px;
         font-weight: 400;
-        font-size: 15px;
+        font-size: 12px;
 
     }
+    @media screen and (max-width: 1051px) 
+    {
+        .job-card main{
+        row-gap: 10px;}
+       
 
+    }
+ 
 
 </style>

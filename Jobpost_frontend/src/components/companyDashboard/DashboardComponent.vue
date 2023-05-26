@@ -15,9 +15,9 @@
     <Transition name="slide-fade">
         <!-- close emits from child component to parent -->
         <ModalComponent 
-        v-show="showModal" 
+            v-show="showModal" 
             @modal-close="showModal=false"
-            />
+        />
         </Transition>
     <!-- </div> -->
 </template>
@@ -25,7 +25,7 @@
 <script>
     import SideBarComponent from './SideBarComponent.vue';
     import TopBarComponent from './TopBarComponent.vue';
-    import ModalComponent from './ModalComponent.vue';
+    import ModalComponent from './postjob/ModalComponent.vue';
     import DashboardContainer from './dashboardPages/DashboardContainer.vue';
     export default {
         components:{
@@ -51,6 +51,8 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
+        /* height: 100dvh; */
+        /* overflow: hidden */
     }
     main.top-bar{
         width: 100%;

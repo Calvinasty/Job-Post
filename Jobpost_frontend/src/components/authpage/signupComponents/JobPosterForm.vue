@@ -5,34 +5,34 @@
          <Transition name="slide-fade">
             <form v-if="pageNumber==0" class=" flex-center">
                     <div class=" input-container flex-center-row">
-                        <InputComponent :type="inputData[0].type" :label="inputData[0].label" :inputId="inputData[0].inputId" :name="inputData[0].name" :placeHolder="inputData[0].placeholder" />
-                        <InputComponent :type="inputData[1].type" :label="inputData[1].label" :inputId="inputData[1].inputId" :name="inputData[1].name" :placeHolder="inputData[1].placeholder" />
+                        <InputComponent class="input" type="text" placeHolder="Organization Name" inputId="jobposter-name" name="name"  />
+                        <InputComponent class="input" type="email" placeHolder="Organization Email" inputId="jopposter-email" name="email"/>
 
                     </div>
                     <div class="input-container pass  flex-center-row">
-                        <InputComponent :type="inputData[2].type" :label="inputData[2].label" :inputId="inputData[2].inputId" :name="inputData[2].name" :placeHolder="inputData[2].placeholder" />
-                        <InputComponent :type="inputData[3].type" :label="inputData[3].label" :inputId="inputData[3].inputId" :name="inputData[3].name" :placeHolder="inputData[3].placeholder" />
+                        <InputComponent class="input" type="password" placeHolder="Enter Password" inputId="jopposter-password" name="password"  />
+                        <InputComponent class="input" type="password" placeHolder="Confirm Password" inputId="jopposter-confirm-password" name="confirm-password"  />
 
                     </div>
                     <div class="input-container flex-center-row">
-                        <InputComponent :type="inputData[4].type" :label="inputData[4].label" :inputId="inputData[4].inputId" :name="inputData[4].name" :placeHolder="inputData[4].placeholder" />
-                        <InputComponent :type="inputData[5].type" :label="inputData[5].label" :inputId="inputData[5].inputId" :name="inputData[5].name" :placeHolder="inputData[5].placeholder" />
+                        <InputComponent class="input" type="text" placeHolder="Enter Organizations Website" inputId="jopposter-website" name="website" />
+                        <InputComponent class="input" type="" placeHolder="Enter Organizations name" inputId="jopposter-names" name="name" />
                         
                     </div>
-                    <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType" :pageNavigation="pageNavigation"/>
+                    <JobPosterFormFooter :pageNum="pageNumber" actionBtnText="Next" :actionBtnType="button" :pageNavigation="pageNavigation"/>
                 </form>
             </Transition>
        
             <Transition name="slide-fade">
                 <form v-if="pageNumber==1" class=" form-two flex-center">
-                    <div class="input-container flex-center-row">
-                        <InputComponent :type="inputData[6].type" :label="inputData[6].label" :inputId="inputData[6].inputId" :name="inputData[6].name" :placeHolder="inputData[6].placeholder" />                    
-                        <InputComponent :type="inputData[7].type" :label="inputData[7].label" :inputId="inputData[7].inputId" :name="inputData[7].name" :placeHolder="inputData[7].placeholder" />                                                    
+                    <div class="input-container flex-center">
+                        <InputComponent class="input" type="file" placeHolder="Company Logo" inputId="jopposter-logo" name="company-logo"/>                    
+                        <InputComponent class="input" type="tel" placeHolder="Company Number" inputId="jobposter-phone" name="phone"  />                                                    
                     </div>
-                        <InputComponent :type="inputData[8].type" :label="inputData[8].label" :inputId="inputData[8].inputId" :name="inputData[8].name" :placeHolder="inputData[8].placeholder" />                                                    
+                        <InputComponent class="input" type="text" placeHolder="Location" inputId="jobposter-location" name="location"/>                                                    
                         <div class="flex-center input-container verification">
-                            <label for="verification">How you want to be verified</label>
-                            <select name="verification" id="verification">
+                            <select name="verification" class="verification input" >
+                                <option value="" class="selected" >How do you want to be verified?</option>
                                 <option value="regCert">Registration Certificate /Documents</option>
                                 <option value="visit">Physical Visit</option>
                                 <option value="vat">VAT</option>
@@ -40,15 +40,15 @@
                             </select>
                         </div>
                  
-               <JobPosterFormFooter :actionBtnText="btnText" :actionBtnType="btnType" :pageNavigation="pageNavigation"/>
+               <JobPosterFormFooter :pageNum="pageNumber" actionBtnText="Register" actionBtnType="submit" :pageNavigation="pageNavigation"/>
                 </form>
                
             </Transition>
 
             <Transition name="slide-fade">
-              <div class="success-form">
+              <div v-if="pageNumber==2"  class="success-form">
 
-                  <SignupSuccess  v-if="pageNumber==2" :handleRoute="handleHome"/>
+                  <SignupSuccess  :handleRoute="handleHome"/>
               </div>
                 
             </Transition>
@@ -59,7 +59,7 @@
 <script>
 import InputComponent from '../InputComponent.vue';
 import JobPosterFormFooter from './JobPosterFormFooter.vue';
-import {jobposterSignupData} from '../../../data'
+
 import SignupSuccess from './SignupSuccess.vue';
 export default {
   components: {InputComponent, JobPosterFormFooter, SignupSuccess },
@@ -67,16 +67,15 @@ export default {
 
     data() {
         return {
-            btnText:'Next',
-            btnType:'button',
-            inputData:jobposterSignupData
-            
+             
         };
     },
 
     props:[
         'pageNavigation',
-        'pageNumber'
+        'pageNumber',
+        'btnText',
+        'btnType'
     ],
 
     methods: {        
@@ -93,14 +92,16 @@ export default {
  form.form-two{
     gap: 5px;
  }
+ .form-two .input-container{
+gap: 10px;
+ }
+ form .input{
+    max-width: 373px;
+ }
  .success-form{
-    position: absolute;
     width: 100%;
     background-color: #f1f1f1;;
     height: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,10 +111,10 @@ export default {
     width: 100%;
     column-gap: 49px;
     min-width:200px;
-    
-    row-gap: 19px;
+    row-gap: 49px;
 
 }
+
 .slide-fade-enter-active {
   transition: all 0.5s ease-out;
 }
@@ -128,11 +129,8 @@ export default {
   transition: all .3s;
 }
 
-.input-container.verification label{
+.selected{
     color: #666;
-    font-size: 14px;
-    width: 100%;
-    text-align: left;
 }
 .verification select{
     width: 100%;

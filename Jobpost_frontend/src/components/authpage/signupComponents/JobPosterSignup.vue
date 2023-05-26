@@ -1,7 +1,7 @@
 <template>
     <AuthLayout class="auth-container">
         <div class="form-container" :class="{centerForm:activeClass[2]}">
-           <JobPosterFormHeader v-if="pageNum!==2"/>
+           <JobPosterFormHeader :pageNum="pageNum" v-if="pageNum!==2"/>
             <JobPosterForm :pageNumber="pageNum" :pageNavigation="handlePageNavigation"/>
            <PageIndicator  :activeClass="activeClass"/>
         </div>
@@ -41,6 +41,7 @@ export default {
                     ?this.pageNum
                     :++this.pageNum
                     this.handleActivePage(this.pageNum)
+                    // console.log(this.pageNum);
                 }else{
                     this.pageNum<=0
                     ?this.pageNum
@@ -87,12 +88,15 @@ export default {
     padding: 30px 60px;
     border-radius: 60px;
     position :relative;
+    transition: all .4s ease;
+   
 }
 .form-container.centerForm{
 align-items: center;
 justify-content: center;
 margin: 0 auto;
-background: #000;}
+background-color: #f1f1f1;
+}
 
 
 @media screen and (max-width:786px) {
@@ -112,8 +116,17 @@ background: #000;}
 @media screen and (max-width:480px){
 .form-container{
     row-gap: 5px;
-    padding: 0px 10px;
+    padding: 50px 10px;
+  
 }
 
+}
+@media screen and (min-width:1024px) {
+    .form-container{
+        justify-content:center;
+        align-items:center ;
+        height: fit-content;
+    }
+    
 }
 </style>
