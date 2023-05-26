@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="/images/logo.svg" alt="logo">
+            <img src="/images/logo.svg" alt="logo" @click="handleLogout">
         </div>
         <span>
             <div class="search-bar">
@@ -20,7 +20,11 @@
 
 <script>
 export default {
-
+    methods:{
+        handleLogout(){
+            this.$router.push('/')
+        }
+    }
 }
 </script>
 
