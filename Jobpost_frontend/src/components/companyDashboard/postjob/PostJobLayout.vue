@@ -1,6 +1,12 @@
 <template>
     <div>
-        <PostNav />
+        <PostNav 
+            @details="$emit('details')"
+            @jobtype="$emit('jobtype')"
+            @salary="$emit('salary')"
+            @recruiter="$emit('recruiter')"
+
+        />
         <slot></slot>
     </div>
 </template>

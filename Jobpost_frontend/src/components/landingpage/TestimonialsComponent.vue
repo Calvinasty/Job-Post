@@ -249,7 +249,7 @@ export default {
             justify-content: space-between; */
         /* align-items: center; */
         width: 100%;
-        height: 100dvh;
+        height: 100%;
         padding: 20px;
         /* border: 1px solid red; */
         height: 100%;
@@ -298,7 +298,7 @@ export default {
             left: -5%; */
     }
 
-    .main .image::after {
+    /* .main .image::after {
         content: '';
         display: block;
         width: 313px;
@@ -311,7 +311,7 @@ export default {
         background-repeat: no-repeat;
         background-position: 70%;
         z-index: -1;
-    }
+    } */
 
     .main .image img {
         width: 100%;
