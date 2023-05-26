@@ -2,24 +2,25 @@
     <div>
         <!-- Desktop View Section -->
         <div class="desktop-view">
-            <SignInDesktop />
+            <SignInAdminDesktop />
         </div>
 
         <!-- Mobile View Section -->
         <div class="mobile-view">
-            <SignInMobile />
+            <SignInAdminMobile />
         </div>
 
     </div>
 </template>
 
 <script>
-    import SignInMobile from './SignInMobile.vue';
-    import SignInDesktop from './SignInDesktop.vue';
+    import SignInAdminDesktop from './SignInAdminDesktop.vue'
+    import SignInAdminMobile from './SignInAdminMobile.vue'
+
     export default {
        components: {
-        SignInMobile,
-        SignInDesktop
+        SignInAdminMobile,
+        SignInAdminDesktop
        } 
     }
 </script>
