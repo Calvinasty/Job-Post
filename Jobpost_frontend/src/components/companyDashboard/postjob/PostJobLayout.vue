@@ -1,7 +1,7 @@
 <template>
     <div>
         <PostNav 
-            @details="$emit('details')"
+            @details="$emit('details', event)"
             @jobtype="$emit('jobtype')"
             @salary="$emit('salary')"
             @recruiter="$emit('recruiter')"
