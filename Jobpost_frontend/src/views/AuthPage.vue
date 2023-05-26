@@ -1,6 +1,6 @@
 <template>
     <AuthLayout>
-        <component v-if="routing == 'login'" :is="signIn"></component>
+        <component v-if="routing == 'login' " :is="signIn"></component>
         <component v-if="routing == 'register'" :is="signUp"></component>
         <component v-if="routing == 'poster-register'" :is="posterSignUp"></component>
         <component v-if="routing == 'adminlogin'" :is="signInAdmin"></component>
@@ -11,11 +11,11 @@
 
 <script>
     import AuthLayout from '../components/authpage/AuthLayout.vue';
-    import SignInPage from '@/components/authpage/signin/SignInPage.vue'
+    import SignInPage from '../components/authpage/signin/SignInPage.vue'
     import SignUpPage from '../components/authpage/signupComponents/SignUpPage.vue';
     import JobPosterSignup from '../components/authpage/signupComponents/JobPosterSignup.vue'
     import SignInAdminPage from '../components/authpage/signAdminComponents/SignInAdminPage.vue';
-    import SignUpAdminPage from '@/components/authpage/signAdminComponents/SignUpAdminPage.vue'
+    import SignUpAdminPage from '../components/authpage/signAdminComponents/SignUpAdminPage.vue'
     export default {
         components: {
             AuthLayout,
@@ -27,7 +27,7 @@
         },
         data(){
             return {
-                routing: 'register',
+                routing: '',
                 signIn: SignInPage,
                 signUp: SignUpPage,
                 posterSignUp:JobPosterSignup,

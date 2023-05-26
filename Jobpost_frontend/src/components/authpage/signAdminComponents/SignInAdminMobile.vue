@@ -9,7 +9,7 @@
             <h3>Sign In</h3>
         </div>
 
-        <div class="signin-field">
+        <form class="signin-field">
             <div>
                 <InputComponent type="email" id="email" name="email" placeHolder="Email" />
             </div>
@@ -23,7 +23,7 @@
             <p>Forgotten Password? <span>Click Here</span></p>
 
             <p>Not Admin? <span @click="adminSignUp">Register Now</span></p>
-        </div>
+        </form>
     </div>
 </template>
 

@@ -17,21 +17,23 @@ export default {
         return {
             date: "April 1st - May 30th",  
             jobs: [
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'Backend Developer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'Frontend Developer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
-                {description: 'UI/UX Designer', role: 'Remote', requirements:'Intern', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Remote - Intern', experience:'2 years', location:'Ghana'},
+                {title: 'Backend Engineer', role: 'On Site - Full Time', experience:'Intern', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Remote - Part Time',experience:'5 years', location:'Ghana'},
+                {title: 'Full Stack', role: 'On Site - Full Time ', experience:'5 years', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Remote', experience:'Intern', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Hybride - Full Time', experience:'2 years', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'On Site - Intern', experience:'1 year', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'On Site - Intern', experience:'1 year', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Remote - Intern', experience:'Intern', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Remote', experience:'Intern', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Remote', experience:'Intern', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Remote', experience:'Intern', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'On Site - Intern', experience:'1 year', location:'Ghana'},
+                {title: 'UI/UX Designer', role: 'Hybride - Full Time', experience:'2 years', location:'Ghana'},
+                {title: 'Frontend Engineer', role: 'Remote - Part Time',experience:'3 years', location:'Ghana'},
+
+                
             ]          
         };
     },

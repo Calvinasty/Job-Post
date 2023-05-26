@@ -11,7 +11,7 @@
                 <h4>Sign Up</h4>
             </div>
 
-            <div class="signup-mobile-field">
+            <form class="signup-mobile-field">
 
                 <div class="user-field">
                     <InputComponent type="text" id="fname" name="fname" placeHolder="First Name" />
@@ -37,7 +37,7 @@
                 <div class="mobile-btn flex-center">
                     <button type="submit">Continue</button>
                 </div>
-            </div>
+            </form>
         </div>
         
     </div>

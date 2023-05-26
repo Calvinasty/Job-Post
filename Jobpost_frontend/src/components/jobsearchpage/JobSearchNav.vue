@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="/images/logo.svg" alt="logo">
+            <img src="/images/logo.svg" alt="logo" @click="handleLogout">
         </div>
         <span>
             <div class="search-bar">
@@ -22,7 +22,15 @@
 export default {
     props:[
         'handleSearch'
-    ]
+    ],
+
+    methods:{
+        handleLogout(){
+            this.$router.push('/')
+        }
+    },
+
+
 
 }
 </script>
@@ -55,11 +63,14 @@ export default {
     align-items: center;
     padding: 0px; 
     position: relative;
+    /* cursor: pointer; */
 }
 .logo img{
 
     padding: 0px;
     width: 50px;
+    cursor: pointer;
+
 }
 
 .search-bar {

@@ -1,17 +1,17 @@
 <template>
     <div class="main">
         <ul class="table-head">
-            <li>Job Description</li>
+            <li>Job Title</li>
             <li>Role Type</li>
-            <li>Requirements</li>
+            <li>Experience</li>
             <li>Location</li>
             <li></li>
         </ul>
 
         <ul v-for="(item, index) in myjobs" :key="index" class="table-body">
-            <li>{{ item.description }}</li>
+            <li>{{ item.title }}</li>
             <li>{{ item.role }}</li>
-            <li>{{ item.requirements }}</li>
+            <li>{{ item.experience }}</li>
             <li>{{ item.location }}</li>
             <li><span @click="show(item.role)" class="material-symbols-outlined">edit</span></li>
         </ul>
@@ -85,7 +85,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgba(120, 114, 114, 1);
     padding-top: 15px;
     /* margin-right: 10px; */
     /* background-color: aqua; */

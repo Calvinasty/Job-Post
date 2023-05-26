@@ -15,42 +15,45 @@
 </template>
 
 <script>
-import NavItemComponent from './NavItemComponent.vue';
-import SettingsComponent from './SettingsComponent.vue';
-export default {
-    components: {
-        NavItemComponent,
-        SettingsComponent
-    },
-    props: ['toggleNav'],
-    data() {
-        return {
-            show: true,
-            navItems: [
-                { name: "Dasboard", icon: "dashboard", link: "analyticsView" },
-                { name: "View/Edit Jobs", icon: "edit_note", link: "jobsView" },
-                { name: "View All Aplicants", icon: "groups", link: "viewApplicant" },
-                { name: "Company Profile", icon: "account_circle", link: "companyProfile" },
-            ],
-            settings: [
-                { name: "Settings", icon: 'settings', link: "/settins" },
-                { name: "Help Center", icon: 'help', link: "/settings" }
-            ],
-            user: {
-                text: 'Logout',
-                email: 'user@email.com',
-                image: '/images/logo.png',
-                signoutIcon: 'logout'
-            }
-        };
-    },
+    import NavItemComponent from './NavItemComponent.vue';
+    import SettingsComponent from './SettingsComponent.vue';
+    export default {
+        components: {
+            NavItemComponent,
+            SettingsComponent
+        },
+        props: ['toggleNav'],
+        data() {
+            return {
+                show: true,
+                navItems: [
+                    { name: "Dasboard", icon: "dashboard", link: "analyticsView", active: true},
+                    { name: "View/Edit Jobs", icon: "edit_note", link: "jobsView", active: false },
+                    { name: "View All Aplicants", icon: "groups", link: "viewApplicant", active: false },
+                    { name: "Company Profile", icon: "account_circle", link: "companyProfile", active: false },
+                ],
+                settings: [
+                    { name: "Settings", icon: 'settings', link: "/settins" },
+                    { name: "Help Center", icon: 'help', link: "/settings" }
+                ],
+                user: {
+                    text: 'Logout',
+                    email: 'user@email.com',
+                    image: '/images/logo.png',
+                    signoutIcon: 'logout'
+                }
+            };
+        },
 
-    methods: {
-        goto(link) {
-            this.$router.push(link)
-        }
-    },
-}
+        methods: {
+            goto(link, index) {
+                this.navItems.map((item, navIndex) => (
+                    navIndex == index ? item['active']=true : item['active']=false)
+                )
+                this.$router.push(link)
+            }
+        },
+    }
 </script>
 
 <style lang="css" scoped>
@@ -60,6 +63,11 @@ export default {
     padding: 15px 20px;
     background-color: #fff;
     box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
