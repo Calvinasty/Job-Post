@@ -19,7 +19,7 @@
                         <span v-show="!item.edit" @click="hideTip(index)" class="material-symbols-outlined tooltip">visibility_off</span>
                         <p class="hide"  :class="{view:item.edit}">
                             <span>View Applicant</span>
-                            <hr>
+                            <br>
                             <span>Download Resume</span>
                         </p>
                     </li>
