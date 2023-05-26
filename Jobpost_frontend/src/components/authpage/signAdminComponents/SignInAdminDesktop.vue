@@ -11,7 +11,7 @@
                 <h3>Sign In</h3>
             </div>
 
-            <div class="signin-desktop-field">
+            <form class="signin-desktop-field">
                 <div class="user-field">
                     <InputComponent type="email" id="email" name="email" placeHolder="Email" />
                 </div>
@@ -27,7 +27,7 @@
 
                     <p>Not Admin? <span @click="adminSignUp">Register Now</span></p>
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>

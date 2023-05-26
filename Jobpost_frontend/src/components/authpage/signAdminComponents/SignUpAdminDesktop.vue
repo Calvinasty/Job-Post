@@ -11,7 +11,7 @@
                 <h3>Sign Up</h3>
             </div>
 
-            <div class="signup-desktop-field">
+            <form class="signup-desktop-field">
 
                 <div class="user-field">
                     <InputComponent type="text" id="fname" name="fname" placeHolder="First Name" />
@@ -37,7 +37,7 @@
                 <div class="desk-links">
                     <button type="submit" class="flex-center-row">Continue <span class="material-symbols-outlined">arrow_right_alt</span></button>
                 </div>
-            </div>
+            </form>
         </div>
         
     </div>

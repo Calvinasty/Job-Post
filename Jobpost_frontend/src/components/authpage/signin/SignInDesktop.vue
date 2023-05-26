@@ -11,22 +11,19 @@
                 <h3>Sign In</h3>
             </div>
 
-            <div class="signin-desktop-field">
+            <form @submit.prevent="handleSignIn" class="signin-desktop-field">
                 <div class="user-field">
-                    <InputComponent type="email" placeHolder="Email" name="email" id="email" />
-                </div>
-
-                <div class="password-field">
-                    <InputComponent type="password" placeHolder="Password" name="password" id="password" />
+                    <InputComponent type="email" placeHolder="Email" name="email" id="email" :handleInput="handleUserInput"/>
+                    <InputComponent type="password" placeHolder="Password" name="password" id="password" :handleInput="handleUserInput"/>
                 </div>
 
                 <div class="desk-links">
                     <button type="submit" class="flex-center-row">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
                     <p>Forgotten Password? <span>Click Here</span></p>
 
-                    <p>Not Registered yet? <span @click="forward">Register Now</span></p>
+                    <p>Not Registered yet? <a href="http://localhost:5173/auth/register"><span>Register Now</span></a></p>
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>
@@ -34,15 +31,46 @@
 
 <script>
     import InputComponent from '../InputComponent.vue';
-    export default {
+    export default { 
         components: {
             InputComponent,
         },
+
+        data() {
+            return {
+                inputData: {
+                    email: '',
+                    password: ''
+                }
+            }
+        },
+
         methods: {
-        forward(){
-            this.$router.push("/auth/register")
+        forward() {
+            this.$router.push("")
+        },
+        handleUserInput(data){
+            console.log(data);
+            if(data.inputName == 'email') {
+                this.inputData.email = data.inputValue
+            }
+
+            if(data.inputName == 'password') {
+                this.inputData.password = data.inputValue
+            }
+        },
+
+        handleSignIn() {
+            const user={
+                email:this.inputData.email,
+                password:this.inputData.password
+            }
+
+        
+            console.log(user);
         }
        }
+        
     }
 </script>
 
