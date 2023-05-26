@@ -1,30 +1,41 @@
 <template>
-    <Bar
-      id="my-chart-id"
-      :options="chartOptions"
-      :data="chartData"
-    />
-  </template>
+    <Line :data="data" :options="options" />
+</template>
   
-  <script>
-  import { Bar } from 'vue-chartjs'
-  import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+  <script lang="ts">
+  import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+  } from 'chart.js'
+  import { Line } from 'vue-chartjs'
+  import * as chartConfig from '../../../assets/Chart.js'
   
-  ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+  )
   
   export default {
-    name: 'BarChart',
-    components: { Bar },
+    name: 'App',
+    components: {
+      Line
+    },
     data() {
-      return {
-        chartData: {
-          labels: [ 'January', 'February', 'March', 'April', 'May' ],
-          datasets: [ { data: [40, 20, 12, 30, 15] } ]
-        },
-        chartOptions: {
-          responsive: true
-        }
-      }
+      return chartConfig
     }
   }
-</script>
+  </script>
+  

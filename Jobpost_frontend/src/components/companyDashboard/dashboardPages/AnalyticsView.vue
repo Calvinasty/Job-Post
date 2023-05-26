@@ -56,19 +56,13 @@
         height: 0;
         
     }
-    /* .main .card1 { */
-        /* grid-row: 2 ;
-        grid-column: 1; */
-        /* background-color: #000; */
-        /* display: none; */
-    /* } */
     .main div{
         /* padding: 30px 10px; */
     }
     .main div.first{
         grid-area: 2/1/5/3;
         background-color: #F5F5F5;
-        border: 1.5px solid #88CC00;
+        border: 2px solid #88CC00;
         align-self: stretch;
     }
     .main .card2{
