@@ -20,7 +20,8 @@
 <style lang="css" scoped>
 .nav-item {
     width: 100%;
-    /* border: 1px solid red */
+    padding: 5px;
+    border: 1px solid rgba(217, 217, 217, 1)
 }
 
 .nav-item button {
@@ -40,23 +41,21 @@
     cursor: pointer;
     text-align: left;
     background-color: transparent;
-    border-bottom: 0.5px solid #666;
+    /* border-bottom: 0.5px solid #666; */
     transition: 0.2s ease-in-out;
 }
 
 .nav-item button:hover {
-    box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633);
-    background-color: #7FBF4C;
-    color: #fff;
+    /* box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633); */
+    /* background-color: #7FBF4C; */
+    background-color: rgba(217, 217, 217, 1);
+    color: #000;
     font-weight: bold;
 }
 
 .nav-item button span {
     margin-right: 10px;
 }
-
-.nav-item button span:hover {}
-
 .material-symbols-outlined {
     /* fill: #7FBF4C; */
     color: #88CC00;
