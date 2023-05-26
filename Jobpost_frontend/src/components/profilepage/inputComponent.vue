@@ -48,5 +48,13 @@ export default {
     border-bottom: 2px solid #D9D9D9;
 
 }
+
+@media screen and (max-width:480px) {
+
+    .input-field {
+        width: 235px;
+    }
+
+}
 </style>
 

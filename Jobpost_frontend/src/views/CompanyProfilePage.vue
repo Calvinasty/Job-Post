@@ -1,13 +1,13 @@
 <template>
     <div>
+        <div class="title flex-center-row">
+            <h1>{{ title }}</h1>
+        </div>
         <section class="company-profile-container">
-            <div class="title">
-                <h1>{{ title }}</h1>
-            </div>
-
             <div class="profile-section">
                 <div class="profile">
                     <div class="profile-card">
+                        <!-- <img class="f-editicon" src="images/edit_icon.svg" alt="editicon" /> -->
                         <img src="images/userprofile.svg" alt="pic">
                         <h3>{{ companyName }}</h3>
                         <!-- <span>{{ userOccupation }}</span> -->
@@ -16,6 +16,7 @@
                         <div class="jobsapplied-1">
                             <img src="images/user_profile_icon.svg" alt="">
                             <p>Jobs posted</p>
+                            <p> {{ numberOfPostedJobs }} </p>
                         </div>
                     </div>
                 </div>
@@ -61,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="btnsec">
+            <div class="btnsec flex-center-row">
                 <button class="btn">Save</button>
                 <button class="btns">Cancel</button>
             </div>
@@ -77,10 +78,11 @@ export default {
         return {
             title: 'Company Profile',
             companyName: 'Maxim Nyansa',
+            numberOfPostedJobs: 9,
 
             cardDetails: [
                 {
-                    cardTitle: 'Company Information',
+                    cardTitle: 'Company Profile',
                     cardInputInformation: {
                         inputOne: {
                             id: 'company-name',
@@ -186,7 +188,6 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 43px;
-    /* background-color: aqua; */
 
 
 }
@@ -206,13 +207,12 @@ export default {
     align-items: center;
     padding: 42px 10px;
     height: 404px;
-    /* background: hsl(258, 76%, 50%); */
 }
+
 
 .profile-card>img {
     width: 165px;
     height: 160px;
-    /* margin-bottom: 51px; */
 }
 
 .profile-card h3 {
@@ -220,14 +220,6 @@ export default {
     font-weight: 400;
 
 }
-
-
-
-/* .profile-card span {
-    font-size: 20px;
-    font-weight: 100;
-} */
-
 
 .jobsapplied {
     display: flex;
@@ -256,15 +248,10 @@ export default {
     flex: 1;
 }
 
-
-
 .btnsec {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 57px 0;
     gap: 56px;
-    /* background-color: aqua; */
+
 }
 
 .btn {
@@ -285,5 +272,73 @@ export default {
     font-size: 20px;
     background-color: #FFFFFF;
     color: #000000;
+}
+
+@media screen and (max-width:480px) {
+
+    .company-profile-container {
+        padding: 30px 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .title h1 {
+        /* text-align: center; */
+        font-size: 22px;
+        margin-top: 34px;
+    }
+
+    .profile-section {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100dvw;
+    }
+
+    .profile-card {
+        width: 100%;
+    }
+
+    .f-editicon {
+
+        cursor: pointer;
+        width: 20px
+    }
+
+
+    .profile-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        flex: 1;
+    }
+
+    .btnsec {
+        padding: 25px 0;
+        gap: 10px;
+    }
+
+    .btn {
+        border-radius: 8px;
+        width: 100px;
+        height: 40px;
+        font-size: 20px;
+        background-color: #040404;
+        color: #ffffff;
+    }
+
+    .btns {
+        border-radius: 8px;
+        width: 100px;
+        height: 40px;
+        font-size: 20px;
+        background-color: #D9D9D9;
+        color: #000000;
+    }
 }
 </style>
