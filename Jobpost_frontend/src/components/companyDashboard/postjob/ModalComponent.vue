@@ -2,17 +2,17 @@
     <div class="overlay">
         <div class="modal">
             <span @click="$emit('modal-close')">X</span>
-            <h1>Post a Job</h1>
-            <!-- <PostJobLayout /> -->
+            <h3>POST A JOB</h3>
+            <PostJobForm />
         </div>
     </div>
 </template>
 
 <script>
-    // import PostJobLayout from './PostJobLayout.vue';
+    import PostJobForm from './PostJobForm.vue';
     export default {
         components:{
-            // PostJobLayout
+            PostJobForm
         }
     }
 </script>
@@ -32,9 +32,9 @@
     .modal{
         text-align: center;
         background-color: #f1f1f1;
-        width: 30%;
-        height: 30%;
-        padding: 20px;
+        width: 50%;
+        height: 70%;
+        padding: 20px 40px;
         border-radius: 10px;
     }
     .modal span{
@@ -43,11 +43,15 @@
         align-items: center;
         font-weight: bolder;
         cursor: pointer;
-        height: 40px;
-        width: 40px;
+        height: 30px;
+        width: 30px;
         background-color: #7FBF4C;
         color: #fff;
         border-radius: 50%;
         box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
+    }
+    .modal > h3{
+        margin-bottom: 20px;
+        color: #88CC00;
     }
 </style>

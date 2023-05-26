@@ -3,7 +3,7 @@
         <ul class="table-head">
             <li>Job Description</li>
             <li>Role Type</li>
-            <li>Requirements</li>
+            <li>Experience</li>
             <li>Location</li>
             <li></li>
         </ul>
@@ -11,7 +11,7 @@
         <ul v-for="(item, index) in myjobs" :key="index" class="table-body">
             <li>{{ item.description }}</li>
             <li>{{ item.role }}</li>
-            <li>{{ item.requirements }}</li>
+            <li>{{ item.experience }}</li>
             <li>{{ item.location }}</li>
             <li><span @click="show(item.role)" class="material-symbols-outlined">edit</span></li>
         </ul>
@@ -54,9 +54,9 @@ export default {
     row-gap: 20px;
     margin-top: 20px;
     background: #F4F4F4;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    overflow: scroll;
+    /* overflow: scroll; */
     flex: 1;
     padding: 0px 90px 120px 100px;
 }
