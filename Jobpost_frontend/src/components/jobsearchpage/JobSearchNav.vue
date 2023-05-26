@@ -63,11 +63,14 @@ export default {
     align-items: center;
     padding: 0px; 
     position: relative;
+    /* cursor: pointer; */
 }
 .logo img{
 
     padding: 0px;
     width: 50px;
+    cursor: pointer;
+
 }
 
 .search-bar {
