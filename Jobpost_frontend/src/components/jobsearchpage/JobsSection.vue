@@ -1,5 +1,5 @@
 <template>
-    <section class="jobs-listing flex-center">
+    <section class="jobs-listing ">
         <JobCard :jobInfomation="jobsList[0]"  />
         <JobCard :jobInfomation="jobsList[1]"/>
         <JobCard :jobInfomation="jobsList[2]"/>
@@ -42,14 +42,29 @@ export default {
 
 <style lang="css" scoped>
  .jobs-listing{
-    /* background: #b83939; */
-    flex: 1;
+    /* flex: 1; */
+    display: grid;
+    grid-template-columns: 2fr 2fr ;
     width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
     row-gap: 28px;
-    column-gap: 61px;
-    justify-content: flex-start;
-    align-items: flex-start; 
+    column-gap: 28px;
+    padding-right:100px;
  }
+ @media screen and (max-width:1019px){
+    .jobs-listing{
+        grid-template-columns: 1fr;
+        padding-right:50px; 
+    }
+    
+ }
+ @media screen and (max-width:685px) {
+    .jobs-listing{
+    padding-right:0px;    
+    width: 100%;   
+    max-width: none;
+    align-content: center;
+    justify-items: center;
+    margin-top: 10px;
+
+    }}
 </style>
