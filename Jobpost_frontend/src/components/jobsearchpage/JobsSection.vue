@@ -1,7 +1,7 @@
 <template>
     <section class="jobs-listing ">
-        <JobCard :jobInfomation="jobsList[0]"  />
-        <JobCard :jobInfomation="jobsList[1]"/>
+        <JobCard v-for="(job,index) in allJobs" :jobInfomation="job" :key="index"  />
+        <!-- <JobCard :jobInfomation="jobsList[1]"/>
         <JobCard :jobInfomation="jobsList[2]"/>
         <JobCard :jobInfomation="jobsList[3]"/>
         <JobCard :jobInfomation="jobsList[4]"/>
@@ -11,32 +11,21 @@
         <JobCard :jobInfomation="jobsList[2]"/>
         <JobCard :jobInfomation="jobsList[3]"/>
         <JobCard :jobInfomation="jobsList[4]"/>
-        <JobCard :jobInfomation="jobsList[5]"/>
+        <JobCard :jobInfomation="jobsList[5]"/> -->
         
     </section>
 </template>
 
 <script>
 import JobCard from './JobCard.vue';
-import { jobsPosted } from '../../data';
+// import { jobsPosted } from '../../data';
 export default {
     name: 'JobPostJobsSection',
     components: { JobCard },
+    props:[
+    'allJobs'
+    ],
 
-    data() {
-        return {
-            jobsList:jobsPosted
-            
-        };
-    },
-
-    mounted() {
-        
-    },
-
-    methods: {
-        
-    },
 };
 </script>
 

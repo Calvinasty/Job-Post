@@ -1,6 +1,6 @@
 <template>
     <div class="profile-detail">
-        <img class="editicon" src="images/edit_icon.svg" alt="editicon" />
+        <img class="editicon" src="images/edit_icon.svg" alt="editicon" @click="showPopup(detailsTitle)" />
         <h3>{{ detailsTitle }}</h3>
         <div class="profile-detail-container">
             <div class="input-field-container flex-center">
@@ -40,6 +40,7 @@ export default {
         "showDetails",
         "detailsTitle",
         "inputInformation",
+        "showPopup"
     ],
     mounted() {
 
@@ -59,7 +60,7 @@ export default {
     border-bottom: 5px solid #88cc00;
     flex: 1;
     max-width: 530px;
-    min-width: 350px;
+    /* min-width: 310px; */
     height: 400px;
 }
 
@@ -70,14 +71,13 @@ export default {
     gap: 40px;
     /* height: 100%; */
     width: 100%;
-    /* background-color: antiquewhite; */
+
 }
 
 .input-field-container {
     flex: 1;
     align-items: flex-start;
     gap: 10px;
-    /* background: #000; */
 }
 
 .other-details {
@@ -118,5 +118,25 @@ h3 {
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+}
+
+@media screen and (max-width:480px) {
+    .profile-detail-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile-detail {
+        border: 1px solid #ededed;
+        background-color: #ffffff;
+        padding: 37px 34px;
+        border-bottom: 3px solid #88cc00;
+        flex: 1;
+        min-width: 300px;
+
+    }
+
+
+
 }
 </style>

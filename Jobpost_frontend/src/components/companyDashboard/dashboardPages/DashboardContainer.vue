@@ -9,19 +9,22 @@
     import AnalyticsView from './AnalyticsView.vue';
     import JobsView from './JobsViewComponent.vue';
     import ViewApplicant from './ViewAllApplicant.vue';
+    import CompanyProfile from '@/views/CompanyProfilePage.vue'
     export default {
         components:{
             DashboardLayout,
             AnalyticsView,
             JobsView,
-            ViewApplicant
+            ViewApplicant,
+            CompanyProfile
         },
         data(){
             return{
                 componentId: 'analyticsView',
                 analyticsView: AnalyticsView,
                 jobsView: JobsView,
-                viewApplicant: ViewApplicant
+                viewApplicant: ViewApplicant,
+                companyProfile: CompanyProfile
             }   
         },
         beforeMount(){
@@ -38,6 +41,8 @@
 <style lang="css" scoped>
     .main-container{
         width: 100%;
+        height: 100dvh;
         padding: 25px;
+        overflow: scroll;
     }
 </style>

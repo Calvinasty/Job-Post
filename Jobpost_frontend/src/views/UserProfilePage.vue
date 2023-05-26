@@ -3,14 +3,14 @@
         <div class="userprofile">
 
 
-            <!-- <JobSearchNav /> -->
+            <JobSearchNav />
 
             <section class="user-profile">
                 <div class="title">
                     <h1>{{ title }}</h1>
                 </div>
                 <div class="profile-section">
-                    <div class="profile">
+                    <div id="profile">
                         <div class="profile-card">
                             <img src="images/userprofile.svg" alt="pic">
                             <h3>{{ usersName }}</h3>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="profile-details">
-                        <CardInformationComponent :detailsTitle="inputCardDetails[0].cardTitle"
+                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[0].cardTitle"
                             :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true">
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[0].cardInputInformation.inputOne.type"
@@ -45,9 +45,12 @@
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputFour?.name"
                                 :inputType="inputCardDetails[0].cardInputInformation.inputFour.type"
                                 :inputId="inputCardDetails[0].cardInputInformation.inputFour.id" />
+                            <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputEight?.name"
+                                :inputType="inputCardDetails[0].cardInputInformation.inputEight.type"
+                                :inputId="inputCardDetails[0].cardInputInformation.inputEight.id" />
                         </CardInformationComponent>
 
-                        <CardInformationComponent :detailsTitle="inputCardDetails[1].cardTitle">
+                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[1].cardTitle">
                             <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
                                 :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" />
@@ -59,7 +62,7 @@
                                 :inputId="inputCardDetails[1].cardInputInformation.inputThree.id" />
 
                         </CardInformationComponent>
-                        <CardInformationComponent :detailsTitle="inputCardDetails[2].cardTitle">
+                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[2].cardTitle">
                             <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
                                 :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" />
@@ -68,9 +71,21 @@
                                 :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
 
                         </CardInformationComponent>
-                        <CardInformationComponent :detailsTitle="inputCardDetails[3].cardTitle">
+                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[3].cardTitle">
                             <div class="select-field">
                                 <label for="skills">Skills</label>
+                                <select name="skill" id="skills">
+                                    <option value="">Select</option>
+                                    <option value="">Vue Js</option>
+                                    <option value="">Node Js</option>
+                                    <option value="">Full Stack </option>
+                                </select>
+                                <select name="skill" id="skills">
+                                    <option value="">Select</option>
+                                    <option value="">Vue Js</option>
+                                    <option value="">Node Js</option>
+                                    <option value="">Full Stack </option>
+                                </select>
                                 <select name="skill" id="skills">
                                     <option value="">Select</option>
                                     <option value="">Vue Js</option>
@@ -81,29 +96,33 @@
                         </CardInformationComponent>
                     </div>
                 </div>
-                <div class="btnsec">
+                <!-- <div class="btnsec">
                     <button class="btn">Save</button>
                     <button class="btns">Cancel</button>
-                </div>
+                </div> -->
             </section>
 
 
         </div>
         <FooterComponent />
 
+        <!-- <EditPopups v-if="showModal" /> -->
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-// import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
+import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
 import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
+// import EditPopups from '../components/profilepage/EditPopups.vue';
 import InputComponent from '../components/profilepage/inputComponent.vue';
 import { userprofileData } from '../data';
 export default {
     components: {
         FooterComponent,
-        // JobSearchNav,
+        // EditPopups,
+        JobSearchNav,
         CardInformationComponent,
         InputComponent
 
@@ -114,10 +133,29 @@ export default {
             title: 'User Profile',
             usersName: 'Daniella McDan',
             userOccupation: 'Software Developer',
+            showModal: false,
 
             inputCardDetails: userprofileData
         }
     },
+
+    methods: {
+        showPopup(cardTitle) {
+            this.showModal = !this.showModal
+            if (cardTitle == userprofileData[0].cardTitle) {
+                this.$router.push('/userprofile/modal/personalinfo');
+            }
+            if (cardTitle == userprofileData[1].cardTitle) {
+                this.$router.push('/userprofile/modal/education');
+            }
+            if (cardTitle == userprofileData[2].cardTitle) {
+                this.$router.push('/userprofile/modal/experience');
+            }
+            if (cardTitle == userprofileData[3].cardTitle) {
+                this.$router.push('/userprofile/modal/skills');
+            }
+        }
+    }
 
 }
 </script>
@@ -133,6 +171,7 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
     gap: 43px;
+    margin-bottom: 50px;
     /* background-color: aqua; */
 
 }
@@ -163,7 +202,7 @@ export default {
     justify-content: flex-start;
     /* padding-top: 66px; */
     width: 20%;
-    /* background-color: #fa1515; */
+
 
 }
 
@@ -184,8 +223,6 @@ export default {
     font-weight: 400;
 
 }
-
-
 
 .profile-card span {
     font-size: 20px;
@@ -224,8 +261,12 @@ export default {
     gap: 60px;
     flex-wrap: wrap;
     flex: 1;
+    /* background: #000; */
+
 
 }
+
+
 
 .select-field {
     display: flex;
@@ -283,19 +324,34 @@ export default {
 }
 
 @media screen and (max-width:480px) {
+    .user-profile {
+        justify-content: center;
+        gap: 30px;
+        /* background: #af4040; */
+    }
+
     .title {
+        padding-top: 10px;
         font-size: 22px;
     }
 
-    .user-profile {
-        gap: 30px;
+    #profile {
+        width: 300px;
     }
 
+
     .profile-card {
-        /* justify-content: space-between; */
+        justify-content: space-between;
         font-size: 18px;
-        width: 238px;
-        height: 270px;
+        width: 100%;
+        /* height: 270px; */
+        /* background: #000; */
+    }
+
+    .profile-card>img {
+        width: 100px;
+        height: 110px;
+        margin-bottom: 0px;
     }
 
     .profile-card h3 {
@@ -306,10 +362,57 @@ export default {
         font-size: 15px;
     }
 
-    .profile-card>img {
-        width: 153px;
-        height: 149px;
-        margin-bottom: 0px;
+
+    .select-field {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .select-field label {
+        font-weight: 500;
+        font-size: 18px;
+        color: #898989;
+
+    }
+
+    .profile-details {
+        /* background: aqua; */
+        gap: 30px;
+
+    }
+
+    .profile-details .profile-detail:first-child {
+        height: min-content;
+    }
+
+    .profile-details .profile-detail {
+        height: min-content;
+    }
+
+    .btnsec {
+        padding: 25px 0;
+        gap: 10px;
+    }
+
+    .btn {
+        border-radius: 8px;
+        width: 100px;
+        height: 40px;
+        font-size: 20px;
+        background-color: #040404;
+        color: #ffffff;
+    }
+
+    .btns {
+        border-radius: 8px;
+        width: 100px;
+        height: 40px;
+        font-size: 20px;
+        background-color: #D9D9D9;
+        color: #000000;
     }
 }
 
@@ -336,6 +439,4 @@ export default {
     }
 
 }
-
-@media screen and (min-width:768px) and (max-width:1440px) {}
 </style>

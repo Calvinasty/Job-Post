@@ -55,9 +55,9 @@ export default {
         row-gap: 20px;
         background: #F5F5F5;
         flex: 1;
-        height: 100vh;
+        height: 100%;
         padding: 0px 90px 120px 100px;
-        overflow: scroll;
+        /* overflow: scroll; */
     }
 
     .main ul {

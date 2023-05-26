@@ -65,7 +65,7 @@
         margin-left: 20px;
     }
     .post{
-        background-color: #7FBF4C;
+        background-color: #88CC00;
         color: #fff;
         padding: 10px 15px;
         font-size: 18px;

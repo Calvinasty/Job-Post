@@ -6,7 +6,7 @@
         <span>
             <div class="search-bar">
                 <i class="fa fa-fw fa-search"></i> 
-                <input  type="text" value="" placeholder="Search for job post,company,location"> 
+                <input  type="text" v-model="searchInput" v-on:change="()=>handleSearch({data:searchInput})" placeholder="Search for job post,company,location"> 
             </div>
         <div class="btn">
             <span>CK</span>
@@ -20,11 +20,18 @@
 
 <script>
 export default {
+    props:[
+        'handleSearch'
+    ],
+
     methods:{
         handleLogout(){
             this.$router.push('/')
         }
-    }
+    },
+
+
+
 }
 </script>
 

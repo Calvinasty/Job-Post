@@ -1,6 +1,6 @@
 <template>
     <aside class="nav-item flex-center">
-        <button type="button" v-for="navItem in navItems" @click="goto(navItem.link)" :key="navItem">
+        <button type="button" :class="{ active:navItem?.active}" v-for="(navItem, index) in navItems" @click="(e) => goto(navItem.link, index)" :key="index">
             <span class="material-symbols-outlined"> {{ navItem.icon }} </span>
             {{ navItem.name }}
         </button>
@@ -46,8 +46,6 @@
 }
 
 .nav-item button:hover {
-    /* box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633); */
-    /* background-color: #7FBF4C; */
     background-color: rgba(217, 217, 217, 1);
     color: #000;
     font-weight: bold;
@@ -59,4 +57,15 @@
 .material-symbols-outlined {
     /* fill: #7FBF4C; */
     color: #88CC00;
-}</style>
+}
+
+.nav-item .active{
+    background-color: #88CC00;
+    color: #fff;
+}
+.nav-item .active span{
+    color: #fff;
+}
+
+
+</style>
