@@ -1,6 +1,6 @@
 <template>
     <div class="profile-detail">
-        <img class="editicon" src="images/edit_icon.svg" alt="editicon" @click="showPopup(detailsTitle)" />
+        <img class="editicon" src="/images/edit_icon.svg" alt="editicon" @click="showPopup(detailsTitle)" />
         <h3>{{ detailsTitle }}</h3>
         <div class="profile-detail-container">
             <div class="input-field-container flex-center">
@@ -8,9 +8,13 @@
             </div>
             <div class="other-details" v-if="showDetails">
                 <InputComponent :fullName="inputInformation?.inputFive?.name" :inputType="inputInformation?.inputFive
-                    .type" :inputId="inputInformation?.inputFive.id" />
+                    .type" :inputId="inputInformation?.inputFive.id" :Value="Value.date" /> <br>
+
+
+                <p class="elabel"> Gender </p>
                 <InputComponent class="radio-gender" :fullName="inputInformation?.inputSix?.name" :inputType="inputInformation?.inputSix
-                    .type" :inputId="inputInformation?.inputSix?.id" :inputName="inputInformation?.inputSix?.radio" />
+                    .type" :inputId="inputInformation?.inputSix?.id" :inputName="inputInformation?.inputSix?.radio"
+                    :Value="Value.gender" />
                 <InputComponent class="radio-gender" :fullName="inputInformation?.inputSeven?.name" :inputType="inputInformation?.inputSeven
                     .type" :inputId="inputInformation?.inputSeven?.id"
                     :inputName="inputInformation?.inputSeven?.radio" />
@@ -31,7 +35,9 @@ export default {
 
     data() {
         return {
-
+            Value: {
+                gender: "Male",
+            },
 
         };
     },
@@ -60,7 +66,7 @@ export default {
     border-bottom: 5px solid #88cc00;
     flex: 1;
     max-width: 530px;
-    /* min-width: 310px; */
+    min-width: 400px;
     height: 400px;
 }
 
@@ -72,6 +78,12 @@ export default {
     /* height: 100%; */
     width: 100%;
 
+}
+
+.elabel {
+    font-weight: 500;
+    font-size: 16px;
+    color: #898989;
 }
 
 .input-field-container {

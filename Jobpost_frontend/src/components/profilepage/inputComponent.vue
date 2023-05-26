@@ -1,7 +1,7 @@
 <template>
     <div class="input-field">
         <label :for="inputId">{{ fullName }}</label>
-        <input :type="inputType" :name="inputName" :id="inputId">
+        <input :type="inputType" :name="inputName" :id="inputId" :value="Value" disabled>
     </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
         "fullName",
         "inputType",
         "inputId",
-        "inputName"
+        "inputName",
+        "Value",
     ]
 
 }
@@ -41,7 +42,7 @@ export default {
 
 .input-field input {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 12px;
     color: #000000;
     border: none;
     outline: none;

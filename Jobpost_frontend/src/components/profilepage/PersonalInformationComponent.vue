@@ -3,7 +3,7 @@
         <div class="input-container">
             <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
         </div>
-        <div class="input-container">
+        <div class="input-container flex-center-row">
             <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
             <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
         </div>
@@ -46,5 +46,10 @@ export default {
     width: 520px;
     padding-top: 20px;
     /* padding-bottom: 70px; */
+}
+
+.card-detail:nth-child(2) {
+    /* display: none; */
+
 }
 </style>
