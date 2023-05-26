@@ -10,6 +10,16 @@ const jobsPosted=[
         jobPositionsAvailable:'6 of 10'
     },
     {
+        jobSalary:'GH¢ 1k-2k',
+        jobExperince:'1 Years',
+        jobLocation:'Tamale, Nothern region',
+        jobTitle:'UI-UX Designer',
+        jobPoster:'Doe Corrperation',
+        jobPosterLogo:'/images/company_logo.png',
+        jobUpdatedAt:'1 hours',
+        jobPositionsAvailable:'3 of 10'
+    },
+    {
         jobSalary:'GH¢ 20k-40k',
         jobExperince:'2 Years',
         jobLocation:'Tantra Hills, Accra',
@@ -26,6 +36,16 @@ const jobsPosted=[
         jobTitle:'UI-UX Designer',
         jobPoster:'Maxim Nyansa',
         jobPosterLogo:'/images/logo.svg',
+        jobUpdatedAt:'2 hours',
+        jobPositionsAvailable:'8 of 10'
+    },
+    {
+        jobSalary:'GH¢ 20k-40k',
+        jobExperince:'2 Years',
+        jobLocation:'Tamale, Nothern region',
+        jobTitle:'Frontend Engineer',
+        jobPoster:'Doe Corrperation',
+        jobPosterLogo:'/images/company_logo.png',
         jobUpdatedAt:'2 hours',
         jobPositionsAvailable:'8 of 10'
     },
@@ -58,7 +78,17 @@ const jobsPosted=[
         jobPosterLogo:'/images/logo.svg',
         jobUpdatedAt:'8 hours',
         jobPositionsAvailable:'9 of 10'
-    }
+    },
+    {
+        jobSalary:'GH¢ 2k-4k',
+        jobExperince:'1 Years',
+        jobLocation:'Tamale, Nothern region',
+        jobTitle:'Frontend Engineer',
+        jobPoster:'Doe Corrperation',
+        jobPosterLogo:'/images/company_logo.png',
+        jobUpdatedAt:'20 hours',
+        jobPositionsAvailable:'5 of 10'
+    },
 ]
 
 export default jobsPosted
