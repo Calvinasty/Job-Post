@@ -1,18 +1,7 @@
 <template>
     <section class="jobs-listing ">
         <JobCard v-for="(job,index) in allJobs" :jobInfomation="job" :key="index"  />
-        <!-- <JobCard :jobInfomation="jobsList[1]"/>
-        <JobCard :jobInfomation="jobsList[2]"/>
-        <JobCard :jobInfomation="jobsList[3]"/>
-        <JobCard :jobInfomation="jobsList[4]"/>
-        <JobCard :jobInfomation="jobsList[5]"/>
-        <JobCard :jobInfomation="jobsList[0]"/>
-        <JobCard :jobInfomation="jobsList[1]"/>
-        <JobCard :jobInfomation="jobsList[2]"/>
-        <JobCard :jobInfomation="jobsList[3]"/>
-        <JobCard :jobInfomation="jobsList[4]"/>
-        <JobCard :jobInfomation="jobsList[5]"/> -->
-        
+            
     </section>
 </template>
 

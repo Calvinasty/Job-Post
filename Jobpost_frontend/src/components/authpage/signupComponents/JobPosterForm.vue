@@ -31,7 +31,7 @@
                     </div>
                         <InputComponent class="input" type="text" placeHolder="Location" inputId="jobposter-location" name="location" :handleInput='handleUserInput'/>                                                    
                         <div class="flex-center input-container verification">
-                            <select name="verification" class="verification input" v-model="verification" >
+                            <select name="verification" class="verification input" v-model="verify" v-on:change="()=>handleVerify({verification:verify})"  >
                                 <option value="" class="selected" >How do you want to be verified?</option>
                                 <option value="regCert">Registration Certificate /Documents</option>
                                 <option value="visit">Physical Visit</option>
@@ -67,17 +67,7 @@ export default {
 
     data() {
         return {
-            userInfo:{
-                name:"",
-                email:"",
-                password:"",
-                confirmPassword:"",
-                website:"",
-                companyLogo:"",
-                phone:"",
-                location:"",
-                verificationL:""
-            }
+
              
         };
     },
@@ -87,13 +77,17 @@ export default {
         'pageNumber',
         'btnText',
         'btnType',
-        'handleUserInput'
+        'handleUserInput',
+        'handleVerify',
+        'userInfo',
+        
     ],
 
     methods: {        
         handleHome(){
                 this.$router.push('/admin/admin')
             },
+        
             
             
     },
