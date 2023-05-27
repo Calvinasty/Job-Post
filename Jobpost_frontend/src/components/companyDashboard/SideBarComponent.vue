@@ -4,9 +4,13 @@
             <aside class="logo flex-center">
                 <img :src="user.image" alt="logo">
             </aside>
+
+
             <aside class="nav-items">
                 <NavItemComponent :navItems="navItems" :goto="goto" />
             </aside>
+
+            
             <aside class="nav-items">
                 <SettingsComponent :settings="settings" :user="user" />
             </aside>
