@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
+                    <button type="submit" class="flex-center-row" @click="forward">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
                     <p>Forgotten Password? <span>Click Here</span></p>
 
                     <p>Not Registered yet? <a href="http://localhost:5173/auth/register"><span>Register Now</span></a></p>
@@ -47,7 +47,7 @@
 
         methods: {
         forward() {
-            this.$router.push("")
+            this.$router.push("/jobsearch")
         },
         handleUserInput(data){
             console.log(data);
@@ -66,8 +66,13 @@
                 password:this.inputData.password
             }
 
-        
-            console.log(user);
+            if(user.email== '' || user.password=='') {
+               return alert('Email and Password is required')
+            }
+            else {
+                console.log(user);
+            }
+            
         }
        }
         
