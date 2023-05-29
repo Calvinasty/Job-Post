@@ -6,6 +6,7 @@
             nameHeader = 'JOB POSTS'
             nameTitle = 'Sign In'
             userInfo = 'Not Registered yet?'
+            :showText = true
             />
         </div>
 
@@ -15,6 +16,7 @@
             nameHeader = 'JOB POSTS'
             nameTitle = 'Sign In'
             userInfo = 'Not Registered yet?' 
+            :showText = true
             />
         </div>
 
