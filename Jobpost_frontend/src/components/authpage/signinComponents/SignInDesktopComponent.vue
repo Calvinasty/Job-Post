@@ -1,14 +1,13 @@
 <template>
     <div class="signin-desktop">
-
         <div class="signin">
             <header>
-                <img src="/images/logo.png" alt="">
-                <h2>Super Admin</h2>
+                <img src="/images/maxim-logo.jpeg" alt="">
+                <h2>{{ nameHeader }}</h2>
             </header>
 
             <div class="signin-header">
-                <h3>Sign In</h3>
+                <h3>{{ nameTitle }}</h3>
             </div>
 
             <form @submit.prevent="handleSignIn" class="signin-desktop-field">
@@ -21,69 +20,43 @@
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
+                    <button type="submit" class="flex-center-row" @click="adminSignUp">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
 
                     <p>Forgotten Password? <span>Click Here</span></p>
 
-                    <p>Not Admin? <a href="http://localhost:5173/auth/admin-signup"><span>Register Now</span></a></p>
+                    <p>{{ userInfo }} <a href="http://localhost:5173/auth/admin-signup"><span>Register Now</span></a></p>
                 </div>
             </form>
         </div>
-
     </div>
 </template>
 
 <script>
-    import InputComponent from '../InputComponent.vue';
+    import InputComponent from '@/components/authpage/InputComponent.vue'
     export default {
-        components: {
-            InputComponent,
+        components : {
+            InputComponent
         },
 
-        data() {
-            return {
-                inputData: {
-                    email: '',
-                    password: ''
-                }
-            }
-        },
+       data () {
 
-        methods: {
-        adminSignUp(){
-            this.$router.push("/auth/admin-signup")
-        },
-        handleUserInput(data){
-            console.log(data);
-            if(data.inputName == 'email') {
-                this.inputData.email = data.inputValue
-            }
-
-            if(data.inputName == 'password') {
-                this.inputData.password = data.inputValue
-            }
-        },
-
-        handleSignIn() {
-            const user={
-                email:this.inputData.email,
-                password:this.inputData.password
-            }
-
-            if(user.email== '' || user.password=='') {
-               return alert('Email and Password is required')
-            }
-            else {
-                console.log(user);
-            }
+        return {
             
         }
-       }
+
+       },
+       
+       props:[
+            'nameHeader',
+           'nameTitle',
+           'userInfo',
+       ]
     }
 </script>
 
 <style lang="css" scoped>
-    .signin-desktop {
+
+.signin-desktop {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -172,6 +145,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: center;
         row-gap: 25px;
     }
 
@@ -187,7 +161,6 @@
         background: #7FBF4C;
         color: #fff;
         border: #7FBF4C;
-        width: 30%;
         column-gap: 5px;
     }
 
@@ -220,4 +193,5 @@
         }
     }
     
+
 </style>
