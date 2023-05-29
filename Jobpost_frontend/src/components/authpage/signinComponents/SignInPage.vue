@@ -2,25 +2,32 @@
     <div>
         <!-- Desktop View Section -->
         <div class="desktop-view">
-            <SignInAdminDesktop />
+            <SignInDesktopComponent 
+            nameHeader = 'JOB POSTS'
+            nameTitle = 'Sign In'
+            userInfo = 'Not Registered yet?'
+            />
         </div>
 
         <!-- Mobile View Section -->
         <div class="mobile-view">
-            <SignInAdminMobile />
+            <SignInMobileComponentVue
+            nameHeader = 'JOB POSTS'
+            nameTitle = 'Sign In'
+            userInfo = 'Not Registered yet?' 
+            />
         </div>
 
     </div>
 </template>
 
 <script>
-    import SignInAdminDesktop from './SignInAdminDesktop.vue'
-    import SignInAdminMobile from './SignInAdminMobile.vue'
-
+    import SignInDesktopComponent from '@/components/authpage/signinComponents/SignInDesktopComponent.vue';
+    import SignInMobileComponentVue from './SignInMobileComponent.vue';
     export default {
        components: {
-        SignInAdminMobile,
-        SignInAdminDesktop
+        SignInMobileComponentVue,
+        SignInDesktopComponent
        } 
     }
 </script>
@@ -37,7 +44,7 @@
 
 
     /*================ MOBILE VIEW ====================*/
-    @media screen and (max-width: 680px) {
+    @media screen and (max-width: 681px) {
         .desktop-view {
             /* Desktop display none for mobile view */
             display: none;

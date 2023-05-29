@@ -1,50 +1,63 @@
 <template>
     <div class="signin-mobile">
         <header>
-            <img src="/images/logo.png" alt="">
-            <h2>JOB POSTS</h2>
+            <img src="/images/maxim-logo.jpeg" alt="">
+            <h2>{{ nameHeader }}</h2>
         </header>
 
         <div class="signin-header">
-            <h3>Sign In</h3>
+            <h3>{{ nameTitle }}</h3>
         </div>
 
         <form class="signin-field">
             <div>
-                <InputComponent type="email" placeHolder="Email"/>
+                <InputComponent type="email" id="email" name="email" placeHolder="Email" />
             </div>
 
             <div>
-                <InputComponent type="password" placeHolder="Password"/>
+                <InputComponent type="password" id="password" name="password" placeHolder="Password"/>
             </div>
 
-            <button type="submit" class="mbn-btn">Sign In</button>
+            <button type="submit" class="mbn-btn" @click="forward">Sign In</button>
 
-            <p>Not Registered yet? <router-link to="">Register Now</router-link></p>
+            <p>Forgotten Password? <span>Click Here</span></p>
+
+            <p>{{ userInfo }} <a href="http://localhost:5173/auth/admin-signup"><span>Register Now</span></a></p>
         </form>
     </div>
 </template>
 
 <script>
-    import InputComponent from '../InputComponent.vue';
+import InputComponent from '../InputComponent.vue'
     export default {
         components: {
-            InputComponent,
-        }
-        
+            InputComponent
+        },
+
+        data(){
+            return{
+               
+            }
+            
+        },
+        props:[
+            'nameHeader',
+           'nameTitle',
+           'userInfo',
+       ]
     }
 </script>
 
 <style lang="css" scoped>
     .signin-mobile {
-        background-color: #fff;
+        background-color: #ffffff;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         row-gap: 50px;
         height: 100dvh;
-        width: 380px;
+        width: 100dvw;
     }
 
     header {
@@ -65,7 +78,7 @@
         flex-direction: column;
         row-gap: 10px;
         text-align: center;
-        width: 70%;
+        width: 60%;
     }
 
     .signin-header h3 {
@@ -131,5 +144,4 @@
     .signin-field p a {
         color: #7FBF4C;
     }
-
 </style>
