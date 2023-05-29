@@ -1,10 +1,12 @@
 <template>
+    <h3>POST A JOB</h3>
     <PostJobLayout 
         @details="(event) => setNext(0, event)"
         @jobtype="setNext(1)"
         @salary="setNext(2)"
         @recruiter="setNext(3)"
     >
+
         <form @submit.prevent="handlePost">
             <div class="first" v-show="next == 0">
                 <input v-model="postjob.title" type="text" placeholder="Job Title">
@@ -94,8 +96,9 @@
             }
         },
         methods:{
-            setNext(num){
+            setNext(num, event){
                 this.next = num
+                console.log(event);
             },
             handlePost(){
                 let newPost = {
@@ -139,6 +142,11 @@
 </script>
 
 <style lang="css" scoped>
+    
+    h3:nth-of-type(1){
+        margin-bottom: 20px;
+        color: #88CC00;
+    }
     form{
         display: flex;
         flex-direction: column;

@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
-import InputComponent from '../components/profilepage/inputComponent.vue';
+import CardInformationComponent from '../../profilepage/CardInformationComponent.vue';
+import InputComponent from '../../profilepage/inputComponent.vue';
 export default {
     data() {
         return {

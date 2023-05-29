@@ -2,7 +2,6 @@
     <div class="overlay">
         <div class="modal">
             <span @click="$emit('modal-close')">X</span>
-            <h3>POST A JOB</h3>
             <PostJobForm />
         </div>
     </div>
@@ -49,9 +48,5 @@
         color: #fff;
         border-radius: 50%;
         box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
-    }
-    .modal > h3{
-        margin-bottom: 20px;
-        color: #88CC00;
     }
 </style>
