@@ -1,11 +1,6 @@
 <template>
-    <h3>POST A JOB</h3>
-    <PostJobLayout 
-        @details="(event) => setNext(0, event)"
-        @jobtype="setNext(1)"
-        @salary="setNext(2)"
-        @recruiter="setNext(3)"
-    >
+    <h3>POST A JOB {{ count }}</h3>
+    <PostJobLayout>
 
         <form @submit.prevent="handlePost">
             <div class="first" v-show="next == 0">
@@ -37,7 +32,7 @@
 
             <div class="third" v-show="next == 2">
                 <label for="">Select Salary</label>
-                <select v-model="postjob.salary">
+                <select v-model="postjob.salary" placeholder="Select Salary Range">
                     <!-- <option value="default">Select Salary Range</option> -->
                     <option value="disclosure">Disclosure</option>
                     <option value="GH¢ 800-1,200">GH¢ 800 - 1,200</option>
@@ -71,15 +66,16 @@
 </template>
 
 <script>
+    import axios from 'axios'
     import PostJobLayout from './PostJobLayout.vue';
+    import {useDashboardStore} from '../../../stores/dashboard';
+    import {mapState, mapActions} from 'pinia'
     export default {
         components:{
             PostJobLayout
         },
         data(){
             return{
-                next:0,
-                valuex: '',
                 postjob: {
                     title: '',
                     description: '',
@@ -92,14 +88,15 @@
                     lname: '',
                     role: '',
                     contact: ''
-                }
+                },
             }
         },
+        computed: {
+            ...mapState(useDashboardStore, ['next']),
+            ...mapState(useDashboardStore, ['getNext'])
+        },
         methods:{
-            setNext(num, event){
-                this.next = num
-                console.log(event);
-            },
+            ...mapActions(useDashboardStore, ['setNext']),
             handlePost(){
                 let newPost = {
                     jobSalary: this.postjob.salary,
@@ -111,13 +108,20 @@
                     jobUpdatedAt:'1 min',
                     jobPositionsAvailable:'1 of 2'
                 }
-                const oldData = JSON.parse(localStorage.getItem('postedjobs'))
-                if(oldData){
-                    let newData = [newPost, ...[oldData]]
-                    localStorage.setItem('postedjobs', JSON.stringify(newData))
-                }else{
-                    localStorage.setItem('postedjobs', JSON.stringify(newPost))
-                }
+                // const oldData = JSON.parse(localStorage.getItem('postedjobs'))
+                // if(oldData){
+                //     let newData = [newPost, ...[oldData]]
+                //     localStorage.setItem('postedjobs', JSON.stringify(newData))
+                // }else{
+                //     localStorage.setItem('postedjobs', JSON.stringify(newPost))
+                // }
+                axios.post('http://192.168.1.53:3000/jobs', newPost)
+                .then(res => {
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
                 this.clearForm()
             },
             clearForm(){

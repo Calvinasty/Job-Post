@@ -1,12 +1,8 @@
 <template>
     <div>
-        <PostNav 
-            @details="$emit('details', event)"
-            @jobtype="$emit('jobtype')"
-            @salary="$emit('salary')"
-            @recruiter="$emit('recruiter')"
-
-        />
+        <!-- Post a job navigation -->
+        <PostNav />
+        <!-- slot to render post a job form -->
         <slot></slot>
     </div>
 </template>
