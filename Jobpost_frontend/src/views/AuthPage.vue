@@ -4,26 +4,23 @@
         <component v-if="routing == 'register'" :is="signUp"></component>
         <component v-if="routing == 'poster-register'" :is="posterSignUp"></component>
         <component v-if="routing == 'adminlogin'" :is="signInAdmin"></component>
-        <component v-if="routing == 'admin-signup'" :is="signUpAdmin"></component>
     </AuthLayout>
 
 </template>
 
 <script>
     import AuthLayout from '../components/authpage/AuthLayout.vue';
-    import SignInPage from '../components/authpage/signin/SignInPage.vue'
+    import SignInPage from '../components/authpage/signinComponents/SignInPage.vue'
     import SignUpPage from '../components/authpage/signupComponents/SignUpPage.vue';
     import JobPosterSignup from '../components/authpage/signupComponents/JobPosterSignup.vue'
-    import SignInAdminPage from '../components/authpage/signAdminComponents/SignInAdminPage.vue';
-    import SignUpAdminPage from '../components/authpage/signAdminComponents/SignUpAdminPage.vue'
+    import SignInAdminPage from '../components/authpage/signinComponents/SignInAdminPage.vue';
     export default {
         components: {
             AuthLayout,
             SignInPage,
             SignUpPage,
             JobPosterSignup,
-            SignInAdminPage,
-            SignUpAdminPage
+            SignInAdminPage
         },
         data(){
             return {
@@ -31,8 +28,7 @@
                 signIn: SignInPage,
                 signUp: SignUpPage,
                 posterSignUp:JobPosterSignup,
-                signInAdmin: SignInAdminPage,
-                signUpAdmin: SignUpAdminPage
+                signInAdmin: SignInAdminPage
             }
         },
         beforeMount() {
@@ -42,9 +38,10 @@
             ? this.showRegister()
             : this.$route.params.id == 'poster-register'
             ? this.showPosterRegister()
-            :this.$route.params.id == 'adminlogin'
+            : this.$route.params.id == 'adminlogin'
             ? this.showAdminLogin()
-            :this.showAdminSignUp()
+            : this.returnRoute()
+
             
         },
         methods:{
@@ -60,8 +57,8 @@
             showAdminLogin() {
                 this.routing = 'adminlogin'
             },
-            showAdminSignUp() {
-                this.routing = 'admin-signup'
+            returnRoute(){
+                this.routing = ''
             }
         }
     }
