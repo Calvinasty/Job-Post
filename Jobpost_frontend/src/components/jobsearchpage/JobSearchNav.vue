@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="/images/logo.svg" alt="logo" @click="handleLogout">
+            <img src="/images/logo.png" alt="logo" @click="handleLogout">
         </div>
         <span>
             <div class="search-bar">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'pinia'
+import {mapState} from 'pinia'
 import { useUserStore } from '../../stores/users';
 export default {
     props:[
@@ -72,9 +72,8 @@ export default {
     /* cursor: pointer; */
 }
 .logo img{
-
     padding: 0px;
-    width: 50px;
+    max-width:100px ;
     cursor: pointer;
 
 }
@@ -150,7 +149,7 @@ export default {
 }
 .logo img{
 padding: 0px;
-width: 30px;
+max-width: 70px;
 }
 .search-bar input::placeholder{
   

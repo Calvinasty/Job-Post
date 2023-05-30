@@ -50,7 +50,6 @@ export default {
 
 <style lang="css" scoped>
     .jobsearch-page{
-        background: rgba(242, 242, 242, 1);
         min-height: 100dvh;
         display: flex;
         flex-direction: column;
