@@ -6,6 +6,7 @@
             nameHeader = 'Super Admin'
             nameTitle = 'Sign In'
             userInfo = 'Not Admin?'
+            :showText = false
             />
         </div>
 
@@ -15,6 +16,7 @@
             nameHeader = 'Super Admin'
             nameTitle = 'Sign In'
             userInfo = 'Not Admin?'
+            :showText = false
             />
         </div>
 

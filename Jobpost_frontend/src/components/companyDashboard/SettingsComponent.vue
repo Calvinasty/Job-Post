@@ -33,10 +33,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
+main {
+}
 .settings {
     width: 100%;
     padding: 5px;
-    border: 1px solid rgba(217, 217, 217, 1);
+    border-bottom: 1px solid rgba(217, 217, 217, 1);
 }
 
 .settings button {
@@ -81,7 +83,8 @@ button span {
     padding: 15px 20px;
     font-size: 15px;
     font-weight: 500;
-    margin: 20px 0;
+    margin: 80px 0;
+    margin-bottom: 30px;
     border-radius: 5px;
     cursor: pointer;    
 

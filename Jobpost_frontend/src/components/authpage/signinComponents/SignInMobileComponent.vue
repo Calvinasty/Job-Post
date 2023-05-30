@@ -1,34 +1,35 @@
 <template>
     <div class="signin-mobile">
-        <header>
+        <header class="flex-center">
             <img src="/images/maxim-logo.jpeg" alt="">
-            <h2>{{ nameHeader }}</h2>
+            <h3>{{ nameHeader }}</h3>
         </header>
 
         <div class="signin-header">
-            <h3>{{ nameTitle }}</h3>
+            <h4>{{ nameTitle }}</h4>
         </div>
 
         <form class="signin-field">
             <div>
-                <InputComponent type="email" id="email" name="email" placeHolder="Email" />
+                <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
             </div>
 
             <div>
-                <InputComponent type="password" id="password" name="password" placeHolder="Password"/>
+                <InputComponent type="password" id="password" name="password" placeHolder="Password" :handleInput="handleUserInput" />
             </div>
 
-            <button type="submit" class="mbn-btn" @click="forward">Sign In</button>
+            <button type="submit" class="mbn-btn">Sign In</button>
 
-            <p>Forgotten Password? <span>Click Here</span></p>
+            <button class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
 
-            <p>{{ userInfo }} <a href="http://localhost:5173/auth/admin-signup"><span>Register Now</span></a></p>
+            <button v-if="showText" class="signup-btn">{{ userInfo }} <span @click="toSignup()">Register Now</span></button>
         </form>
     </div>
 </template>
 
 <script>
 import InputComponent from '../InputComponent.vue'
+const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     export default {
         components: {
             InputComponent
@@ -36,7 +37,10 @@ import InputComponent from '../InputComponent.vue'
 
         data(){
             return{
-               
+                inputData: {
+                    email: '',
+                    password: ''
+                }
             }
             
         },
@@ -44,7 +48,41 @@ import InputComponent from '../InputComponent.vue'
             'nameHeader',
            'nameTitle',
            'userInfo',
-       ]
+           'showText'
+       ],
+       methods: {
+            toSignup() {
+                this.$router.push('/auth')
+            },
+
+            handleUserInput(data){
+                console.log(data);
+                if(data.inputName == 'email') {
+                    this.inputData.email = data.inputValue
+                }
+
+                if(data.inputName == 'password') {
+                    this.inputData.password = data.inputValue
+                }
+            },
+
+            handleSignIn() {
+                console.log('Hello', this.inputData.email.match((validRegex)));
+                const user={
+                    email:this.inputData.email,
+                    password:this.inputData.password
+                }
+
+                // if(user.email== '' || user.password=='') {
+                //    return alert('Email and Password is required')
+                // }
+                // else {
+                //     console.log(user);
+                // }
+                
+                console.log(user)
+            }
+        }
     }
 </script>
 
@@ -55,7 +93,7 @@ import InputComponent from '../InputComponent.vue'
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        row-gap: 50px;
+        row-gap: 40px;
         height: 100dvh;
         width: 100dvw;
     }
@@ -66,6 +104,7 @@ import InputComponent from '../InputComponent.vue'
         line-height: 27px;
         text-align: center;
         color: #88CC00;
+        row-gap: 10px;
     }
 
     header img {
@@ -81,9 +120,9 @@ import InputComponent from '../InputComponent.vue'
         width: 60%;
     }
 
-    .signin-header h3 {
-        font-weight: 700;
-        font-size: 25px;
+    .signin-header h4 {
+        font-weight: 600;
+        font-size: 20px;
         line-height: 22px;
         color: #88CC00;
     }
@@ -135,7 +174,19 @@ import InputComponent from '../InputComponent.vue'
         font-size: 18px;
     }
 
-    .signin-field p {
+    .forgot-btn, .signup-btn {
+        background: #fff;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .forgot-btn span, .signup-btn span {
+        color: #7FBF4C;
+        cursor: pointer;
+    }
+
+    /* .signin-field p {
         text-align: center;
         font-weight: 400;
         font-size: 15px;
@@ -143,5 +194,5 @@ import InputComponent from '../InputComponent.vue'
     } 
     .signin-field p a {
         color: #7FBF4C;
-    }
+    } */
 </style>
