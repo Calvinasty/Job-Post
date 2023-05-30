@@ -1,7 +1,7 @@
 <template>
     <div class="signin-mobile">
         <header class="flex-center">
-            <img src="/images/maxim-logo.jpeg" alt="">
+            <img src="/images/logo.png" alt="">
             <h3>{{ nameHeader }}</h3>
         </header>
 

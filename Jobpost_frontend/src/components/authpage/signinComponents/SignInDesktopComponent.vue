@@ -2,7 +2,7 @@
     <div class="signin-desktop">
         <div class="signin">
             <header>
-                <img src="/images/maxim-logo.jpeg" alt="">
+                <img src="/images/logo.png" alt="">
                 <h2>{{ nameHeader }}</h2>
             </header>
 
@@ -22,9 +22,9 @@
                 <div class="desk-links">
                     <button type="submit" class="flex-center-row signin-btn">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
 
-                    <button class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
+                    <button type="button" class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
 
-                    <button v-if="showText" class="signup-btn">{{ userInfo }} <span @click="toSignup()">Register Now</span></button>
+                    <button type="button" v-if="showText" class="signup-btn">{{ userInfo }} <span @click="toSignup()">Register Now</span></button>
                 </div>
             </form>
         </div>
@@ -79,14 +79,14 @@
                 email:this.inputData.email,
                 password:this.inputData.password
             }
-            // if(user.email== '' || user.password=='') {
-            //    return alert('Email and Password is required')
-            // }
-            // else {
-            //     console.log(user);
-            // }
+            if(user.email== '' || user.password=='') {
+               return alert('Email and Password is required')
+            }
+            else {
+                console.log(user);
+            }
 
-            console.log(user)
+            // console.log(user)
             
         }
        }
