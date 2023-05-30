@@ -25,8 +25,9 @@ export default {
     },
     methods:{
         async getAllJobs(){
-            let results= await axios.get('http://195.168.1.53:3000/jobs')
+            let results= await axios.get('http://192.168.1.53:3000/jobs?_sort=id&_order=desc')
             this.allPostedJobs=results.data
+            console.log(results);
 
         }
     }

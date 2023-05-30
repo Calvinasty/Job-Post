@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="handleRegister()" v-if="next !== 2">
+    <form @submit.prevent="() => handleSubmit()" v-if="next !== 2">
         <Transition name="slide-fade">
             <div v-if="next == 0" class="first">
                 <div v-if="screen=='desktop'" class="headers">
@@ -44,7 +44,7 @@
                 <InputComponent placeHolder="Select Date of Birth" type="date" name="date" :handleInput="handleUserInput" />
                 <span>
                     <label for="fname">Gender</label>
-                    <select name="gender" id="gender" :handleInput="handleUserInput">
+                    <select name="gender" id="gender" v-model="inputData.gender" :handleInput="handleUserInput">
                         <option value="default">Select Your Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import InputComponent from '../InputComponent.vue';
 export default {
     components:{InputComponent},
@@ -93,7 +94,7 @@ export default {
 
     methods: {
         handleUserInput(data){
-            console.log(data);
+            // console.log(data);
             if(data.inputName == 'email') {
                 this.inputData.email = data.inputValue
             }
@@ -122,27 +123,40 @@ export default {
                 this.inputData.date = data.inputValue
             }
 
-            if(data.inputName == 'gender') {
-                this.inputData.gender = data.inputValue
-            }
+            // if(data.inputName == 'gender') {
+            //     this.inputData.gender = data.inputValue
+            // }
         },
 
-        handleSignIn() {
+        handleSubmit() {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             const user={
-                fname:this.inputData.fname,
-                lname:this.inputData.lname,
-                mdname:this.inputData.mdname,
+                first_name:this.inputData.fname,
+                last_name:this.inputData.lname,
+                middle_name:this.inputData.mdname,
                 gender:this.inputData.gender,
-                date:this.inputData.date,
+                date_of_birth:this.inputData.date,
                 email:this.inputData.email,
                 password:this.inputData.password,
-                confirmPass:this.inputData.confirmPass
+                confirm_password: this.inputData.confirmPass
             }
+            console.log(user);
+            axios.post('http://192.168.1.53:3000/user', user)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
-            if(user.password !== user.confirmPass) {
-               return alert('Password and confirm password does not match')
-            }
-            
+            // if(!regex.test(user.email)){
+            //     // this.handleRegister()
+            //     return alert('Email is invalid')
+            // }
+            // if(user.password !== user.confirmPass) {
+            //    return alert('Password and confirm password does not match')
+            // }
+                        
         }
     },
 
@@ -155,7 +169,7 @@ export default {
         "form2sub",
         "setNext",
         "setPrev",
-        "handleRegister",
+        // "handleRegister",
         "handleHome"
     ]
 }
