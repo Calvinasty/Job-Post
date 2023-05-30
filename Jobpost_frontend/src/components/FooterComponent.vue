@@ -6,7 +6,7 @@
             <div class="footer-sec1">
 
                 <div class="logo">
-                    <img @click="toTop" src="/images/logo.png" alt="" width="100px">
+                    <img @click="toTop" src="/images/logo.png" alt="">
                 </div>
 
                 <div class="footer-sec1-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit.

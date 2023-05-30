@@ -66,7 +66,7 @@ export default {
     border-bottom: 5px solid #88cc00;
     flex: 1;
     max-width: 530px;
-    min-width: 390px;
+    min-width: 450px;
     height: 400px;
 }
 
