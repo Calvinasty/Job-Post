@@ -18,7 +18,7 @@
                         <span v-show="item.edit"  @click="showTip(index)" class="material-symbols-outlined tooltip">visibility</span>
                         <span v-show="!item.edit" @click="hideTip(index)" class="material-symbols-outlined tooltip">visibility_off</span>
                         <p class="hide"  :class="{view:item.edit}">
-                            <span>View Applicant</span>
+                            <span @click="setModal('applicantsummary')">View Applicant</span>
                             <br>
                             <span>Download Resume</span>
                         </p>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import {mapActions} from 'pinia'
+import { useDashboardStore } from '../../../stores/dashboard';
 export default {
     components: {
     },
@@ -42,13 +44,13 @@ export default {
             toolVisible: false
         };
     },
-
     mounted() {
         
         
     },
 
     methods: {
+        ...mapActions(useDashboardStore, ['setModal']),
         showTip(index){
             this.applicants.forEach(element => {
                 element['edit']=false        

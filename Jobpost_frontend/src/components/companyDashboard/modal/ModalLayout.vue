@@ -1,17 +1,18 @@
 <template>
     <div class="overlay">
         <div class="modal">
-            <span @click="$emit('modal-close')">X</span>
-            <PostJobForm />
+            <span @click="setModal('')">X</span>
+            <slot></slot>
         </div>
     </div>
 </template>
 
 <script>
-    import PostJobForm from './PostJobForm.vue';
+    import {mapActions} from 'pinia'
+    import { useDashboardStore } from '../../../stores/dashboard';
     export default {
-        components:{
-            PostJobForm
+        methods:{
+            ...mapActions(useDashboardStore, ['setModal'])
         }
     }
 </script>

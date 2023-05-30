@@ -31,7 +31,7 @@ export default {
             next: 0,
             form1header: 'Sign Up',
             form1sub: 'Enter your details',
-            form2header: 'Sign Up Continue',
+            form2header: 'Continue Sign Up',
             form2sub: 'Enter additional details'
         }
     },

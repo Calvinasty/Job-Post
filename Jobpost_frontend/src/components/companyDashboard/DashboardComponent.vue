@@ -14,8 +14,8 @@
     </main>
     <Transition name="slide-fade">
         <!-- close emits from child component to parent -->
-        <ModalComponent 
-            v-show="showModal" 
+        <ModalComponent
+            v-show="modalComponentId !== ''" 
             @modal-close="showModal=false"
         />
         </Transition>
@@ -23,9 +23,11 @@
 </template>
 
 <script>
+    import { mapState } from 'pinia'
+    import { useDashboardStore } from '../../stores/dashboard';
     import SideBarComponent from './SideBarComponent.vue';
     import TopBarComponent from './TopBarComponent.vue';
-    import ModalComponent from './postjob/ModalComponent.vue';
+    import ModalComponent from './modal/ModalComponent.vue';
     import DashboardContainer from './dashboardPages/DashboardContainer.vue';
     export default {
         components:{
@@ -39,6 +41,9 @@
                 toggleNav: true,
                 showModal: false
             }
+        },
+        computed:{
+            ...mapState(useDashboardStore, ['modalComponentId'])
         },
         methods:{
         }
