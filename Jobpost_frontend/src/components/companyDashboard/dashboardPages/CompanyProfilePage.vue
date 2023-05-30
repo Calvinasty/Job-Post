@@ -8,7 +8,7 @@
                 <div class="profile">
                     <div class="profile-card">
                         <!-- <img class="f-editicon" src="images/edit_icon.svg" alt="editicon" /> -->
-                        <img src="/images/userprofile.svg" alt="pic">
+                        <img src="/images/logo.png" alt="pic">
                         <h3>{{ companyName }}</h3>
                         <!-- <span>{{ userOccupation }}</span> -->
                     </div>
@@ -78,7 +78,7 @@ export default {
         return {
             title: 'Company Profile',
             companyName: 'Maxim Nyansa',
-            numberOfPostedJobs: 9,
+            numberOfPostedJobs: 0,
 
             cardDetails: [
                 {
