@@ -21,7 +21,11 @@
 .nav-item {
     width: 100%;
     padding: 5px;
-    border: 1px solid rgba(217, 217, 217, 1)
+    border-top: 1px solid rgba(217, 217, 217, 1);
+    border-bottom: 1px solid rgba(217, 217, 217, 1);
+    /* border-bottom: none; */
+    /* border: 1PX solid green; */
+    
 }
 
 .nav-item button {

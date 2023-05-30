@@ -64,10 +64,10 @@
 .side-bar {
     height: 100vh;
     width: 20%;
-    padding: 15px 20px;
+    /* padding: 65px 0px; */
+    /* border: 1px solid red; */
     background-color: #fff;
     box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
-
     display: flex;
     flex-direction: column;
     align-items: center;
