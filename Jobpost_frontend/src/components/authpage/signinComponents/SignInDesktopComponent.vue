@@ -2,7 +2,7 @@
     <div class="signin-desktop">
         <div class="signin">
             <header>
-                <img src="/images/maxim-logo.jpeg" alt="">
+                <img src="/images/logo.png" alt="">
                 <h2>{{ nameHeader }}</h2>
             </header>
 
@@ -20,11 +20,11 @@
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row" @click="adminSignUp">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
+                    <button type="submit" class="flex-center-row signin-btn">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
 
-                    <p>Forgotten Password? <span>Click Here</span></p>
+                    <button type="button" class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
 
-                    <p>{{ userInfo }} <a href="http://localhost:5173/auth/admin-signup"><span>Register Now</span></a></p>
+                    <button type="button" v-if="showText" class="signup-btn">{{ userInfo }} <span @click="toSignup()">Register Now</span></button>
                 </div>
             </form>
         </div>
@@ -32,7 +32,11 @@
 </template>
 
 <script>
+    import {mapActions} from 'pinia'
+    import { useUserStore } from '../../../stores/users'
+    import axios from 'axios'
     import InputComponent from '@/components/authpage/InputComponent.vue'
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     export default {
         components : {
             InputComponent
@@ -41,7 +45,10 @@
        data () {
 
         return {
-            
+            inputData: {
+                email: '',
+                password: ''
+            }
         }
 
        },
@@ -50,7 +57,56 @@
             'nameHeader',
            'nameTitle',
            'userInfo',
-       ]
+           'showText'
+       ],
+
+       methods: {
+        ...mapActions(useUserStore, ['setUser']),
+        toSignup() {
+            this.$router.push('/auth')
+        },
+
+        handleUserInput(data){
+            // console.log(data);
+            if(data.inputName == 'email') {
+                this.inputData.email = data.inputValue
+            }
+
+            if(data.inputName == 'password') {
+                this.inputData.password = data.inputValue
+            }
+        },
+
+        handleSignIn() {
+            console.log('Hello', this.inputData.email.match((validRegex)));
+            const user={
+                email:this.inputData.email,
+                password:this.inputData.password
+            }
+            // if(user.email== '' || user.password=='') {
+            //    return alert('Email and Password is required')
+            // }
+            // else {
+            //     console.log(user);
+            // }
+            axios.get(`http://192.168.1.53:3000/user?email=${user.email}&password=${user.password}`)
+            .then(res =>{
+                if(res.data.length > 0){
+                    this.setUser({
+                        email: res.data[0].email,
+                        password: res.data[0].password
+                    })
+                    this.$router.push('/jobsearch')
+                }
+                else{
+                    alert('invalid email or password')
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })                                   
+        }
+       }
     }
 </script>
 
@@ -72,9 +128,9 @@
         justify-content: center;
         align-items: center;
         width: 40%;
-        padding: 130px;
+        padding: 100px;
         row-gap: 20px;
-        border-radius: 10px;
+        border-radius: 20px;
     }
 
     header {
@@ -155,7 +211,7 @@
         line-height: 16px;
     }
 
-    .desk-links button {
+    .desk-links .signin-btn {
         padding:12px 9px;
         border-radius: 10px;
         background: #7FBF4C;
@@ -164,14 +220,26 @@
         column-gap: 5px;
     }
 
-    .desk-links p span {
+    .desk-links .forgot-btn, .signup-btn {
+        background: #fff;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .forgot-btn span, .signup-btn span {
         color: #7FBF4C;
         cursor: pointer;
     }
 
+    /* .desk-links p span {
+        color: #7FBF4C;
+        cursor: pointer;
+    } */
+
     @media screen and (max-width:1200px) and (min-width:1024px) {
         .signin{
-            width: 45%;
+            width: 50%;
         }
 
         .desk-links {

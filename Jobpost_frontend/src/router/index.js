@@ -11,6 +11,7 @@ import PersonalInformationComponent from '@/components/profilepage/PersonalInfor
 import EducationHistoryComponent from '@/components/profilepage/EducationHistoryComponent.vue'
 import WorkExperienceComponent from '@/components/profilepage/WorkExperienceComponent.vue'
 import SkillInterestComponent from '@/components/profilepage/SkillInterestComponent.vue'
+import JobViewEdit from '@/components/companyDashboard/dashboardPages/JobViewEdit.vue'
 
 
 const router = createRouter({
@@ -76,6 +77,11 @@ const router = createRouter({
       path:'/admin/:id',
       name:'Dashboard',
       component: CompanyPage
+    },
+    {
+      path:'/jobviewedit/:id',
+      name:'Jobviewedit',
+      component: JobViewEdit
     }
   ],
   scrollBehavior(to, from, savedPosition) {
