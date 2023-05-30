@@ -9,21 +9,27 @@
                 <input  type="text" v-model="searchInput" v-on:change="()=>handleSearch({data:searchInput})" placeholder="Search for job post,company,location"> 
             </div>
         <div class="btn">
-            <span>CK</span>
+            <span>{{ email }}</span>
+            <span v-if="email !==''">CK</span>
         </div>
         </span>
         <div class="btn mobile">
-            <span>CK</span>
+            <span>{{ email }}</span>
+            <span v-if="email !==''">CK</span>
         </div>
     </div>
 </template>
 
 <script>
+import {mapState, mapActions} from 'pinia'
+import { useUserStore } from '../../stores/users';
 export default {
     props:[
         'handleSearch'
     ],
-
+    computed:{
+        ...mapState(useUserStore, ['email'])
+    },
     methods:{
         handleLogout(){
             this.$router.push('/')

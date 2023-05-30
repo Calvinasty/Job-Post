@@ -32,6 +32,9 @@
 </template>
 
 <script>
+    import {mapActions} from 'pinia'
+    import { useUserStore } from '../../../stores/users'
+    import axios from 'axios'
     import InputComponent from '@/components/authpage/InputComponent.vue'
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     export default {
@@ -43,9 +46,9 @@
 
         return {
             inputData: {
-                    email: '',
-                    password: ''
-                }
+                email: '',
+                password: ''
+            }
         }
 
        },
@@ -58,6 +61,7 @@
        ],
 
        methods: {
+        ...mapActions(useUserStore, ['setUser']),
         toSignup() {
             this.$router.push('/auth')
         },
@@ -85,9 +89,22 @@
             // else {
             //     console.log(user);
             // }
-
-            console.log(user)
-            
+            axios.get(`http://192.168.1.53:3000/user?email=${user.email}&password=${user.password}`)
+            .then(res =>{
+                if(res.data.length > 0){
+                    this.setUser({
+                        email: res.data[0].email,
+                        password: res.data[0].password
+                    })
+                    this.$router.push('/jobsearch')
+                }
+                else{
+                    alert('invalid email or password')
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })                                   
         }
        }
     }
