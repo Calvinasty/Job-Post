@@ -12,7 +12,7 @@
                 <div class="profile-section">
                     <div id="profile">
                         <div class="profile-card">
-                            <img src="images/userprofile.svg" alt="pic">
+                            <img src="/images/profilepic.png" alt="pic">
                             <h3>{{ usersName }}</h3>
                             <span>{{ userOccupation }}</span>
                         </div>
@@ -31,22 +31,23 @@
                         <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[0].cardTitle"
                             :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true">
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputOne.type"
+                                :inputType="inputCardDetails[0].cardInputInformation.inputOne.type" :Value="Value.fullname"
                                 :inputId="inputCardDetails[0].cardInputInformation.inputOne.id" />
 
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputTwo?.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputTwo.type"
+                                :inputType="inputCardDetails[0].cardInputInformation.inputTwo.type" :Value="Value.email"
                                 :inputId="inputCardDetails[0].cardInputInformation.inputTwo.id" />
 
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputThree?.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputThree.type"
+                                :inputType="inputCardDetails[0].cardInputInformation.inputThree.type" :Value="Value.contact"
                                 :inputId="inputCardDetails[0].cardInputInformation.inputThree.id" />
 
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputFour?.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputFour.type"
+                                :inputType="inputCardDetails[0].cardInputInformation.inputFour.type" :Value="Value.linkenin"
                                 :inputId="inputCardDetails[0].cardInputInformation.inputFour.id" />
+
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputEight?.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputEight.type"
+                                :inputType="inputCardDetails[0].cardInputInformation.inputEight.type" :Value="Value.github"
                                 :inputId="inputCardDetails[0].cardInputInformation.inputEight.id" />
                         </CardInformationComponent>
 
@@ -90,7 +91,7 @@
                                     <option value="">Select</option>
                                     <option value="">Vue Js</option>
                                     <option value="">Node Js</option>
-                                    <option value="">Full Stack </option>
+                                    <option value="">Angular </option>
                                 </select>
                             </div>
                         </CardInformationComponent>
@@ -131,9 +132,16 @@ export default {
     data() {
         return {
             title: 'User Profile',
-            usersName: 'Daniella McDan',
+            usersName: 'Calvin Asantey',
             userOccupation: 'Software Developer',
             showModal: false,
+            Value: {
+                fullname: "Calvin Asantey",
+                email: "calvinasty9@gmail.com",
+                contact: "0558878067",
+                linkenin: "https://www.linkedin.com/in/calvin-asantey/",
+                github: "https://github.com/Calvinasty/Job-Post",
+            },
 
             inputCardDetails: userprofileData
         }
@@ -233,6 +241,7 @@ export default {
     width: 165px;
     height: 160px;
     margin-bottom: 51px;
+    border-radius: 50%;
 }
 
 .jobsapplied {
@@ -261,7 +270,7 @@ export default {
     gap: 60px;
     flex-wrap: wrap;
     flex: 1;
-    /* background: #000; */
+
 
 
 }

@@ -5,17 +5,17 @@
          <Transition name="slide-fade">
             <form v-if="pageNumber==0" class=" flex-center">
                     <div class=" input-container flex-center-row">
-                        <InputComponent class="input" type="text" placeHolder="Organization Name" inputId="jobposter-name" name="name"  />
-                        <InputComponent class="input" type="email" placeHolder="Organization Email" inputId="jopposter-email" name="email"/>
+                        <InputComponent class="input" type="text" placeHolder="Organization Name" inputId="jobposter-name" name="name" :handleInput='handleUserInput'  />
+                        <InputComponent class="input" type="email" placeHolder="Organization Email" inputId="jopposter-email" name="email" :handleInput='handleUserInput'/>
 
                     </div>
                     <div class="input-container pass  flex-center-row">
-                        <InputComponent class="input" type="password" placeHolder="Enter Password" inputId="jopposter-password" name="password"  />
-                        <InputComponent class="input" type="password" placeHolder="Confirm Password" inputId="jopposter-confirm-password" name="confirm-password"  />
+                        <InputComponent class="input" type="password" placeHolder="Enter Password" inputId="jopposter-password" name="password" :handleInput='handleUserInput'  />
+                        <InputComponent class="input" type="password" placeHolder="Confirm Password" inputId="jopposter-confirm-password" name="confirmPassword" :handleInput='handleUserInput'  />
 
                     </div>
                     <div class="input-container flex-center-row">
-                        <InputComponent class="input" type="text" placeHolder="Enter Organizations Website" inputId="jopposter-website" name="website" />
+                        <InputComponent class="input" type="text" placeHolder="Enter Organizations Website" inputId="jopposter-website" name="website" :handleInput='handleUserInput' />
                         <InputComponent class="input" type="" placeHolder="Enter Organizations name" inputId="jopposter-names" name="name" />
                         
                     </div>
@@ -26,12 +26,12 @@
             <Transition name="slide-fade">
                 <form v-if="pageNumber==1" class=" form-two flex-center">
                     <div class="input-container flex-center">
-                        <InputComponent class="input" type="file" placeHolder="Company Logo" inputId="jopposter-logo" name="company-logo"/>                    
-                        <InputComponent class="input" type="tel" placeHolder="Company Number" inputId="jobposter-phone" name="phone"  />                                                    
+                        <InputComponent class="input" type="file" placeHolder="Company Logo" inputId="jopposter-logo" name="companyLogo" :handleInput='handleUserInput'/>                    
+                        <InputComponent class="input" type="tel" placeHolder="Company Number" inputId="jobposter-phone" name="phone" :handleInput='handleUserInput'  />                                                    
                     </div>
-                        <InputComponent class="input" type="text" placeHolder="Location" inputId="jobposter-location" name="location"/>                                                    
+                        <InputComponent class="input" type="text" placeHolder="Location" inputId="jobposter-location" name="location" :handleInput='handleUserInput'/>                                                    
                         <div class="flex-center input-container verification">
-                            <select name="verification" class="verification input" >
+                            <select name="verification" class="verification input" v-model="verify" v-on:change="()=>handleVerify({verification:verify})"  >
                                 <option value="" class="selected" >How do you want to be verified?</option>
                                 <option value="regCert">Registration Certificate /Documents</option>
                                 <option value="visit">Physical Visit</option>
@@ -67,6 +67,7 @@ export default {
 
     data() {
         return {
+
              
         };
     },
@@ -75,13 +76,20 @@ export default {
         'pageNavigation',
         'pageNumber',
         'btnText',
-        'btnType'
+        'btnType',
+        'handleUserInput',
+        'handleVerify',
+        'userInfo',
+        
     ],
 
     methods: {        
         handleHome(){
                 this.$router.push('/admin/admin')
-            }
+            },
+        
+            
+            
     },
 };
 </script>

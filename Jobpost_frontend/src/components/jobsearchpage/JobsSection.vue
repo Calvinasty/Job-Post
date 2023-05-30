@@ -1,23 +1,13 @@
 <template>
     <section class="jobs-listing ">
-        <JobCard v-for="(job,index) in allJobs" :jobInfomation="job" :key="index"  />
-        <!-- <JobCard :jobInfomation="jobsList[1]"/>
-        <JobCard :jobInfomation="jobsList[2]"/>
-        <JobCard :jobInfomation="jobsList[3]"/>
-        <JobCard :jobInfomation="jobsList[4]"/>
-        <JobCard :jobInfomation="jobsList[5]"/>
-        <JobCard :jobInfomation="jobsList[0]"/>
-        <JobCard :jobInfomation="jobsList[1]"/>
-        <JobCard :jobInfomation="jobsList[2]"/>
-        <JobCard :jobInfomation="jobsList[3]"/>
-        <JobCard :jobInfomation="jobsList[4]"/>
-        <JobCard :jobInfomation="jobsList[5]"/> -->
-        
+        <JobCard v-for="(job,index) in allPostedJobs" :jobInfomation="job" :key="index"  />
+            
     </section>
 </template>
 
 <script>
 import JobCard from './JobCard.vue';
+import axios from 'axios'
 // import { jobsPosted } from '../../data';
 export default {
     name: 'JobPostJobsSection',
@@ -25,6 +15,21 @@ export default {
     props:[
     'allJobs'
     ],
+    data(){
+        return{
+            allPostedJobs:[]
+        }
+    },
+    beforeMount(){
+        this.getAllJobs()
+    },
+    methods:{
+        async getAllJobs(){
+            let results= await axios.get('http://195.168.1.53:3000/jobs')
+            this.allPostedJobs=results.data
+
+        }
+    }
 
 };
 </script>

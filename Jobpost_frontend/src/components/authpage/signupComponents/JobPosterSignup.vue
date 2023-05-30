@@ -2,7 +2,7 @@
     <AuthLayout class="auth-container">
         <div class="form-container" :class="{centerForm:activeClass[2]}">
            <JobPosterFormHeader :pageNum="pageNum" v-if="pageNum!==2"/>
-            <JobPosterForm :pageNumber="pageNum" :pageNavigation="handlePageNavigation"/>
+            <JobPosterForm :pageNumber="pageNum" :pageNavigation="handlePageNavigation" :userInfo="userInfo" :handleUserInput="handleUserInput"/>
            <PageIndicator  :activeClass="activeClass"/>
         </div>
 
@@ -26,6 +26,17 @@ export default {
         return{
             activeClass:[false,false,false],
             pageNum:0,
+            userInfo:{
+                name:"",
+                email:"",
+                password:"",
+                confirmPassword:"",
+                website:"",
+                companyLogo:"",
+                phone:"",
+                location:"",
+                verification:""
+            }
         }
     },
     mounted(){
@@ -41,6 +52,7 @@ export default {
                     ?this.pageNum
                     :++this.pageNum
                     this.handleActivePage(this.pageNum)
+                    this.handleUserInput()
                     // console.log(this.pageNum);
                 }else{
                     this.pageNum<=0
@@ -49,6 +61,39 @@ export default {
                     this.handleActivePage(this.pageNum)
                 }
                 // console.log(this.pageNum,actionText);
+            },
+            handleUserInput(data){
+               if(data?.inputName=='name'){ this.userInfo.name=data?.inputValue }
+               if(data?.inputName=='email'){ this.userInfo.email=data?.inputValue }
+               if(data?.inputName=='password'){this.userInfo.password=data?.inputValue }
+               if(data?.inputName=='confirmPassword'){this.userInfo.confirmPassword=data?.inputValue }
+               if(data?.inputName=='website'){this.userInfo.website=data?.inputValue  }
+               if(data?.inputName=='companyLogo'){ this.userInfo.companyLogo=data?.inputValue }
+               if(data?.inputName=='phone'){this.userInfo.phone=data?.inputValue}
+               if(data?.inputName=='location'){this.userInfo.location=data?.inputValue}
+               if(data?.inputName=='verification'){this.handleVerify()}
+               if(this.pageNum>=2){
+                   this.handleSignUp()
+               }
+               
+                     
+            },
+            handleVerify(data){
+                this.userInfo.verification=data?.verification
+            },
+            handleSignUp(){
+                const userData={
+                name:this.userInfo.name,
+                email:this.userInfo.email,
+                password:this.userInfo.password,
+                confirmPassword:this.userInfo.confirmPassword,
+                website:this.userInfo.website,
+                companyLogo:this.userInfo.companyLogo,
+                phone:this.userInfo.phone,
+                location:this.userInfo.location,
+                verification:this.userInfo.verification
+            }
+            console.log(userData);
             },
             handleActivePage(page=0){
                 this.activeClass.map((_activeItem,index)=>(index==page?this.activeClass[index]=true:this.activeClass[index]=false))

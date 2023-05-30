@@ -1,6 +1,6 @@
 <template>
     <aside class="nav-item flex-center">
-        <button type="button" :class="{ active:navItem?.active}" v-for="(navItem, index) in navItems" @click="(e) => goto(navItem.link, index)" :key="index">
+        <button type="button" :class="{ active:navItem?.active}" v-for="(navItem, index) in navItems" @click="() => goto(navItem.link, index)" :key="index">
             <span class="material-symbols-outlined"> {{ navItem.icon }} </span>
             {{ navItem.name }}
         </button>

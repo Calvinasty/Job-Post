@@ -5,7 +5,7 @@
         </div>
         <div class="auth-btns">
             <router-link to="/auth/login">Sign in</router-link>
-            <router-link to="/auth/register">Sign up</router-link>
+            <router-link to="/auth">Sign up</router-link>
         </div>
     </div>
 </template>

@@ -9,7 +9,7 @@
     import AnalyticsView from './AnalyticsView.vue';
     import JobsView from './JobsViewComponent.vue';
     import ViewApplicant from './ViewAllApplicant.vue';
-    import CompanyProfile from '@/views/CompanyProfilePage.vue'
+    import CompanyProfile from './CompanyProfilePage.vue';
     export default {
         components:{
             DashboardLayout,

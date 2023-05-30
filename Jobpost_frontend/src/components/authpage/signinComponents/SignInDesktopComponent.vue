@@ -1,54 +1,101 @@
 <template>
     <div class="signin-desktop">
-
         <div class="signin">
             <header>
-                <img src="/images/logo.png" alt="">
-                <h2>Super Admin</h2>
+                <img src="/images/maxim-logo.jpeg" alt="">
+                <h2>{{ nameHeader }}</h2>
             </header>
 
             <div class="signin-header">
-                <h3>Sign In</h3>
+                <h3>{{ nameTitle }}</h3>
             </div>
 
-            <form class="signin-desktop-field">
+            <form @submit.prevent="handleSignIn" class="signin-desktop-field">
                 <div class="user-field">
-                    <InputComponent type="email" id="email" name="email" placeHolder="Email" />
+                    <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
                 </div>
 
                 <div class="password-field">
-                    <InputComponent type="password" id="password" name="password" placeHolder="Password"/>
+                    <InputComponent type="password" id="password" name="password" placeHolder="Password" :handleInput="handleUserInput" />
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
+                    <button type="submit" class="flex-center-row signin-btn">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
 
-                    <p>Forgotten Password? <span>Click Here</span></p>
+                    <button class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
 
-                    <p>Not Admin? <span @click="adminSignUp">Register Now</span></p>
+                    <button v-if="showText" class="signup-btn">{{ userInfo }} <span @click="toSignup()">Register Now</span></button>
                 </div>
             </form>
         </div>
-
     </div>
 </template>
 
 <script>
-    import InputComponent from '../InputComponent.vue';
+    import InputComponent from '@/components/authpage/InputComponent.vue'
+    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     export default {
-        components: {
-            InputComponent,
+        components : {
+            InputComponent
         },
-        methods: {
-        adminSignUp(){
-            this.$router.push("/auth/admin-signup")
+
+       data () {
+
+        return {
+            inputData: {
+                    email: '',
+                    password: ''
+                }
+        }
+
+       },
+       
+       props:[
+            'nameHeader',
+           'nameTitle',
+           'userInfo',
+           'showText'
+       ],
+
+       methods: {
+        toSignup() {
+            this.$router.push('/auth')
+        },
+
+        handleUserInput(data){
+            // console.log(data);
+            if(data.inputName == 'email') {
+                this.inputData.email = data.inputValue
+            }
+
+            if(data.inputName == 'password') {
+                this.inputData.password = data.inputValue
+            }
+        },
+
+        handleSignIn() {
+            console.log('Hello', this.inputData.email.match((validRegex)));
+            const user={
+                email:this.inputData.email,
+                password:this.inputData.password
+            }
+            // if(user.email== '' || user.password=='') {
+            //    return alert('Email and Password is required')
+            // }
+            // else {
+            //     console.log(user);
+            // }
+
+            console.log(user)
+            
         }
        }
     }
 </script>
 
 <style lang="css" scoped>
-    .signin-desktop {
+
+.signin-desktop {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -64,9 +111,9 @@
         justify-content: center;
         align-items: center;
         width: 40%;
-        padding: 130px;
+        padding: 100px;
         row-gap: 20px;
-        border-radius: 10px;
+        border-radius: 20px;
     }
 
     header {
@@ -137,6 +184,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: center;
         row-gap: 25px;
     }
 
@@ -146,24 +194,35 @@
         line-height: 16px;
     }
 
-    .desk-links button {
+    .desk-links .signin-btn {
         padding:12px 9px;
         border-radius: 10px;
         background: #7FBF4C;
         color: #fff;
         border: #7FBF4C;
-        width: 30%;
         column-gap: 5px;
     }
 
-    .desk-links p span {
+    .desk-links .forgot-btn, .signup-btn {
+        background: #fff;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .forgot-btn span, .signup-btn span {
         color: #7FBF4C;
         cursor: pointer;
     }
 
+    /* .desk-links p span {
+        color: #7FBF4C;
+        cursor: pointer;
+    } */
+
     @media screen and (max-width:1200px) and (min-width:1024px) {
         .signin{
-            width: 45%;
+            width: 50%;
         }
 
         .desk-links {
@@ -185,4 +244,5 @@
         }
     }
     
+
 </style>

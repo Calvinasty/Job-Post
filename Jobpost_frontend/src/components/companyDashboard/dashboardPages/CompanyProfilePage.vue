@@ -8,13 +8,13 @@
                 <div class="profile">
                     <div class="profile-card">
                         <!-- <img class="f-editicon" src="images/edit_icon.svg" alt="editicon" /> -->
-                        <img src="images/userprofile.svg" alt="pic">
+                        <img src="/images/userprofile.svg" alt="pic">
                         <h3>{{ companyName }}</h3>
                         <!-- <span>{{ userOccupation }}</span> -->
                     </div>
                     <div class="jobsapplied">
                         <div class="jobsapplied-1">
-                            <img src="images/user_profile_icon.svg" alt="">
+                            <img src="/images/user_profile_icon.svg" alt="">
                             <p>Jobs posted</p>
                             <p> {{ numberOfPostedJobs }} </p>
                         </div>
@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
-import InputComponent from '../components/profilepage/inputComponent.vue';
+import CardInformationComponent from '../../profilepage/CardInformationComponent.vue';
+import InputComponent from '../../profilepage/inputComponent.vue';
 export default {
     data() {
         return {
@@ -171,7 +171,7 @@ export default {
 
 <style lang="css" scoped>
 .company-profile-container {
-    padding: 30px 80px;
+    padding: 30px 40px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -187,7 +187,7 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 50px;
+    gap: 30px;
 
 
 }
@@ -302,11 +302,11 @@ export default {
         width: 100%;
     }
 
-    .f-editicon {
+    /* .f-editicon {
 
         cursor: pointer;
         width: 20px
-    }
+    } */
 
 
     .profile-details {
