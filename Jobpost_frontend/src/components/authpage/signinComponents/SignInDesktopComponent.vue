@@ -12,11 +12,11 @@
 
             <form @submit.prevent="handleSignIn" class="signin-desktop-field">
                 <div class="user-field">
-                    <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
+                    <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="() => handleUserInput" />
                 </div>
 
                 <div class="password-field">
-                    <InputComponent type="password" id="password" name="password" placeHolder="Password" :handleInput="handleUserInput" />
+                    <InputComponent type="password" id="password" name="password" placeHolder="Password" :handleInput="() => handleUserInput" />
                 </div>
 
                 <div class="desk-links">

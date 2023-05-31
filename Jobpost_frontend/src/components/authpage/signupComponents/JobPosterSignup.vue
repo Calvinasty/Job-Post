@@ -1,25 +1,23 @@
 <template>
     <AuthLayout class="auth-container">
-        <div class="form-container" :class="{centerForm:activeClass[2]}">
-           <JobPosterFormHeader :pageNum="pageNum" v-if="pageNum!==2"/>
-            <JobPosterForm :pageNumber="pageNum" :pageNavigation="handlePageNavigation" :userInfo="userInfo" :handleUserInput="handleUserInput"/>
-           <PageIndicator  :activeClass="activeClass"/>
+        <div class="form-container" :class="{centerForm:pageNum==1}">
+           <JobPosterFormHeader :pageNum="pageNum" v-if="pageNum==0"/>
+            <JobPosterForm :pageNumber="pageNum" :handleSignUp="handleComapnySignUp" :handleVerify="handleVerify" :userInfo="userInfo" :handleUserInput="handleUserInput"/>
         </div>
 
     </AuthLayout>
 </template>
 
 <script>
+import axios from 'axios';
 import AuthLayout from '../AuthLayout.vue';
-import PageIndicator from './PageIndicator.vue';
 import JobPosterFormHeader from './JobPosterFormHeader.vue';
 import JobPosterForm from './JobPosterForm.vue';
 export default {
   components: { 
     AuthLayout, 
     JobPosterFormHeader,
-    JobPosterForm,
-    PageIndicator },
+    JobPosterForm },
     name: 'JobPostJobPosterSignup',
    
     data(){
@@ -31,74 +29,48 @@ export default {
                 email:"",
                 password:"",
                 confirmPassword:"",
-                website:"",
-                companyLogo:"",
                 phone:"",
-                location:"",
                 verification:""
             }
         }
     },
     mounted(){
-        this.handleActivePage()
+      
 
     },
 
     methods:{
-            handlePageNavigation(btn){
-                const actionText=btn.toLowerCase()
-                if(actionText=='next'||actionText=='register'){
-                    this.pageNum>=2
-                    ?this.pageNum
-                    :++this.pageNum
-                    this.handleActivePage(this.pageNum)
-                    this.handleUserInput()
-                    // console.log(this.pageNum);
-                }else{
-                    this.pageNum<=0
-                    ?this.pageNum
-                    :--this.pageNum
-                    this.handleActivePage(this.pageNum)
-                }
-                // console.log(this.pageNum,actionText);
-            },
-            handleUserInput(data){
-               if(data?.inputName=='name'){ this.userInfo.name=data?.inputValue }
-               if(data?.inputName=='email'){ this.userInfo.email=data?.inputValue }
-               if(data?.inputName=='password'){this.userInfo.password=data?.inputValue }
-               if(data?.inputName=='confirmPassword'){this.userInfo.confirmPassword=data?.inputValue }
-               if(data?.inputName=='website'){this.userInfo.website=data?.inputValue  }
-               if(data?.inputName=='companyLogo'){ this.userInfo.companyLogo=data?.inputValue }
-               if(data?.inputName=='phone'){this.userInfo.phone=data?.inputValue}
-               if(data?.inputName=='location'){this.userInfo.location=data?.inputValue}
-               if(data?.inputName=='verification'){this.handleVerify()}
-               if(this.pageNum>=2){
-                   this.handleSignUp()
-               }
-               
-                     
-            },
-            handleVerify(data){
-                this.userInfo.verification=data?.verification
-            },
-            handleSignUp(){
+            handleComapnySignUp(){
+                this.handleUserInput()
+
                 const userData={
                 name:this.userInfo.name,
                 email:this.userInfo.email,
                 password:this.userInfo.password,
                 confirmPassword:this.userInfo.confirmPassword,
-                website:this.userInfo.website,
-                companyLogo:this.userInfo.companyLogo,
                 phone:this.userInfo.phone,
-                location:this.userInfo.location,
                 verification:this.userInfo.verification
             }
-            console.log(userData);
+                axios.post('http://192.168.1.53:3000/company',userData)
+               .then(res=>{
+                    console.log(res);
+                    res.status==201?++this.pageNum:alert('invalid Input')
+               })
+                .catch(err=>{
+                    console.log(err);
+                })
+                },
+            handleUserInput(data){
+               if(data?.inputName=='name'){ this.userInfo.name=data?.inputValue }
+               if(data?.inputName=='email'){ this.userInfo.email=data?.inputValue }
+               if(data?.inputName=='password'){this.userInfo.password=data?.inputValue }
+               if(data?.inputName=='confirmPassword'){this.userInfo.confirmPassword=data?.inputValue }
+               if(data?.inputName=='phone'){this.userInfo.phone=data?.inputValue}
+               if(data?.inputName=='verification'){this.handleVerify()}                      
             },
-            handleActivePage(page=0){
-                this.activeClass.map((_activeItem,index)=>(index==page?this.activeClass[index]=true:this.activeClass[index]=false))
-                // console.log(this.activeClass);
-        }
+            handleVerify(data){
+                this.userInfo.verification=data?.verification
+            },
 }
 };
 
@@ -125,13 +97,12 @@ export default {
 }
 
 .form-container{
-    background: #ffff;
+    background: rgba(255, 255, 255, 1);
     align-items: flex-start;
-    flex:1;
-    height: 100%;
-    max-width: 1123px;
-    padding: 30px 60px;
-    border-radius: 60px;
+    height: 838px;
+    width: 701px;
+    border-radius: 20px;
+    padding: 30px 50px;
     position :relative;
     transition: all .4s ease;
    
@@ -140,7 +111,7 @@ export default {
 align-items: center;
 justify-content: center;
 margin: 0 auto;
-background-color: #f1f1f1;
+background-color: transparent;
 }
 
 

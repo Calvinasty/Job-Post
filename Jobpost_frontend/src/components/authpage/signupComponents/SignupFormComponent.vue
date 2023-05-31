@@ -51,7 +51,7 @@
                         <option value="others">Others</option>
                     </select>
                 </span>
-                <InputComponent placeHolder="Select your profile picture (optional)" type="file" name="profile" />
+                <InputComponent placeHolder="Contact eg. +233 54..." type="text" name="contact" />
 
                 <button type="submit">
                     SignUp <span class="material-symbols-outlined">how_to_reg </span>
