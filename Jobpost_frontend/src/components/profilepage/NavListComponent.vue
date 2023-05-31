@@ -29,7 +29,6 @@ export default {
                 { title: 'Upload Picture', active: true, link: 'UploadCompanyPicture' },
                 { title: 'Company Information', active: false, link: 'CompanyInformation' },
                 { title: 'Registration Information', active: false, link: 'RegistrationInfo' },
-                { title: 'Job Description', active: false, link: 'jobdescription' },
             ]
         }
     },

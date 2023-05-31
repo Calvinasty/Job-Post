@@ -17,7 +17,6 @@ import WorkExperience from './updateuser/WorkExperienceComponent.vue'
 import SkillInterest from './updateuser/SkillInterestComponent.vue'
 // company components
 import CompanyInformation from './updatecompany/CompanyInformation.vue'
-import JobDescription from './updatecompany/JobDescription.vue'
 import RegistrationInfo from './updatecompany/RegistrationInfo.vue'
 import UploadCompanyPicture from './updatecompany/UploadPicture.vue'
 
@@ -36,7 +35,6 @@ export default {
         SkillInterest,
         // company components
         CompanyInformation,
-        JobDescription,
         RegistrationInfo,
         UploadCompanyPicture
     },
@@ -52,7 +50,6 @@ export default {
             uploadcompanypicture: UploadCompanyPicture,
             companyinformation: CompanyInformation,
             registrationinfo: RegistrationInfo,
-            jobdescription: JobDescription
             
         }
     },
