@@ -1,6 +1,6 @@
 <template>
     <div class="input-field">
-        <input :placeholder="inputName" :type="inputType" :id="inputId">
+        <input :placeholder="inputName" :type="inputType" :id="inputId" :accept="accept">
     </div>
 </template>
 
@@ -15,7 +15,8 @@ export default {
     props: [
         "inputType",
         "inputId",
-        "inputName"
+        "inputName",
+        "accept"
     ]
 
 }
