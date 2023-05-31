@@ -1,11 +1,11 @@
 <template>
     <div class="card-container flex-center">
         <div class="card">
-            <NavListComponent :type="type"/>
+            <NavListComponent :type="type" />
             <slot></slot>
             <div class="btnsec flex-center-row">
-                <button class="btn">Save</button>
-                <button class="btns" @click="$emit('close')">Cancel</button>
+                <button class="btn" @click="handleSave">Save</button>
+                <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
 
         </div>
@@ -19,22 +19,19 @@ export default {
     components: {
         NavListComponent,
     },
-    props:[
-        'type'
+    props: [
+        'type',
+        'handlecloseCard',
+        'handleSave',
     ],
     data() {
         return {
-            // showCard: false,
+
         }
     },
 
     methods: {
-        // handleEdit() {
-        //     if (!this.showCard) {
-        //         this.showCard = true
-        //     }
 
-        // }
     }
 
 }

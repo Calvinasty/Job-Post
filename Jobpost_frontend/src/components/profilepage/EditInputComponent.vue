@@ -32,7 +32,7 @@ export default {
     outline: none;
     border: 1px solid #7FBF4C;
     border-radius: 8px;
-    width: 500px;
+    width: 100%;
 }
 </style>
 
