@@ -5,6 +5,7 @@ import JobSearchPage from '@/views/JobSearchPage.vue'
 import AuthPage from '@/views/AuthPage.vue'
 import SelectUserPage from '@/components/authpage/SelectUserPage.vue'
 import CompanyPage from '@/views/CompanyPage.vue'
+import ApplyJobPage from '@/views/ApplyJobPage.vue'
 
 
 
@@ -25,6 +26,11 @@ const router = createRouter({
       path:'/jobsearch',
       name:'JobSearch',
       component:JobSearchPage
+    },
+    {
+      path:'/jobsearch/:jobId',
+      name:'ApplyJob',
+      component:ApplyJobPage
     },
     {
       path:'/auth',

@@ -1,17 +1,17 @@
 <template>
     <div class="upload-picture">
-        <div>
-            <img src="" alt="" class="display-image">
+        <div class="company-logo">
+            <img src="/images/logo.png" alt="" class="display-image">
         </div>
 
         <form action="" class="image-field">
-            <InputComponent inputType="file" accept="image/*" id="images-input" />
+            <InputComponent inputType="file" inputId="image" inputName="image" accept="image/*" />
         </form>
     </div>
 </template>
 
 <script>
-    import  InputComponent from '../inputComponent.vue'
+    import  InputComponent from '../EditInputComponent.vue'
     export default {
         components: {
              InputComponent
@@ -20,7 +20,7 @@
         data() {
             return {
                 image: ""
-            
+                
         }
     }
 
@@ -30,8 +30,32 @@
 <style lang="css" scoped>
     .upload-picture {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-content: center;
-        width: 40%;
+        width: 60%;
+        height: 30dvh;
+        margin-top: 40px;
+        row-gap: 20px;
+        
+    }
+
+    .company-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 160px;
+        height: 160px;
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+
+    .image-field {
+        margin: 0 auto;
+    }
+
+    .company-logo img {
+        width: 80%;
     }
 </style>

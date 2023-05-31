@@ -1,5 +1,5 @@
 <template>
-    <div class="job-card flex-center">
+    <div class="job-card flex-center" v-on:click="()=>handleApplyJob(jobInfomation.id)">
         <header class="flex-center-row" >
             <span class="title flex-center-row">
             <img :src="jobInfomation.jobPosterLogo" alt="company-logo">
@@ -55,6 +55,7 @@ export default {
     },
     props:[
         'jobInfomation',
+       
     ],
 
     mounted() {
@@ -62,6 +63,9 @@ export default {
     },
 
     methods: {
+        handleApplyJob(jobId){
+            this.$router.push(`/jobsearch/${jobId}`)
+        }
         
     },
 };
@@ -76,6 +80,11 @@ export default {
         border-radius: 10px;
         padding: 20px;
         gap:20px;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+    }
+    .job-card:hover{
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.568);
     }
     .job-card >*{
         width: 100%;
