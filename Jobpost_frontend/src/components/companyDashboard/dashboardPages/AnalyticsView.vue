@@ -20,15 +20,15 @@
         data(){
             return{
                 card1Info: [
-                    {type: 'card1', num: 6, text:'New Candidates to review', link:'first', color:'#88CC00'},
-                    {type: 'card1', num: 9, text:'New Candidates to review', link:'second', color:'#0596FF'},
-                    {type: 'card1', num: 12, text:'New Candidates to review', link:'third', color:'#000'},
+                    {type: 'card1', num: 0, text:'Jobs Active', link:'first', color:'#88CC00'},
+                    {type: 'card1', num: 0, text:'Jobs Expired', link:'second', color:'#c73d3dd6'},
+                    {type: 'card1', num: 0, text:'Jobs Deleted', link:'third', color:'#000000c8'},
                 ],
                 card2Info: [
-                    {type: 'card2', num: 12, title:'Total Job Posts', link:'/admin/jobsView', color:'#f5f5f5'}
+                    {type: 'card2', num: 0, title:'Total Job Posts', link:'/admin/jobsView', color:'#f5f5f5'}
                 ],
                 card3Info: [
-                    {type: 'card3', num: 12, title:'Applicants Summary', link:'/admin/viewApplicant', color:'#f5f5f5',
+                    {type: 'card3', num: 0, title:'Applicants Summary', link:'/admin/viewApplicant', color:'#f5f5f5',
                         jobTypes:[
                             {name: 'Full time', num: 10, color: '#80D25B'},
                             {name: 'Internship', num: 50, color: '#FF763C'},
@@ -38,6 +38,17 @@
                         ]
                     }
                 ]
+            }
+        },
+        beforeMount(){
+            this.getCompanyData()
+        },
+        methods:{
+            getCompanyData(){
+                alert('Hello')
+            },
+            getActiveJobs(){
+                // name, email, password, phone, verification
             }
         }
     }
@@ -73,6 +84,6 @@
     .main .card3{
         grid-area: 3/3/5/4;
         background-color: #F5F5F5;
-        border: 1.5px solid #88CC00;
+        border: 1.5px solid #c73d3dd6;
     }
 </style>
