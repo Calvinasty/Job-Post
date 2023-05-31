@@ -1,17 +1,17 @@
 <template>
     <div>
         <div @click.prevent="" class="buttons flex-center-row">
-            <button v-if="pageNum==1"  v-on:click.prevent="()=>pageNavigation('back')" class="flex-center-row">
+            <!-- <button v-if="pageNum==1"  v-on:click.prevent="()=>pageNavigation('back')" class="flex-center-row">
                 <span class="material-symbols-outlined" style="transform: rotate(180deg);">arrow_right_alt</span>
                 Back 
-            </button>
-            <button :type="actionBtnType" v-on:click.prevent="()=>pageNavigation(actionBtnText)" class="flex-center-row">
+            </button> -->
+            <button :type="actionBtnType" v-on:click.prevent="handleSignUp" class="flex-center-row">
                 {{ actionBtnText }} <span class="material-symbols-outlined">arrow_right_alt</span>
             </button>
 
             <p v-if="pageNum==0"><span>Already registered?</span> <router-link :to="{name:'Auth', params:{id:'login'}}">Sign in</router-link></p>
         </div>
-        <div class="oauth flex-center-row" v-if="pageNum==0">
+        <!-- <div class="oauth flex-center-row" v-if="pageNum==0">
             <button @click.prevent="" type=""   class="flex-center-row">
                 <img src="/images/social-google.svg" alt="google">
                 <span>Sign up with Google</span>
@@ -20,11 +20,8 @@
             <button @click.prevent="" type="" class="flex-center-row">
                 <img src="/images/social-linkedin.svg" alt="linkedin">
                 <span>Sign up with LinkedIn</span>
-            </button>
-           
-        
-            
-        </div>
+            </button>            
+        </div> -->
     </div>
 </template>
 <script>
@@ -32,7 +29,7 @@ export default {
    props:[
         'actionBtnText',
         'actionBtnType',
-        'pageNavigation',
+        'handleSignUp',
         'pageNum'
    ],
 

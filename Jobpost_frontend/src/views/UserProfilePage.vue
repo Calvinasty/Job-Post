@@ -106,15 +106,17 @@
 
         </div>
         <FooterComponent />
+        <UpdateProfileComponentVue />
 
         <!-- <EditPopups v-if="showModal" /> -->
-        <router-view></router-view>
+        <!-- <router-view></router-view> -->
     </div>
 </template>
 
 <script>
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
+import UpdateProfileComponentVue from '../components/profilepage/UpdateProfileComponent.vue';
 import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
 // import EditPopups from '../components/profilepage/EditPopups.vue';
 import InputComponent from '../components/profilepage/inputComponent.vue';
@@ -125,6 +127,7 @@ export default {
         // EditPopups,
         JobSearchNav,
         CardInformationComponent,
+        UpdateProfileComponentVue,
         InputComponent
 
     },
