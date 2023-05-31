@@ -5,7 +5,7 @@ export const useDashboardStore = defineStore(
     {
         state: () => ({
             next: 0,     // set state of postjobform next modal,
-            modalComponentId: ''
+            modalComponentId: '',
         }),
         getters: {
             getNext(state){

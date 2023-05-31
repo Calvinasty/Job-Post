@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="title flex-center-row">
-            <h1>{{ title }}</h1>
+            <!-- <h1>{{ title }}</h1> -->
         </div>
         <section class="company-profile-container">
             <div class="profile-section">
@@ -67,19 +67,22 @@
                 <button class="btns">Cancel</button>
             </div>
         </section>
+        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" type="company"/>
     </div>
 </template>
 
 <script>
 import CardInformationComponent from '../../profilepage/CardInformationComponent.vue';
 import InputComponent from '../../profilepage/inputComponent.vue';
+import UpdateProfileComponent from '../../profilepage/UpdateProfileComponent.vue';
+
 export default {
     data() {
         return {
             title: 'Company Profile',
             companyName: 'Maxim Nyansa',
             numberOfPostedJobs: 0,
-
+            showModal: false,
             cardDetails: [
                 {
                     cardTitle: 'Company Profile',
@@ -163,27 +166,15 @@ export default {
     components: {
         CardInformationComponent,
         InputComponent,
+        UpdateProfileComponent,
 
     },
 
     methods:{
-        showPopup(cardTitle) {
+        showPopup() {
             this.showModal = !this.showModal
-            if (cardTitle == this.cardDetails[0].cardTitle) {
-                this.$router.push('/userprofile/modal/personalinfo');
-            }
-            if (cardTitle == this.cardDetails[1].cardTitle) {
-                this.$router.push('/userprofile/modal/education');
-            }
-            if (cardTitle == this.cardDetails[2].cardTitle) {
-                this.$router.push('/userprofile/modal/experience');
-            }
-            if (cardTitle == this.cardDetails[3].cardTitle) {
-                this.$router.push('/userprofile/modal/skills');
-            }
-        }
     }
-
+    }
 }
 </script>
 
