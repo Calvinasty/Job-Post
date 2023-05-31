@@ -1,7 +1,6 @@
 <template>
-    <EditProfileLayout @close="$emit('close')" :type="type">
-        <component v-show="type=='user'" :is="componentId"></component>
-        <component v-show="type=='company'" :is="componentId2"></component>
+    <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave">
+        <component :is="componentId"></component>
     </EditProfileLayout>
 </template>
 
@@ -9,7 +8,6 @@
 import { mapState } from "pinia";
 import { useUserProfileStore } from '../../stores/userprofile'
 import EditProfileLayout from './EditProfileLayout.vue'
-//user components
 import UploadPicture from './updateuser/UploadComponent.vue';
 import PersonalInfo from './updateuser/PersonalInformationComponent.vue';
 import EducationHistory from './updateuser/EducationHistoryComponent.vue';
@@ -22,11 +20,11 @@ import UploadCompanyPicture from './updatecompany/UploadPicture.vue'
 
 
 export default {
-    props:[
-        'type'
-    ],
+
+    props: ['handlecloseCard', 'handleSave'],
+
+
     components: {
-        //user components
         EditProfileLayout,
         UploadPicture,
         PersonalInfo,
@@ -38,9 +36,9 @@ export default {
         RegistrationInfo,
         UploadCompanyPicture
     },
+
     data() {
         return {
-            //user components
             uploadpicture: UploadPicture,
             personalinfo: PersonalInfo,
             educationhistory: EducationHistory,
@@ -53,8 +51,9 @@ export default {
             
         }
     },
+
     computed: {
-        ...mapState(useUserProfileStore, ['componentId', 'componentId2'])
+        ...mapState(useUserProfileStore, ['componentId'])
     },
 }
 </script>
