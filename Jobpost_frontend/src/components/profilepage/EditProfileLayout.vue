@@ -1,7 +1,7 @@
 <template>
     <div class="card-container flex-center">
         <div class="card">
-            <NavListComponent />
+            <NavListComponent :type="type"/>
             <slot></slot>
             <div class="btnsec flex-center-row">
                 <button class="btn">Save</button>
@@ -19,9 +19,9 @@ export default {
     components: {
         NavListComponent,
     },
-
-
-
+    props:[
+        'type'
+    ],
     data() {
         return {
             // showCard: false,
