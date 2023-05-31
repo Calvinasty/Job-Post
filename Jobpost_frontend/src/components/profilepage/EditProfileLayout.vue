@@ -2,10 +2,10 @@
     <div class="card-container flex-center">
         <div class="card">
             <NavListComponent />
-            <router-view></router-view>
+            <slot></slot>
             <div class="btnsec flex-center-row">
-                <button class="btn" @click="handleEdit">Save</button>
-                <button class="btns" @click="handleEdit">Cancel</button>
+                <button class="btn">Save</button>
+                <button class="btns" @click="$emit('close')">Cancel</button>
             </div>
 
         </div>
@@ -20,16 +20,21 @@ export default {
         NavListComponent,
     },
 
+
+
     data() {
         return {
-
+            // showCard: false,
         }
     },
 
     methods: {
-        handleEdit() {
-            this.$router.push('/userprofile');
-        }
+        // handleEdit() {
+        //     if (!this.showCard) {
+        //         this.showCard = true
+        //     }
+
+        // }
     }
 
 }
@@ -37,13 +42,13 @@ export default {
 
 <style lang="css" scoped>
 .card-container {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     width: 100%;
     transform: translate(-50%, -50%);
     background-color: rgba(70, 70, 70, 0.532);
-    height: 100vh;
+    height: 100%;
 }
 
 .card {

@@ -6,7 +6,7 @@
             <span class="material-symbols-outlined">mark_email_unread</span>
             <h2>Thank you</h2>
             <h3>We have sent a confirm email</h3>
-            <h3>email@gmail.com</h3>
+            <h3>{{ userEmail }}</h3>
         </div>                
         <button type="button" @click="handleRoute">
             View dashboard <span class="material-symbols-outlined"> dashboard</span>
@@ -16,17 +16,18 @@
 
 <script>
     export default {
-        props:['handleRoute']        
-        
+        props:['handleRoute','userEmail']        
     }
 </script>
 
 <style lang="css" scoped>
     .complete{
-        width: 40%;
+        height: 800px;
+        width: 622px;
+        border-radius: 20px;
+        padding-top: 128px;
         padding: 50px 70px;
-        background-color: #f1f1f1;
-        border-radius: 10px;
+        background: rgba(255, 255, 255, 1);
         display: flex;
         flex-direction: column;
         justify-content: center;

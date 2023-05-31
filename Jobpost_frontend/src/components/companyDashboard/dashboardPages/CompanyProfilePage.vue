@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="profile-details">
-                    <CardInformationComponent :detailsTitle="cardDetails[0].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" :detailsTitle="cardDetails[0].cardTitle">
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[0].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[0].cardInputInformation.inputOne.type" />
@@ -164,6 +164,24 @@ export default {
         CardInformationComponent,
         InputComponent,
 
+    },
+
+    methods:{
+        showPopup(cardTitle) {
+            this.showModal = !this.showModal
+            if (cardTitle == this.cardDetails[0].cardTitle) {
+                this.$router.push('/userprofile/modal/personalinfo');
+            }
+            if (cardTitle == this.cardDetails[1].cardTitle) {
+                this.$router.push('/userprofile/modal/education');
+            }
+            if (cardTitle == this.cardDetails[2].cardTitle) {
+                this.$router.push('/userprofile/modal/experience');
+            }
+            if (cardTitle == this.cardDetails[3].cardTitle) {
+                this.$router.push('/userprofile/modal/skills');
+            }
+        }
     }
 
 }
@@ -212,8 +230,8 @@ export default {
 
 
 .profile-card>img {
-    width: 165px;
-    height: 160px;
+    width: 200px;
+    /* height: 100px; */
 }
 
 .profile-card h3 {
