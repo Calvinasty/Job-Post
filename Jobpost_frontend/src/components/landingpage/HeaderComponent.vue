@@ -1,6 +1,6 @@
 <template>
     <header class="container">
-        <NavComponent />
+        <!-- <NavComponent /> -->
         <section>
             <aside class="head" v-html="headerMessage"></aside>
             <aside class="tag"> <p v-html="tagMessage"></p> </aside>
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-    import NavComponent from './NavComponent.vue';
+    // import NavComponent from './NavComponent.vue';
     import HeaderSearch from './HeaderSearch.vue'
     export default {
         components: {
-            NavComponent,
+            // NavComponent,
             HeaderSearch
         },
         data(){
