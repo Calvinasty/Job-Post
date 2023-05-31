@@ -106,7 +106,7 @@
 
         </div>
         <FooterComponent />
-        <UpdateProfileComponentVue />
+        <UpdateProfileComponentVue v-show="showModal == true" @close="showPopup()" />
 
         <!-- <EditPopups v-if="showModal" /> -->
         <!-- <router-view></router-view> -->
@@ -151,20 +151,23 @@ export default {
     },
 
     methods: {
-        showPopup(cardTitle) {
+        showPopup() {
             this.showModal = !this.showModal
-            if (cardTitle == userprofileData[0].cardTitle) {
-                this.$router.push('/userprofile/modal/personalinfo');
-            }
-            if (cardTitle == userprofileData[1].cardTitle) {
-                this.$router.push('/userprofile/modal/education');
-            }
-            if (cardTitle == userprofileData[2].cardTitle) {
-                this.$router.push('/userprofile/modal/experience');
-            }
-            if (cardTitle == userprofileData[3].cardTitle) {
-                this.$router.push('/userprofile/modal/skills');
-            }
+            alert('hello')
+
+
+            // if (cardTitle == userprofileData[0].cardTitle) {
+            //     this.$router.push('/userprofile/modal/personalinfo');
+            // }
+            // if (cardTitle == userprofileData[1].cardTitle) {
+            //     this.$router.push('/userprofile/modal/education');
+            // }
+            // if (cardTitle == userprofileData[2].cardTitle) {
+            //     this.$router.push('/userprofile/modal/experience');
+            // }
+            // if (cardTitle == userprofileData[3].cardTitle) {
+            //     this.$router.push('/userprofile/modal/skills');
+            // }
         }
     }
 

@@ -1,5 +1,5 @@
 <template>
-    <EditProfileLayout>
+    <EditProfileLayout @close="$emit('close')">
         <component :is="componentId"></component>
     </EditProfileLayout>
 </template>

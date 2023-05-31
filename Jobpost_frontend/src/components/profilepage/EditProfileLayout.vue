@@ -4,8 +4,8 @@
             <NavListComponent />
             <slot></slot>
             <div class="btnsec flex-center-row">
-                <button class="btn" @click="handleEdit">Save</button>
-                <button class="btns" @click="handleEdit">Cancel</button>
+                <button class="btn">Save</button>
+                <button class="btns" @click="$emit('close')">Cancel</button>
             </div>
 
         </div>
