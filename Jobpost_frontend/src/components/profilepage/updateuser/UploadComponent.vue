@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import EditInputComponent from './EditInputComponent.vue'
+import EditInputComponent from '../EditInputComponent.vue'
 export default {
     components: {
         EditInputComponent,
@@ -34,7 +34,7 @@ export default {
     justify-content: space-around;
     gap: 20px;
     width: 520px;
-    padding-top: 20px;
+    padding-top: 10%;
     /* padding-bottom: 70px; */
 }
 </style>

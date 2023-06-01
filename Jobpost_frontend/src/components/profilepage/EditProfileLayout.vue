@@ -1,11 +1,11 @@
 <template>
     <div class="card-container flex-center">
         <div class="card">
-            <NavListComponent />
-            <router-view></router-view>
+            <NavListComponent :type="type" />
+            <slot></slot>
             <div class="btnsec flex-center-row">
-                <button class="btn" @click="handleEdit">Save</button>
-                <button class="btns" @click="handleEdit">Cancel</button>
+                <button class="btn" @click="handleSave">Save</button>
+                <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
 
         </div>
@@ -19,7 +19,11 @@ export default {
     components: {
         NavListComponent,
     },
-
+    props: [
+        'type',
+        'handlecloseCard',
+        'handleSave',
+    ],
     data() {
         return {
 
@@ -27,9 +31,7 @@ export default {
     },
 
     methods: {
-        handleEdit() {
-            this.$router.push('/userprofile');
-        }
+
     }
 
 }
@@ -37,13 +39,13 @@ export default {
 
 <style lang="css" scoped>
 .card-container {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     width: 100%;
     transform: translate(-50%, -50%);
     background-color: rgba(70, 70, 70, 0.532);
-    height: 100vh;
+    height: 100%;
 }
 
 .card {

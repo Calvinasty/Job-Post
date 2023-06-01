@@ -4,49 +4,32 @@
      <main >
          <Transition name="slide-fade">
             <form v-if="pageNumber==0" class=" flex-center">
-                    <div class=" input-container flex-center-row">
-                        <InputComponent class="input" type="text" placeHolder="Organization Name" inputId="jobposter-name" name="name" :handleInput='handleUserInput'  />
-                        <InputComponent class="input" type="email" placeHolder="Organization Email" inputId="jopposter-email" name="email" :handleInput='handleUserInput'/>
-
-                    </div>
+                  
+                        <InputComponent class="input" type="text" placeHolder="Organization Name"  name="name" :handleInput='handleUserInput'  />
+                   
                     <div class="input-container pass  flex-center-row">
-                        <InputComponent class="input" type="password" placeHolder="Enter Password" inputId="jopposter-password" name="password" :handleInput='handleUserInput'  />
-                        <InputComponent class="input" type="password" placeHolder="Confirm Password" inputId="jopposter-confirm-password" name="confirmPassword" :handleInput='handleUserInput'  />
+                        <InputComponent class="input" type="password" placeHolder="Enter Password"  name="password" :handleInput='handleUserInput'  />
+                        <InputComponent class="input" type="password" placeHolder="Confirm Password"  name="confirmPassword" :handleInput='handleUserInput'  />
+                    </div>
+                    <InputComponent class="input" type="email" placeHolder="Company Email" name="email" :handleInput='handleUserInput'  />
 
-                    </div>
-                    <div class="input-container flex-center-row">
-                        <InputComponent class="input" type="text" placeHolder="Enter Organizations Website" inputId="jopposter-website" name="website" :handleInput='handleUserInput' />
-                        <InputComponent class="input" type="" placeHolder="Enter Organizations name" inputId="jopposter-names" name="name" />
-                        
-                    </div>
-                    <JobPosterFormFooter :pageNum="pageNumber" actionBtnText="Next" :actionBtnType="button" :pageNavigation="pageNavigation"/>
-                </form>
-            </Transition>
-       
-            <Transition name="slide-fade">
-                <form v-if="pageNumber==1" class=" form-two flex-center">
-                    <div class="input-container flex-center">
-                        <InputComponent class="input" type="file" placeHolder="Company Logo" inputId="jopposter-logo" name="companyLogo" :handleInput='handleUserInput'/>                    
-                        <InputComponent class="input" type="tel" placeHolder="Company Number" inputId="jobposter-phone" name="phone" :handleInput='handleUserInput'  />                                                    
-                    </div>
-                        <InputComponent class="input" type="text" placeHolder="Location" inputId="jobposter-location" name="location" :handleInput='handleUserInput'/>                                                    
-                        <div class="flex-center input-container verification">
-                            <select name="verification" class="verification input" v-model="verify" v-on:change="()=>handleVerify({verification:verify})"  >
-                                <option value="" class="selected" >How do you want to be verified?</option>
+                    <InputComponent class="input" type="tel" placeHolder="Company Number" name="phone" :handleInput='handleUserInput'  />                                                    
+                    <div class="flex-center input-container verification">
+                        <label class="selected" style="width: 100%;text-align: left;" for="verification">How do you want to be verified?</label>
+                            <select name="verification" class="verification input" id="verification" v-model="verify" v-on:change="()=>handleVerify({verification:verify})"  >
+                                <option :value="null" disabled ></option>
                                 <option value="regCert">Registration Certificate /Documents</option>
                                 <option value="visit">Physical Visit</option>
                                 <option value="vat">VAT</option>
                                 <option value="others">Others</option>
                             </select>
                         </div>
-                 
-               <JobPosterFormFooter :pageNum="pageNumber" actionBtnText="Register" actionBtnType="submit" :pageNavigation="pageNavigation"/>
-                </form>
-               
-            </Transition>
 
+                        <JobPosterFormFooter :pageNum="pageNumber" actionBtnText="Register" actionBtnType="submit" :handleSignUp="handleSignUp"/>
+                </form>
+            </Transition>
             <Transition name="slide-fade">
-              <div v-if="pageNumber==2"  class="success-form">
+              <div v-if="pageNumber==1"  class="success-form">
 
                   <SignupSuccess  :handleRoute="handleHome"/>
               </div>
@@ -73,10 +56,8 @@ export default {
     },
 
     props:[
-        'pageNavigation',
+        'handleSignUp',
         'pageNumber',
-        'btnText',
-        'btnType',
         'handleUserInput',
         'handleVerify',
         'userInfo',
@@ -86,40 +67,29 @@ export default {
     methods: {        
         handleHome(){
                 this.$router.push('/admin/admin')
-            },
-        
-            
-            
+            },      
     },
 };
 </script>
 
 <style lang="css" scoped>
- form{ gap:19px; }
+ form{ gap:16px; }
 
- form.form-two{
-    gap: 5px;
- }
- .form-two .input-container{
-gap: 10px;
- }
- form .input{
-    max-width: 373px;
- }
  .success-form{
     width: 100%;
-    background-color: #f1f1f1;;
+    background: rgba(255, 255, 255, 1);
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index:99;
  }
 .input-container{
     flex: 1;
     width: 100%;
-    column-gap: 49px;
+    gap: 19px;
     min-width:200px;
-    row-gap: 49px;
+   
 
 }
 
@@ -146,7 +116,12 @@ gap: 10px;
     border: 2px solid #7FBF4C;
     border-radius: 5px;
 }
-
+.input-container.verification{
+    gap:0px;
+}
+label{
+    font-size: 14px;
+}
 
 
 @media screen and (max-width:786px) {

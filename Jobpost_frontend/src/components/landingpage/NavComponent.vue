@@ -1,7 +1,7 @@
 <template>
     <div class="navbar"> 
         <div>
-            <router-link to="/"> <img src="/images/logo.svg" alt="Logo"> </router-link>
+            <router-link to="/"> <img src="/images/logo.png" alt="Logo"> </router-link>
         </div>
         <div class="auth-btns">
             <router-link to="/auth/login">Sign in</router-link>
@@ -23,9 +23,13 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        color: #fff;
+        background-color: #fff;
         /* border: 2px solid red; */
-        padding: 0;
+        padding: 0 20px;
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0px 3px 9px #c0bebe;
     }
     .navbar div:nth-child(1){
         /* width: 100px; */
@@ -37,7 +41,7 @@
     }
     .navbar div img{
         /* position: absolute; */
-        width: 80px;
+        width: 60%;
         margin: 0;
         padding: 0;
         /* top:7%; */
@@ -56,17 +60,21 @@
     .auth-btns a{
         /* color: #7FBF4C; */
         text-decoration: none;
-        font-size: larger;
+        font-size: 15px;
         font-weight: bold;
         margin-left: 20px;
-        color: #fff;
+        padding: 10px 20px;
+        border-radius: 15px;
+        text-decoration: none;
         /* text-decoration: underline; */
+    }
+    .auth-btns a:nth-child(1){
+        background-color: transparent;
+        color: #000;
+        border: 1px solid #666;
     }
     .auth-btns a:nth-child(2){
         background-color: #88CC00;
-        padding: 15px 25px;
-        border-radius: 15px;
-        text-decoration: none;
         color: #fff;
     }
 

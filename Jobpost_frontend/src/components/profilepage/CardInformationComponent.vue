@@ -1,6 +1,6 @@
 <template>
     <div class="profile-detail">
-        <img class="editicon" src="/images/edit_icon.svg" alt="editicon" @click="showPopup(detailsTitle)" />
+        <img class="editicon" src="/images/edit_icon.svg" alt="editicon" @click="showPopup()" />
         <h3>{{ detailsTitle }}</h3>
         <div class="profile-detail-container">
             <div class="input-field-container flex-center">
@@ -8,13 +8,12 @@
             </div>
             <div class="other-details" v-if="showDetails">
                 <InputComponent :fullName="inputInformation?.inputFive?.name" :inputType="inputInformation?.inputFive
-                    .type" :inputId="inputInformation?.inputFive.id" :Value="Value.date" /> <br>
+                    .type" :inputId="inputInformation?.inputFive.id" /> <br>
 
 
                 <p class="elabel"> Gender </p>
                 <InputComponent class="radio-gender" :fullName="inputInformation?.inputSix?.name" :inputType="inputInformation?.inputSix
-                    .type" :inputId="inputInformation?.inputSix?.id" :inputName="inputInformation?.inputSix?.radio"
-                    :Value="Value.gender" />
+                    .type" :inputId="inputInformation?.inputSix?.id" :inputName="inputInformation?.inputSix?.radio" />
                 <InputComponent class="radio-gender" :fullName="inputInformation?.inputSeven?.name" :inputType="inputInformation?.inputSeven
                     .type" :inputId="inputInformation?.inputSeven?.id"
                     :inputName="inputInformation?.inputSeven?.radio" />
@@ -35,9 +34,7 @@ export default {
 
     data() {
         return {
-            Value: {
-                gender: "Male",
-            },
+
 
         };
     },
@@ -46,7 +43,7 @@ export default {
         "showDetails",
         "detailsTitle",
         "inputInformation",
-        "showPopup"
+        "showPopup",
     ],
     mounted() {
 

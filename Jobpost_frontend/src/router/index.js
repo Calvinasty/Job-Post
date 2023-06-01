@@ -5,12 +5,8 @@ import JobSearchPage from '@/views/JobSearchPage.vue'
 import AuthPage from '@/views/AuthPage.vue'
 import SelectUserPage from '@/components/authpage/SelectUserPage.vue'
 import CompanyPage from '@/views/CompanyPage.vue'
-import ModalComponent from '@/components/profilepage/EditPopups.vue'
-import UploadComponent from '@/components/profilepage/UploadComponent.vue'
-import PersonalInformationComponent from '@/components/profilepage/PersonalInformationComponent.vue'
-import EducationHistoryComponent from '@/components/profilepage/EducationHistoryComponent.vue'
-import WorkExperienceComponent from '@/components/profilepage/WorkExperienceComponent.vue'
-import SkillInterestComponent from '@/components/profilepage/SkillInterestComponent.vue'
+import ApplyJobPage from '@/views/ApplyJobPage.vue'
+
 
 
 const router = createRouter({
@@ -25,42 +21,16 @@ const router = createRouter({
       path:'/userprofile',
       name:'Userprofile',
       component:UserProfile,
-      children:[
-        {
-          path:'/userprofile/modal', //netted route. put modal on edit button
-          name:'modal',
-          component:ModalComponent,
-          children:[
-            {
-              path:'/userprofile/modal/uploadpicture',
-              component:UploadComponent,
-            },
-            {
-              path:'/userprofile/modal/personalinfo',
-              component:PersonalInformationComponent,
-            },
-            {
-              path:'/userprofile/modal/education',
-              component:EducationHistoryComponent,
-            },
-            {
-              path:'/userprofile/modal/experience',
-              component:WorkExperienceComponent,
-            },
-            {
-              path:'/userprofile/modal/skills',
-              component:SkillInterestComponent,
-            }
-
-          ]
-        }
-
-      ]
     },
     {
       path:'/jobsearch',
       name:'JobSearch',
       component:JobSearchPage
+    },
+    {
+      path:'/jobsearch/:jobId',
+      name:'ApplyJob',
+      component:ApplyJobPage
     },
     {
       path:'/auth',

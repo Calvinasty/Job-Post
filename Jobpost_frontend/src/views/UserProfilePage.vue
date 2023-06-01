@@ -1,10 +1,7 @@
 <template>
     <div>
         <div class="userprofile">
-
-
             <JobSearchNav />
-
             <section class="user-profile">
                 <div class="title">
                     <h1>{{ title }}</h1>
@@ -106,15 +103,18 @@
 
         </div>
         <FooterComponent />
+        <UpdateProfileComponentVue v-show="showModal == true" type="user" :handlecloseCard="showPopup"
+            :handleSave="handleSaveButton" />
 
         <!-- <EditPopups v-if="showModal" /> -->
-        <router-view></router-view>
+        <!-- <router-view></router-view> -->
     </div>
 </template>
 
 <script>
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
+import UpdateProfileComponentVue from '../components/profilepage/UpdateProfileComponent.vue';
 import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
 // import EditPopups from '../components/profilepage/EditPopups.vue';
 import InputComponent from '../components/profilepage/inputComponent.vue';
@@ -125,6 +125,7 @@ export default {
         // EditPopups,
         JobSearchNav,
         CardInformationComponent,
+        UpdateProfileComponentVue,
         InputComponent
 
     },
@@ -148,21 +149,28 @@ export default {
     },
 
     methods: {
-        showPopup(cardTitle) {
+        showPopup() {
             this.showModal = !this.showModal
-            if (cardTitle == userprofileData[0].cardTitle) {
-                this.$router.push('/userprofile/modal/personalinfo');
-            }
-            if (cardTitle == userprofileData[1].cardTitle) {
-                this.$router.push('/userprofile/modal/education');
-            }
-            if (cardTitle == userprofileData[2].cardTitle) {
-                this.$router.push('/userprofile/modal/experience');
-            }
-            if (cardTitle == userprofileData[3].cardTitle) {
-                this.$router.push('/userprofile/modal/skills');
-            }
+
+            // if (cardTitle == userprofileData[0].cardTitle) {
+            //     this.$router.push('/userprofile/modal/personalinfo');
+            // }
+            // if (cardTitle == userprofileData[1].cardTitle) {
+            //     this.$router.push('/userprofile/modal/education');
+            // }
+            // if (cardTitle == userprofileData[2].cardTitle) {
+            //     this.$router.push('/userprofile/modal/experience');
+            // }
+            // if (cardTitle == userprofileData[3].cardTitle) {
+            //     this.$router.push('/userprofile/modal/skills');
+            // }
+        },
+
+        handleSaveButton() {
+            alert("boomboom");
         }
+
+
     }
 
 }

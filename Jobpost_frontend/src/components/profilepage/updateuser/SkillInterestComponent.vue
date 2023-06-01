@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import EditInputComponent from './EditInputComponent.vue'
+import EditInputComponent from '../EditInputComponent.vue'
 export default {
     components: {
         EditInputComponent,

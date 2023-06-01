@@ -1,16 +1,13 @@
 <template>
     <div class="card-detail flex-center">
-        <div class="profile-pic">
-            <img src="/images/userprofile.svg" alt="pic">
-        </div>
-        <div class="choose-file">
+        <div class="input-container">
             <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
         </div>
     </div>
 </template>
 
 <script>
-import EditInputComponent from './EditInputComponent.vue'
+import EditInputComponent from '../EditInputComponent.vue'
 export default {
     components: {
         EditInputComponent,
@@ -19,9 +16,9 @@ export default {
     data() {
         return {
             inputOne: {
-                id: 'upload-pic',
-                type: 'file',
-                placeholder: 'daniellapic.jpeg'
+                id: 'fullname',
+                type: 'text',
+                placeholder: 'fullname'
 
             }
         }

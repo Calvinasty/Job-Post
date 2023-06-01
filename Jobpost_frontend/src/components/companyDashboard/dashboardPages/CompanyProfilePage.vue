@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="title flex-center-row">
-            <h1>{{ title }}</h1>
+            <!-- <h1>{{ title }}</h1> -->
         </div>
         <section class="company-profile-container">
             <div class="profile-section">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="profile-details">
-                    <CardInformationComponent :detailsTitle="cardDetails[0].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" :detailsTitle="cardDetails[0].cardTitle">
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[0].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[0].cardInputInformation.inputOne.type" />
@@ -67,19 +67,22 @@
                 <button class="btns">Cancel</button>
             </div>
         </section>
+        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" type="company"/>
     </div>
 </template>
 
 <script>
 import CardInformationComponent from '../../profilepage/CardInformationComponent.vue';
 import InputComponent from '../../profilepage/inputComponent.vue';
+import UpdateProfileComponent from '../../profilepage/UpdateProfileComponent.vue';
+
 export default {
     data() {
         return {
             title: 'Company Profile',
             companyName: 'Maxim Nyansa',
             numberOfPostedJobs: 0,
-
+            showModal: false,
             cardDetails: [
                 {
                     cardTitle: 'Company Profile',
@@ -163,9 +166,15 @@ export default {
     components: {
         CardInformationComponent,
         InputComponent,
+        UpdateProfileComponent,
 
+    },
+
+    methods:{
+        showPopup() {
+            this.showModal = !this.showModal
     }
-
+    }
 }
 </script>
 
@@ -212,8 +221,8 @@ export default {
 
 
 .profile-card>img {
-    width: 165px;
-    height: 160px;
+    width: 200px;
+    /* height: 100px; */
 }
 
 .profile-card h3 {

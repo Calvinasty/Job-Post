@@ -9,10 +9,12 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { useJobsStore } from '../stores/Jobs';
+import { mapActions } from 'pinia';
 import FilterSection from '../components/jobsearchpage/FilterSection.vue';
 import JobsSection from '../components/jobsearchpage/JobsSection.vue';
 import JobSearchNavVue from '../components/jobsearchpage/JobSearchNav.vue';
-import { jobsPosted } from '../data';
 export default {
     name: 'JobPostJobSearchPage',
     components:{
@@ -22,7 +24,8 @@ export default {
     },
     data() {
         return {
-            filteredJobs:''
+            filteredJobs:[],
+            AllPostedJobs:[]
 
         };
        
@@ -30,17 +33,26 @@ export default {
     props:[
             
             ],
-            mounted(){
-                this.handleSearch()
-            },
+           
+            beforeMount(){
+        this.getAllJobs()
+    },
 
     methods: {
+        ...mapActions(useJobsStore,['setPostedJobs']),
+        getAllJobs(){
+             axios.get('http://192.168.1.53:3000/jobs?_sort=id&_order=desc')
+             .then(res=>this.AllPostedJobs=res.data)
+             .then(res=>this.setPostedJobs(res.data))
+             .then(()=>this.handleSearch() )
+                       
+                      
+        },
         handleSearch(data){
-            // console.log(data);
             if(!data){
-                return this.filteredJobs=jobsPosted  
+                return this.filteredJobs=this.AllPostedJobs
             }else{
-                const result=jobsPosted.filter((item)=>(item.jobTitle.toLocaleLowerCase().includes(data.data)))
+                const result=this.AllPostedJobs.filter((item)=>(item.jobTitle.toLocaleLowerCase().includes(data.data)))
                 return this.filteredJobs=[...result]
         }
         
@@ -50,7 +62,6 @@ export default {
 
 <style lang="css" scoped>
     .jobsearch-page{
-        background: rgba(242, 242, 242, 1);
         min-height: 100dvh;
         display: flex;
         flex-direction: column;

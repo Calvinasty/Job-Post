@@ -1,6 +1,6 @@
 <template>
     <div class="input-field">
-        <input :placeholder="inputName" :type="inputType" :id="inputId">
+        <input :placeholder="inputName" :name="name" :type="inputType" :id="inputId" :accept="accept">
     </div>
 </template>
 
@@ -8,14 +8,16 @@
 export default {
     data() {
         return {
-
+            
         }
     },
 
     props: [
         "inputType",
         "inputId",
-        "inputName"
+        "inputName",
+        "name",
+        "accept"
     ]
 
 }
@@ -31,7 +33,7 @@ export default {
     outline: none;
     border: 1px solid #7FBF4C;
     border-radius: 8px;
-    width: 500px;
+    width: 100%;
 }
 </style>
 
