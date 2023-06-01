@@ -57,7 +57,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 60px;
+    padding-top: 50px;
+
 }
 
 
