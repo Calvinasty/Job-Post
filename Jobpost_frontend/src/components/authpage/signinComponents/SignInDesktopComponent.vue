@@ -3,7 +3,13 @@
         <div class="signin">
             <header>
                 <img src="/images/logo.png" alt="">
-                <h2>{{ nameHeader }}</h2>
+                
+                <div class="login-option flex-center-row">
+                    <div id="btn"></div>
+                    <button type="button" class="toggle-btn">Job Seeker</button>
+                    <button type="button" class="toggle-btn">Job Poster</button>
+                </div>
+
             </header>
 
             <div class="signin-header">
@@ -116,7 +122,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: linear-gradient(0deg, rgba(28, 48, 12, 0.55), rgba(28, 48, 12, 0.55)), url("/images/maxim-auth-background.jpeg");
+        background-image: url("/images/maxim-auth-background.jpeg");
+        background-color: #10150cf3;
+        mix-blend-mode: overlay;
+        background-repeat: no-repeat;
+        background-size:cover;
+        background-blend-mode: overlay;   
         width: 100dvw;
         height: 100dvh;
     }
@@ -146,12 +157,40 @@
         padding-bottom: 13px;
     }
 
+    .login-option {
+        width: 100%;
+        border: 1px solid #88CC00;
+        border-radius: 5px 0px 0px 5px;
+        position: relative;
+    }
+
+    .toggle-btn {
+        width: 100%;
+        padding: 10px 0;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        outline: none;
+        font-weight: 700;
+        font-size: 15px;
+        color: #7FBF4C;
+    }
+
     header h2 {
         font-weight: bolder;
         line-height: 41px;
         color: #7FBF4C;
     }
 
+    #btn {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 50%;
+        height: 40px;
+        background: #88CC00;
+
+    }
     .signin-header {
         display: flex;
         flex-direction: column;

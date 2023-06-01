@@ -1,6 +1,6 @@
 <template>
     <div class="input-field">
-        <input :placeholder="inputName" :type="inputType" :id="inputId" :accept="accept">
+        <input :placeholder="inputName" :name="name" :type="inputType" :id="inputId" :accept="accept">
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
     data() {
         return {
-
+            
         }
     },
 
@@ -16,6 +16,7 @@ export default {
         "inputType",
         "inputId",
         "inputName",
+        "name",
         "accept"
     ]
 

@@ -129,26 +129,43 @@ export default {
         },
 
         handleSubmit() {
-            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            const user={
-                first_name:this.inputData.fname,
-                last_name:this.inputData.lname,
-                middle_name:this.inputData.mdname,
-                gender:this.inputData.gender,
-                date_of_birth:this.inputData.date,
-                email:this.inputData.email,
-                password:this.inputData.password,
-                confirm_password: this.inputData.confirmPass
-            }
-            console.log(user);
-            axios.post('http://192.168.1.53:3000/user', user)
+            // const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // const user={
+            //     first_name:this.inputData.fname,
+            //     last_name:this.inputData.lname,
+            //     middle_name:this.inputData.mdname,
+            //     gender:this.inputData.gender,
+            //     date_of_birth:this.inputData.date,
+            //     email:this.inputData.email,
+            //     password:this.inputData.password,
+            //     confirm_password: this.inputData.confirmPass
+            // }
+            const newFormData= new FormData()
+            // newFormData.append('user',user)
+            newFormData.append("first_name",this.inputData.fname)
+            newFormData.append("last_name",this.inputData.lname)
+            // newFormData.append("middle_name",this.inputData.mdname)
+            newFormData.append("gender",this.inputData.gender)
+            newFormData.append("date_of_birth",this.inputData.date)
+            newFormData.append("email",this.inputData.email)
+            newFormData.append("password",this.inputData.password)
+            newFormData.append("confirm_password", this.inputData.confirmPass)
+            // console.log(newFormData);
+            axios.post("http://192.168.1.36:5000/jobSeeker/registerJobSeeker", newFormData)
             .then(res => {
-                console.log(res);
+                console.log(res?.data);
+                if(res.data?.token){
+                    const token= JSON.stringify(res.data.token)
+                    localStorage.setItem('userToken',token)          
+                }
             })
+            .then(()=>this.$router.push('/userprofile'))
             .catch(err => {
                 console.log(err);
             })
-
+                // axios.post('http://192.168.1.53:3000/user',user)
+                // .then(res=>console.log("responds",res.data) )
+                // .catch(err=>console.log(err))
             // if(!regex.test(user.email)){
             //     // this.handleRegister()
             //     return alert('Email is invalid')
