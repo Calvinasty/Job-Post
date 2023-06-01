@@ -24,7 +24,7 @@
             <div class="company-section">
 
                 <div class="company-logo">
-                    <img src="" alt="">
+                    <img src="/images/companySample_logo.png" alt="">
                 </div>
 
                 <div class="company-name">
@@ -56,11 +56,12 @@ export default {
 .job {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
-    width: 350px;
+    width: 400px;
     padding-bottom: 15px;
     box-shadow: 5px 5px 9px #a5a5a5,
     -5px -5px 9px #ECF7D6;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.48);
 }
 
 .job h2 {
@@ -112,9 +113,10 @@ export default {
 
 .card-btn {
     padding: 10px;
-    background-color: #ECF7D6;
+    background-color: #000;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 500;
+    color: #fff;
 }
 
 .card-btn:hover {
@@ -130,8 +132,13 @@ export default {
 }
 
 .company-logo {
-    background-color: black;
+    background-color: #fff;
     width: 44px;
+}
+
+.company-logo img {
+    width: 100%;
+    height: 100%;
 }
 
 /* .job:hover .company-logo {
