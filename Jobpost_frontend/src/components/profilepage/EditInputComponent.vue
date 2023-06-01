@@ -8,7 +8,7 @@
 export default {
     data() {
         return {
-            
+
         }
     },
 
@@ -24,6 +24,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.input-field {
+    width: 100%;
+    /* background: #000; */
+}
+
 .input-field input {
     font-weight: 400;
     font-size: 16px;
