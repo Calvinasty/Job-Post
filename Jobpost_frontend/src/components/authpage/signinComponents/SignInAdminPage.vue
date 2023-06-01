@@ -7,6 +7,7 @@
             nameTitle = 'Sign In'
             userInfo = 'Not Admin?'
             :showText = false
+            :showToggle = false
             />
         </div>
 
