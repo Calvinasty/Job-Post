@@ -2,7 +2,7 @@
     <div class="container">
         <header>
             <h2>Featured Jobs</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi perferendis</p>
+            <p>Discover the latest opportunities and stand out from the crowd with our featured jobs section</p>
         </header>
 
         <div class="box">
@@ -95,7 +95,8 @@ export default {
     margin-top: 50px;
     padding: 15px;
     width: 200px;
-    background-color: #000000;
+    background-color: #88CC00;
+    border: #88CC00;
     color: #ffffff;
     border-radius: 10px;
     font-weight: bolder;

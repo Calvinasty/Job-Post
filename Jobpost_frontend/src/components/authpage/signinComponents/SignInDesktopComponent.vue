@@ -4,10 +4,12 @@
             <header>
                 <img src="/images/logo.png" alt="">
                 
-                <div class="login-option flex-center-row">
-                    <div id="btn"></div>
-                    <button type="button" class="toggle-btn">Job Seeker</button>
-                    <button type="button" class="toggle-btn">Job Poster</button>
+                <h2>{{ nameHeader }}</h2>
+
+                <div v-if="showToggle" class="login-option flex-center-row">
+                    <div id="btn">Job Seeker</div>
+                    <button type="button" class="toggle-btn" id="jobSeeker" @click="jobSeeker">Job Seeker</button>
+                    <button type="button" class="toggle-btn" id="jobPoster" @click="jobPoster">Job Poster</button>
                 </div>
 
             </header>
@@ -26,7 +28,7 @@
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row signin-btn">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
+                    <button type="submit" class="flex-center-row signin-btn">Log in </button>
 
                     <button type="button" class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
 
@@ -63,13 +65,27 @@
             'nameHeader',
            'nameTitle',
            'userInfo',
-           'showText'
+           'showText',
+           'showToggle'
        ],
 
        methods: {
         ...mapActions(useUserStore, ['setUser']),
         toSignup() {
             this.$router.push('/auth')
+        },
+
+        jobPoster() {
+            var z = document.getElementById("btn");
+            z.style.left = "50%"
+            z.innerHTML="Job Poster"
+            // letter.style.color = "white"
+        },
+        jobSeeker() {
+            var z = document.getElementById("btn");
+            z.style.left = "0"
+            z.innerHTML="Job Seeker"
+            // letter.style.color = "white"
         },
 
         handleUserInput(data){
@@ -153,7 +169,7 @@
     }
 
     header img {
-        width: 50%;
+        width: 40%;
         padding-bottom: 13px;
     }
 
@@ -172,7 +188,7 @@
         border: 0;
         outline: none;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 14px;
         color: #7FBF4C;
     }
 
@@ -189,7 +205,13 @@
         width: 50%;
         height: 40px;
         background: #88CC00;
-
+        transition: .5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
     }
     .signin-header {
         display: flex;
@@ -252,11 +274,16 @@
 
     .desk-links .signin-btn {
         padding:12px 9px;
+        width: 100%;
         border-radius: 10px;
         background: #7FBF4C;
         color: #fff;
         border: #7FBF4C;
         column-gap: 5px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        cursor: pointer;
     }
 
     .desk-links .forgot-btn, .signup-btn {
