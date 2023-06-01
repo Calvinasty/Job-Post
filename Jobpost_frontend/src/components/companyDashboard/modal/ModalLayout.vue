@@ -32,10 +32,10 @@
     .modal{
         text-align: center;
         background-color: #f1f1f1;
-        width: 60%;
-        height: 90%;
-        /* width: 50%;
-        height: 70%; */
+        /* width: 60%;
+        height: 90%; */
+        width: 50%;
+        height: 70%;
         padding: 20px 40px;
         border-radius: 10px;
     }
@@ -45,8 +45,8 @@
         align-items: center;
         font-weight: bolder;
         cursor: pointer;
-        height: 15px;
-        width: 15px;
+        height: 25px;
+        width: 25px;
         font-size: 12px;
         background-color: #7FBF4C;
         color: #fff;

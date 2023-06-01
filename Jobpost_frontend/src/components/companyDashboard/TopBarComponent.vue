@@ -54,12 +54,6 @@
     .top-bar div:nth-child(2){
         gap: 30px;
     }
-    .top-bar div img{
-        position: absolute;
-        width: 100px;
-        top:-140%;
-        left: -15%;
-    }
     .top-left span{
         /* box-shadow: 5px 0px 9px rgba(131, 131, 131, 0.633); */
         cursor: pointer;
