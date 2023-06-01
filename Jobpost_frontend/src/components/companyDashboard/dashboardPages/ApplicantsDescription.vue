@@ -18,7 +18,7 @@
                         <span v-show="item.edit"  @click="showTip(index)" class="material-symbols-outlined tooltip">visibility</span>
                         <span v-show="!item.edit" @click="hideTip(index)" class="material-symbols-outlined tooltip">visibility_off</span>
                         <p class="hide"  :class="{view:item.edit}">
-                            <span @click="setModal('applicantsummary')">View Applicant</span>
+                            <span @click="setModal('ApplicantSummary')">View Applicant</span>
                             <br>
                             <span>Download Resume</span>
                         </p>

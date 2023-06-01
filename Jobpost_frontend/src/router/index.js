@@ -7,8 +7,6 @@ import SelectUserPage from '@/components/authpage/SelectUserPage.vue'
 import CompanyPage from '@/views/CompanyPage.vue'
 import ApplyJobPage from '@/views/ApplyJobPage.vue'
 
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

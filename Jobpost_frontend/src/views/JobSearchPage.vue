@@ -11,7 +11,7 @@
 <script>
 import axios from 'axios'
 import { useJobsStore } from '../stores/Jobs';
-import { mapActions } from 'pinia';
+import { mapActions, } from 'pinia';
 import FilterSection from '../components/jobsearchpage/FilterSection.vue';
 import JobsSection from '../components/jobsearchpage/JobsSection.vue';
 import JobSearchNavVue from '../components/jobsearchpage/JobSearchNav.vue';
@@ -43,7 +43,10 @@ export default {
         getAllJobs(){
              axios.get('http://192.168.1.53:3000/jobs?_sort=id&_order=desc')
              .then(res=>this.AllPostedJobs=res.data)
-             .then(res=>this.setPostedJobs(res.data))
+             .then(res=>{
+                this.setPostedJobs(res)
+                // console.log(res);
+            })
              .then(()=>this.handleSearch() )
                        
                       
