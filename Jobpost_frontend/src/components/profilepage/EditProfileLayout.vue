@@ -53,7 +53,7 @@ export default {
     border-radius: 20px;
     background-color: #ffffff;
     width: 60%;
-    height: 80%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
