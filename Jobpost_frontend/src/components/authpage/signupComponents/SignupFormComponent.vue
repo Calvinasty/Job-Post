@@ -73,6 +73,8 @@
 
 <script>
 import axios from 'axios'
+import { useUserStore } from '../../../stores/users';
+import { mapActions } from 'pinia';
 import InputComponent from '../InputComponent.vue';
 export default {
     components:{InputComponent},
@@ -93,35 +95,22 @@ export default {
         },
 
     methods: {
+        ...mapActions(useUserStore,['setUser']),
         handleUserInput(data){
             // console.log(data);
-            if(data.inputName == 'email') {
-                this.inputData.email = data.inputValue
-            }
+            if(data.inputName == 'email') { this.inputData.email = data.inputValue}
 
-            if(data.inputName == 'password') {
-                this.inputData.password = data.inputValue
-            }
+            if(data.inputName == 'password') {this.inputData.password = data.inputValue}
 
-            if(data.inputName == 'confirmPass') {
-                this.inputData.confirmPass = data.inputValue
-            }
+            if(data.inputName == 'confirmPass') {this.inputData.confirmPass = data.inputValue}
 
-            if(data.inputName == 'fname') {
-                this.inputData.fname = data.inputValue
-            }
+            if(data.inputName == 'fname') {this.inputData.fname = data.inputValue}
 
-            if(data.inputName == 'mdname') {
-                this.inputData.mdname = data.inputValue
-            }
+            if(data.inputName == 'mdname') {this.inputData.mdname = data.inputValue}
 
-            if(data.inputName == 'lname') {
-                this.inputData.lname = data.inputValue
-            }
+            if(data.inputName == 'lname') {this.inputData.lname = data.inputValue}
 
-            if(data.inputName == 'date') {
-                this.inputData.date = data.inputValue
-            }
+            if(data.inputName == 'date') {this.inputData.date = data.inputValue}
 
             // if(data.inputName == 'gender') {
             //     this.inputData.gender = data.inputValue
@@ -142,9 +131,9 @@ export default {
             // }
             const newFormData= new FormData()
             // newFormData.append('user',user)
+            if(this.inputData.mdname!==''){newFormData.append("middle_name",this.inputData.mdname)}       
             newFormData.append("first_name",this.inputData.fname)
             newFormData.append("last_name",this.inputData.lname)
-            // newFormData.append("middle_name",this.inputData.mdname)
             newFormData.append("gender",this.inputData.gender)
             newFormData.append("date_of_birth",this.inputData.date)
             newFormData.append("email",this.inputData.email)
@@ -156,24 +145,19 @@ export default {
                 console.log(res?.data);
                 if(res.data?.token){
                     const token= JSON.stringify(res.data.token)
-                    localStorage.setItem('userToken',token)          
+                    localStorage.setItem('userToken',token)  
                 }
             })
-            .then(()=>this.$router.push('/userprofile'))
-            .catch(err => {
-                console.log(err);
+            .then((res)=>{
+                const user =res?.data.user
+                this.setUser(user)
+                this.setNext(2)
             })
-                // axios.post('http://192.168.1.53:3000/user',user)
-                // .then(res=>console.log("responds",res.data) )
-                // .catch(err=>console.log(err))
-            // if(!regex.test(user.email)){
-            //     // this.handleRegister()
-            //     return alert('Email is invalid')
-            // }
-            // if(user.password !== user.confirmPass) {
-            //    return alert('Password and confirm password does not match')
-            // }
-                        
+            .catch(err => {
+                let msg =err.responds?.data.message
+                alert(msg)
+                console.log(err);
+            })                        
         }
     },
 
