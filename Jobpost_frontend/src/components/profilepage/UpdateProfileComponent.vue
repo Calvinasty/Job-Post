@@ -1,5 +1,5 @@
 <template>
-    <EditProfileLayout @close="$emit('close')" :type="type">
+    <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave" :type="type">
         <component v-show="type=='user'" :is="componentId"></component>
         <component v-show="type=='company'" :is="componentId2"></component>
     </EditProfileLayout>
@@ -9,7 +9,6 @@
 import { mapState } from "pinia";
 import { useUserProfileStore } from '../../stores/userprofile'
 import EditProfileLayout from './EditProfileLayout.vue'
-//user components
 import UploadPicture from './updateuser/UploadComponent.vue';
 import PersonalInfo from './updateuser/PersonalInformationComponent.vue';
 import EducationHistory from './updateuser/EducationHistoryComponent.vue';
@@ -17,17 +16,16 @@ import WorkExperience from './updateuser/WorkExperienceComponent.vue'
 import SkillInterest from './updateuser/SkillInterestComponent.vue'
 // company components
 import CompanyInformation from './updatecompany/CompanyInformation.vue'
-import JobDescription from './updatecompany/JobDescription.vue'
 import RegistrationInfo from './updatecompany/RegistrationInfo.vue'
 import UploadCompanyPicture from './updatecompany/UploadPicture.vue'
 
 
 export default {
-    props:[
-        'type'
-    ],
+
+    props: ['handlecloseCard', 'handleSave', 'type'],
+
+
     components: {
-        //user components
         EditProfileLayout,
         UploadPicture,
         PersonalInfo,
@@ -36,13 +34,12 @@ export default {
         SkillInterest,
         // company components
         CompanyInformation,
-        JobDescription,
         RegistrationInfo,
         UploadCompanyPicture
     },
+
     data() {
         return {
-            //user components
             uploadpicture: UploadPicture,
             personalinfo: PersonalInfo,
             educationhistory: EducationHistory,
@@ -52,10 +49,10 @@ export default {
             uploadcompanypicture: UploadCompanyPicture,
             companyinformation: CompanyInformation,
             registrationinfo: RegistrationInfo,
-            jobdescription: JobDescription
             
         }
     },
+
     computed: {
         ...mapState(useUserProfileStore, ['componentId', 'componentId2'])
     },

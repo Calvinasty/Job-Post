@@ -1,10 +1,7 @@
 <template>
     <div>
         <div class="userprofile">
-
-
             <JobSearchNav />
-
             <section class="user-profile">
                 <div class="title">
                     <h1>{{ title }}</h1>
@@ -106,7 +103,8 @@
 
         </div>
         <FooterComponent />
-        <UpdateProfileComponentVue v-show="showModal == true" @close="showPopup()" />
+        <UpdateProfileComponentVue v-show="showModal == true" type="user" :handlecloseCard="showPopup"
+            :handleSave="handleSaveButton" />
 
         <!-- <EditPopups v-if="showModal" /> -->
         <!-- <router-view></router-view> -->
@@ -153,8 +151,6 @@ export default {
     methods: {
         showPopup() {
             this.showModal = !this.showModal
-            alert('hello')
-
 
             // if (cardTitle == userprofileData[0].cardTitle) {
             //     this.$router.push('/userprofile/modal/personalinfo');
@@ -168,7 +164,13 @@ export default {
             // if (cardTitle == userprofileData[3].cardTitle) {
             //     this.$router.push('/userprofile/modal/skills');
             // }
+        },
+
+        handleSaveButton() {
+            alert("boomboom");
         }
+
+
     }
 
 }

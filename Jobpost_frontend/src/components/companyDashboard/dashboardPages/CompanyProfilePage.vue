@@ -63,8 +63,8 @@
             </div>
 
             <div class="btnsec flex-center-row">
-                <button class="btn">Save</button>
-                <button class="btns">Cancel</button>
+                <button class="btn" @click="handleSave">Save</button>
+                <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
         </section>
         <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" type="company"/>
@@ -173,8 +173,10 @@ export default {
     methods:{
         showPopup() {
             this.showModal = !this.showModal
-    }
-    }
+    },
+    },
+
+   
 }
 </script>
 
