@@ -4,8 +4,8 @@ export const useDashboardStore = defineStore(
     'dashboard',
     {
         state: () => ({
-            next: 0,     // set state of postjobform next modal,
-            modalComponentId: '',
+            next: 0,     // set state of postjobform next in modal,
+            modalComponentId: '',   //set state for modal show postJob or Applicants Summary
         }),
         getters: {
             getNext(state){
@@ -17,6 +17,7 @@ export const useDashboardStore = defineStore(
             setNext(num){
                 this.next = num
             },
+            //trigger modal show for post job or applicant summary
             setModal(id){
                 this.modalComponentId = id
             }

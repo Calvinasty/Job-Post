@@ -13,7 +13,7 @@
 
 <script>
 import { useDashboardStore } from '../../../stores/dashboard';
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 export default {
     data() {
         return {
@@ -25,7 +25,14 @@ export default {
             ]
         }
     },
+    watch:{
+        next(newNum, oldNum){
+            if(newNum !== oldNum)
+                this.setNav(newNum)
+        }
+    },
     computed: {
+        ...mapState(useDashboardStore, ['next'])
     },
     methods: {
         ...mapActions(useDashboardStore, ['setNext']),
@@ -65,6 +72,7 @@ ul a {
 
 ul a.active {
     border-bottom: 5px solid #88CC00;
-    transition: 0.5s;
+    transition: 0.1s;
     transform: translateX(-10px);
+    font-weight: bolder;
 }</style>

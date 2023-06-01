@@ -17,10 +17,13 @@
 </template>
 
 <script>
-    import {mapActions} from 'pinia'
+    import {mapActions, mapState} from 'pinia'
     import { useDashboardStore } from '../../stores/dashboard';
     export default {
         props: [ 'toggleNav' ],
+        computed:{
+            ...mapState(useDashboardStore, ['modalComponentId'])
+        },
         methods:{
             ...mapActions(useDashboardStore, ['setModal']),
             toggleTop(){
@@ -28,7 +31,7 @@
             },
             addPost(){
                 // this.$emit("add-post")
-                this.setModal('postjobform')
+                this.setModal('PostJobForm')
             }
         }
     }

@@ -45,7 +45,7 @@
         },
         methods:{
             getCompanyData(){
-                alert('Hello')
+                // alert('Hello')
             },
             getActiveJobs(){
                 // name, email, password, phone, verification
