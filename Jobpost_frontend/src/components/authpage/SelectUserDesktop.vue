@@ -57,7 +57,9 @@
         width: 100dvw;
         height: 100dvh;
         /* padding: 55px 105px; */
-        background: linear-gradient(0deg, rgba(28, 48, 12, 0.55), rgba(28, 48, 12, 0.55)), url("/images/maxim-auth-background.jpeg");
+        background-image: url("/images/maxim-auth-background.jpeg");
+        background-color: #10150cf3;
+        mix-blend-mode: overlay;        
         /* background-position: 90%; */
         background-repeat: no-repeat;
         background-size:cover;

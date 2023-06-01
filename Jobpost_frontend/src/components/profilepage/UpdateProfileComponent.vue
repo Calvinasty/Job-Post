@@ -1,6 +1,7 @@
 <template>
-    <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave">
-        <component :is="componentId"></component>
+    <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave" :type="type">
+        <component v-show="type=='user'" :is="componentId"></component>
+        <component v-show="type=='company'" :is="componentId2"></component>
     </EditProfileLayout>
 </template>
 
@@ -21,7 +22,7 @@ import UploadCompanyPicture from './updatecompany/UploadPicture.vue'
 
 export default {
 
-    props: ['handlecloseCard', 'handleSave'],
+    props: ['handlecloseCard', 'handleSave', 'type'],
 
 
     components: {
@@ -53,7 +54,7 @@ export default {
     },
 
     computed: {
-        ...mapState(useUserProfileStore, ['componentId'])
+        ...mapState(useUserProfileStore, ['componentId', 'componentId2'])
     },
 }
 </script>

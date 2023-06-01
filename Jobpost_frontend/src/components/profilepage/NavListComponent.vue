@@ -1,10 +1,10 @@
 <template>
     <nav class="navitems flex-center-row">
-
         <router-link v-show="type=='user'" v-for="(item, index) in itemList" to="" @click="handleClick(item, index)" :key="item"
             :class="{ active: item.active }">
             {{ item.title }}
         </router-link>
+
         <router-link v-show="type=='company'" v-for="(item, index) in companyNav" to="" @click="handleClick(item, index)" :key="item"
             :class="{ active: item.active }">
             {{ item.title }}
