@@ -7,7 +7,7 @@
                 <input v-model="postjob.title" type="text" placeholder="Job Title">
                 <textarea v-model="postjob.description" name="description" id="description" cols="30" rows="10" placeholder="Enter job description..."></textarea>
                 <div class="btns">
-                    <button type="button">Cancel</button>
+                    <button type="button" @click="()=>cancelForm()">Cancel</button>
                     <button type="button" @click.prevent="setNext(1)">Next</button>
                 </div>
             </div>
@@ -25,7 +25,7 @@
 
                 <input v-model="postjob.location" type="text" placeholder="Job Location">
                 <div class="btns">
-                    <button type="button">Cancel</button>
+                    <button type="button" @click="()=>cancelForm()">Cancel</button>
                     <button type="button" @click.prevent="setNext(2)">Next</button>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                 </select>
                 {{ this.postjob.fname }}
                 <div class="btns">
-                    <button type="button">Cancel</button>
+                    <button type="button" @click="()=>cancelForm()">Cancel</button>
                     <button type="button" @click.prevent="setNext(3)">Next</button>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <input v-model="postjob.role" type="text" placeholder="Recruiter Role">
                 <input v-model="postjob.contact" type="text" placeholder="Recruiter Contact (optional)">
                 <div class="btns">
-                    <button type="button">Cancel</button>
+                    <button type="button" @click="()=>cancelForm()">Cancel</button>
                     <button type="submit">Submit</button>
                 </div>
             </div>
@@ -93,10 +93,9 @@
         },
         computed: {
             ...mapState(useDashboardStore, ['next']),
-            ...mapState(useDashboardStore, ['getNext'])
         },
         methods:{
-            ...mapActions(useDashboardStore, ['setNext']),
+            ...mapActions(useDashboardStore, ['setNext', 'setModal']),
             handlePost(){
                 let newPost = {
                     jobSalary: this.postjob.salary,
@@ -122,6 +121,7 @@
                 .catch(err => {
                     console.log(err);
                 })
+                this.$router.push('/jobsearch')
                 this.clearForm()
             },
             clearForm(){
@@ -137,9 +137,15 @@
                     lname: '',
                     role: '',
                     contact: ''
+                },
+                this.setModal('')
+            },
+            cancelForm(){
+                if(confirm("Are you sure of this action?")){
+                    this.clearForm()
+                }else{
+                    return
                 }
-                alert('Job Posted')
-                this.$router.push('/jobsearch')
             }
         }
     }

@@ -6,7 +6,7 @@ export const useJobsStore=defineStore(
         state:()=>({postedJobs:[]}),
         actions:{
             setPostedJobs(jobs){
-                this.postedJobs=jobs
+                return this.postedJobs=jobs
             }
         }
     }
