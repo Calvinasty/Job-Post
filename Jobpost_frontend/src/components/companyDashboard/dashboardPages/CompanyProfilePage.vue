@@ -170,13 +170,13 @@ export default {
 
     },
 
-    methods:{
+    methods: {
         showPopup() {
             this.showModal = !this.showModal
-    },
+        },
     },
 
-   
+
 }
 </script>
 
