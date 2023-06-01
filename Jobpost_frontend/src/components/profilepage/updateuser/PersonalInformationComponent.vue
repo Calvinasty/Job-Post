@@ -23,9 +23,19 @@
         <div class="input-container">
             <EditInputComponent inputName="Resume CV" inputType="" />
         </div>
-        <div class="input-container">
-            <EditInputComponent inputName="" inputType="radio" />
-            <EditInputComponent inputName="" inputType="radio" />
+        <div class="input-container flex-center-row gender">
+            <p>Gender :</p>
+            <span>
+                <input type="radio" name="gender" id="male">
+                <label for="male">Male</label>
+            </span>
+            <span>
+                <input type="radio" name="gender" id="female">
+                <label for="female">Female</label>
+            </span>
+
+            <!-- <EditInputComponent class="radio-gender" name="gender" id="gender" inputType="radio" />Male
+            <EditInputComponent class="radio-gender" name="gender" id="gender" inputType="radio" />Female -->
         </div>
     </div>
 </template>
@@ -39,7 +49,6 @@ export default {
 
     data() {
         return {
-
         }
     },
 }
@@ -53,16 +62,47 @@ export default {
     align-items: center;
     gap: 20px;
     width: 100%;
-    padding-top: 8%;
-    border: 2px solid aqua;
+    padding-top: 3%;
+    /* border: 2px solid aqua; */
     /* padding-bottom: 70px; */
 }
 
-.double {
+.input-container {
     width: 100%;
+    padding-left: 200px;
+    padding-right: 200px
 }
 
-.double:nth-child(1) {
+.double {
+    gap: 20px;
+
+}
+
+.input-container.gender {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 40px;
+
+    /* background: aqua; */
+}
+
+.gender p {
+    padding-left: 30px;
+}
+
+.gender span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gender span label {
+    margin-left: 8px;
+
+}
+
+
+/* .double:nth-child(1) {
     max-width: 50%;
     background: #000;
 }
@@ -70,5 +110,5 @@ export default {
 .double:nth-child(2) {
     max-width: 50%;
     background: #000
-}
+} */
 </style>

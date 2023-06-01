@@ -67,7 +67,8 @@
                 <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
         </section>
-        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" type="company"/>
+        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" :handlecloseCard="handlecloseCard"
+            type="company" />
     </div>
 </template>
 
@@ -170,13 +171,13 @@ export default {
 
     },
 
-    methods:{
+    methods: {
         showPopup() {
             this.showModal = !this.showModal
-    },
+        },
     },
 
-   
+
 }
 </script>
 

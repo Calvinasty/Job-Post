@@ -152,18 +152,6 @@ export default {
         showPopup() {
             this.showModal = !this.showModal
 
-            // if (cardTitle == userprofileData[0].cardTitle) {
-            //     this.$router.push('/userprofile/modal/personalinfo');
-            // }
-            // if (cardTitle == userprofileData[1].cardTitle) {
-            //     this.$router.push('/userprofile/modal/education');
-            // }
-            // if (cardTitle == userprofileData[2].cardTitle) {
-            //     this.$router.push('/userprofile/modal/experience');
-            // }
-            // if (cardTitle == userprofileData[3].cardTitle) {
-            //     this.$router.push('/userprofile/modal/skills');
-            // }
         },
 
         handleSaveButton() {

@@ -60,6 +60,9 @@
         font-size: 40px;
         font-weight: bolder;
     }
+    .txt{
+        font-weight: bold;
+    }
     a{
         text-decoration: none;
         color: #fff;

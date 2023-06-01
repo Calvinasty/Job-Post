@@ -4,7 +4,7 @@
             <img src="/images/userprofile.svg" alt="pic">
         </div>
         <div class="choose-file">
-            <EditInputComponent :inputName="inputOne.placeholder" :inputType="inputOne.type" />
+            <EditInputComponent inputName="daniellapic.jpeg" accept="image/*" inputType="file" />
         </div>
     </div>
 </template>
