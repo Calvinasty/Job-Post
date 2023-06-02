@@ -167,7 +167,7 @@ export default {
 
     },
     beforeMount(){
-        getCompanyInfo()
+        this.getCompanyInfo()
     },
     methods: {
         showPopup() {

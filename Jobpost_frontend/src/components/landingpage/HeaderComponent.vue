@@ -23,6 +23,9 @@
                 tagMessage: 'Connecting Talent to Opportunity:<br> Your Path to Success Begins Here!'
             }
         },
+        computed:{
+
+        },
         methods:{
             handleSearch(){
                 this.$router.push('/jobsearch')
