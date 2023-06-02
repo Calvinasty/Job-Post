@@ -1,5 +1,5 @@
 <template>
-    <aside class="nav-item flex-center">
+    <aside class="nav-item">
         <button type="button" :class="{ active:navItem?.active}" v-for="(navItem, index) in navItems" @click="() => goto(navItem.link, index)" :key="index">
             <span class="material-symbols-outlined"> {{ navItem.icon }} </span>
             {{ navItem.name }}
@@ -20,12 +20,12 @@
 <style lang="css" scoped>
 .nav-item {
     width: 100%;
-    padding: 5px;
-    border-top: 1px solid rgba(217, 217, 217, 1);
-    border-bottom: 1px solid rgba(217, 217, 217, 1);
-    /* border-bottom: none; */
-    /* border: 1PX solid green; */
-    
+    /* height: 40%; */
+    padding: 0 20px;
+    /* gap: 10px; */
+    display: flex;
+    flex-direction: column;
+    position: relative;    
 }
 
 .nav-item button {
@@ -66,9 +66,11 @@
 .nav-item .active{
     background-color: #88CC00;
     color: #fff;
+    font-weight: bolder;
 }
 .nav-item .active span{
     color: #fff;
+    font-weight: bolder;
 }
 
 

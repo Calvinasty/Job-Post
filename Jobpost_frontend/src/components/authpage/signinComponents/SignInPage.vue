@@ -3,10 +3,10 @@
         <!-- Desktop View Section -->
         <div class="desktop-view">
             <SignInDesktopComponent 
-            nameHeader = 'JOB POSTS'
-            nameTitle = 'Sign In'
+            nameTitle = 'SIGN IN'
             userInfo = 'Not Registered yet?'
             :showText = true
+            :showToggle = true
             />
         </div>
 

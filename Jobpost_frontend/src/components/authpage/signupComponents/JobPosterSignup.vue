@@ -81,12 +81,17 @@ export default {
 
 <style lang="css" scoped>
 .auth-container {
-    background-image: url(/images/maxim-auth-background.jpeg);
     width: 100dvw;
-    height: 100vh;
-    padding: 55px 105px;
-    background-color: rgba(28, 48, 12, 0.549);
-    background-blend-mode: overlay;
+        height: 100dvh;
+        background-image: url("/images/maxim-auth-background.jpeg");
+        background-color: #10150cf3;
+        mix-blend-mode: overlay;        
+        background-repeat: no-repeat;
+        background-size:cover;
+        background-blend-mode: overlay;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 }
 
 .auth-container h1 {

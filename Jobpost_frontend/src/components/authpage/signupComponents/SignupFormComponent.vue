@@ -73,6 +73,8 @@
 
 <script>
 import axios from 'axios'
+import { useUserStore } from '../../../stores/users';
+import { mapActions } from 'pinia';
 import InputComponent from '../InputComponent.vue';
 export default {
     components:{InputComponent},
@@ -93,35 +95,22 @@ export default {
         },
 
     methods: {
+        ...mapActions(useUserStore,['setUser']),
         handleUserInput(data){
             // console.log(data);
-            if(data.inputName == 'email') {
-                this.inputData.email = data.inputValue
-            }
+            if(data.inputName == 'email') { this.inputData.email = data.inputValue}
 
-            if(data.inputName == 'password') {
-                this.inputData.password = data.inputValue
-            }
+            if(data.inputName == 'password') {this.inputData.password = data.inputValue}
 
-            if(data.inputName == 'confirmPass') {
-                this.inputData.confirmPass = data.inputValue
-            }
+            if(data.inputName == 'confirmPass') {this.inputData.confirmPass = data.inputValue}
 
-            if(data.inputName == 'fname') {
-                this.inputData.fname = data.inputValue
-            }
+            if(data.inputName == 'fname') {this.inputData.fname = data.inputValue}
 
-            if(data.inputName == 'mdname') {
-                this.inputData.mdname = data.inputValue
-            }
+            if(data.inputName == 'mdname') {this.inputData.mdname = data.inputValue}
 
-            if(data.inputName == 'lname') {
-                this.inputData.lname = data.inputValue
-            }
+            if(data.inputName == 'lname') {this.inputData.lname = data.inputValue}
 
-            if(data.inputName == 'date') {
-                this.inputData.date = data.inputValue
-            }
+            if(data.inputName == 'date') {this.inputData.date = data.inputValue}
 
             // if(data.inputName == 'gender') {
             //     this.inputData.gender = data.inputValue
@@ -129,34 +118,46 @@ export default {
         },
 
         handleSubmit() {
-            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            const user={
-                first_name:this.inputData.fname,
-                last_name:this.inputData.lname,
-                middle_name:this.inputData.mdname,
-                gender:this.inputData.gender,
-                date_of_birth:this.inputData.date,
-                email:this.inputData.email,
-                password:this.inputData.password,
-                confirm_password: this.inputData.confirmPass
-            }
-            console.log(user);
-            axios.post('http://192.168.1.53:3000/user', user)
+            // const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // const user={
+            //     first_name:this.inputData.fname,
+            //     last_name:this.inputData.lname,
+            //     middle_name:this.inputData.mdname,
+            //     gender:this.inputData.gender,
+            //     date_of_birth:this.inputData.date,
+            //     email:this.inputData.email,
+            //     password:this.inputData.password,
+            //     confirm_password: this.inputData.confirmPass
+            // }
+            const newFormData= new FormData()
+            // newFormData.append('user',user)
+            if(this.inputData.mdname!==''){newFormData.append("middle_name",this.inputData.mdname)}       
+            newFormData.append("first_name",this.inputData.fname)
+            newFormData.append("last_name",this.inputData.lname)
+            newFormData.append("gender",this.inputData.gender)
+            newFormData.append("date_of_birth",this.inputData.date)
+            newFormData.append("email",this.inputData.email)
+            newFormData.append("password",this.inputData.password)
+            newFormData.append("confirm_password", this.inputData.confirmPass)
+            // console.log(newFormData);
+            axios.post("http://192.168.1.36:5000/jobSeeker/registerJobSeeker", newFormData)
             .then(res => {
-                console.log(res);
+                console.log(res?.data);
+                if(res.data?.token){
+                    const token= JSON.stringify(res.data.token)
+                    localStorage.setItem('userToken',token)  
+                }
+            })
+            .then((res)=>{
+                const user =res?.data.user
+                this.setUser(user)
+                this.setNext(2)
             })
             .catch(err => {
+                let msg =err.responds?.data.message
+                alert(msg)
                 console.log(err);
-            })
-
-            // if(!regex.test(user.email)){
-            //     // this.handleRegister()
-            //     return alert('Email is invalid')
-            // }
-            // if(user.password !== user.confirmPass) {
-            //    return alert('Password and confirm password does not match')
-            // }
-                        
+            })                        
         }
     },
 

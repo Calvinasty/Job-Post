@@ -1,6 +1,6 @@
 <template>
     <ModalLayout>
-        <component :is="applicantsummary"></component>
+        <component :is="modalComponentId"></component>
     </ModalLayout>
 </template>
 
@@ -11,10 +11,9 @@
     import PostJobForm from '../postjob/PostJobForm.vue';
     import ApplicantSummary from '../dashboardPages/ApplicantSummary.vue';
     export default {
-        components:{ModalLayout},
+        components:{ModalLayout, PostJobForm, ApplicantSummary},
         data(){
             return{
-                componentId: this.modalComponentId,
                 postjobform: PostJobForm,
                 applicantsummary: ApplicantSummary
             }

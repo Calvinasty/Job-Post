@@ -3,7 +3,15 @@
         <div class="signin">
             <header>
                 <img src="/images/logo.png" alt="">
+                
                 <h2>{{ nameHeader }}</h2>
+
+                <div v-if="showToggle" class="login-option flex-center-row">
+                    <div id="btn">Job Seeker</div>
+                    <button type="button" class="toggle-btn" id="jobSeeker" @click="jobSeeker">Job Seeker</button>
+                    <button type="button" class="toggle-btn" id="jobPoster" @click="jobPoster">Job Poster</button>
+                </div>
+
             </header>
 
             <div class="signin-header">
@@ -20,7 +28,7 @@
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row signin-btn">SignIn <span class="material-symbols-outlined">arrow_right_alt</span></button>
+                    <button type="submit" class="flex-center-row signin-btn">Log in </button>
 
                     <button type="button" class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
 
@@ -57,13 +65,27 @@
             'nameHeader',
            'nameTitle',
            'userInfo',
-           'showText'
+           'showText',
+           'showToggle'
        ],
 
        methods: {
         ...mapActions(useUserStore, ['setUser']),
         toSignup() {
             this.$router.push('/auth')
+        },
+
+        jobPoster() {
+            var z = document.getElementById("btn");
+            z.style.left = "50%"
+            z.innerHTML="Job Poster"
+            // letter.style.color = "white"
+        },
+        jobSeeker() {
+            var z = document.getElementById("btn");
+            z.style.left = "0"
+            z.innerHTML="Job Seeker"
+            // letter.style.color = "white"
         },
 
         handleUserInput(data){
@@ -116,7 +138,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: linear-gradient(0deg, rgba(28, 48, 12, 0.55), rgba(28, 48, 12, 0.55)), url("/images/maxim-auth-background.jpeg");
+        background-image: url("/images/maxim-auth-background.jpeg");
+        background-color: #10150cf3;
+        mix-blend-mode: overlay;
+        background-repeat: no-repeat;
+        background-size:cover;
+        background-blend-mode: overlay;   
         width: 100dvw;
         height: 100dvh;
     }
@@ -142,8 +169,27 @@
     }
 
     header img {
-        width: 50%;
+        width: 40%;
         padding-bottom: 13px;
+    }
+
+    .login-option {
+        width: 100%;
+        border: 1px solid #88CC00;
+        border-radius: 5px 0px 0px 5px;
+        position: relative;
+    }
+
+    .toggle-btn {
+        width: 100%;
+        padding: 10px 0;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        outline: none;
+        font-weight: 700;
+        font-size: 14px;
+        color: #7FBF4C;
     }
 
     header h2 {
@@ -152,6 +198,21 @@
         color: #7FBF4C;
     }
 
+    #btn {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 50%;
+        height: 40px;
+        background: #88CC00;
+        transition: .5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+    }
     .signin-header {
         display: flex;
         flex-direction: column;
@@ -213,11 +274,16 @@
 
     .desk-links .signin-btn {
         padding:12px 9px;
+        width: 100%;
         border-radius: 10px;
         background: #7FBF4C;
         color: #fff;
         border: #7FBF4C;
         column-gap: 5px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        cursor: pointer;
     }
 
     .desk-links .forgot-btn, .signup-btn {
