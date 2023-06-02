@@ -1,7 +1,7 @@
 <template>
     <span class="inputfield-component ">
         <label :for="inputId">{{label}}</label>
-        <input  :type="type" :name="name" v-model="value" v-on:change="()=>handleInput({inputValue:value, inputName:name})" :id="inputId" :placeholder="placeHolder">
+        <input  :type="type" :name="name" v-model="value" v-on:change="()=>handleInput({inputValue:value, inputName:name})" :id="inputId" :placeholder="placeHolder" :accept="accept">
         <slot></slot>
     </span>
 </template>
@@ -9,7 +9,7 @@
 <script>
     export default {
         props:[
-            "type", "name", "inputId", "placeHolder", "handleInput"
+            "type", "name", "inputId", "placeHolder", "handleInput", "accept"
         ]
     }
 </script>

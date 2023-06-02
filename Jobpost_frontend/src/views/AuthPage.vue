@@ -4,6 +4,7 @@
         <component v-if="routing == 'register'" :is="signUp"></component>
         <component v-if="routing == 'poster-register'" :is="posterSignUp"></component>
         <component v-if="routing == 'adminlogin'" :is="signInAdmin"></component>
+        <component v-if="routing == 'forgot-password'" :is="forgotPassword"></component>
     </AuthLayout>
 
 </template>
@@ -14,13 +15,15 @@
     import SignUpPage from '../components/authpage/signupComponents/SignUpPage.vue';
     import JobPosterSignup from '../components/authpage/signupComponents/JobPosterSignup.vue'
     import SignInAdminPage from '../components/authpage/signinComponents/SignInAdminPage.vue';
+    import ForgotPasswordPage from '../components/authpage/ForgotPasswordPage.vue';
     export default {
         components: {
             AuthLayout,
             SignInPage,
             SignUpPage,
             JobPosterSignup,
-            SignInAdminPage
+            SignInAdminPage,
+            ForgotPasswordPage
         },
         data(){
             return {
@@ -28,7 +31,8 @@
                 signIn: SignInPage,
                 signUp: SignUpPage,
                 posterSignUp:JobPosterSignup,
-                signInAdmin: SignInAdminPage
+                signInAdmin: SignInAdminPage,
+                forgotPassword: ForgotPasswordPage,
             }
         },
         beforeMount() {
@@ -40,6 +44,8 @@
             ? this.showPosterRegister()
             : this.$route.params.id == 'adminlogin'
             ? this.showAdminLogin()
+            : this.$route.params.id == 'forgot-password'
+            ? this.showForgotPassword()
             : this.returnRoute()
 
             
@@ -56,6 +62,9 @@
             },
             showAdminLogin() {
                 this.routing = 'adminlogin'
+            },
+            showForgotPassword() {
+                this.routing = 'forgot-password'
             },
             returnRoute(){
                 this.routing = ''

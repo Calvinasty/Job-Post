@@ -30,7 +30,7 @@
                 <div class="desk-links">
                     <button type="submit" class="flex-center-row signin-btn">Log in </button>
 
-                    <button type="button" class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
+                    <button type="button" class="forgot-btn">Forgotten Password? <span @click="toForgot()">Click Here</span></button>
 
                     <button type="button" v-if="showText" class="signup-btn">{{ userInfo }} <span @click="toSignup()">Register Now</span></button>
                 </div>
@@ -56,7 +56,8 @@
             inputData: {
                 email: '',
                 password: ''
-            }
+            },
+
         }
 
        },
@@ -71,6 +72,9 @@
 
        methods: {
         ...mapActions(useUserStore, ['setUser']),
+        toForgot() {
+            this.$router.push('/auth/forgot-password')
+        },
         toSignup() {
             this.$router.push('/auth')
         },
