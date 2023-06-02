@@ -128,9 +128,10 @@
             display: inline-flex;
             width: 100vdw;
             /* border: 1px solid red; */
-            position: relative;
+            position: fixed;
             left: 0;
             padding: 0 10px;
+            height: 50px;
         }
         .navbar div img{
             /* position: absolute; */
@@ -147,7 +148,7 @@
             /* border: 1px solid blue; */
         }
         .auth-btns a {
-            font-size: 15px;
+            font-size: 10px;
         }
         .auth-btns a:nth-child(2){
             padding: 10px 20px;
