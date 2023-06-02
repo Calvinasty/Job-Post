@@ -66,70 +66,71 @@ export default {
     },
 
     methods: {
-        handlePersonalInfo() {
-            const userPersonalInfo = {
-                first_name: this.personalInfo.first_name,
-                middle_name: this.personalInfo.middle_name,
-                last_name: this.personalInfo.last_name,
-                email: this.personalInfo.email,
-                contact: this.personalInfo.contact,
-                linkedIn_url: this.personalInfo.linkedIn_url,
-                git_url: this.personalInfo.git_url,
-                dob: this.personalInfo.dob,
-                resume_cv: this.personalInfo.resume_cv,
-                gender: this.personalInfo.gender,
-            }
+        handleInput() { }
+        // handlePersonalInfo() {
+        //     const userPersonalInfo = {
+        //         first_name: this.personalInfo.first_name,
+        //         middle_name: this.personalInfo.middle_name,
+        //         last_name: this.personalInfo.last_name,
+        //         email: this.personalInfo.email,
+        //         contact: this.personalInfo.contact,
+        //         linkedIn_url: this.personalInfo.linkedIn_url,
+        //         git_url: this.personalInfo.git_url,
+        //         dob: this.personalInfo.dob,
+        //         resume_cv: this.personalInfo.resume_cv,
+        //         gender: this.personalInfo.gender,
+        //     }
 
-            console.log(userPersonalInfo)
+        // console.log(userPersonalInfo)
 
-        },
-        handleInput(data) {
-            if (data.inputName == 'first_name') {
-                this.personalInfo.first_name = data.inputValue
+    },
+    // handleInput(data) {
+    //     if (data.inputName == 'first_name') {
+    //         this.personalInfo.first_name = data.inputValue
 
-            }
-            if (data.inputName == 'middle_name') {
-                this.personalInfo.middle_name = data.inputValue
+    //     }
+    //     if (data.inputName == 'middle_name') {
+    //         this.personalInfo.middle_name = data.inputValue
 
-            }
-            if (data.inputName == 'last_name') {
-                this.personalInfo.last_name = data.inputValue
+    //     }
+    //     if (data.inputName == 'last_name') {
+    //         this.personalInfo.last_name = data.inputValue
 
-            }
-            if (data.inputName == 'email') {
-                this.personalInfo.email = data.inputValue
+    //     }
+    //     if (data.inputName == 'email') {
+    //         this.personalInfo.email = data.inputValue
 
-            }
-            if (data.inputName == 'contact') {
-                this.personalInfo.contact = data.inputValue
+    //     }
+    //     if (data.inputName == 'contact') {
+    //         this.personalInfo.contact = data.inputValue
 
-            }
-            if (data.inputName == 'linkedIn_url') {
-                this.personalInfo.linkedIn_url = data.inputValue
+    //     }
+    //     if (data.inputName == 'linkedIn_url') {
+    //         this.personalInfo.linkedIn_url = data.inputValue
 
-            }
-            if (data.inputName == 'git_url') {
-                this.personalInfo.git_url = data.inputValue
+    //     }
+    //     if (data.inputName == 'git_url') {
+    //         this.personalInfo.git_url = data.inputValue
 
-            }
-            if (data.inputName == 'dob') {
-                this.personalInfo.dob = data.inputValue
+    //     }
+    //     if (data.inputName == 'dob') {
+    //         this.personalInfo.dob = data.inputValue
 
-            }
-            if (data.inputName == 'resume_cv') {
-                this.personalInfo.resume_cv = data.inputValue
+    //     }
+    //     if (data.inputName == 'resume_cv') {
+    //         this.personalInfo.resume_cv = data.inputValue
 
-            }
-            if (data.inputName == 'gender') {
-                this.personalInfo.gender = data.inputValue
+    //     }
+    //     if (data.inputName == 'gender') {
+    //         this.personalInfo.gender = data.inputValue
 
-            }
+    //     }
 
-            console.log(this.personalInfo)
+    //     console.log(this.personalInfo)
 
-        }
-    }
+    // }
 }
+
 </script>
 
 <style lang="css" scoped>
