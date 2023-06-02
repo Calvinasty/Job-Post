@@ -1,20 +1,19 @@
 <template>
-    <div class="main-container">
-        <div class="img">
-            <img src="/images/userprofile.svg" alt="picture">
-            <h2>Daniella McDan</h2>
-        </div>
+    <div v-for="(item, index) in infos" :key="index" class="main-container side">
+        <!-- <div class="img">
+            <img :src="item.image"  alt="">
+            <h2>{{item.name }}</h2>
+        </div> -->
         <div class="address">
-            <p>Coral Avenue, Hse 3, Tantra 
-            Hills, Accra-Ghana. <br> GHA-393-133</p>
+            <p>{{item.address}}</p>
         </div>
         <div class="contact">
             <ul class="list">
-                <li>Female</li>
-                <li>27</li>
-                <li> <a href="mailto:danmcdan@gmail.com">danmcdan@gmail.com</a></li>
-                <li><a href="linkedin.com/in/daniella-momo">linkedin.com/daniellamcdan</a></li>
-                <li>+233254775545</li>
+                <li>{{ item.gender}}</li>
+                <li>{{ item.age}}</li>
+                <li> <a href="mailto:danmcdan@gmail.com">{{item.email}}</a></li>
+                <li><a href="linkedin.com/in/daniella-momo">{{item.linkedin}}</a></li>
+                <li>{{item.number}}</li>
             </ul>
         </div>
 
@@ -23,7 +22,9 @@
 
 <script>
 export default {
-
+    props: [
+        'infos'
+    ]
 }
 </script>
 
@@ -47,12 +48,11 @@ export default {
 }
 .img img{
     width: 100px;
-    /* border: 1px solid; */
     background-color: rgb(231, 213, 213);
     border-radius: 100%;
 
 }
-.address{
+/* .address{
     display: flex;
     justify-content: flex-start;
     font-size: 13px;
@@ -74,5 +74,5 @@ export default {
 a{
     text-decoration: none;
     color: rgba(120, 114, 114, 1);
-}
+} */
 </style>
