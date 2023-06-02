@@ -22,8 +22,8 @@
 
 <style lang="css" scoped>
     .complete{
-        height: 800px;
-        width: 622px;
+        height: 80%;
+        width: 50%;
         border-radius: 20px;
         padding-top: 128px;
         padding: 50px 70px;
