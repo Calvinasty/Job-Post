@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="() => handleSubmit()" v-if="next !== 2">
         <Transition name="slide-fade">
-            <div v-if="next == 0" class="first">
+            <div v-show="next == 0" class="first">
                 <div v-if="screen=='desktop'" class="headers">
                     <img src="/images/logo.png" alt="logo">
                     <h1 v-html="form1header"></h1>
@@ -17,10 +17,10 @@
                     <InputComponent placeHolder="Last Name" type="text" name="lname" :handleInput="handleUserInput" />
                 </aside>
                 <InputComponent placeHolder="Email" type="email" name="email" :handleInput="handleUserInput" />
-                <InputComponent placeHolder="Password" type="password" name="password" :handleInput="handleUserInput" />
+                <InputComponent placeHolder="Password" type="password" name="password" :label="passLabel" :handleInput="handleUserInput" />
                 <InputComponent placeHolder="Confirm Password" type="password" name="confirmPass" :handleInput="handleUserInput" />
 
-                <button type="button" @click.prevent="setNext(1)">
+                <button type="button" @click.prevent="()=>setNext(1)">
                     Continue <span class="material-symbols-outlined">arrow_right_alt</span>
                 </button>
                 <span v-if="screen == 'desktop'" class="progress">
@@ -31,7 +31,7 @@
         </Transition>
 
         <Transition name="slide-fade">
-            <div v-if="next == 1" class="second">
+            <div v-show="next == 1" class="second">
                 <div v-if="screen == 'desktop'" class="headers">
                     <img src="/images/logo.png" alt="logo">
                     <h1 v-html="form2header"></h1>
@@ -43,7 +43,7 @@
 
                 <InputComponent placeHolder="Select Date of Birth" type="date" name="date" :handleInput="handleUserInput" />
                 <span>
-                    <label for="fname">Gender</label>
+                    <label for="gender">Gender</label>
                     <select name="gender" id="gender" v-model="inputData.gender" :handleInput="handleUserInput">
                         <option value="default">Select Your Gender</option>
                         <option value="male">Male</option>
@@ -51,14 +51,14 @@
                         <option value="others">Others</option>
                     </select>
                 </span>
-                <InputComponent placeHolder="Contact eg. +233 54..." type="text" name="contact" />
+                <InputComponent placeHolder="Contact eg. +233 54..." type="text" name="contact" :handleInput="handleUserInput"/>
 
                 <button type="submit">
                     SignUp <span class="material-symbols-outlined">how_to_reg </span>
                 </button>
 
                 <!-- Back button -->
-                <button class="prev-btn" type="button" @click.prevent="setPrev(0)">
+                <button class="prev-btn" type="button" @click.prevent="()=>setPrev(0)">
                     <span class="material-symbols-outlined"> arrow_back_ios_new</span> Back
                 </button>
                 <!-- Progress indicator -->
@@ -69,6 +69,7 @@
             </div>
         </Transition>
     </form>
+    <ToastMessage v-show="toast.active" :toast="toast"/>
 </template>
 
 <script>
@@ -76,8 +77,9 @@ import axios from 'axios'
 import { useUserStore } from '../../../stores/users';
 import { mapActions } from 'pinia';
 import InputComponent from '../InputComponent.vue';
+import ToastMessage from '../../utils/ToastMessage.vue'
 export default {
-    components:{InputComponent},
+    components:{InputComponent, ToastMessage},
 
     data() {
             return {
@@ -89,7 +91,12 @@ export default {
                     lname: '',
                     confirmPass: '',
                     date: '',
-                    gender: ''
+                    gender: '',
+                    contact: ''
+                },
+                passLabel: '<h5 class="red-text">*upper/lower/special eg. <span class="green-text">Kode@123</span></h5>',
+                toast:{
+                    active: false, msg:'', color:''
                 }
             }
         },
@@ -111,6 +118,8 @@ export default {
             if(data.inputName == 'lname') {this.inputData.lname = data.inputValue}
 
             if(data.inputName == 'date') {this.inputData.date = data.inputValue}
+            
+            if(data.inputName == 'contact') {this.inputData.contact = data.inputValue}
 
             // if(data.inputName == 'gender') {
             //     this.inputData.gender = data.inputValue
@@ -139,25 +148,39 @@ export default {
             newFormData.append("email",this.inputData.email)
             newFormData.append("password",this.inputData.password)
             newFormData.append("confirm_password", this.inputData.confirmPass)
+            newFormData.append("phone_number", this.inputData.contact)
             // console.log(newFormData);
             axios.post("http://192.168.1.36:5000/jobSeeker/registerJobSeeker", newFormData)
             .then(res => {
                 console.log(res?.data);
+                if(res.data?.message){
+                    let msg=res.data.message
+                    this.showToast(msg, 'success')
+                }
                 if(res.data?.token){
                     const token= JSON.stringify(res.data.token)
                     localStorage.setItem('userToken',token)  
                 }
-            })
-            .then((res)=>{
-                const user =res?.data.user
-                this.setUser(user)
-                this.setNext(2)
+                if(res.data?.user){
+                    const user = res.data.user
+                    this.setUser(user)
+                    this.setNext(2)
+                }
             })
             .catch(err => {
-                let msg =err.responds?.data.message
-                alert(msg)
+                let msg = err.response? err.response.data.message : err.message
+                this.showToast(msg, 'error')
                 console.log(err);
             })                        
+        },
+
+        showToast(msg, color){
+            setTimeout(()=>{
+                this.toast = {
+                    active: true, msg, color
+                }
+            }, 3000)
+            // this.toast = {active: false, msg:'', color:''}
         }
     },
 
