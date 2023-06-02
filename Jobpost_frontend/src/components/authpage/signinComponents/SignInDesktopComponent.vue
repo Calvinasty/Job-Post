@@ -141,6 +141,10 @@
                     
                     localStorage.setItem('userState', res.data.user)
                     localStorage.setItem('userToken', res.data.token)
+                    const userInfo=res.data.user
+                    
+                    userInfo['photo']="avatar.jpg"
+                    this.setUser(res.data?.user)
                     this.$router.push('/userprofile')
                 })
                 .catch(err => {
