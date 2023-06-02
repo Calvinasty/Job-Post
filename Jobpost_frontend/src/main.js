@@ -13,8 +13,9 @@ if(localStorage.getItem('userState')){
 watch(
     () => pinia.state.value.user,
     (state) => {
+        if(localStorage.getItem('userState')){
         localStorage.setItem("userState", JSON.stringify(state))
-    },
+    }},
     {deep: true}
 );
 

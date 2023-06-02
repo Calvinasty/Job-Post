@@ -137,6 +137,7 @@ export default {
             //     email:this.inputData.email,
             //     password:this.inputData.password,
             //     confirm_password: this.inputData.confirmPass
+            
             // }
             const newFormData= new FormData()
             // newFormData.append('user',user)
