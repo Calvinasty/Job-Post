@@ -25,9 +25,9 @@
 .logo > img {
   position: absolute;
   /* background-color: aqua; */
-  top: -5px;
+
   width: 350px;
-  left: 0px;
+
   cursor: pointer;
 }
 
@@ -143,8 +143,8 @@ a.router-link-exact-active {
     /* position: absolute; */
     /* background-color: aqua; */
     /* top: -0px; */
-    width: 150px;
-    left: -45px;
+    width: 250px;
+    left: px;
   }
 
   .footer-sec1 {
