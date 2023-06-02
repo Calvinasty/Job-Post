@@ -36,7 +36,7 @@
                             :inputType="cardDetails[0].cardInputInformation.inputFour.type" />
                     </CardInformationComponent>
 
-                    <CardInformationComponent :detailsTitle="cardDetails[1].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" :detailsTitle="cardDetails[1].cardTitle">
                         <InputComponent :fullName="cardDetails[1].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[1].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[1].cardInputInformation.inputOne.type" />
@@ -48,7 +48,7 @@
                             :inputType="cardDetails[1].cardInputInformation.inputThree.type" />
                     </CardInformationComponent>
 
-                    <CardInformationComponent :detailsTitle="cardDetails[2].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" :detailsTitle="cardDetails[2].cardTitle">
                         <InputComponent :fullName="cardDetails[2].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[2].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[2].cardInputInformation.inputOne.type" />
@@ -67,8 +67,7 @@
                 <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
         </section>
-        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" :handlecloseCard="handlecloseCard"
-            type="company" />
+        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" :handlecloseCard="showPopup" type="company"/>
     </div>
 </template>
 
