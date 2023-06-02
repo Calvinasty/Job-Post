@@ -12,12 +12,14 @@
             :handleHome="handleHome"
             :screen="screen"
         />
-        <SignupSuccess :handleRoute="handleHome" v-if="next == 2" />
+        <SignupSuccess :handleRoute="handleHome" :userEmail="user.email" v-if="next == 2" />
 
     </div>
 </template>
 
 <script>
+import {mapState} from 'pinia'
+import { useUserStore } from '../../../stores/users';
 import SignupFormComponent from './SignupFormComponent.vue';
 import SignupSuccess from './SignupSuccess.vue'
 export default {
@@ -34,6 +36,9 @@ export default {
             form2header: 'Continue Sign Up',
             form2sub: 'Enter additional details'
         }
+    },
+    computed:{
+        ...mapState(useUserStore, ['user'])
     },
     methods: {
         setNext(num) {
