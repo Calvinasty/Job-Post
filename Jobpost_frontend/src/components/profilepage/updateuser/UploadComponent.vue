@@ -1,7 +1,7 @@
 <template>
     <div class="card-detail flex-center">
         <div class="profile-pic">
-            <img src="/images/userprofile.svg" alt="pic">
+            <img style="width: 200px; border-radius: 50%;" src="/images/avatar.jpg" alt="pic">
         </div>
         <div class="choose-file">
             <EditInputComponent inputName="daniellapic.jpeg" accept="image/*" inputType="file" />
