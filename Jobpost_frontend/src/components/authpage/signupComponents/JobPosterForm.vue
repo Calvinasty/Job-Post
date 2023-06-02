@@ -50,7 +50,6 @@ export default {
 
     data() {
         return {
-
              
         };
     },
@@ -66,8 +65,8 @@ export default {
 
     methods: {        
         handleHome(){
-                this.$router.push('/admin/admin')
-            },      
+            this.$router.push('/admin/admin')
+        },      
     },
 };
 </script>

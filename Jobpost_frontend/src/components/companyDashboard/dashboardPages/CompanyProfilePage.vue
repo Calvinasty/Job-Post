@@ -79,8 +79,8 @@ import UpdateProfileComponent from '../../profilepage/UpdateProfileComponent.vue
 export default {
     data() {
         return {
-            title: 'Company Profile',
-            companyName: 'Maxim Nyansa',
+            title: '',
+            companyName: '',
             numberOfPostedJobs: 0,
             showModal: false,
             cardDetails: [
@@ -108,9 +108,7 @@ export default {
                             type: 'text',
                         }
                     },
-
                 },
-
                 {
                     cardTitle: 'Registration Information',
                     cardInputInformation: {
@@ -162,18 +160,22 @@ export default {
         }
     },
 
-
     components: {
         CardInformationComponent,
         InputComponent,
         UpdateProfileComponent,
 
     },
-
+    beforeMount(){
+        getCompanyInfo()
+    },
     methods: {
         showPopup() {
             this.showModal = !this.showModal
         },
+        getCompanyInfo(){
+            
+        }
     },
 
 
