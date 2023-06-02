@@ -9,8 +9,8 @@
                     <img @click="toTop" src="/images/logo.png" alt="">
                 </div>
 
-                <div class="footer-sec1-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Itaque fugit mollitia perferendis.
+                <div class="footer-sec1-text"> Connecting dream jobs with dream <br> candidates - Your one-stop job search
+                    solution
                 </div>
 
                 <div class="footer-sec1-input">
@@ -26,15 +26,13 @@
                     <h2>Find Jobs</h2>
 
                     <div class="footer-link">
-                        <router-link to="">Health</router-link>
-                        <router-link to="">Agriculture</router-link>
-                        <router-link to="">Business</router-link>
-                        <router-link to="">Tecnology</router-link>
-                        <router-link to="">Oil and Gas</router-link>
+                        <router-link to="">Featured Jobs</router-link>
+                        <router-link to="">Apply Job</router-link>
+                        <router-link to="">Post a Job</router-link>
                     </div>
                 </div>
 
-                <div class="putsmthere">
+                <!-- <div class="putsmthere">
                     <h2>Useful Links</h2>
                     <div class="footer-link">
                         <router-link to="">Home</router-link>
@@ -43,7 +41,7 @@
                         <router-link to="" target="_blank">Charity Partners</router-link>
                         <router-link to="" target="_blank">Faqs</router-link>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 

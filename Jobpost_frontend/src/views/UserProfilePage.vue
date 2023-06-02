@@ -133,15 +133,15 @@ export default {
     data() {
         return {
             title: 'User Profile',
-            usersName: 'Calvin Asantey',
-            userOccupation: 'Software Developer',
+            usersName: '',
+            userOccupation: '',
             showModal: false,
             Value: {
-                fullname: "Calvin Asantey",
-                email: "calvinasty9@gmail.com",
-                contact: "0558878067",
-                linkenin: "https://www.linkedin.com/in/calvin-asantey/",
-                github: "https://github.com/Calvinasty/Job-Post",
+                fullname: "",
+                email: "",
+                contact: "",
+                linkenin: "",
+                github: "",
             },
 
             inputCardDetails: userprofileData

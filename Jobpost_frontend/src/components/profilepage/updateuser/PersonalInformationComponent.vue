@@ -38,6 +38,10 @@
             <!-- <EditInputComponent class="radio-gender" name="gender" id="gender" inputType="radio" />Male
             <EditInputComponent class="radio-gender" name="gender" id="gender" inputType="radio" />Female -->
         </div>
+        <div class="btnsec flex-center-row">
+            <button class="btn" @click="handleSave">Save</button>
+            <button class="btns" @click="handlecloseCard">Cancel</button>
+        </div>
     </div>
 </template>
 
@@ -47,6 +51,11 @@ export default {
     components: {
         EditInputComponent,
     },
+
+    props: [
+        'handlecloseCard',
+        'handleSave',
+    ],
 
     data() {
         return {
@@ -178,6 +187,36 @@ export default {
 .gender span label {
     margin-left: 8px;
 
+}
+
+.btnsec {
+    /* position: absolute; */
+    padding-bottom: 20px;
+    gap: 20px;
+    bottom: 0;
+    /* background-color: aqua; */
+}
+
+.btnsec>* {
+    border: none;
+}
+
+.btn {
+    border-radius: 8px;
+    width: 140px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #88CC00;
+    color: #ffffff;
+}
+
+.btns {
+    border-radius: 8px;
+    width: 140px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #000000;
+    color: #ffffff;
 }
 
 
