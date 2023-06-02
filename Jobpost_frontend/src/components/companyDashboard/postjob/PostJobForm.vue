@@ -24,6 +24,7 @@
                 </select>
 
                 <input v-model="postjob.location" type="text" placeholder="Job Location">
+                <textarea v-model="postjob.requirement" name="requirements" id="requirements" cols="30" rows="10" placeholder="Enter job requirements..."></textarea>
                 <div class="btns">
                     <button type="button" @click="()=>cancelForm()">Cancel</button>
                     <button type="button" @click.prevent="setNext(2)">Next</button>
@@ -42,7 +43,9 @@
                     <option value="GH¢ 3,000-5,000">GH¢ 3,000 - 5,000</option>
                     <option value="GH¢ 500+">5,000+</option>
                 </select>
-                {{ this.postjob.fname }}
+                <input v-model="postjob.deadline" type="date" placeholder="Deadline">
+                <textarea v-model="postjob.howto" name="howto" id="howto" cols="30" rows="5" placeholder="Enter job application method..."></textarea>
+
                 <div class="btns">
                     <button type="button" @click="()=>cancelForm()">Cancel</button>
                     <button type="button" @click.prevent="setNext(3)">Next</button>
@@ -50,9 +53,7 @@
             </div>
 
             <div class="fourth" v-show="next == 3">
-                <input v-model="postjob.fname" type="text" placeholder="Recruiter First Name">
-                <input v-model="postjob.mname" type="text" placeholder="Recruiter Middle Name">
-                <input v-model="postjob.lname" type="text" placeholder="Recruiter Last Name">
+                <input v-model="postjob.recruiter" type="text" placeholder="Recruiter Name">
                 <input v-model="postjob.role" type="text" placeholder="Recruiter Role">
                 <input v-model="postjob.contact" type="text" placeholder="Recruiter Contact (optional)">
                 <div class="btns">
@@ -79,15 +80,15 @@
                 postjob: {
                     title: '',
                     description: '',
+                    requirement: '',
                     jobtype: '',
                     location: '',
                     salary: '',
                     role: '',
-                    fname: '',
-                    mname: '',
-                    lname: '',
-                    role: '',
-                    contact: ''
+                    recruiter: '',
+                    contact: '',
+                    deadline: '',
+                    howto: ''
                 },
             }
         },
@@ -98,31 +99,44 @@
             ...mapActions(useDashboardStore, ['setNext', 'setModal']),
             handlePost(){
                 let newPost = {
-                    jobSalary: this.postjob.salary,
-                    jobExperince: this.postjob.description,
-                    jobLocation: this.postjob.location,
-                    jobTitle: this.postjob.title,
-                    jobPoster: this.postjob.fname,
-                    jobPosterLogo:'/images/logo.svg',
-                    jobUpdatedAt:'1 min',
-                    jobPositionsAvailable:'1 of 2'
+                    job_title: this.postjob.title,
+                    job_type: this.postjob.jobtype,
+                    job_description: this.postjob.description,
+                    salary_range: this.postjob.salary,
+                    location: this.postjob.location,
+                    requirements: this.postjob.requirement,
+                    application_deadline: this.postjob.deadline,
+                    how_to_apply: this.postjob.howto,
+                    name_of_poster: this.postjob.recruiter,
+                    role: this.postjob.role,
+                    contact: this.postjob.contact
+                    
                 }
-                // const oldData = JSON.parse(localStorage.getItem('postedjobs'))
-                // if(oldData){
-                //     let newData = [newPost, ...[oldData]]
-                //     localStorage.setItem('postedjobs', JSON.stringify(newData))
-                // }else{
-                //     localStorage.setItem('postedjobs', JSON.stringify(newPost))
-                // }
-                axios.post('http://192.168.1.53:3000/jobs', newPost)
+                const newFormData= new FormData()  
+                newFormData.append("job_title", this.postjob.title)
+                newFormData.append("job_type", this.postjob.jobtype)
+                newFormData.append("job_description", this.postjob.description)
+                newFormData.append("salary_range", this.postjob.salary)
+                newFormData.append("location", this.postjob.location)
+                newFormData.append("requirements", this.postjob.requirement)
+                newFormData.append("application_deadline", this.postjob.deadline)
+                newFormData.append("how_to_apply", this.postjob.howto)
+                newFormData.append("name_of_poster", this.postjob.recruiter)
+                newFormData.append("role", this.postjob.role)
+                newFormData.append("contact", this.postjob.contact)
+
+                let token = localStorage.getItem('companyToken')
+                console.log(token);
+                axios.post('http://192.168.1.36:5000/jobPost/postJob', newFormData, {headers: token})
                 .then(res => {
                     console.log(res.data);
+                    this.$router.push('/jobsearch')
+                    this.clearForm()
                 })
                 .catch(err => {
                     console.log(err);
+                    alert(err)
                 })
-                this.$router.push('/jobsearch')
-                this.clearForm()
             },
             clearForm(){
                 this.postjob = {

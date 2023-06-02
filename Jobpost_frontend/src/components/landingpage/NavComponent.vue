@@ -1,5 +1,6 @@
 <template>
-    <div class="navbar"> 
+    <div class="navbar" :class="{ 'navbar--hidden': !showNavbar }">
+      
         <div>
             <router-link to="/"> <img src="/images/logo.png" alt="Logo"> </router-link>
         </div>
@@ -12,7 +13,35 @@
 
 <script>
     export default {
-        
+        data () {
+            return {
+            showNavbar: true,
+            lastScrollPosition: 0
+            }
+        },
+        mounted () {
+            window.addEventListener('scroll', this.onScroll)
+        },
+        beforeDestroy () {
+            window.removeEventListener('scroll', this.onScroll)
+        },
+        methods: {
+            onScroll () {
+                const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+                if (currentScrollPosition < 0) {
+                    return
+                }
+                // Stop executing this function if the difference between
+                // current scroll position and last scroll position is less than some offset
+                if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+                    return
+                }
+                this.showNavbar = currentScrollPosition < this.lastScrollPosition
+                this.lastScrollPosition = currentScrollPosition
+            }
+        },
+
+
     }
 </script>
 
@@ -30,6 +59,19 @@
         top: 0;
         z-index: 1000;
         box-shadow: 0px 3px 9px #c0bebe;
+    }
+    .navbar {
+        /* height: 60px; */
+        /* width: 100vw; */
+        /* background: hsl(200, 50%, 50%); */
+        /* position: fixed; */
+        /* box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5); */
+        transform: translate3d(0, 0, 0);
+        transition: 0.1s all ease-out;
+    }
+    .navbar.navbar--hidden {
+        box-shadow: none;
+        transform: translate3d(0, -100%, 0);
     }
     .navbar div:nth-child(1){
         /* width: 100px; */
