@@ -5,7 +5,7 @@
             <JobPosterForm :pageNumber="pageNum" :handleSignUp="handleComapnySignUp" :handleVerify="handleVerify"
                 :userInfo="userInfo" :handleUserInput="handleUserInput" />
         </div>
-        <ToastMessage v-show="toast.active" :toast="toast"/>
+        <ToastMessage v-show="toast.active" :toast="toast" />
     </AuthLayout>
 </template>
 
@@ -35,8 +35,8 @@ export default {
                 verification: ""
             },
             passLabel: '<h5 class="red-text">*upper/lower/special eg. <span class="green-text">Candle@123</span></h5>',
-            toast:{
-                active: false, msg:'', color:''
+            toast: {
+                active: false, msg: '', color: ''
             }
         }
     },
@@ -48,15 +48,15 @@ export default {
     methods: {
         handleComapnySignUp() {
             this.handleUserInput()
-            const companyData = {
-                company_name: this.userInfo.name,
-                email: this.userInfo.email,
-                password: this.userInfo.password,
-                confirm_password: this.userInfo.password,
-                mobile_number: this.userInfo.phone,
-                verification_method: this.userInfo.verification
-            }
-            const newFormData= new FormData()
+            // const companyData = {
+            //     company_name: this.userInfo.name,
+            //     email: this.userInfo.email,
+            //     password: this.userInfo.password,
+            //     confirm_password: this.userInfo.password,
+            //     mobile_number: this.userInfo.phone,
+            //     verification_method: this.userInfo.verification
+            // }
+            const newFormData = new FormData()
             // newFormData.append('user',user)    
             newFormData.append("company_name", this.userInfo.name)
             newFormData.append("email", this.userInfo.email)
@@ -69,22 +69,22 @@ export default {
             axios.post('http://192.168.1.36:5000/company/registerCompany', newFormData)
                 .then(res => {
                     console.log(res?.data);
-                    if(res.data?.message){
-                        let msg=res.data.message
+                    if (res.data?.message) {
+                        let msg = res.data.message
                         this.showToast(msg, 'success')
                     }
-                    if(res.data?.token){
-                        const token= JSON.stringify(res.data.token)
-                        localStorage.setItem('companyToken',token)  
+                    if (res.data?.token) {
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('companyToken', token)
                     }
-                    if(res.data?.company){
+                    if (res.data?.company) {
                         const company = res.data.company
                         this.setCompany(company)
                     }
                     // res.status == 201 ? ++this.pageNum : alert('invalid Input')
                 })
                 .catch(err => {
-                    let msg = err.response? err.response.data.message : err.message
+                    let msg = err.response ? err.response.data.message : err.message
                     this.showToast(msg, 'error')
                     console.log(err);
                 })
@@ -100,12 +100,12 @@ export default {
         handleVerify(data) {
             this.userInfo.verification = data?.verification
         },
-        setCompany(company){
+        setCompany(company) {
             localStorage.setItem('companyState', JSON.stringify(company))
             ++this.pageNum
         },
-        showToast(msg, color){
-            setTimeout(()=>{
+        showToast(msg, color) {
+            setTimeout(() => {
                 this.toast = {
                     active: true, msg, color
                 }
@@ -124,9 +124,9 @@ export default {
     height: 100dvh;
     background-image: url("/images/maxim-auth-background.jpeg");
     background-color: #10150cf3;
-    mix-blend-mode: overlay;        
+    mix-blend-mode: overlay;
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     background-blend-mode: overlay;
     display: flex;
     justify-content: center;

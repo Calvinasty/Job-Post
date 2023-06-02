@@ -166,7 +166,7 @@ export default {
         this.Value.email = userInfo.email
         this.Value.gender = userInfo.gender
         this.Value.dob = userInfo.date_of_birth.split('T')[0]
-        this.Value.photo = "/images/" + userInfo.photo
+        this.Value.photo = "/images/" + userInfo?.photo
 
     },
 
