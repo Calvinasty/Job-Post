@@ -1,17 +1,18 @@
 <template>
     <div class="upload-picture">
+        {{ image }}
         <div class="company-logo">
             <img v-bind:src="imagePreview" alt="" class="display-image" id="display-image" @click="openUpload">
         </div>
 
         <form action="" class="image-field">
-            <InputComponent inputType="file" inputId="image" inputName="image" accept="image/*" @change="updatePreview" />
+            <InputComponent type="file" id="image" placeHolder="image" name="image" accept="image/*" @change="updatePreview" :handleInput="handleInput"/>
         </form>
     </div>
 </template>
 
 <script>
-    import  InputComponent from '../EditInputComponent.vue'
+    import InputComponent from '../../authpage/InputComponent.vue'
     export default {
         components: {
              InputComponent
@@ -19,16 +20,12 @@
 
         data() {
             return {
-                imagePreview: "/images/companySample_logo.png",   
+                imagePreview: "/images/companySample_logo.png",
+                image: ''
         }
     },
 
     methods: {
-
-        openUpload() {
-
-        },
-
         updatePreview(e) {
             var reader, files = e.target.files
 
@@ -42,16 +39,14 @@
             }
 
             reader.readAsDataURL(files[0])
-        }
+        },
 
-        // previewImage() {
-        //     const reader = new FileReader();
-        //     reader.addEventListener("load", () => {
-        //         this.uploadImage = reader.result;
-        //         document.querySelector("#display-image").style.backgroundImage = `url(${this.uploadImage})`
-        //     })
-        //     reader.readAsDataURL(this.files[0])
-        // }
+        handleInput(data) {
+            if(data.inputName == 'image') { 
+                this.image = data.inputValue.replace(/^.*[\\\/]/, '');
+                
+        }
+        }
         
         }
 

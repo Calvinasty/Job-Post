@@ -1,11 +1,11 @@
 <template>
     <div class="company-info">
         <form action="" class="company-form">
-            <InputComponent inputId="companyName" inputType="text" inputName="Company name" name="companyName" />
-            <InputComponent inputId="phoneNumber" inputType="tel" inputName="Phone Number" name="phoneNumber" />
-            <InputComponent inputId="companySite" inputType="url" inputName="Company Site" name="companySite" />
-            <InputComponent inputId="linkin" inputType="url" inputName="LinkIn Link" name="linkin" />
-            <select class="select" name="industry" id="industry">
+            <InputComponent id="companyName" type="text" placeHolder="Company name" name="companyName" :handleInput="handleInput"/>
+            <InputComponent id="phoneNumber" type="tel" placeHolder="Phone Number" name="phoneNumber" :handleInput="handleInput"/>
+            <InputComponent id="companySite" type="url" placeHolder="Company Site" name="companySite" :handleInput="handleInput"/>
+            <InputComponent id="linkin" type="url" placeHolder="LinkIn Link" name="linkin" :handleInput="handleInput"/>
+            <select class="select" name="industry" id="industry" v-model="industry" :handleInput="handleInput" >
                 <option value="default">Select Industry</option>
                 <option value="agriculture">Agriculture</option>
                 <option value="chemical">Chemical industries </option>
@@ -28,14 +28,26 @@
 </template>
 
 <script>
-    import InputComponent from '../EditInputComponent.vue';
+    import InputComponent from '../../authpage/InputComponent.vue';
     export default {
         components: {
             InputComponent
         },
         data() {
             return {
-                
+                companyName:'',
+                companyNumber: '',
+                companySite:'',
+                industry: '',
+
+            }
+        },
+        methods:{
+            handleInput(data){
+                if(data.inputName == 'companyName') { this.companyName = data.inputValue }
+                if(data.inputName == 'companyNumber') { this.companyNumber = data.inputValue }
+                if(data.inputName == 'companySite') { this.companySite = data.inputValue }
+                if(data.inputName == 'industry') { this.industry = data.inputValue }
             }
         }
     }
@@ -52,9 +64,9 @@
     }
     .select {
     font-weight: 400;
-    font-size: 16px;
     padding: 10px;
-    color: #000000;
+    color: #666;
+    font-size: 14px;
     border: none;
     outline: none;
     border: 1px solid #7FBF4C;
