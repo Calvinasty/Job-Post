@@ -3,10 +3,10 @@
         <div class="card">
             <NavListComponent :type="type" />
             <slot></slot>
-            <!-- <div class="btnsec flex-center-row">
+            <div class="btnsec flex-center-row">
                 <button class="btn" @click="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
-            </div> -->
+            </div>
 
         </div>
 

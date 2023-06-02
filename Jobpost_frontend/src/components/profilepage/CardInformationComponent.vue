@@ -8,15 +8,17 @@
             </div>
             <div class="other-details" v-if="showDetails">
                 <InputComponent :fullName="inputInformation?.inputFive?.name" :inputType="inputInformation?.inputFive
-                    .type" :inputId="inputInformation?.inputFive.id" /> <br>
+                    .type" :inputId="inputInformation?.inputFive.id" :Value="userValue.dob" /> <br>
 
 
                 <p class="elabel"> Gender </p>
-                <InputComponent class="radio-gender" :fullName="inputInformation?.inputSix?.name" :inputType="inputInformation?.inputSix
+                <p>{{ userValue.gender.charAt(0).toUpperCase() + userValue.gender.slice(1) }}</p>
+                <!-- <InputComponent :Value="userValue.gender"/> -->
+                <!-- <InputComponent class="radio-gender" :fullName="inputInformation?.inputSix?.name" :inputType="inputInformation?.inputSix
                     .type" :inputId="inputInformation?.inputSix?.id" :inputName="inputInformation?.inputSix?.radio" />
                 <InputComponent class="radio-gender" :fullName="inputInformation?.inputSeven?.name" :inputType="inputInformation?.inputSeven
                     .type" :inputId="inputInformation?.inputSeven?.id"
-                    :inputName="inputInformation?.inputSeven?.radio" />
+                    :inputName="inputInformation?.inputSeven?.radio" /> -->
             </div>
         </div>
 
@@ -44,6 +46,7 @@ export default {
         "detailsTitle",
         "inputInformation",
         "showPopup",
+        "userValue"
     ],
     mounted() {
 

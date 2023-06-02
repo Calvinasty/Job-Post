@@ -9,7 +9,7 @@
                 <div class="profile-section">
                     <div id="profile">
                         <div class="profile-card">
-                            <img src="/images/profilepic.png" alt="pic">
+                            <img :src="Value.photo" alt="pic">
                             <h3>{{ usersName }}</h3>
                             <span>{{ userOccupation }}</span>
                         </div>
@@ -25,8 +25,11 @@
                         </div>
                     </div>
                     <div class="profile-details">
-                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[0].cardTitle"
+                        <CardInformationComponent :userValue="Value" :showPopup="showPopup"
+                            :detailsTitle="inputCardDetails[0].cardTitle"
                             :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true">
+
+
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[0].cardInputInformation.inputOne.type" :Value="Value.fullname"
                                 :inputId="inputCardDetails[0].cardInputInformation.inputOne.id" />
@@ -103,7 +106,7 @@
 
         </div>
         <FooterComponent />
-        <UpdateProfileComponentVue v-show="showModal == true" type="user" :handlecloseCard="showPopup"
+        <UpdateProfileComponentVue :userInfo="Value" v-show="showModal == true" type="user" :handlecloseCard="showPopup"
             :handleSave="handleSaveButton" />
 
         <!-- <EditPopups v-if="showModal" /> -->
@@ -112,6 +115,8 @@
 </template>
 
 <script>
+import { mapState } from 'pinia';
+import { useUserStore } from '../stores/users';
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
 import UpdateProfileComponentVue from '../components/profilepage/UpdateProfileComponent.vue';
@@ -142,10 +147,27 @@ export default {
                 contact: "",
                 linkenin: "",
                 github: "",
+                dob: '',
+                gender: '',
+                photo: ''
             },
 
             inputCardDetails: userprofileData
         }
+    },
+    computed: {
+        ...mapState(useUserStore, ['user'])
+    },
+    mounted() {
+        console.log(this.user);
+        const userInfo = this.user
+        this.Value.fullname = userInfo.first_name + ' ' + userInfo.last_name
+        this.Value.contact = userInfo.phone_number
+        this.Value.email = userInfo.email
+        this.Value.gender = userInfo.gender
+        this.Value.dob = userInfo.date_of_birth.split('T')[0]
+        this.Value.photo = "/images/" + userInfo.photo
+
     },
 
     methods: {
@@ -155,7 +177,7 @@ export default {
         },
 
         handleSaveButton() {
-            alert("boomboom");
+            alert("profile saved");
         }
 
 

@@ -6,10 +6,10 @@
         <div class="choose-file">
             <EditInputComponent inputName="daniellapic.jpeg" accept="image/*" inputType="file" />
         </div>
-        <div class="btnsec flex-center-row">
+        <!-- <div class="btnsec flex-center-row">
             <button class="btn" @click="handleSave">Save</button>
             <button class="btns" @click="handlecloseCard">Cancel</button>
-        </div>
+        </div> -->
     </div>
 </template>
 

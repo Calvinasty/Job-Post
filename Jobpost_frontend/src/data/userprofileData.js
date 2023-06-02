@@ -28,7 +28,7 @@ const userprofileData = [
             },
             inputFive: {
                 id: "date",
-                name: "DD/MM/YYYY",
+                name: "MM/DD/YYYY",
                 type: "date",
 
             },

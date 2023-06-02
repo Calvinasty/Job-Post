@@ -1,7 +1,7 @@
 <template>
     <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave" :type="type">
-        <component v-show="type=='user'" :is="componentId"></component>
-        <component v-show="type=='company'" :is="componentId2"></component>
+        <component v-show="type == 'user'" :is="componentId" :userInfo="userInfo"></component>
+        <component v-show="type == 'company'" :is="componentId2"></component>
     </EditProfileLayout>
 </template>
 
@@ -23,7 +23,7 @@ import CompanyLocation from "./updatecompany/CompanyLocation.vue";
 
 export default {
 
-    props: ['handlecloseCard', 'handleSave', 'type'],
+    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo'],
 
 
     components: {
@@ -52,9 +52,10 @@ export default {
             companyinformation: CompanyInformation,
             registrationinfo: RegistrationInfo,
             companylocation: CompanyLocation
-            
+
         }
     },
+
 
     computed: {
         ...mapState(useUserProfileStore, ['componentId', 'componentId2'])
