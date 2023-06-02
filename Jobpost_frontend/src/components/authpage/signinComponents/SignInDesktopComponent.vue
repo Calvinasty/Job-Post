@@ -8,8 +8,8 @@
 
                 <div v-if="showToggle" class="login-option flex-center-row">
                     <div id="btn">Job Seeker</div>
-                    <button type="button" class="toggle-btn" id="jobSeeker" @click="jobSeeker">Job Seeker</button>
-                    <button type="button" class="toggle-btn" id="jobPoster" @click="jobPoster">Job Poster</button>
+                    <button type="button" class="toggle-btn" id="jobSeeker" @click="jobSeeker()">Job Seeker</button>
+                    <button type="button" class="toggle-btn" id="jobPoster" @click="jobPoster()">Job Poster</button>
                 </div>
 
             </header>
@@ -20,11 +20,11 @@
 
             <form @submit.prevent="handleSignIn" class="signin-desktop-field">
                 <div class="user-field">
-                    <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="() => handleUserInput" />
+                    <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
                 </div>
 
                 <div class="password-field">
-                    <InputComponent type="password" id="password" name="password" placeHolder="Password" :handleInput="() => handleUserInput" />
+                    <InputComponent type="password" id="password" name="password" placeHolder="Password" :handleInput="handleUserInput" />
                 </div>
 
                 <div class="desk-links">
@@ -57,6 +57,7 @@
                 email: '',
                 password: ''
             },
+            userType: 'jobSeeker',
 
         }
 
@@ -80,16 +81,22 @@
         },
 
         jobPoster() {
-            var z = document.getElementById("btn");
-            z.style.left = "50%"
-            z.innerHTML="Job Poster"
-            // letter.style.color = "white"
+                var z = document.getElementById("btn");
+                z.style.left = "50%"
+                z.innerHTML="Job Poster"
+            
+                this.userType = "jobPoster"
+
+                console.log(this.userType);
+            
         },
         jobSeeker() {
-            var z = document.getElementById("btn");
-            z.style.left = "0"
-            z.innerHTML="Job Seeker"
-            // letter.style.color = "white"
+                var z = document.getElementById("btn");
+                z.style.left = "0"
+                z.innerHTML="Job Seeker"
+                this.userType = "jobSeeker"
+
+                console.log(this.userType);
         },
 
         handleUserInput(data){
@@ -101,38 +108,48 @@
             if(data.inputName == 'password') {
                 this.inputData.password = data.inputValue
             }
+            
         },
 
         handleSignIn() {
             console.log('Hello', this.inputData.email.match((validRegex)));
-            const user={
-                email:this.inputData.email,
-                password:this.inputData.password
+            console.log(this.inputData);
+
+            const user=new FormData()
+            user.append( "email",this.inputData.email,)
+            user.append( "password",this.inputData.password)
+            
+
+            if(this.userType == 'jobPoster') {
+                axios.post(`http://192.168.1.36:5000/company/logInCompany`,user)
+                .then(res =>{
+                    res.data
+                    localStorage.setItem('companyState', res.data.user)
+                    localStorage.setItem('userToken', res.data.token)
+                        this.$router.push('/admin/analyticsView')
+
+                   
+                })
+                .catch(err => {
+                    console.log(err);
+                })
             }
-            // if(user.email== '' || user.password=='') {
-            //    return alert('Email and Password is required')
-            // }
-            // else {
-            //     console.log(user);
-            // }
-            axios.get(`http://192.168.1.53:3000/user?email=${user.email}&password=${user.password}`)
-            .then(res =>{
-                if(res.data.length > 0){
-                    this.setUser({
-                        email: res.data[0].email,
-                        password: res.data[0].password
-                    })
-                    this.$router.push('/jobsearch')
-                }
-                else{
-                    alert('invalid email or password')
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })                                   
+
+            if(this.userType == 'jobSeeker') {
+                axios.post(`http://192.168.1.36:5000/jobSeeker/logInJobSeeker`,user)
+                .then(res =>{
+                    
+                    localStorage.setItem('userState', res.data.user)
+                    localStorage.setItem('userToken', res.data.token)
+                    this.$router.push('/userprofile')
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+                                               
         }
-       }
+    }
     }
 </script>
 
