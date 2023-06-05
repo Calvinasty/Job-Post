@@ -17,10 +17,10 @@
             <image>
                 <img :src="user.image" alt="logo">
             </image>
-            <aside class="first">
+            <aside class="nav-items">
                 <NavItemComponent :navItems="navItems" :goto="goto" />
             </aside>
-            <aside class="second">
+            <aside class="settings-nav">
                 <SettingsComponent :settings="settings" :user="user" />
             </aside>
         </section>
@@ -108,11 +108,12 @@
         justify-content: center;
         align-items: center;
     }
-    aside.first{
+    aside.nav-items{
+        /* border-top: 0.2px solid #666; */
         height: 50%;
         width: 100%;
     }
-    aside.second{
+    aside.settings-nav{
         border-top: 0.2px solid #666;
         height: 50%;
     }

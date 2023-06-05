@@ -1,7 +1,7 @@
 <template>
     <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave" :type="type">
-        <component v-show="type=='user'" :is="componentId"></component>
-        <component v-show="type=='company'" :is="componentId2"></component>
+        <component v-show="type == 'user'" :is="componentId" :userInfo="userInfo"></component>
+        <component v-show="type == 'company'" :is="componentId2"></component>
     </EditProfileLayout>
 </template>
 
@@ -18,11 +18,12 @@ import SkillInterest from './updateuser/SkillInterestComponent.vue'
 import CompanyInformation from './updatecompany/CompanyInformation.vue'
 import RegistrationInfo from './updatecompany/RegistrationInfo.vue'
 import UploadCompanyPicture from './updatecompany/UploadPicture.vue'
+import CompanyLocation from "./updatecompany/CompanyLocation.vue";
 
 
 export default {
 
-    props: ['handlecloseCard', 'handleSave', 'type'],
+    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo'],
 
 
     components: {
@@ -35,7 +36,8 @@ export default {
         // company components
         CompanyInformation,
         RegistrationInfo,
-        UploadCompanyPicture
+        UploadCompanyPicture,
+        CompanyLocation
     },
 
     data() {
@@ -49,9 +51,11 @@ export default {
             uploadcompanypicture: UploadCompanyPicture,
             companyinformation: CompanyInformation,
             registrationinfo: RegistrationInfo,
-            
+            companylocation: CompanyLocation
+
         }
     },
+
 
     computed: {
         ...mapState(useUserProfileStore, ['componentId', 'componentId2'])
