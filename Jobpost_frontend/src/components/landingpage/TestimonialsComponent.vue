@@ -59,19 +59,19 @@ export default {
             display: true,
             client: [
                 {
-                    message: 'FIRST osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf',
+                    message: 'I had been searching for a job in my field for months with no luck. Then I stumbled upon this job portal and within weeks, I had interviews lined up and landed a job at a great company! I cant thank the platform enough for making my job search so much easier and efficient.',
                     name: 'Lisette Baas',
                     role: 'Product Owner',
                     image: 'client1.jpeg'
                 },
                 {
-                    message: 'SECOND osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf',
+                    message: 'I had been searching for a job in my field for months with no luck. Then I stumbled upon this job portal and within weeks, I had interviews lined up and landed a job at a great company! I cant thank the platform enough for making my job search so much easier and efficient.',
                     name: 'Daniel K. Tetteh',
                     role: 'UI/UX Designer',
                     image: 'client3.jpeg'
                 },
                 {
-                    message: 'THIRD osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouigLorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf hgisuodfgshdfguhiosdfouig Lorem osdfoisf iufog usofgu shofgshckjvhsoighs ghisudf',
+                    message: 'I had been searching for a job in my field for months with no luck. Then I stumbled upon this job portal and within weeks, I had interviews lined up and landed a job at a great company! I cant thank the platform enough for making my job search so much easier and efficient.',
                     name: 'Razak Adams',
                     role: 'Back-End Engineer',
                     image: 'client2.jpeg'

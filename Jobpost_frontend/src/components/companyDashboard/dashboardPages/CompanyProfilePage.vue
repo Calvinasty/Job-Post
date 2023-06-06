@@ -24,13 +24,19 @@
                     <CardInformationComponent :showPopup="showPopup" :detailsTitle="cardDetails[0].cardTitle">
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[0].cardInputInformation.inputOne.id"
-                            :inputType="cardDetails[0].cardInputInformation.inputOne.type" />
+                            :inputType="cardDetails[0].cardInputInformation.inputOne.type"
+                            :Value="companyProfileInfo.company_name" />
+
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputTwo.name"
                             :inputId="cardDetails[0].cardInputInformation.inputTwo.id"
-                            :inputType="cardDetails[0].cardInputInformation.inputTwo.type" />
+                            :inputType="cardDetails[0].cardInputInformation.inputTwo.type"
+                            :Value="companyProfileInfo.email" />
+
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputThree.name"
                             :inputId="cardDetails[0].cardInputInformation.inputThree.id"
-                            :inputType="cardDetails[0].cardInputInformation.inputThree.type" />
+                            :inputType="cardDetails[0].cardInputInformation.inputThree.type"
+                            :Value="companyProfileInfo.mobile_number" />
+
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputFour.name"
                             :inputId="cardDetails[0].cardInputInformation.inputFour.id"
                             :inputType="cardDetails[0].cardInputInformation.inputFour.type" />
@@ -67,7 +73,8 @@
                 <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
         </section>
-        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" :handlecloseCard="showPopup" type="company"/>
+        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" :handlecloseCard="showPopup"
+            type="company" />
     </div>
 </template>
 
@@ -83,6 +90,7 @@ export default {
             companyName: '',
             numberOfPostedJobs: 0,
             showModal: false,
+            companyProfileInfo: {},
             cardDetails: [
                 {
                     cardTitle: 'Company Profile',
@@ -132,7 +140,7 @@ export default {
                 },
 
                 {
-                    cardTitle: 'Job Description',
+                    cardTitle: 'Company Description',
                     cardInputInformation: {
                         inputOne: {
                             id: 'description',
@@ -166,15 +174,20 @@ export default {
         UpdateProfileComponent,
 
     },
-    beforeMount(){
-        getCompanyInfo()
+    beforeMount() {
+        this.getCompanyInfo()
     },
     methods: {
         showPopup() {
             this.showModal = !this.showModal
         },
-        getCompanyInfo(){
-            
+        getCompanyInfo() {
+            const companyToken = localStorage.getItem('companyToken')
+            if (companyToken) {
+                this.companyProfileInfo = localStorage.getItem('companyState')
+
+
+            }
         }
     },
 
