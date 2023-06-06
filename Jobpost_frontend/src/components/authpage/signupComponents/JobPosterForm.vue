@@ -70,7 +70,7 @@ export default {
 
     ],
     beforeMount() {
-        this.companyEmail = JSON.parse(localStorage.getItem('comapnyState')).email
+        this.companyEmail = JSON.parse(localStorage.getItem('comapnyState'))?.email
     },
 
     methods: {
