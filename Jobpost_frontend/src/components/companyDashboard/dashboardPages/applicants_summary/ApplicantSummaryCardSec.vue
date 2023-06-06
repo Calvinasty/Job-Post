@@ -46,6 +46,10 @@ export default {
     justify-content: flex-start; 
     align-items: flex-start;
     gap: 10px;
+    margin-top: 10px;
+}
+.skill span{
+    color: rgba(136, 204, 0, 1);
 }
 
 </style>
