@@ -130,6 +130,15 @@
                 axios.post('http://192.168.1.36:5000/jobPost/postJob', newFormData, {headers: token})
                 .then(res => {
                     console.log(res.data);
+                    let newJob = res.data.job;
+                    const jobs = JSON.parse(localStorage.getItem('companyJobs'))
+                    if(jobs){
+                        let companyJobs = [newJob, ...jobs]
+                        localStorage.setItem('companyJobs', JSON.stringify( companyJobs))
+                    }else{
+                        let companyJobs = newJob
+                        localStorage.setItem('companyJobs', JSON.stringify(companyJobs))
+                    }
                     this.$router.push('/jobsearch')
                     this.clearForm()
                 })
