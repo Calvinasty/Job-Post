@@ -11,10 +11,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.head {
+.head{
+    color:rgba(0, 0, 0, 1);
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    font-size: 10px;
+    font-size: 8px;
+    padding:20px 20px;
+    border-bottom: 1px solid #C2C2C2;
 }
 </style>

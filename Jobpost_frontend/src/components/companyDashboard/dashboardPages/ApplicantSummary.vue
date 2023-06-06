@@ -1,13 +1,16 @@
 <template>
-    <!-- <div> -->
-        <section class="container">
-            <ApplicantSummaryHead />
-            <ApplicantSummarySide :infos="infos" />
-            <ApplicantSummaryCard :experiences="experiences" />
-            <ApplicantSummaryCardSec :skills="skills" />
-            <ApplicantSummaryCardTh :educations="educations" />
-       </section>
-   
+    
+        <div class="container">
+            <ApplicantSummaryHead class="head"/>
+            <main>
+                <ApplicantSummarySide class="side" />
+                <div class="details">
+                    <ApplicantSummaryCard class="card"/>
+                    <ApplicantSummaryCardSec class="card"/>
+                    <ApplicantSummaryCardTh class="card"/> 
+                </div>
+                </main>
+        </div>
 </template>
 
 <script>
@@ -26,12 +29,12 @@ export default {
     },
     data(){
         return{
-            infos:
-            [
-                {image: '/images/userprofile.svg', name: 'Daniella McDan', address: 'Coral Avenue, Hse 3, Tantra Hills, Accra-Ghana. GHA-393-133'},
-                {gender: 'Female', age: '27', email: 'danmcdan@gmail.com', linkedin: 'linkedin.com/daniellamcdan', number: '+233254775545'}
+            // infos:
+            // [
+            //     {image: '/images/userprofile.svg', name: 'Daniella McDan', address: 'Coral Avenue, Hse 3, Tantra Hills, Accra-Ghana. GHA-393-133'},
+            //     {gender: 'Female', age: '27', email: 'danmcdan@gmail.com', linkedin: 'linkedin.com/daniellamcdan', number: '+233254775545'}
 
-            ],
+            // ],
             experiences: 
             [
                 {role:'UI/UX Designer', location: 'Zenith Bank | 2017-2022' },
@@ -63,40 +66,32 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.container{
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  .container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  main{
+    display: flex;
+    gap: 50px;
+    position: relative;
+    
+  }
+  .details{
     width: 100%;
-    height: 100%; 
-    height: 0;
-    align-items: start;
-    height: 0;
-    border: 1px solid black;
-}
-.head{
-    grid-area: 1/1/2/5 ;
-    border: 1px solid rgba(194, 194, 194, 1);
-    padding: 20px 20px 20px 50px;
-}
-.side{
-    grid-area: 2/1/8/2;
-    padding: 20px;
-    border: 1px solid rgba(194, 194, 194, 1);
-}
-.card-1, .card-2, .card-3{
-    padding: 20px 20px 20px 50px;
-}
-.card-1{
-    grid-area: 2/2/4/5;
-    border: 1px solid rgba(194, 194, 194, 1);
-}
-.card-2{
-    grid-area: 4/2/6/5;
-    border: 1px solid rgba(194, 194, 194, 1);
-}
-.card-3{
-    grid-area: 6/2/8/5;
-    border: 1px solid rgba(194, 194, 194, 1);
-}
+    height: 530px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    border-left: 1px solid #C2C2C2;
+    margin-left:260px ;
+    padding-left:40px ;
+  }
+  .card{
+ 
+    border-bottom: 1px solid #C2C2C2;
+    width: 100%;
+    padding: 20px 0;
+  }
 </style>
