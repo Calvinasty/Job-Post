@@ -1,19 +1,25 @@
 <template>
-    <div>
+    <div class="apply-job-page flex-center">
         <JobSearchNav/>
-        <h1>{{currentJob}}</h1>
+        <section class="job-container flex-center-row">
+           <JobDescription :job="currentJob"/>
+           <ApplyJobSection :user="currentUser"/>
+        </section>
     </div>
 </template>
 
 <script>
 
 import { useJobsStore } from '../stores/Jobs';
+import { useUserStore } from '../stores/users';
 import { mapState } from 'pinia';
 import { useRoute } from 'vue-router';
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue';
+import JobDescription from '../components/applyjobpage/JobDescription.vue';
+import ApplyJobSection from '../components/applyjobpage/ApplyJobSection.vue';
 // import JobCard from '../components/jobsearchpage/JobCard.vue';
 export default {
-  components: { JobSearchNav },
+  components: { JobSearchNav, JobDescription, ApplyJobSection },
     name: 'JobPostApplyJobPage',
 
     data() {
@@ -24,7 +30,8 @@ export default {
     },
 
     computed:{
-        ...mapState(useJobsStore,['postedJobs'])
+        ...mapState(useJobsStore,['postedJobs']),
+        ...mapState(useUserStore,[''])
     },
     mounted(){
         this.handleJobDescription()
@@ -44,6 +51,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="css" scoped>
+.apply-job-page{
+    row-gap:116px;
+    justify-content: flex-start;
+}
+.job-container{
+    width: 100%;
+    background: #286a439c;
+    padding: 0px 94px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap:41px
+
+}
 
 </style>

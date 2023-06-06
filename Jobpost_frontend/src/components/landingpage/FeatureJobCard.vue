@@ -56,7 +56,8 @@ export default {
 .job {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    max-width: 400px;
+    min-width: 300px;
     padding-bottom: 15px;
     box-shadow: 5px 5px 9px #a5a5a5,
     -5px -5px 9px #ECF7D6;
@@ -86,24 +87,23 @@ export default {
 .job-details-section1 {
     display: flex;
     justify-content: space-between;
-    max-width: 70%;
-    margin-left: 12px;
+    width: 100%;
 }
 
 .job-details-section1 div {
     display: flex;
     column-gap: 5px;
+    width: 100%;
 }
 
 .job-details-section2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 30px;
     padding-top: 20px;
-    width: 80%;
-    margin-left: 10px;
+    padding: 5px;
+    width: 100%;
     border-top: 2px solid rgb(0, 0, 0)
 }
 
@@ -123,6 +123,7 @@ export default {
     background: #88cc00;
     color: #ffffff;
     font-weight: bolder;
+    transition: all .3s ease;
 }
 
 .company-section {
