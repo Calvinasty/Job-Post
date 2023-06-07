@@ -129,14 +129,14 @@
             height: 50px;
         }
         .navbar div img{
-            width: 140px;
+            width: 70%;
         }
         .auth-btns{
             display: flex;
-            width: 100%;
-            height: 20px;
+            width:190%;
+            padding: 0;
             flex-direction: row;
-            justify-content: end;
+            justify-content: flex-start;
             align-items: center;
             gap: 10px;
         }

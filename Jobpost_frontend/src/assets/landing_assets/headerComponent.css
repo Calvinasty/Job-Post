@@ -36,7 +36,12 @@ section .tag {
     width: 40%;
     font-size: 20px;
     color: #d1d1d1;
-    text-align: justify;
+}
+section .active-tag-desk{
+    display: block;
+}
+section .active-tag-mob{
+    display: none;
 }
 .action div {
     display: flex;
@@ -127,6 +132,12 @@ section .tag {
         text-align: center;
         color: #d1d1d1;
         margin-top: -50px;
+    }
+    section .active-tag-mob{
+        display: block;
+    }
+    section .active-tag-desk{
+        display: none;
     }
     section .action div {
         display: none;
