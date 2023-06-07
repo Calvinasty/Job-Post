@@ -1,11 +1,19 @@
 <template>
     <div class="card-3">
-        <h1>Education History</h1>
+        <h2>Education History</h2>
         <div>
+            <h3>University of Ghana, Legon</h3> 
+            <p>BSc. Administration | 2014-2018</p>
+        </div> 
+         <div>
             <h3>University of Ghana, Legon</h3>
             <p>BSc. Administration | 2014-2018</p>
         </div>
-        <div>
+         <div>
+            <h3>University of Ghana, Legon</h3>
+            <p>BSc. Administration | 2014-2018</p>
+        </div>
+         <div>
             <h3>University of Ghana, Legon</h3>
             <p>BSc. Administration | 2014-2018</p>
         </div>
@@ -15,6 +23,9 @@
 
 <script>
     export default {
+        props:[
+            'educations'
+        ]
         
     }
 </script>
@@ -23,19 +34,19 @@
 .card-3{
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: flex-start;
-    font-size: 10px;
-    gap: 15px;
+    gap:5px;
 }
-.card-3 h1{
-    font-size: 14px;
+div{
+    width: 100%;
+    text-align: left;
 }
-.card-3 div{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+h3{
     color: rgba(86, 86, 86, 1);
-    gap:5px
+}
+p{
+    color:rgba(120, 114, 114, 1);
 }
 
 </style>

@@ -1,6 +1,5 @@
 <template>
-    <div class="navbar" :class="{ 'navbar--hidden': !showNavbar }">
-      
+    <div id="navbar" class="navbar" :class="{ 'navbar--hidden': !showNavbar }">
         <div>
             <router-link to="/"> <img src="/images/logo.png" alt="Logo"> </router-link>
         </div>
@@ -15,8 +14,8 @@
     export default {
         data () {
             return {
-            showNavbar: true,
-            lastScrollPosition: 0
+                showNavbar: true,
+                lastScrollPosition: 0
             }
         },
         mounted () {
@@ -28,6 +27,7 @@
         methods: {
             onScroll () {
                 const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop
+                const navbar = document.getElementById('navbar')
                 if (currentScrollPosition < 0) {
                     return
                 }
@@ -37,6 +37,17 @@
                     return
                 }
                 this.showNavbar = currentScrollPosition < this.lastScrollPosition
+                if(currentScrollPosition <= 10){
+                    navbar.style.position = 'relative'
+                }
+                if(currentScrollPosition > 10 || scrollY > 10){
+                    navbar.style.position = 'fixed'
+                    navbar.style.transition = '0.3s'
+                }
+                if(!this.showNavbar){
+                    navbar.style.position = 'relative'
+                    navbar.style.transition = '0.3s'
+                }
                 this.lastScrollPosition = currentScrollPosition
             }
         },
@@ -53,19 +64,13 @@
         align-items: center;
         width: 100%;
         background-color: #fff;
-        /* border: 2px solid red; */
         padding: 0 20px;
-        position: fixed;
+        position: relative;
         top: 0;
         z-index: 1000;
         box-shadow: 0px 3px 9px #c0bebe;
     }
     .navbar {
-        /* height: 60px; */
-        /* width: 100vw; */
-        /* background: hsl(200, 50%, 50%); */
-        /* position: fixed; */
-        /* box-shadow: 0 2px 15px rgba(71, 120, 120, 0.5); */
         transform: translate3d(0, 0, 0);
         transition: 0.1s all ease-out;
     }
@@ -74,33 +79,25 @@
         transform: translate3d(0, -100%, 0);
     }
     .navbar div:nth-child(1){
-        /* width: 100px; */
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        /* border: 2px solid green; */
-        /* position: relative; */
     }
     .navbar div img{
-        /* position: absolute; */
         width: 60%;
         margin: 0;
         padding: 0;
-        /* top:7%; */
     }
    
     .auth-btns{
         display: flex;
         width: 100%;
-        /* height: 50px; */
         flex-direction: row;
         justify-content: end;
         align-items: center;
         gap: 10px;
-        /* border: 1px solid blue; */
     }
     .auth-btns a{
-        /* color: #7FBF4C; */
         text-decoration: none;
         font-size: 15px;
         font-weight: bold;
@@ -108,7 +105,6 @@
         padding: 10px 20px;
         border-radius: 15px;
         text-decoration: none;
-        /* text-decoration: underline; */
     }
     .auth-btns a:nth-child(1){
         background-color: transparent;
@@ -127,25 +123,22 @@
         .navbar{
             display: inline-flex;
             width: 100vdw;
-            /* border: 1px solid red; */
-            position: fixed;
+            position: relative;
             left: 0;
             padding: 0 10px;
             height: 50px;
         }
         .navbar div img{
-            /* position: absolute; */
-            width: 60px;
+            width: 70%;
         }
         .auth-btns{
             display: flex;
-            width: 100%;
-            height: 20px;
+            width:190%;
+            padding: 0;
             flex-direction: row;
-            justify-content: end;
+            justify-content: flex-start;
             align-items: center;
             gap: 10px;
-            /* border: 1px solid blue; */
         }
         .auth-btns a {
             font-size: 10px;
@@ -167,7 +160,6 @@
             justify-content: end;
             align-items: center;
             gap: 10px;
-            /* border: 1px solid blue; */
         }
     }
 

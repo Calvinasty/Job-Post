@@ -61,17 +61,22 @@ const userprofileData = [
         cardInputInformation: {
             inputOne: {
                 id: "level-of-study",
-                name: "Level of Study",
+                name: "Add Education",
                 type: "text",
             },
             inputTwo: {
                 id: "degree-type",
-                name: "Degree Type",
+                name: "Add Education",
                 type: "text",
             },
             inputThree: {
                 id: "year-graduated",
-                name: "Year Graduated",
+                name: "Add Education",
+                type: "text",
+            },
+            inputFour: {
+                id: "year-graduated",
+                name: "Add Education",
                 type: "text",
             },
 
@@ -83,15 +88,15 @@ const userprofileData = [
         cardInputInformation: {
             inputOne: {
                 id: 'years-of-experience',
-                name: 'Year of experience',
+                name: 'Add Experience',
                 type: 'text',
 
 
             },
             inputTwo: {
                 id: 'resume',
-                name: 'Resume/CV',
-                type: 'file',
+                name: 'Add Experience',
+                type: 'text',
             }
 
         }
@@ -99,7 +104,16 @@ const userprofileData = [
 
     {
         cardTitle: "Skills/Interests",
+        cardInputInformation:{
 
+            inputOne: {
+                id: 'years-of-experience',
+                name: 'Add Skill/Interest',
+                type: 'text',
+    
+    
+            },
+        }
     }
 
 

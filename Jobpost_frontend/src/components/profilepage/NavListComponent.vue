@@ -1,12 +1,12 @@
 <template>
     <nav class="navitems flex-center-row">
-        <router-link v-show="type=='user'" v-for="(item, index) in itemList" to="" @click="handleClick(item, index)" :key="item"
-            :class="{ active: item.active }">
+        <router-link v-show="type == 'user'" v-for="(item, index) in itemList" to="" @click="handleClick(item, index)"
+            :key="item" :class="{ active: item.active }">
             {{ item.title }}
         </router-link>
 
-        <router-link v-show="type=='company'" v-for="(item, index) in companyNav" to="" @click="handleClick(item, index)" :key="item"
-            :class="{ active: item.active }">
+        <router-link v-show="type == 'company'" v-for="(item, index) in companyNav" to="" @click="handleClick(item, index)"
+            :key="item" :class="{ active: item.active }">
             {{ item.title }}
         </router-link>
     </nav>
@@ -34,35 +34,48 @@ export default {
         }
     },
     props: [
-        'type'
+        'type',
+        'index'
     ],
-    methods: {
-        ...mapActions(useUserProfileStore, ['setNav','setNav2']),
-        handleClick(item, itemIndex) {
-            this.type == 'user' ? this.setNav(item.link): this.setNav2(item.link)
 
-            if(this.type=='user') {
+    mounted() {
+        if (this.type == 'user') {
+            this.handleClick(this.itemList[this.index], this.index)
+            this.itemList[this.index].active = true
+        }
+        if (this.type == 'company') {
+            this.handleClick(this.companyNav[this.index], this.index)
+            this.companyNav[this.index].active = true
+        }
+
+    },
+    methods: {
+        ...mapActions(useUserProfileStore, ['setNav', 'setNav2']),
+        handleClick(item, itemIndex) {
+            this.type == 'user' ? this.setNav(item.link) : this.setNav2(item.link)
+
+            if (this.type == 'user') {
                 Object.keys(this.itemList).forEach((key, index) => {
-                if (itemIndex !== index) {
-                    this.itemList[key].active = false
-                }
-                else {
-                    this.itemList[key].active = true
-                }
+                    if (itemIndex !== index) {
+                        this.itemList[key].active = false
+                    }
+                    else {
+                        this.itemList[key].active = true
+                    }
                 })
             }
-            
-            if(this.type=='company') {
+
+            if (this.type == 'company') {
                 Object.keys(this.companyNav).forEach((key, index) => {
-                if (itemIndex !== index) {
-                    this.companyNav[key].active = false
-                }
-                else {
-                    this.companyNav[key].active = true
-                }
+                    if (itemIndex !== index) {
+                        this.companyNav[key].active = false
+                    }
+                    else {
+                        this.companyNav[key].active = true
+                    }
                 })
             }
-            
+
         }
     }
 }

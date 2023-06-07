@@ -1,12 +1,12 @@
 <template>
-    <div>
-        <div @click.prevent="" class="buttons flex-center-row">
+    
+        <div @click.prevent="" class=" buttons flex-center">
             <!-- <button v-if="pageNum==1"  v-on:click.prevent="()=>pageNavigation('back')" class="flex-center-row">
                 <span class="material-symbols-outlined" style="transform: rotate(180deg);">arrow_right_alt</span>
                 Back 
             </button> -->
-            <button :type="actionBtnType" v-on:click.prevent="handleSignUp" class="flex-center-row">
-                {{ actionBtnText }} <span class="material-symbols-outlined">arrow_right_alt</span>
+            <button :type="actionBtnType" v-on:click.prevent="handleSignUp" class="flex-center">
+                {{ actionBtnText }} 
             </button>
 
             <p v-if="pageNum==0"><span>Already registered?</span> <router-link :to="{name:'Auth', params:{id:'login'}}">Sign in</router-link></p>
@@ -22,7 +22,7 @@
                 <span>Sign up with LinkedIn</span>
             </button>            
         </div> -->
-    </div>
+    
 </template>
 <script>
 export default {
@@ -44,11 +44,14 @@ export default {
     border-bottom: 2px solid #D9D9D9;
 }
 .buttons a{ color:#7FBF4C; text-decoration: none;}
+.buttons p span{
+    margin-right: 5px;
+}
 .buttons button ,.oauth button{
     justify-content: flex-start;
     padding: 15px 40px;
     border-radius: 10px;
-    width: 195px;
+    width: 100%;
     border: none;
     background-color: #7FBF4C;
     color: #fff;
