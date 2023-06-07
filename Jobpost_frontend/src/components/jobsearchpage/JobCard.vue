@@ -64,7 +64,8 @@ export default {
 
     methods: {
         handleApplyJob(jobId){
-            this.$router.push(`/jobsearch/${jobId}`)
+
+            this.$router.push(`/jobsearch/apply/${jobId}`)
         }
         
     },

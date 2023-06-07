@@ -1,5 +1,6 @@
 <template>
-    <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave" :type="type">
+    <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave" :type="type"
+        :index="index">
         <component v-show="type == 'user'" :is="componentId" :userInfo="userInfo"></component>
         <component v-show="type == 'company'" :is="componentId2"></component>
     </EditProfileLayout>
@@ -23,7 +24,7 @@ import CompanyLocation from "./updatecompany/CompanyLocation.vue";
 
 export default {
 
-    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo'],
+    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo', 'index'],
 
 
     components: {
