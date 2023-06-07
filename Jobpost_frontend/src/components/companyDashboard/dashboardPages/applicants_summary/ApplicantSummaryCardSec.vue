@@ -1,64 +1,55 @@
 <template>
     <div class="card-2">
-        <h1>Skills/Interests</h1>
-        <div class="skill">
-            <ul>
-
+        <h2>Skills/Interests</h2>
+             <ul class="skill">
+                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
-                <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
-            </ul>
-
-            <ul>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
             </ul>
-        </div>
     </div>
 </template>
 
 <script>
 export default {
-
+    props:[
+        'skills'
+    ]
 }
 </script>
 
 <style lang="css" scoped>
-.card-2 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-}
-.card-2 h1{
-    font-size: 14px;
-}
-.skill {
-    display: flex;
-    flex-direction: row;
-    gap: 200px;
-}
-.skill ul {
-    display: flex;
-    flex-direction: column;
-    font-size: 15px;
-    gap: 5px;
-}
-li {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: 10px;
-    color:rgba(194, 194, 194, 1)
-}
-span{
-    color: rgba(136, 204, 0, 1);
-    font-size: 20px;
-    /* padding: 1px; */
-}
 
+.card-2{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+.skill{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  color: rgba(120, 114, 114, 1);
+
+}
+.skill li{
+    list-style: none;
+    display: flex;
+    /* background: #000; */
+    text-align: left;   
+    justify-content: flex-start; 
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+}
+.skill span{
+    color: rgba(136, 204, 0, 1);
+}
 
 </style>
