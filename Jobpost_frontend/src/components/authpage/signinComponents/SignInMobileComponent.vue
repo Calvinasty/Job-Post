@@ -7,15 +7,15 @@
 
         <div v-if="showToggle" class="login-option flex-center-row">
             <div id="mobile-btn">Job Seeker</div>
-            <button type="button" class="toggle-btn" id="jobSeeker" @click="jobSeeker()">Job Seeker</button>
-            <button type="button" class="toggle-btn" id="jobPoster" @click="jobPoster()">Job Poster</button>
+            <button type="button" class="toggle-btn" @click="jobSeeker()">Job Seeker</button>
+            <button type="button" class="toggle-btn" @click="jobPoster()">Job Poster</button>
         </div>
 
         <div class="signin-header">
             <h4>{{ nameTitle }}</h4>
         </div>
 
-        <form class="signin-field">
+        <form @submit.prevent="handleSignIn" class="signin-field">
             <div>
                 <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
             </div>
@@ -34,7 +34,10 @@
 </template>
 
 <script>
-import InputComponent from '../InputComponent.vue'
+import {mapActions} from 'pinia'
+import { useUserStore } from '../../../stores/users'
+import axios from 'axios'
+import InputComponent from '@/components/authpage/InputComponent.vue'
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     export default {
         components: {
@@ -47,7 +50,7 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
                     email: '',
                     password: ''
                 },
-                userType: "JobSeeker"
+                userType: 'jobSeeker',
             }
             
         },
@@ -61,6 +64,7 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
        ],
 
        methods: {
+            ...mapActions(useUserStore, ['setUser']),
             toSignup() {
                 this.$router.push('/auth')
             },
@@ -84,13 +88,13 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
                 var z = document.getElementById("mobile-btn");
                 z.style.left = "0"
                 z.innerHTML="Job Seeker"
+
                 this.userType = "jobSeeker"
 
                 console.log(this.userType);
             },
 
             handleUserInput(data){
-                console.log(data);
                 if(data.inputName == 'email') {
                     this.inputData.email = data.inputValue
                 }
@@ -102,21 +106,46 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
 
             handleSignIn() {
                 console.log('Hello', this.inputData.email.match((validRegex)));
-                const user={
-                    email:this.inputData.email,
-                    password:this.inputData.password
-                }
+            console.log(this.inputData);
 
-                // if(user.email== '' || user.password=='') {
-                //    return alert('Email and Password is required')
-                // }
-                // else {
-                //     console.log(user);
-                // }
-                
-                console.log(user)
-            },
+            const user=new FormData()
+            user.append( "email",this.inputData.email,)
+            user.append( "password",this.inputData.password)
+            
 
+            if(this.userType == 'jobPoster') {
+                axios.post(`http://192.168.1.36:5000/company/logInCompany`,user)
+                .then(res =>{
+                    res.data
+                    localStorage.setItem('companyState', res.data.user)
+                    localStorage.setItem('userToken', res.data.token)
+                        this.$router.push('/admin/analyticsView')
+
+                   
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+
+            if(this.userType == 'jobSeeker') {
+                axios.post(`http://192.168.1.36:5000/jobSeeker/logInJobSeeker`,user)
+                .then(res =>{
+                    res.data
+                    localStorage.setItem('userState', res.data.user)
+                    localStorage.setItem('userToken', res.data.token)
+                    const userInfo=res.data.user
+                    
+                    userInfo['photo']="avatar.jpg"
+                    this.setUser(res.data?.user)
+                    this.$router.push('/userprofile')
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+                                               
+        }
             
         }
     }
