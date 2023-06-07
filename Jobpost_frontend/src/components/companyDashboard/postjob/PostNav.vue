@@ -2,7 +2,7 @@
     <div>
         <ul>
             <router-link to="" v-for="(navItem, index) in navItems" @click="setNav(index)"
-                :class="{ active: navItem?.active }" :key="index">
+                :class="{ active: navItem?.active }">
                 <li>
                     {{ navItem.navName }}
                 </li>
