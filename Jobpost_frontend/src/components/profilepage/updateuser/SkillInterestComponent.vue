@@ -1,32 +1,21 @@
 <template>
-    <div class="card-detail flex-center">
-        <div class="select-field">
-            <Select>
-                <option value="">Select</option>
-                <option value="">Communication</option>
-                <option value="">Problem solving</option>
-            </Select>
-            <Select>
-                <option value="">Select</option>
-                <option value="">Teamwork </option>
-                <option value="">Teamwork </option>
-            </Select>
-            <Select>
-                <option value="">Select</option>
-                <option value="">Vue Js</option>
-                <option value="">React</option>
-            </Select>
-            <Select>
-                <option value="">Select</option>
-                <option value="">HTML</option>
-                <option value="">Css</option>
-            </Select>
-            <Select>
-                <option value="">Select</option>
-                <option value="">Python</option>
-                <option value="">Java</option>
-            </Select>
+    <div class="card-detail">
+        <!-- <div class="input-container">
+                <EditInputComponent inputName="Add Skill" name="add_skill" inputType="text" :handleChange="handleInput" />
+            </div> -->
+        <div v-for="key in count" :key=key class="input-container">
+            <EditInputComponent inputName="Add Skill" name="add_skill" inputType="text" :handleChange="handleInput" />
         </div>
+        <div class="edit-skill flex-center-row">
+            <div class="add-skill flex-center-row" @click="add">
+                <img class="editicon" src="/images/plusediticon.svg" alt="editicon">
+                <p>Add Skill</p>
+            </div>
+            <div class="remove-skill flex-center-row" @click="remove">
+                <img class="editicon" src="/images/drop.svg" alt="editicon">
+            </div>
+        </div>
+
 
         <!-- <div class="btnsec flex-center-row">
             <button class="btn" @click="handleSave">Save</button>
@@ -36,49 +25,56 @@
 </template>
 
 <script>
-
+import EditInputComponent from '../EditInputComponent.vue';
 export default {
     components: {
-
+        EditInputComponent,
     },
 
     data() {
         return {
-
+            count: 1,
         }
     },
+
+    methods: {
+        add() {
+            this.count++;
+        },
+        remove() {
+            this.count--;
+        }
+    }
 }
 </script>
 
 <style lang="css" scoped>
 .card-detail {
-    justify-content: space-around;
-    gap: 20px;
-    width: 520px;
-    padding-top: 20px;
-    /* padding-bottom: 70px; */
-}
-
-.select-field {
     display: flex;
-    flex: 1;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
     width: 100%;
+    padding-top: 5%;
+}
+
+.input-container {
+    width: 100%;
+    padding-left: 200px;
+    padding-right: 200px
+}
+
+.add-skill {
     gap: 10px;
-}
-
-.select-field select {
-    font-weight: 400;
-    font-size: 16px;
-    padding: 12px;
-    color: #000000;
-    border: none;
-    outline: none;
-    border: 1px solid #7FBF4C;
-    border-radius: 8px;
-    width: 100%;
 
 }
+
+.editx-skill {
+    gap: 10px;
+
+}
+
 
 .btnsec {
     /* position: absolute; */
