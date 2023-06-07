@@ -21,7 +21,8 @@
                     </div>
                 </div>
                 <div class="profile-details">
-                    <CardInformationComponent :showPopup="showPopup" index="1" :detailsTitle="cardDetails[0].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" index="1" :detailsTitle="cardDetails[0].cardTitle"
+                        showpencil="showpencil">
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[0].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[0].cardInputInformation.inputOne.type"
@@ -42,7 +43,8 @@
                             :inputType="cardDetails[0].cardInputInformation.inputFour.type" />
                     </CardInformationComponent>
 
-                    <CardInformationComponent :showPopup="showPopup" index="2" :detailsTitle="cardDetails[1].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" index="2" :detailsTitle="cardDetails[1].cardTitle"
+                        showpencil="showpencil">
                         <InputComponent :fullName="cardDetails[1].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[1].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[1].cardInputInformation.inputOne.type" />
@@ -54,7 +56,8 @@
                             :inputType="cardDetails[1].cardInputInformation.inputThree.type" />
                     </CardInformationComponent>
 
-                    <CardInformationComponent :showPopup="showPopup" index="3" :detailsTitle="cardDetails[2].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" index="3" :detailsTitle="cardDetails[2].cardTitle"
+                        showpencil="showpencil">
                         <InputComponent :fullName="cardDetails[2].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[2].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[2].cardInputInformation.inputOne.type" />
@@ -84,6 +87,8 @@ import InputComponent from '../../profilepage/inputComponent.vue';
 import UpdateProfileComponent from '../../profilepage/UpdateProfileComponent.vue';
 
 export default {
+
+    props: ['showpencil'],
     data() {
         return {
             title: '',
