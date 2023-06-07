@@ -1,7 +1,7 @@
 <template>
     <div class="input-field">
         <label :for="inputId">{{ fullName }}</label>
-        <input :type="inputType" :name="inputName" :id="inputId" :value="Value" disabled>
+        <input class="input-tag" :type="inputType" :name="inputName" :id="inputId" :value="Value" disabled>
         <!-- <img class="editicon" src="/images/edit_icon.svg" alt="editicon" /> -->
     </div>
 </template>
@@ -48,6 +48,7 @@ export default {
     border: none;
     outline: none;
     border-bottom: 2px solid #D9D9D9;
+    background-color: transparent;
 
 
 
