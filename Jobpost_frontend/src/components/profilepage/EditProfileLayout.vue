@@ -1,7 +1,7 @@
 <template>
     <div class="card-container flex-center">
         <div class="card">
-            <NavListComponent :type="type" />
+            <NavListComponent :type="type" :index="index" />
             <slot></slot>
             <div class="btnsec flex-center-row">
                 <button class="btn" @click="handleSave">Save</button>
@@ -23,6 +23,7 @@ export default {
         'type',
         'handlecloseCard',
         'handleSave',
+        'index'
     ],
     data() {
         return {
@@ -31,6 +32,8 @@ export default {
     },
 
     methods: {
+
+
 
     }
 
