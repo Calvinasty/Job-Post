@@ -29,7 +29,7 @@ export default {
         ...mapActions(useJobsStore, ['setPostedJobs']),
         getAllJobs() {
             // this.AllPostedJobs = JSON.parse(localStorage.getItem('companyJobs'))
-            axios.get('http://192.168.1.98:3000/jobs?_sort=id&_order=desc')
+            axios.get('http://192.168.1.38:3000/jobs?_sort=id&_order=desc')
                 .then(res => this.AllPostedJobs = res.data)
                 .then(res => {
                     this.setPostedJobs(res)

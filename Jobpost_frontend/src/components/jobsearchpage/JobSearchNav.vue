@@ -48,11 +48,9 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
     width: 100%;
     gap: 100px;
     padding:20px 50px;
-    width: 100dvw;
     gap: 10px;    
 }
 .container >span{
