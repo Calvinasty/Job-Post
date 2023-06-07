@@ -2,8 +2,8 @@
     <div>
         <section class="container desktop-view">
             <aside class="left">
-                <h3 class="headline"> Testimonial </h3>
-                <h2 class="head-text"> What Our Clients <br> Are Saying </h2>
+                <h3 class="headline"> Success Story </h3>
+                <h2 class="head-text"> What Our Clients Are Saying </h2>
                 <p class="message">
                     {{ client[count].message }}
                 </p>
@@ -28,8 +28,8 @@
         <!-- this section is for mobile view -->
         <section class="container mobile-view-only">
             <aside class="main">
-                <h3 class="headline"> Testimonial </h3>
-                <h2 class="head-text"> What Our Clients <br> Are Saying </h2>
+                <h3 class="headline"> Success Story </h3>
+                <h2 class="head-text"> What Our Clients Are Saying </h2>
                 <div class="image">
                     <img :src="`/images/${client[count].image}`" alt="client">
                 </div>
@@ -136,7 +136,7 @@ export default {
 
 .left .head-text {
     color: #000;
-    font-size: 60px;
+    font-size: 35px;
     font-weight: 800px;
 }
 
@@ -189,6 +189,17 @@ export default {
     /* border: 1px solid blue; */
 }
 
+.right .image::before {
+    content: '';
+    width: 563px;
+    height: 552px;
+    position: absolute;
+    float: right;
+    top: 5%;
+    left: 5%;
+    background-color: #88CC0073;
+    z-index: -1;
+}
 .right .image {
     width: 563px;
     height: 552px;
@@ -196,6 +207,7 @@ export default {
     float: right;
     top: -10%;
     left: -10%;
+    z-index: 2;
 }
 
 .right .image img {
@@ -226,7 +238,7 @@ export default {
     }
 }
 
-.right .image::after {
+/* .right .image::after {
     content: '';
     display: block;
     width: 563px;
@@ -239,7 +251,7 @@ export default {
     background-repeat: no-repeat;
     background-position: 70%;
     z-index: -1;
-}
+} */
 
 /* Mobile Media Queries*/
 @media screen and (max-width: 480px) {
