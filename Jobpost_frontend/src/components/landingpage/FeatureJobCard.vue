@@ -57,7 +57,7 @@ export default {
     display: flex;
     flex-direction: column;
     max-width: 400px;
-    min-width: 300px;
+    min-width: 290px;
     padding-bottom: 15px;
     box-shadow: 5px 5px 9px #a5a5a5,
     -5px -5px 9px #ECF7D6;
