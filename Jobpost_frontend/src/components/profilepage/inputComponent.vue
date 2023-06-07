@@ -2,6 +2,7 @@
     <div class="input-field">
         <label :for="inputId">{{ fullName }}</label>
         <input :type="inputType" :name="inputName" :id="inputId" :value="Value" disabled>
+        <!-- <img class="editicon" src="/images/edit_icon.svg" alt="editicon" /> -->
     </div>
 </template>
 
@@ -48,6 +49,16 @@ export default {
     outline: none;
     border-bottom: 2px solid #D9D9D9;
 
+
+
+}
+
+.editicon {
+    position: absolute;
+    float: right;
+    left: 20px;
+    cursor: pointer;
+    width: 12px;
 }
 
 @media screen and (max-width:480px) {

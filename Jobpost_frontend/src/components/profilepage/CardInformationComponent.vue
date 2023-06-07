@@ -1,6 +1,8 @@
 <template>
     <div class="profile-detail">
-        <img class="editicon" src="/images/edit_icon.svg" alt="editicon" @click="showPopup()" />
+        <img class="editicon" v-show="showpencil" src="/images/edit_icon.svg" alt="editicon" @click="showPopup(index)" />
+        <img class="editicon" v-show="showplus" src="/images/plusediticon.svg" alt="editicon" @click="showPopup(index)" />
+
         <h3>{{ detailsTitle }}</h3>
         <div class="profile-detail-container">
             <div class="input-field-container flex-center">
@@ -46,7 +48,10 @@ export default {
         "detailsTitle",
         "inputInformation",
         "showPopup",
-        "userValue"
+        "userValue",
+        "index",
+        "showplus",
+        "showpencil"
     ],
     mounted() {
 
@@ -150,5 +155,19 @@ h3 {
 
 
 
+}
+
+@media screen and (min-width:1024px) and (max-width:1439px) {
+    .profile-detail {
+        border: 2px solid #ededed;
+        background-color: #ffffff;
+
+        padding: 37px 34px;
+        border-bottom: 5px solid #88cc00;
+        flex: 1;
+        max-width: 400px;
+        min-width: 340px;
+        height: 380px;
+    }
 }
 </style>

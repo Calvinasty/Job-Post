@@ -25,9 +25,10 @@
                         </div>
                     </div>
                     <div class="profile-details">
-                        <CardInformationComponent :userValue="Value" :showPopup="showPopup"
+                        <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="1"
                             :detailsTitle="inputCardDetails[0].cardTitle"
-                            :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true">
+                            :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true"
+                            :showpencil="true">
 
 
                             <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
@@ -51,7 +52,8 @@
                                 :inputId="inputCardDetails[0].cardInputInformation.inputEight.id" />
                         </CardInformationComponent>
 
-                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[1].cardTitle">
+                        <CardInformationComponent :showPopup="showPopup" index="2"
+                            :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
                             <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
                                 :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" />
@@ -61,19 +63,44 @@
                             <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputThree.name"
                                 :inputType="inputCardDetails[1].cardInputInformation.inputThree.type"
                                 :inputId="inputCardDetails[1].cardInputInformation.inputThree.id" />
+                            <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputFour.name"
+                                :inputType="inputCardDetails[1].cardInputInformation.inputFour.type"
+                                :inputId="inputCardDetails[1].cardInputInformation.inputFour.id" />
 
                         </CardInformationComponent>
-                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[2].cardTitle">
+                        <CardInformationComponent :showPopup="showPopup" index="3"
+                            :detailsTitle="inputCardDetails[2].cardTitle" :showplus="true">
                             <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
                                 :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" />
                             <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
                                 :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
                                 :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
+                            <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
+                                :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
+                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
+                            <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
+                                :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
+                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
 
                         </CardInformationComponent>
-                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[3].cardTitle">
-                            <div class="select-field">
+                        <CardInformationComponent :showPopup="showPopup" index="4"
+                            :detailsTitle="inputCardDetails[3].cardTitle" :showplus="true">
+
+                            <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                                :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" />
+                            <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                                :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" />
+                            <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                                :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" />
+                            <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                                :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" />
+
+                            <!-- <div class="select-field">
                                 <label for="skills">Skills</label>
                                 <select name="skill" id="skills">
                                     <option value="">Select</option>
@@ -93,7 +120,7 @@
                                     <option value="">Node Js</option>
                                     <option value="">Angular </option>
                                 </select>
-                            </div>
+                            </div> -->
                         </CardInformationComponent>
                     </div>
                 </div>
@@ -106,8 +133,8 @@
 
         </div>
         <FooterComponent />
-        <UpdateProfileComponentVue :userInfo="Value" v-show="showModal == true" type="user" :handlecloseCard="showPopup"
-            :handleSave="handleSaveButton" />
+        <UpdateProfileComponentVue :userInfo="Value" v-if="showModal == true" :index="index" type="user"
+            :handlecloseCard="showPopup" :handleSave="handleSaveButton" />
 
         <!-- <EditPopups v-if="showModal" /> -->
         <!-- <router-view></router-view> -->
@@ -141,6 +168,7 @@ export default {
             usersName: '',
             userOccupation: '',
             showModal: false,
+            index: 0,
             Value: {
                 fullname: "",
                 email: "",
@@ -171,8 +199,10 @@ export default {
     },
 
     methods: {
-        showPopup() {
+        showPopup(index) {
             this.showModal = !this.showModal
+            this.index = index
+
 
 
         },
@@ -241,7 +271,7 @@ export default {
     justify-content: space-around;
     align-items: center;
     padding: 42px 10px;
-    height: 404px;
+    height: 400px;
     /* background: hsl(258, 76%, 50%); */
 }
 
@@ -464,6 +494,31 @@ export default {
 
     .profile-details {
         justify-content: center;
+    }
+
+}
+
+
+@media screen and (min-width:1024px) and (max-width:1439px) {
+    .user-profile {
+        padding: 0px 20px;
+
+
+
+
+    }
+
+    .profile-card {
+        height: 380px;
+    }
+
+    .profile-details {
+
+        gap: 20px;
+
+
+
+
     }
 
 }
