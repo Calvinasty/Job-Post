@@ -12,7 +12,7 @@
             :handleHome="handleHome"
             :screen="screen"
         />
-        <SignupSuccess :handleRoute="handleHome" :userEmail="user.email" v-if="next == 1" />
+        <SignupSuccess :handleRoute="handleHome" :userEmail="user.email" v-if="next == 2" />
 
     </div>
 </template>

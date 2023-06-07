@@ -1,6 +1,6 @@
 <template>
     <Transition name="slide-fade">
-        <div :style="toast.msg=='success' ? {backgroundColor:'green'} : {backgroundColor: 'red'}">
+        <div :style="toast.color=='success' ? {backgroundColor:'green'} : {backgroundColor: 'red'}">
             {{ toast.msg }}
         </div>
     </Transition>

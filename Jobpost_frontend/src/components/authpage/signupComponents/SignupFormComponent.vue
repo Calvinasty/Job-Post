@@ -168,12 +168,12 @@ export default {
         },
 
         showToast(msg, color){
-            setTimeout(()=>{
+            setInterval(()=>{
                 this.toast = {
                     active: true, msg, color
                 }
             }, 3000)
-            // this.toast = {active: false, msg:'', color:''}
+            this.toast = {active: false, msg:'', color:''}
         }
     },
 

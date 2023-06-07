@@ -1,6 +1,6 @@
 <template>
     <section class="complete">
-        <img src="/images/logo.png" alt="logo">
+        <!-- <img src="/images/logo.png" alt="logo"> -->
         <h1>Registration Complete</h1>
         <div >
             <span class="material-symbols-outlined">mark_email_unread</span>
@@ -22,11 +22,11 @@
 
 <style lang="css" scoped>
     .complete{
-        height: 80%;
-        width: 50%;
+        height: 60%;
+        width: 30%;
         border-radius: 20px;
-        padding-top: 128px;
-        padding: 50px 70px;
+        /* padding-top: 128px; */
+        padding: 50px;
         background: rgba(255, 255, 255, 1);
         display: flex;
         flex-direction: column;
