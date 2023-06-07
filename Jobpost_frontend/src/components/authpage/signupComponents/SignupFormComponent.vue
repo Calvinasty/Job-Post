@@ -23,7 +23,7 @@
                 <button type="button" @click.prevent="()=>setNext(1)">
                     Continue <span class="material-symbols-outlined">arrow_right_alt</span>
                 </button>
-                <span v-if="screen == 'desktop'" class="progress">
+                <span class="progress">
                     <span></span>
                     <span></span>
                 </span>
@@ -62,12 +62,14 @@
                         <span class="material-symbols-outlined"> west</span> Back
                     </button>
                     <button type="submit">
-                        SignUp <span class="material-symbols-outlined">east </span>
+                        SignUp
+                        <span class="material-symbols-outlined loading" v-show="loading"> cached </span>
+                        <span class="material-symbols-outlined" v-show="loading == false"> east </span>
                     </button>
                 </aside>
 
                 <!-- Progress indicator -->
-                <span v-if="screen == 'desktop'" class="progress progress-2">
+                <span class="progress progress-2">
                     <span></span>
                     <span></span>
                 </span>
@@ -102,7 +104,8 @@ export default {
                 passLabel: '<h5 class="red-text">*upper/lower/special eg. <span class="green-text">Kode@123</span></h5>',
                 toast:{
                     active: false, msg:'', color:''
-                }
+                },
+                loading: false
             }
         },
 
@@ -132,6 +135,7 @@ export default {
         },
 
         handleSubmit() {
+            this.loading = true
             const newFormData= new FormData()
             if(this.inputData.mdname!==''){newFormData.append("middle_name",this.inputData.mdname)}       
             newFormData.append("first_name",this.inputData.fname)
@@ -149,6 +153,7 @@ export default {
                 if(res.data?.message){
                     let msg=res.data.message
                     this.showToast(msg, 'success')
+                    this.loading = false
                 }
                 if(res.data?.token){
                     const token= JSON.stringify(res.data.token)
@@ -163,17 +168,18 @@ export default {
             .catch(err => {
                 let msg = err.response? err.response.data.message : err.message
                 this.showToast(msg, 'error')
+                this.loading = false
                 console.log(err);
             })                        
         },
 
         showToast(msg, color){
-            setInterval(()=>{
-                this.toast = {
-                    active: true, msg, color
-                }
-            }, 3000)
-            this.toast = {active: false, msg:'', color:''}
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(()=>{
+                this.toast = {active: false, msg:'', color:''}
+            }, 6000)
         }
     },
 
