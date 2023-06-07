@@ -2,8 +2,8 @@
     <div>
         <section class="container desktop-view">
             <aside class="left">
-                <h3 class="headline"> Testimonial </h3>
-                <h2 class="head-text"> What Our Clients <br> Are Saying </h2>
+                <h3 class="headline"> Success Story </h3>
+                <h2 class="head-text"> What Our Clients Are Saying </h2>
                 <p class="message">
                     {{ client[count].message }}
                 </p>
@@ -28,8 +28,8 @@
         <!-- this section is for mobile view -->
         <section class="container mobile-view-only">
             <aside class="main">
-                <h3 class="headline"> Testimonial </h3>
-                <h2 class="head-text"> What Our Clients <br> Are Saying </h2>
+                <h3 class="headline"> Success Story </h3>
+                <h2 class="head-text"> What Our Clients Are Saying </h2>
                 <div class="image">
                     <img :src="`/images/${client[count].image}`" alt="client">
                 </div>
@@ -129,14 +129,14 @@ export default {
 }
 
 .left .headline {
-    color: #7FBF4C;
+    color: #88cc00;
     font-size: 25px;
     font-weight: bold;
 }
 
 .left .head-text {
     color: #000;
-    font-size: 60px;
+    font-size: 35px;
     font-weight: 800px;
 }
 
@@ -189,6 +189,17 @@ export default {
     /* border: 1px solid blue; */
 }
 
+.right .image::before {
+    content: '';
+    width: 563px;
+    height: 552px;
+    position: absolute;
+    float: right;
+    top: 5%;
+    left: 5%;
+    background-color: #88CC0073;
+    z-index: -1;
+}
 .right .image {
     width: 563px;
     height: 552px;
@@ -196,6 +207,7 @@ export default {
     float: right;
     top: -10%;
     left: -10%;
+    z-index: 2;
 }
 
 .right .image img {
@@ -226,32 +238,13 @@ export default {
     }
 }
 
-.right .image::after {
-    content: '';
-    display: block;
-    width: 563px;
-    height: 552px;
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    background-color: #7BA659;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 70%;
-    z-index: -1;
-}
-
 /* Mobile Media Queries*/
 @media screen and (max-width: 480px) {
     .container {
         display: block;
-        /* flex-direction: column-reverse;
-            justify-content: space-between; */
-        /* align-items: center; */
         width: 100%;
         height: 100%;
         padding: 20px;
-        /* border: 1px solid red; */
         height: 100%;
     }
 
@@ -264,17 +257,16 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 35px;
-        /* float: left; */
     }
 
     .main .headline {
         font-weight: bold;
-        color: #7FBF4C;
+        color: #88cc00;
     }
 
     .main .head-text {
         color: #000;
-        font-size: 40px;
+        font-size: 25px;
         font-weight: 800px;
     }
 
@@ -284,35 +276,24 @@ export default {
         font-weight: 400;
         margin-top: 30px;
     }
-
-    .right {
-        width: 100%;
-        /* border: 1px solid blue; */
-    }
-
     .main .image {
         width: 313px;
         height: 302px;
         position: relative;
-        /* top: -5%;
-            left: -5%; */
+        z-index: 2;
+        align-self: center;
     }
-
-    /* .main .image::after {
+    .main .image::before {
         content: '';
-        display: block;
         width: 313px;
         height: 302px;
         position: absolute;
-        top: 10%;
-        left: 10%;
-        background-color: #7BA659;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 70%;
+        float: right;
+        top: 5%;
+        left: 5%;
+        background-color: #88CC0073;
         z-index: -1;
-    } */
-
+    }
     .main .image img {
         width: 100%;
         height: 100%;
@@ -324,13 +305,8 @@ export default {
 @media screen and (min-width: 481px) and (max-width: 1440px) {
     .container {
         display: block;
-        /* flex-direction: column-reverse;
-            justify-content: space-between; */
-        /* align-items: center; */
         width: 100%;
-        /* height: 100dvh; */
         padding: 40px;
-        /* border: 1px solid red; */
         height: 100%;
     }
 
@@ -371,28 +347,25 @@ export default {
     }
 
     .main .image {
-        width: 313px;
-        height: 302px;
+        align-self: center;
+        width: 333px;
+        height: 322px;
         position: relative;
-        top: -5%;
-        left: 13%;
+        top: 0%;
+        left: 0%;
+        z-index: 2;
     }
-
-    .main .image::after {
+    .main .image::before {
         content: '';
-        display: block;
-        width: 313px;
-        height: 302px;
+        width: 333px;
+        height: 322px;
         position: absolute;
-        top: 10%;
-        left: 10%;
-        background-color: #7BA659;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: 70%;
+        float: right;
+        top: 5%;
+        left: 5%;
+        background-color: #88CC0073;
         z-index: -1;
     }
-
     .main .image img {
         width: 100%;
         height: 100%;
