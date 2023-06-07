@@ -12,7 +12,7 @@
             :handleHome="handleHome"
             :screen="screen"
         />
-        <SignupSuccess :handleRoute="handleHome" :userEmail="user.email" v-if="next == 2" />
+        <SignupSuccess :handleRoute="handleHome" :userEmail="user.email" v-if="next == 1" />
 
     </div>
 </template>
@@ -31,9 +31,9 @@ export default {
         return {
             screen: 'desktop',
             next: 0,
-            form1header: 'Sign Up',
-            form1sub: 'Enter your details',
-            form2header: 'Continue Sign Up',
+            form1header: 'SIGN UP',
+            form1sub: 'Create a Job Seeker account',
+            form2header: 'SIGN UP',
             form2sub: 'Enter additional details'
         }
     },
