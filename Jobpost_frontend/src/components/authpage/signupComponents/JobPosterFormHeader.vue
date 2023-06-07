@@ -5,7 +5,7 @@
         <span>
             <span style="text-align: center;">
                 <h1>Sign Up</h1>
-                <h3>Enter your details</h3>
+                <h3>Create an account as an Employer</h3>
             </span>
             <span v-if="pageNum==0" class="mobile-oauth">
                 <img src="/images/social-linkedin.svg" alt="linkedin">
@@ -26,11 +26,12 @@ h1{ color: #7FBF4C; font-size: 20px;}
 h3{ margin-bottom: 30px; font-size: 13px;}
 header{ row-gap:20px;}
 header img{ height: 35px; width: auto;}
-
+h3{ margin-top: 10px; color: rgba(125, 116, 116, 1);}
 @media screen and (max-width:600px) {
 
 header{ row-gap:10px;  padding-top: 5px;}
- h3{ margin-bottom:0px;}
+
+ h3{ margin-bottom:0px; }
 
 header >span{
     width:100%;

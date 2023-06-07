@@ -1,25 +1,22 @@
 <template>
-    <div class="apply-job-page flex-center">
-        <JobSearchNav/>
+    
         <section class="job-container flex-center-row">
            <JobDescription :job="currentJob"/>
            <ApplyJobSection :user="currentUser"/>
         </section>
-    </div>
 </template>
 
 <script>
 
-import { useJobsStore } from '../stores/Jobs';
-import { useUserStore } from '../stores/users';
+import { useJobsStore } from '../../stores/Jobs';
+import { useUserStore } from '../../stores/users';
 import { mapState } from 'pinia';
 import { useRoute } from 'vue-router';
-import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue';
-import JobDescription from '../components/applyjobpage/JobDescription.vue';
-import ApplyJobSection from '../components/applyjobpage/ApplyJobSection.vue';
+import JobDescription from '../applyjobpage/JobDescription.vue';
+import ApplyJobSection from '../applyjobpage/ApplyJobSection.vue';
 // import JobCard from '../components/jobsearchpage/JobCard.vue';
 export default {
-  components: { JobSearchNav, JobDescription, ApplyJobSection },
+  components: { JobDescription, ApplyJobSection },
     name: 'JobPostApplyJobPage',
 
     data() {

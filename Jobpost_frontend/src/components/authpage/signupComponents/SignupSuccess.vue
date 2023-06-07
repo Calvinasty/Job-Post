@@ -2,7 +2,7 @@
     <section class="complete">
         <img src="/images/logo.png" alt="logo">
         <h1>Registration Complete</h1>
-        <div>
+        <div >
             <span class="material-symbols-outlined">mark_email_unread</span>
             <h2>Thank you</h2>
             <h3>We have sent a confirm email</h3>
@@ -47,6 +47,7 @@
     .complete div{
         display: flex;
         flex-direction: column;
+        text-align: center;
         gap: 10px;
         justify-content: center;
         align-items: center;
