@@ -4,11 +4,10 @@
         <section>
             <header>
                 <img src="/images/logo.png" alt="">
-                <h2>JOB POSTS</h2>
             </header>
 
             <div class="selector-header">
-                <h3>Choose User Type</h3>
+                <h2>Choose User Type</h2>
             </div>
 
             <div class="user-select flex-center">
@@ -74,11 +73,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        row-gap: 25px;
+        row-gap: 15px;
         background-color: #fff;
         border-radius: 20px;
-        width: 40%;
-        padding: 120px 40px;
+        width: 550px;
+        max-width: 622px;
+        padding-bottom: 160px;
+        padding-top: 30px;
     }
 
     header {
@@ -87,18 +88,18 @@
         flex-direction: column;
         align-content: center;
         align-items: center;
-        row-gap: 40px;
+        margin-bottom: 80px;
     }
 
     header img {
-        width: 50%;
-    }
+        width: 40%;
+}
 
-    header h2 {
+    /* header h2 {
         font-weight: bolder;
         line-height: 41px;
         color: #7FBF4C;
-    }
+    } */
 
     .selector-header {
         display: flex;
@@ -109,10 +110,11 @@
         text-align: center;
     }
 
-    .selector-header h3 {
+    .selector-header h2 {
         font-weight: bolder;
         line-height: 38px;
         color: #7FBF4C;
+        text-transform: uppercase;
     }
 
     .selector-header p {
@@ -124,6 +126,7 @@
 
     .user-select {
         row-gap: 35px;
+        margin-top: 60px;
     }
 
     a {
@@ -160,13 +163,13 @@
 
     @media screen and (max-width: 800px) and (min-width: 480px) {
         section {
-            width: 80%;
+            width: 550px;
         }
     }
 
     @media screen and (max-width: 1100px) and (min-width: 770px) {
         section {
-            width: 60%;
+            width: 550px;
         }
     }
 

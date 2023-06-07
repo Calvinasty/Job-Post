@@ -179,10 +179,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 40%;
-        padding: 100px;
         row-gap: 20px;
         border-radius: 20px;
+        width: 550px;
+        max-width: 622px;
+        padding-bottom: 80px;
+        padding-top: 30px;
     }
 
     header {
@@ -262,7 +264,7 @@
         display: flex;
         flex-direction: column;
         row-gap: 25px;
-        width: 100%; 
+        width: 80%; 
     }
 
     .user-field, .password-field {
@@ -328,17 +330,17 @@
         cursor: pointer;
     } */
 
-    @media screen and (max-width:1200px) and (min-width:1024px) {
+    /* @media screen and (max-width:1200px) and (min-width:1024px) {
         .signin{
-            width: 50%;
+            width: 550px;
         }
 
         .desk-links {
-            width: 80%;
+            width: 550px;
         }
-    }
+    } */
 
-    @media screen and (max-width: 1024px) and (min-width: 681px) {
+    /* @media screen and (max-width: 1024px) and (min-width: 681px) {
         .signin {
             width: 80%;
         }
@@ -350,7 +352,7 @@
             align-items: center;
             row-gap: 5px;
         }
-    }
+    } */
     
 
 </style>
