@@ -146,21 +146,21 @@ export default {
                 },
 
                 {
-                    cardTitle: 'Company Description',
+                    cardTitle: 'Location',
                     cardInputInformation: {
                         inputOne: {
-                            id: 'description',
-                            name: 'Description',
+                            id: 'country',
+                            name: 'Country',
                             type: 'text',
                         },
                         inputTwo: {
-                            id: 'industry',
-                            name: 'Industry',
+                            id: 'address',
+                            name: 'Address',
                             type: 'text',
                         },
                         inputThree: {
-                            id: 'address',
-                            name: 'Address',
+                            id: 'region',
+                            name: 'Region',
                             type: 'text',
                         }
                     },

@@ -82,6 +82,7 @@
 
         jobPoster() {
                 var z = document.getElementById("btn");
+                console.log(z);
                 z.style.left = "50%"
                 z.innerHTML="Job Poster"
             
@@ -92,6 +93,7 @@
         },
         jobSeeker() {
                 var z = document.getElementById("btn");
+                console.log(z);
                 z.style.left = "0"
                 z.innerHTML="Job Seeker"
                 this.userType = "jobSeeker"

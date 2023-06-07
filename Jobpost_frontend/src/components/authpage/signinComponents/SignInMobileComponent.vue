@@ -5,6 +5,12 @@
             <h3>{{ nameHeader }}</h3>
         </header>
 
+        <div v-if="showToggle" class="login-option flex-center-row">
+            <div id="mobile-btn">Job Seeker</div>
+            <button type="button" class="toggle-btn" id="jobSeeker" @click="jobSeeker()">Job Seeker</button>
+            <button type="button" class="toggle-btn" id="jobPoster" @click="jobPoster()">Job Poster</button>
+        </div>
+
         <div class="signin-header">
             <h4>{{ nameTitle }}</h4>
         </div>
@@ -20,7 +26,7 @@
 
             <button type="submit" class="mbn-btn">Sign In</button>
 
-            <button class="forgot-btn">Forgotten Password? <span>Click Here</span></button>
+            <button class="forgot-btn">Forgotten Password? <span @click="toForgotten()">Click Here</span></button>
 
             <button v-if="showText" class="signup-btn">{{ userInfo }} <span @click="toSignup()">Register Now</span></button>
         </form>
@@ -40,19 +46,47 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
                 inputData: {
                     email: '',
                     password: ''
-                }
+                },
+                userType: "JobSeeker"
             }
             
         },
+
         props:[
             'nameHeader',
            'nameTitle',
            'userInfo',
-           'showText'
+           'showText',
+           'showToggle'
        ],
+
        methods: {
             toSignup() {
                 this.$router.push('/auth')
+            },
+
+            toForgotten() {
+                this.$router.push('/auth/forgot-password')
+            },
+
+            jobPoster() {
+                var z = document.getElementById("mobile-btn");
+                z.style.left = "50%"
+                z.innerHTML="Job Poster"
+            
+                this.userType = "jobPoster"
+
+                console.log(this.userType);
+            
+            },
+
+            jobSeeker() {
+                var z = document.getElementById("mobile-btn");
+                z.style.left = "0"
+                z.innerHTML="Job Seeker"
+                this.userType = "jobSeeker"
+
+                console.log(this.userType);
             },
 
             handleUserInput(data){
@@ -81,7 +115,9 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
                 // }
                 
                 console.log(user)
-            }
+            },
+
+            
         }
     }
 </script>
@@ -112,6 +148,41 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
         padding-bottom: 13px;
     }
 
+    .login-option {
+        width: 80%;
+        border: 1px solid #88CC00;
+        border-radius: 5px 0px 0px 5px;
+        position: relative;
+    }
+
+    .toggle-btn {
+        width: 100%;
+        padding: 10px 0;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        outline: none;
+        font-weight: 700;
+        font-size: 14px;
+        color: #7FBF4C;
+    }
+
+    #mobile-btn {
+        top: 0;
+        left: 0;
+        position: absolute;
+        width: 50%;
+        height: 40px;
+        background: #88CC00;
+        transition: .5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
     .signin-header {
         display: flex;
         flex-direction: column;
@@ -125,6 +196,7 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
         font-size: 20px;
         line-height: 22px;
         color: #88CC00;
+        text-transform: uppercase;
     }
     .signin-header p {
         font-weight: 500;

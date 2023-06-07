@@ -13,10 +13,10 @@
         <!-- Mobile View Section -->
         <div class="mobile-view">
             <SignInMobileComponentVue
-            nameHeader = 'JOB POSTS'
             nameTitle = 'Sign In'
             userInfo = 'Not Registered yet?' 
             :showText = true
+            :showToggle= true
             />
         </div>
 
