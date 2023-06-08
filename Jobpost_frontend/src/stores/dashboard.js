@@ -1,10 +1,11 @@
 import {defineStore} from 'pinia'
+import { useStorage } from '@vueuse/core'
 
 export const useDashboardStore = defineStore(
     'dashboard',
     {
         state: () => ({
-            companyInfo: {},
+            companyInfo: useStorage("companyState", {}),
             next: 0,     // set state of postjobform next in modal,
             modalComponentId: '',   //set state for modal show postJob or Applicants Summary
             chartDataValues: [10, 9, 20, 10, 0, 2]

@@ -46,10 +46,12 @@
 <script>
     import {mapActions} from 'pinia'
     import { useUserStore } from '../../../stores/users'
+    import { useCompanyStore } from '../../../stores/companies'
     import axios from 'axios'
     import InputComponent from '@/components/authpage/InputComponent.vue'
     import ToastMessage from '../../utils/ToastMessage.vue'
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    const BASE_URL = import.meta.env.VITE_BASE_URL
     export default {
         components : {
             InputComponent,
@@ -82,6 +84,7 @@
 
        methods: {
         ...mapActions(useUserStore, ['setUser']),
+        ...mapActions(useCompanyStore, ['setCompany']),
         toForgot() {
             this.$router.push('/auth/forgot-password')
         },
@@ -91,13 +94,13 @@
 
         jobPoster() {
                 var z = document.getElementById("btn");
-                console.log(z);
+                // console.log(z);
                 z.style.left = "50%"
                 z.innerHTML="Job Poster"
             
                 this.userType = "jobPoster"
 
-                console.log(this.userType);
+                // console.log(this.userType);
             
         },
         jobSeeker() {
@@ -106,7 +109,7 @@
                 z.innerHTML="Job Seeker"
                 this.userType = "jobSeeker"
 
-                console.log(this.userType);
+                // console.log(this.userType);
         },
 
         handleUserInput(data){
@@ -124,7 +127,7 @@
         handleSignIn() {
             this.loading = true
             console.log('Hello', this.inputData.email.match((validRegex)));
-            console.log(this.inputData);
+            // console.log(this.inputData);
 
             const user=new FormData()
             user.append( "email",this.inputData.email,)
@@ -132,7 +135,7 @@
             
 
             if(this.userType == 'jobPoster') {
-                axios.post(`http://192.168.8.127:5000/company/logInCompany`,user)
+                axios.post(`${BASE_URL}/company/logInCompany`,user)
                 .then(res =>{
                     console.log(res?.data);
                     if(res.data?.message){
@@ -146,7 +149,7 @@
                     }
                     if(res.data?.company){
                         const company = res.data.company
-                        localStorage.setItem('companyState', JSON.stringify(company))
+                        this.setCompany(company)
                         this.$router.push('/admin/analyticsView')
                     }
                     // res.data
@@ -165,7 +168,7 @@
             }
 
             if(this.userType == 'jobSeeker') {
-                axios.post(`http://192.168.8.127:5000/jobSeeker/logInJobSeeker`,user)
+                axios.post(`${BASE_URL}/jobSeeker/logInJobSeeker`,user)
                 .then(res =>{
                     if(res.data?.message){
                         let msg=res.data.message
