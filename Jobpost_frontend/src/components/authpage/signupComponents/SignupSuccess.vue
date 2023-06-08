@@ -5,7 +5,7 @@
         <div >
             <span class="material-symbols-outlined">mark_email_unread</span>
             <h2>Thank you</h2>
-            <h3>We have sent a confirm email</h3>
+            <h3>We have sent a confirm email to</h3>
             <h3>{{ userEmail }}</h3>
         </div>                
         <button type="button" @click="handleRoute">
@@ -23,7 +23,7 @@
 <style lang="css" scoped>
     .complete{
         height: 60%;
-        width: 30%;
+        width: 100%;
         border-radius: 20px;
         /* padding-top: 128px; */
         padding: 50px;
@@ -49,6 +49,7 @@
         flex-direction: column;
         text-align: center;
         gap: 10px;
+        width: 100%;
         justify-content: center;
         align-items: center;
     }

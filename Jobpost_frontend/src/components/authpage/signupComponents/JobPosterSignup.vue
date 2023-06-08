@@ -65,7 +65,6 @@ export default {
             newFormData.append("mobile_number", this.userInfo.phone)
             newFormData.append("verification_method", this.userInfo.verification)
             // console.log(newFormData);
-
             axios.post('http://192.168.1.36:5000/company/registerCompany', newFormData)
                 .then(res => {
                     console.log(res?.data);
