@@ -14,13 +14,8 @@
 
 
                 <p class="elabel"> Gender </p>
-                <p>{{ userValue.gender.charAt(0).toUpperCase() + userValue.gender.slice(1) }}</p>
-                <!-- <InputComponent :Value="userValue.gender"/> -->
-                <!-- <InputComponent class="radio-gender" :fullName="inputInformation?.inputSix?.name" :inputType="inputInformation?.inputSix
-                    .type" :inputId="inputInformation?.inputSix?.id" :inputName="inputInformation?.inputSix?.radio" />
-                <InputComponent class="radio-gender" :fullName="inputInformation?.inputSeven?.name" :inputType="inputInformation?.inputSeven
-                    .type" :inputId="inputInformation?.inputSeven?.id"
-                    :inputName="inputInformation?.inputSeven?.radio" /> -->
+                <p>{{ userValue?.gender.charAt(0).toUpperCase() + userValue?.gender.slice(1) }}</p>
+
             </div>
         </div>
 
@@ -71,7 +66,7 @@ export default {
     border-bottom: 5px solid #88cc00;
     flex: 1;
     max-width: 530px;
-    min-width: 450px;
+    min-width: 350px;
     height: 400px;
 }
 

@@ -52,7 +52,6 @@ export default {
     width: 100%;
     gap: 100px;
     padding: 20px 50px;
-    width: 100dvw;
     gap: 10px;
 }
 

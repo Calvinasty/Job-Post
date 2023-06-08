@@ -3,7 +3,7 @@
         <component v-show="type == 'user'" :is="componentId" :userInfo="userInfo" :handlecloseCard="handlecloseCard"
             :handleSave="handleSave">
         </component>
-        <component v-show="type == 'company'" :is="componentId2"></component>
+        <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :is="componentId2"></component>
     </EditProfileLayout>
 </template>
 
@@ -21,6 +21,7 @@ import CompanyInformation from './updatecompany/CompanyInformation.vue'
 import RegistrationInfo from './updatecompany/RegistrationInfo.vue'
 import UploadCompanyPicture from './updatecompany/UploadPicture.vue'
 import CompanyLocation from "./updatecompany/CompanyLocation.vue";
+import { useUserStore } from '../../stores/users';
 
 
 export default {
@@ -53,16 +54,24 @@ export default {
             uploadcompanypicture: UploadCompanyPicture,
             companyinformation: CompanyInformation,
             registrationinfo: RegistrationInfo,
-            companylocation: CompanyLocation
+            companylocation: CompanyLocation,
+
+            //data from state
+            // user : []
 
         }
     },
 
+    mounted() {
+
+    },
+
 
     computed: {
-        ...mapState(useUserProfileStore, ['componentId', 'componentId2'])
+        ...mapState(useUserProfileStore, ['componentId', 'componentId2']),
+        ...mapState(useUserStore, ['user'])
     },
 }
-</script>
+</script> 
 
 <style lang="css" scoped></style>

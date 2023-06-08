@@ -71,10 +71,10 @@
                 </div>
             </div>
 
-            <div class="btnsec flex-center-row">
+            <!-- <div class="btnsec flex-center-row">
                 <button class="btn" @click="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
-            </div>
+            </div> -->
         </section>
         <UpdateProfileComponent v-if="showModal == true" @close="showPopup()" :index="index" :handlecloseCard="showPopup"
             type="company" />

@@ -55,4 +55,32 @@ a.router-link-exact-active {
     font-weight: 400;
     color: #ffffff;
 }
+
+@media screen and (max-width:480px) {
+    .footer-link {
+        font-size: 14px;
+        padding-top: 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .copyright {
+        text-align: center;
+        padding: 13px 0;
+        font-size: 12px;
+        color: #ffffff;
+    }
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .copyright {
+
+        font-size: 16px;
+
+    }
+}
 </style>
