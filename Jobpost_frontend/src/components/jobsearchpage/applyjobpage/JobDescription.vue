@@ -14,6 +14,7 @@
                     <p class="type">Remote</p>
                     <p class="time-poste">2 hours ago</p>
                 </span>
+                <p>Application dead line</p>
             </div>
 
         </div>
@@ -81,11 +82,12 @@ export default {
 <style lang="css" scoped>
 .job-details{
     color: rgba(120, 114, 114, 1);
-    background: #0000007e;
+    /* background: #0000007e; */
     border: 1px solid #9E9E9E;
     border-radius: 20px;
     justify-content: flex-start;
     align-items: flex-start;
+    max-width: 928px;
 }
 .job-summary{
     justify-content: flex-start;
