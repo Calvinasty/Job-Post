@@ -16,18 +16,8 @@
     <card v-if="cardItem.type == 'card3'" class="card3" :style="{backgroundColor: cardItem.color}">
         <h1>{{ cardItem.title }}</h1>
         <span class="num">{{ cardItem.num }}</span>
-        <div class="progress">
-            <div class="progress-bar"
-                :style="{background: `linear-gradient(to right, 
-                    ${cardItem.jobTypes[0].color} ${cardItem.jobTypes[0].num}%, 
-                    ${cardItem.jobTypes[1].color} ${cardItem.jobTypes[1].num}%, 
-                    ${cardItem.jobTypes[2].color} ${cardItem.jobTypes[2].num}%,
-                    ${cardItem.jobTypes[3].color} ${cardItem.jobTypes[3].num}%,
-                    ${cardItem.jobTypes[4].color} ${cardItem.jobTypes[4].num}%
-                )`}"
-            >
-                <div class="progress-shadow"></div>
-            </div>
+        <div class="progress-bar">
+            <span v-for="(item, index) in cardItem.jobTypes" :style="{backgroundColor: item.color, width: item.num+'%'}" class="progress-item">&emsp14;</span>
         </div>
         <div class="progress-details">
             <span class="job-type" v-for="(item, index) in cardItem.jobTypes" :key="index">
@@ -99,18 +89,35 @@
         border: 2px solid #88CC00;
     }
     .progress{
-        /* background-color: #88CC00; */
         width: 306px;
-        height: 17px;
+        height: 5px;
         position: relative;
     }
     .progress-bar{
-        position: relative;
-        /* background-size: 24em 0.25em; */
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
         width: 100%;
-        height: 100%;
-        border: 1px solid;
-        /* background-image: linear-gradient(to right, #80D25B, #FF763C, #0596FF, #FF0000, #10BBC6); */
+        max-height: 8px;
+        position: relative;
+    }
+    .progress-item{
+        position: relative;
+        height: 10px;
+        width: 100%;
+        cursor: pointer;
+    }
+    .progress-item:first-child{
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    .progress-item:first-child{
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    .progress-item:last-child{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
     .progress-details{
         display: flex;

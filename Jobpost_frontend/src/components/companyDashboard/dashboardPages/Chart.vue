@@ -1,41 +1,25 @@
 <template>
-    <Line :data="data" :options="options" />
+  <Line :data="chartData" :options="chartOptions" />
 </template>
-  
-  <script lang="ts">
-  import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-    Filler
-  } from 'chart.js'
-  import { Line } from 'vue-chartjs'
-  import * as chartConfig from '../../../assets/Chart.js'
-  
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-    Filler
-  )
-  
-  export default {
-    name: 'App',
-    components: {
-      Line
+
+<script>
+import { Line } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Filler} from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, Filler, CategoryScale, LinearScale, PointElement, LineElement)
+
+export default {
+  name: 'LineChart',
+  components: { Line },
+  props: {
+    chartData: {
+      type: Object,
+      required: true
     },
-    data() {
-      return chartConfig
+    chartOptions: {
+      type: Object,
+      default: () => {}
     }
   }
-  </script>
-  
+}
+</script>

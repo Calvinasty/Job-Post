@@ -1,57 +1,13 @@
 <template>
-    <footer class="footer-container">
-
-        <div class="footer-before">
-
-            <div class="footer-sec1">
-
-                <div class="logo">
-                    <img @click="toTop" src="/images/logo.png" alt="">
-                </div>
-
-                <div class="footer-sec1-text"> Connecting dream jobs with dream <br> candidates - Your one-stop job search
-                    solution
-                </div>
-
-                <div class="footer-sec1-input">
-                    <input type="text" placeholder="Your email">
-                    <img src="/images/Forwardbutton.svg" alt="">
-                </div>
-
-            </div>
-
-            <div class="footer-sec2">
-
-                <div class="findjobs">
-                    <h2>Find Jobs</h2>
-
-                    <div class="footer-link">
-                        <router-link to="">Featured Jobs</router-link>
-                        <router-link to="">Apply Job</router-link>
-                        <router-link to="">Post a Job</router-link>
-                    </div>
-                </div>
-
-                <!-- <div class="putsmthere">
-                    <h2>Useful Links</h2>
-                    <div class="footer-link">
-                        <router-link to="">Home</router-link>
-                        <router-link to="" target="_blank">Contact us</router-link>
-                        <router-link to="" target="_blank">What we do</router-link>
-                        <router-link to="" target="_blank">Charity Partners</router-link>
-                        <router-link to="" target="_blank">Faqs</router-link>
-                    </div>
-                </div> -->
-
-            </div>
-
+    <footer>
+        <div class="footer-link">
+            <router-link to="">Featured Jobs</router-link>
+            <router-link to="">Apply Job</router-link>
+            <router-link to="">Post a Job</router-link>
         </div>
-
-
         <div class="copyright">
             <p> &copy; Copyright {{ new Date().getFullYear() }} Job Post. All rights reserved.</p>
         </div>
-
     </footer>
 </template>
 
@@ -69,5 +25,34 @@ export default {
 </script>
 
 <style lang="css" scoped>
-@import '../assets/landing_assets/footerComponent.css';
+/* @import '../assets/landing_assets/footerComponent.css'; */
+
+footer {
+    background-color: #363636;
+    height: 210px;
+}
+
+.footer-link {
+    padding-top: 45px;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    gap: 50px;
+}
+
+a.router-link-exact-active {
+    text-decoration: none;
+    /* color: #FFFFFF7A; */
+    color: #ffffff;
+}
+
+.copyright {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 45px 0;
+    font-size: 22px;
+    font-weight: 400;
+    color: #ffffff;
+}
 </style>
