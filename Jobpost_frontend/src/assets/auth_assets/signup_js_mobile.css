@@ -1,7 +1,8 @@
 /* mobile and desktop containers */
 .auth-mobile-container{
     width: 100%;
-    padding: 10px 40px;
+    height: 100dvh;
+    padding: 15px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +22,12 @@
     align-items: center;
 }
 .btn-group{
-    margin-top: 40px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
 }
 .btn-group button{ cursor: pointer; }
 
@@ -163,7 +169,7 @@ button.prev-btn{
     background-color: #fff !important;
     border: 1px solid #000;
     color: #000;
-    margin-top: 30px !important;
+    /* margin-top: 30px !important; */
 }
 
 /* Transition Animation Both screens*/
@@ -177,6 +183,18 @@ button.prev-btn{
 .slide-fade-leave-to {
     transform: translateX(20px);
     opacity: 0;
+}
+
+.loading{
+    transform: rotate(300deg);
+    animation: spin 1s infinite;
+}
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    25% {transform: rotate(90deg);}
+    50% {transform: rotate(180deg);}
+    75% {transform: rotate(270deg);}
+    100% {transform: rotate(360deg);}
 }
 
 /* Desktop screen only */

@@ -20,6 +20,7 @@
                     <button type="submit" class="flex-center-row reset-btn">Reset Password </button>
 
                     <button type="button" class="login-btn">Back to Login</button>
+                    
                 </div>
             </form>
         </div>
@@ -56,10 +57,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 35%;
-        padding: 100px 0;
         row-gap: 10px;
         border-radius: 20px;
+        width: 550px;
+        max-width: 622px;
+        padding-bottom: 80px;
+        padding-top: 30px;
     }
 
     header {
@@ -117,7 +120,7 @@
         color: #7D7474; 
     }
 
-    .reset-btn, .login-btn {
+    .reset-btn {
         padding: 15px 40px;
         background: #7FBF4C;
         border-radius: 10px;
@@ -126,9 +129,20 @@
         font-size: 20px;
         color: #fff;
     }
+
+    .login-btn {
+        padding: 15px 40px;
+        background: #fff;
+        border-radius: 10px;
+        border: #7FBF4C 1px solid;
+        font-weight: 600;
+        font-size: 20px;
+        color: #7FBF4C;
+    }
+    
     
 
-    @media screen and (max-width:1200px) and (min-width:1024px) {
+    /* @media screen and (max-width:1200px) and (min-width:1024px) {
         .forgot{
             width: 50%;
         }
@@ -151,7 +165,7 @@
             row-gap: 5px;
         }
     }
-    
+     */
 
 
 </style>

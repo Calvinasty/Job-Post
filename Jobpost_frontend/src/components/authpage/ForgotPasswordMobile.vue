@@ -6,7 +6,7 @@
         </header>
 
         <form class="forgot-field">
-            <div>
+            <div class="user-field">
                 <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
             </div>
 
@@ -14,9 +14,11 @@
                 <p>There’s no Email Account with the info you provided.</p>
             </div>
 
-            <button type="submit" class="reset-btn">Reset Password</button>
+            <div class="mobile-links">
+                <button type="submit" class="reset-btn">Reset Password</button>
 
-            <button class="login">Back to Login</button>
+                <button class="login-btn">Back to Login</button>
+            </div>
             
         </form>
     </div>
@@ -62,12 +64,24 @@ import InputComponent from './InputComponent.vue';
     .forgot-field {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         row-gap: 25px;
         width: 80%;
     }
 
-    .reset-btn, .login {
-        padding: 13px;
+    .user-field {
+        width: 80%;
+    }
+
+    .mobile-links {
+        display: flex;
+        flex-direction: column;
+        row-gap: 40px;
+    }
+
+    .reset-btn {
+        padding: 13px 40px;
         background: #7FBF4C;
         border-radius: 5px;
         border: none;
@@ -76,10 +90,20 @@ import InputComponent from './InputComponent.vue';
         font-size: 18px;
     }
 
+    .login-btn {
+        padding: 13px 40px;
+        background: #fff;
+        border-radius: 5px;
+        border: #7FBF4C 1px solid;
+        color: #7FBF4C;
+        font-weight: 400;
+        font-size: 18px;
+    }
+
     .error-prompt {
         background: rgba(169, 234, 156, 0.39);
         border-radius: 10px;
-        width: 100%;
+        width: 80%;
         padding: 10px;
         text-align: center;
     }

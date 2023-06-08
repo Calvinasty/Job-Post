@@ -7,7 +7,7 @@ import SelectUserPage from '@/components/authpage/SelectUserPage.vue'
 import CompanyPage from '@/views/CompanyPage.vue'
 import Error404Page from '@/views/Error404Page.vue'
 import JobsList from '@/components/jobsearchpage/JobSearch.vue'
-import ApplyJob from '@/components/jobsearchpage/ApplyJobPage.vue'
+import ApplyJob from '@/components/jobsearchpage/applyjobpage/ApplyJobPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

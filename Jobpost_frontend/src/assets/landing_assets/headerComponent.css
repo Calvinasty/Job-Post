@@ -60,6 +60,7 @@ section .active-tag-mob{
 }
 .action div span label {
     margin-left: 20px;
+    font-weight: 800;
 }
 .action div span input {
     padding: 20px 20px 10px 20px;
@@ -73,6 +74,9 @@ section .active-tag-mob{
 .action div span:first-child {
     padding-right: 5px;
     border-right: 2px solid #2C2D2B;
+}
+.material-symbols-outlined{
+    border: none !important;
 }
 .action div button {
     display: flex;
@@ -91,7 +95,13 @@ section .active-tag-mob{
 }
 .action div button span {
     font-size: 30px;
+    border: none;
 }
+.action div button:hover {
+    background-color: #88CC00;
+    border: none;
+}
+
 .mobile-search{
     display: none;
 }

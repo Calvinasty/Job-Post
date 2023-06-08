@@ -1,5 +1,5 @@
 <template>
-    <Transition name="slide-fade">
+    <Transition name="slide-fades">
         <div :style="toast.color=='success' ? {backgroundColor:'green'} : {backgroundColor: 'red'}">
             {{ toast.msg }}
         </div>
@@ -25,20 +25,26 @@
         color: #fff;
         /* background-color: red; */
         position: absolute;
-        top:20%;
+        top: 15%;
         left: 50%;
         opacity: 0.87;
         transform: translateX(-50%);
     }
-    .slide-fade-enter-active{
+    .slide-fades-enter-active{
         transition: 0.3s ease-out;
     }
-    .slide-fade-leave-active{
+    .slide-fades-leave-active{
         transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
     }
-    .slide-fade-enter-from,
-    .slide-fade-leave-to{
-        transform: translate(-20px);
+    .slide-fades-enter-from,
+    .slide-fades-leave-to{
+        transform: translateY(-20px);
         opacity: 0;
+    }
+
+    @media screen and (max-width: 480px){
+        div{
+            top: 10%;
+        }
     }
 </style>

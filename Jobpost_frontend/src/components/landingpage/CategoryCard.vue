@@ -43,8 +43,18 @@ export default {
     box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
+.category-card:hover{
+    background:rgba(136, 204, 0, 1);
+    color:#FFFFFF;
+    transition: all .3s ease-in-out;
+}
 .category-card img{
     width: 50px;
+
+}
+.category-card:hover img{
+    filter:  brightness(0) invert(1);
+    transition: all .2s ease-in-out;
 }
 .card-text{
     display: flex;
