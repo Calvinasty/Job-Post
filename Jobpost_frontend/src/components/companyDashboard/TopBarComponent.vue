@@ -2,7 +2,7 @@
     <header class="top-bar" :style="!toggleNav && {width: '100%'}">
         <div class="flex-center-row top-left">
             <span @click="toggleTop()" class="material-symbols-outlined"> menu </span>
-            <h3>Candle Technologies</h3>
+            <h3>{{ companyInfo.company_name }}</h3>
         </div>
         <div>
             <button @click="$router.push('/jobsearch')" class="post flex-center-row">
@@ -22,7 +22,7 @@
     export default {
         props: [ 'toggleNav' ],
         computed:{
-            ...mapState(useDashboardStore, ['modalComponentId'])
+            ...mapState(useDashboardStore, ['modalComponentId', 'companyInfo'])
         },
         methods:{
             ...mapActions(useDashboardStore, ['setModal']),
