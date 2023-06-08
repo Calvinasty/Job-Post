@@ -28,7 +28,10 @@
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row signin-btn">Log in </button>
+                    <button type="submit" class="flex-center-row signin-btn"> Log in
+                        <span class="material-symbols-outlined loading" v-show="loading"> cached </span>
+                        <span class="material-symbols-outlined" v-show="loading == false"> east </span>    
+                    </button>
 
                     <button type="button" class="forgot-btn">Forgotten Password? <span @click="toForgot()">Click Here</span></button>
 
@@ -37,6 +40,7 @@
             </form>
         </div>
     </div>
+    <ToastMessage v-show="toast.active" :toast="toast" />
 </template>
 
 <script>
@@ -44,10 +48,12 @@
     import { useUserStore } from '../../../stores/users'
     import axios from 'axios'
     import InputComponent from '@/components/authpage/InputComponent.vue'
+    import ToastMessage from '../../utils/ToastMessage.vue'
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     export default {
         components : {
-            InputComponent
+            InputComponent,
+            ToastMessage
         },
 
        data () {
@@ -58,7 +64,10 @@
                 password: ''
             },
             userType: 'jobSeeker',
-
+            loading: false,
+            toast: {
+                active: false, msg: '', color: ''
+            }
         }
 
        },
@@ -93,7 +102,6 @@
         },
         jobSeeker() {
                 var z = document.getElementById("btn");
-                console.log(z);
                 z.style.left = "0"
                 z.innerHTML="Job Seeker"
                 this.userType = "jobSeeker"
@@ -114,6 +122,7 @@
         },
 
         handleSignIn() {
+            this.loading = true
             console.log('Hello', this.inputData.email.match((validRegex)));
             console.log(this.inputData);
 
@@ -125,14 +134,32 @@
             if(this.userType == 'jobPoster') {
                 axios.post(`http://192.168.1.36:5000/company/logInCompany`,user)
                 .then(res =>{
-                    res.data
-                    localStorage.setItem('companyState', res.data.user)
-                    localStorage.setItem('userToken', res.data.token)
+                    console.log(res?.data);
+                    if(res.data?.message){
+                        let msg = res.data.message
+                        this.showToggle(msg, 'Login Success')
+                        this.loading = false
+                    }
+                    if(res.data?.token){
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('userToken', token)
+                    }
+                    if(res.data?.user){
+                        const user = res.data.user
+                        this.setUser(user)
                         this.$router.push('/admin/analyticsView')
+                    }
+                    // res.data
+                    // localStorage.setItem('companyState', res.data.user)
+                    // localStorage.setItem('userToken', res.data.token)
+                        
 
                    
                 })
                 .catch(err => {
+                    let msg = err.response? err.response.data.message : err.message
+                    this.showToast(msg, 'error')
+                    this.loading = false
                     console.log(err);
                 })
             }
@@ -140,20 +167,46 @@
             if(this.userType == 'jobSeeker') {
                 axios.post(`http://192.168.1.36:5000/jobSeeker/logInJobSeeker`,user)
                 .then(res =>{
+                    if(res.data?.message){
+                        let msg=res.data.message
+                        this.showToast(msg, 'Login Success')
+                        this.loading = false
+                    }
+                    if(res.data?.token){
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('userToken', token)
+                    }
+                    if(res.data?.user){
+                        const user = res.data.user
+                        user['photo']="avatar.jpg"
+                        this.setUser(user)
+                        this.$router.push('/userprofile')
+                    }
+                    // localStorage.setItem('userState', res.data.user)
+                    // localStorage.setItem('userToken', res.data.token)
+                    // const userInfo=res.data.user
                     
-                    localStorage.setItem('userState', res.data.user)
-                    localStorage.setItem('userToken', res.data.token)
-                    const userInfo=res.data.user
-                    
-                    userInfo['photo']="avatar.jpg"
-                    this.setUser(res.data?.user)
-                    this.$router.push('/userprofile')
+                    // userInfo['photo']="avatar.jpg"
+                    // this.setUser(res.data?.user)
+                    // this.$router.push('/userprofile')
                 })
                 .catch(err => {
+                    let msg = err.response? err.response.data.message : err.message
+                    this.showToast(msg, 'error')
+                    this.loading = false
                     console.log(err);
                 })
             }
                                                
+        },
+
+        showToast(msg, color){
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(()=>{
+                this.toast = {active: false, msg:'', color:''}
+            }, 6000)
         }
     }
     }
@@ -325,6 +378,19 @@
     .forgot-btn span, .signup-btn span {
         color: #7FBF4C;
         cursor: pointer;
+    }
+
+    .loading {
+    transform: rotate(300deg);
+    animation: spin 1s infinite;
+    }
+
+    @keyframes spin {
+        0% {transform: rotate(0deg);}
+        25% {transform: rotate(90deg);}
+        50% {transform: rotate(180deg);}
+        75% {transform: rotate(270deg);}
+        100% {transform: rotate(360deg);}
     }
 
     /* .desk-links p span {

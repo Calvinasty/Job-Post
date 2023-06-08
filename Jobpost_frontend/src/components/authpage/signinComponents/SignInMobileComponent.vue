@@ -1,223 +1,317 @@
 <template>
-    <div class="signin-mobile">
-        <header class="flex-center">
-            <img src="/images/logo.png" alt="">
-            <h3>{{ nameHeader }}</h3>
-        </header>
+  <div class="signin-mobile">
+    <header class="flex-center">
+      <img src="/images/logo.png" alt="" />
+      <h3>{{ nameHeader }}</h3>
+    </header>
 
-        <div v-if="showToggle" class="login-option flex-center-row">
-            <div id="mobile-btn">Job Seeker</div>
-            <button type="button" class="toggle-btn" id="jobSeeker" @click="jobSeeker()">Job Seeker</button>
-            <button type="button" class="toggle-btn" id="jobPoster" @click="jobPoster()">Job Poster</button>
-        </div>
-
-        <div class="signin-header">
-            <h4>{{ nameTitle }}</h4>
-        </div>
-
-        <form class="signin-field">
-            <div>
-                <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
-            </div>
-
-            <div>
-                <InputComponent type="password" id="password" name="password" placeHolder="Password" :handleInput="handleUserInput" />
-            </div>
-
-            <button type="submit" class="mbn-btn">Sign In</button>
-
-            <button class="forgot-btn">Forgotten Password? <span @click="toForgotten()">Click Here</span></button>
-
-            <button v-if="showText" class="signup-btn">{{ userInfo }} <span @click="toSignup()">Register Now</span></button>
-        </form>
+    <div v-if="showToggle" class="login-option flex-center-row">
+      <div id="mobile-btn">Job Seeker</div>
+      <button type="button" class="toggle-btn" @click="jobSeeker()">Job Seeker</button>
+      <button type="button" class="toggle-btn" @click="jobPoster()">Job Poster</button>
     </div>
+
+    <div class="signin-header">
+      <h4>{{ nameTitle }}</h4>
+    </div>
+
+    <form @submit.prevent="handleSignIn" class="signin-field">
+      <div>
+        <InputComponent
+          type="email"
+          id="email"
+          name="email"
+          placeHolder="Email"
+          :handleInput="handleUserInput"
+        />
+      </div>
+
+      <div>
+        <InputComponent
+          type="password"
+          id="password"
+          name="password"
+          placeHolder="Password"
+          :handleInput="handleUserInput"
+        />
+      </div>
+
+      <button type="submit" class="mbn-btn">
+        Log in
+        <span class="material-symbols-outlined loading" v-show="loading"> cached </span>
+        <span class="material-symbols-outlined" v-show="loading == false"> east </span>
+      </button>
+
+      <button class="forgot-btn">
+        Forgotten Password? <span @click="toForgotten()">Click Here</span>
+      </button>
+
+      <button v-if="showText" class="signup-btn">
+        {{ userInfo }} <span @click="toSignup()">Register Now</span>
+      </button>
+    </form>
+  </div>
+  <ToastMessage v-show="toast.active" :toast="toast" />
 </template>
 
 <script>
-import InputComponent from '../InputComponent.vue'
+import { mapActions } from 'pinia'
+import { useUserStore } from '../../../stores/users'
+import axios from 'axios'
+import InputComponent from '@/components/authpage/InputComponent.vue'
+import ToastMessage from '../../utils/ToastMessage.vue'
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    export default {
-        components: {
-            InputComponent
-        },
+export default {
+  components: {
+    InputComponent,
+    ToastMessage
+  },
 
-        data(){
-            return{
-                inputData: {
-                    email: '',
-                    password: ''
-                },
-                userType: "JobSeeker"
-            }
-            
-        },
-
-        props:[
-            'nameHeader',
-           'nameTitle',
-           'userInfo',
-           'showText',
-           'showToggle'
-       ],
-
-       methods: {
-            toSignup() {
-                this.$router.push('/auth')
-            },
-
-            toForgotten() {
-                this.$router.push('/auth/forgot-password')
-            },
-
-            jobPoster() {
-                var z = document.getElementById("mobile-btn");
-                z.style.left = "50%"
-                z.innerHTML="Job Poster"
-            
-                this.userType = "jobPoster"
-
-                console.log(this.userType);
-            
-            },
-
-            jobSeeker() {
-                var z = document.getElementById("mobile-btn");
-                z.style.left = "0"
-                z.innerHTML="Job Seeker"
-                this.userType = "jobSeeker"
-
-                console.log(this.userType);
-            },
-
-            handleUserInput(data){
-                console.log(data);
-                if(data.inputName == 'email') {
-                    this.inputData.email = data.inputValue
-                }
-
-                if(data.inputName == 'password') {
-                    this.inputData.password = data.inputValue
-                }
-            },
-
-            handleSignIn() {
-                console.log('Hello', this.inputData.email.match((validRegex)));
-                const user={
-                    email:this.inputData.email,
-                    password:this.inputData.password
-                }
-
-                // if(user.email== '' || user.password=='') {
-                //    return alert('Email and Password is required')
-                // }
-                // else {
-                //     console.log(user);
-                // }
-                
-                console.log(user)
-            },
-
-            
-        }
+  data() {
+    return {
+      inputData: {
+        email: '',
+        password: ''
+      },
+      userType: 'jobSeeker',
+      loading: false,
+      toast: {
+        active: false,
+        msg: '',
+        color: ''
+      }
     }
+  },
+
+  props: ['nameHeader', 'nameTitle', 'userInfo', 'showText', 'showToggle'],
+
+  methods: {
+    ...mapActions(useUserStore, ['setUser']),
+    toSignup() {
+      this.$router.push('/auth')
+    },
+
+    toForgotten() {
+      this.$router.push('/auth/forgot-password')
+    },
+
+    jobPoster() {
+      var z = document.getElementById('mobile-btn')
+      z.style.left = '50%'
+      z.innerHTML = 'Job Poster'
+
+      this.userType = 'jobPoster'
+
+      console.log(this.userType)
+    },
+
+    jobSeeker() {
+      var z = document.getElementById('mobile-btn')
+      z.style.left = '0'
+      z.innerHTML = 'Job Seeker'
+
+      this.userType = 'jobSeeker'
+
+      console.log(this.userType)
+    },
+
+    handleUserInput(data) {
+      if (data.inputName == 'email') {
+        this.inputData.email = data.inputValue
+      }
+
+      if (data.inputName == 'password') {
+        this.inputData.password = data.inputValue
+      }
+    },
+
+    handleSignIn() {
+      this.loading = true
+      console.log('Hello', this.inputData.email.match(validRegex))
+      console.log(this.inputData)
+
+      const user = new FormData()
+      user.append('email', this.inputData.email)
+      user.append('password', this.inputData.password)
+
+      if (this.userType == 'jobPoster') {
+        axios
+          .post(`http://192.168.1.36:5000/company/logInCompany`, user)
+          .then((res) => {
+            console.log(res?.data)
+            if (res.data?.message) {
+              let msg = res.data.message
+              this.showToggle(msg, 'Login Success')
+              this.loading = false
+            }
+            if (res.data?.token) {
+              const token = JSON.stringify(res.data.token)
+              localStorage.setItem('userToken', token)
+            }
+            if (res.data?.user) {
+              const user = res.data.user
+              this.setUser(user)
+              this.$router.push('/admin/analyticsView')
+            }
+
+            // res.data
+            // localStorage.setItem('companyState', res.data.user)
+            // localStorage.setItem('userToken', res.data.token)
+            //     this.$router.push('/admin/analyticsView')
+          })
+          .catch((err) => {
+            let msg = err.response ? err.response.data.message : err.message
+            this.showToast(msg, 'error')
+            this.loading = false
+            console.log(err)
+          })
+      }
+
+      if (this.userType == 'jobSeeker') {
+        axios
+          .post(`http://192.168.1.36:5000/jobSeeker/logInJobSeeker`, user)
+          .then((res) => {
+            if (res.data?.message) {
+              let msg = res.data.message
+              this.showToast(msg, 'Login Success')
+              this.loading = false
+            }
+            if (res.data?.token) {
+              const token = JSON.stringify(res.data.token)
+              localStorage.setItem('userToken', token)
+            }
+            if (res.data?.user) {
+              const user = res.data.user
+              user['photo'] = 'avatar.jpg'
+              this.setUser(user)
+              this.$router.push('/userprofile')
+            }
+
+            // res.data
+            // localStorage.setItem('userState', res.data.user)
+            // localStorage.setItem('userToken', res.data.token)
+            // const userInfo=res.data.user
+
+            // userInfo['photo']="avatar.jpg"
+            // this.setUser(res.data?.user)
+            // this.$router.push('/userprofile')
+          })
+          .catch((err) => {
+            let msg = err.response ? err.response.data.message : err.message
+            this.showToast(msg, 'error')
+            this.loading = false
+            console.log(err)
+          })
+      }
+    },
+    showToast(msg, color){
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(()=>{
+                this.toast = {active: false, msg:'', color:''}
+            }, 6000)
+    }
+  }
+}
 </script>
 
 <style lang="css" scoped>
-    .signin-mobile {
-        background-color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        row-gap: 40px;
-        height: 100dvh;
-        width: 100dvw;
-    }
+.signin-mobile {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 40px;
+  height: 100dvh;
+  width: 100dvw;
+}
 
-    header {
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 27px;
-        text-align: center;
-        color: #88CC00;
-        row-gap: 10px;
-    }
+header {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  text-align: center;
+  color: #88cc00;
+  row-gap: 10px;
+}
 
-    header img {
-        width: 60%;
-        padding-bottom: 13px;
-    }
+header img {
+  width: 60%;
+  padding-bottom: 13px;
+}
 
-    .login-option {
-        width: 80%;
-        border: 1px solid #88CC00;
-        border-radius: 5px 0px 0px 5px;
-        position: relative;
-    }
+.login-option {
+  width: 80%;
+  border: 1px solid #88cc00;
+  border-radius: 5px 0px 0px 5px;
+  position: relative;
+}
 
-    .toggle-btn {
-        width: 100%;
-        padding: 10px 0;
-        cursor: pointer;
-        background: transparent;
-        border: 0;
-        outline: none;
-        font-weight: 700;
-        font-size: 14px;
-        color: #7FBF4C;
-    }
+.toggle-btn {
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  font-weight: 700;
+  font-size: 14px;
+  color: #7fbf4c;
+}
 
-    #mobile-btn {
-        top: 0;
-        left: 0;
-        position: absolute;
-        width: 50%;
-        height: 40px;
-        background: #88CC00;
-        transition: .5s;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        font-weight: 700;
-        font-size: 14px;
-    }
+#mobile-btn {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 50%;
+  height: 40px;
+  background: #88cc00;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+}
 
-    .signin-header {
-        display: flex;
-        flex-direction: column;
-        row-gap: 10px;
-        text-align: center;
-        width: 60%;
-    }
+.signin-header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  text-align: center;
+  width: 60%;
+}
 
-    .signin-header h4 {
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 22px;
-        color: #88CC00;
-        text-transform: uppercase;
-    }
-    .signin-header p {
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
-        color: #7D7474;
-    }
-    .signin-field {
-        display: flex;
-        flex-direction: column;
-        row-gap: 25px;
-        width: 80%;
-    }
+.signin-header h4 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 22px;
+  color: #88cc00;
+  text-transform: uppercase;
+}
+.signin-header p {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: #7d7474;
+}
+.signin-field {
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+  width: 80%;
+}
 
-    /* .signin-field div {
+/* .signin-field div {
         display: flex;
         flex-direction: column;
         row-gap: 10px;
         position: relative;
     } */
-    /* .signin-field div label {
+/* .signin-field div label {
         font-weight: 400;
         font-size: 18px;
         line-height: 16px;
@@ -236,29 +330,44 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
         color: #88CC00;
     } */
 
-    .mbn-btn {
-        padding: 13px;
-        background: #7FBF4C;
-        border-radius: 5px;
-        border: none;
-        color: #fff;
-        font-weight: 400;
-        font-size: 18px;
+.mbn-btn {
+  padding: 13px;
+  background: #7fbf4c;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.forgot-btn,
+.signup-btn {
+  background: #fff;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.forgot-btn span,
+.signup-btn span {
+  color: #7fbf4c;
+  cursor: pointer;
+}
+
+.loading {
+    transform: rotate(300deg);
+    animation: spin 1s infinite;
     }
 
-    .forgot-btn, .signup-btn {
-        background: #fff;
-        border: none;
-        font-size: 14px;
-        font-weight: 500;
-    }
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    25% {transform: rotate(90deg);}
+    50% {transform: rotate(180deg);}
+    75% {transform: rotate(270deg);}
+    100% {transform: rotate(360deg);}
+}
 
-    .forgot-btn span, .signup-btn span {
-        color: #7FBF4C;
-        cursor: pointer;
-    }
-
-    /* .signin-field p {
+/* .signin-field p {
         text-align: center;
         font-weight: 400;
         font-size: 15px;
