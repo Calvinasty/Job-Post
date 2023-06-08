@@ -1,15 +1,17 @@
 <template>
     <section class="main">
         <CardComponent v-for="(item, index) in card1Info" :key="index" :cardItem="item"/>
+        <div class="chart">
+            <Chart :chartData="chartData" :chartOptions="chartOptions" />
+        </div>
         <CardComponent v-for="(item, index) in card2Info" :key="index" :cardItem="item"/>
         <CardComponent v-for="(item, index) in card3Info" :key="index" :cardItem="item"/>
-        <div class="first">
-            <Chart />
-        </div>
     </section>
 </template>
 
 <script>
+    import {mapState} from 'pinia'
+    import { useDashboardStore } from '../../../stores/dashboard';
     import CardComponent from './CardComponent.vue';
     import Chart from './Chart.vue';
     export default {
@@ -19,6 +21,7 @@
         },
         data(){
             return{
+                hello: 'hjhjkhkjhk',
                 card1Info: [
                     {type: 'card1', num: 0, text:'Jobs Active', link:'first', color:'#88CC00'},
                     {type: 'card1', num: 0, text:'Jobs Expired', link:'second', color:'#c73d3dd6'},
@@ -37,8 +40,27 @@
                             {name: 'Remote', num: 5, color: '#10BBC6'}
                         ]
                     }
-                ]
+                ],
+                chartData: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'Jun'],
+                    datasets: [ 
+                        { data: [], fill: false, label: 'Data One', lineTension: 0.3, backgroundColor: '#88CC00',} 
+                    ],
+                    options:{ plugins: { filler: { propagate: true } } }
+                },
+                chartOptions: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
             }
+        },
+        computed:{
+            ...mapState(useDashboardStore, ['chartDataValues']),
+        },
+        mounted(){
+            Object.values(this.chartDataValues).forEach((value,index) => {
+                this.chartData.datasets[0].data[index] = value
+            })
         },
         beforeMount(){
             this.getCompanyData()
@@ -70,7 +92,7 @@
     .main div{
         /* padding: 30px 10px; */
     }
-    .main div.first{
+    .main div.chart{
         grid-area: 2/1/5/3;
         background-color: #F5F5F5;
         border: 2px solid #88CC00;
@@ -80,10 +102,12 @@
         grid-area: 2/3/3/4;
         background-color: #F5F5F5;
         border: 1.5px solid #88CC00;
+        align-self: stretch;
     }
     .main .card3{
         grid-area: 3/3/5/4;
         background-color: #F5F5F5;
         border: 1.5px solid #c73d3dd6;
+        align-self: stretch;
     }
 </style>

@@ -81,6 +81,7 @@
         color: #fff;
         font-size: 15px;
         font-weight: bold;
+        cursor: pointer;
     }
     
     @media screen and (max-width:480px) {
