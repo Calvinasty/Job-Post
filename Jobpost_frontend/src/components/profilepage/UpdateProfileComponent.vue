@@ -1,7 +1,8 @@
 <template>
-    <EditProfileLayout @close="$emit('close')" :handlecloseCard="handlecloseCard" :handleSave="handleSave" :type="type"
-        :index="index">
-        <component v-show="type == 'user'" :is="componentId" :userInfo="userInfo"></component>
+    <EditProfileLayout @close="$emit('close')" :type="type" :index="index">
+        <component v-show="type == 'user'" :is="componentId" :userInfo="userInfo" :handlecloseCard="handlecloseCard"
+            :handleSave="handleSave">
+        </component>
         <component v-show="type == 'company'" :is="componentId2"></component>
     </EditProfileLayout>
 </template>

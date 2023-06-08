@@ -52,53 +52,60 @@
                                 :inputId="inputCardDetails[0].cardInputInformation.inputEight.id" />
                         </CardInformationComponent>
 
-                        <CardInformationComponent :showPopup="showPopup" index="2"
+                        <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="2"
                             :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
                             <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
-                                :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" />
+                                :inputId="inputCardDetails[1].cardInputInformation.inputOne.id"
+                                :Value="Value.education[0]" />
                             <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputTwo.name"
                                 :inputType="inputCardDetails[1].cardInputInformation.inputTwo.type"
-                                :inputId="inputCardDetails[1].cardInputInformation.inputTwo.id" />
+                                :inputId="inputCardDetails[1].cardInputInformation.inputTwo.id"
+                                :Value="Value.education[1]" />
                             <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputThree.name"
                                 :inputType="inputCardDetails[1].cardInputInformation.inputThree.type"
-                                :inputId="inputCardDetails[1].cardInputInformation.inputThree.id" />
+                                :inputId="inputCardDetails[1].cardInputInformation.inputThree.id"
+                                :Value="Value.education[2]" />
                             <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputFour.name"
                                 :inputType="inputCardDetails[1].cardInputInformation.inputFour.type"
-                                :inputId="inputCardDetails[1].cardInputInformation.inputFour.id" />
+                                :inputId="inputCardDetails[1].cardInputInformation.inputFour.id"
+                                :Value="Value.education[3]" />
 
                         </CardInformationComponent>
-                        <CardInformationComponent :showPopup="showPopup" index="3"
+                        <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="3"
                             :detailsTitle="inputCardDetails[2].cardTitle" :showplus="true">
                             <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
-                                :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" />
+                                :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="Value.workexp[0]" />
                             <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
                                 :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
-                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
+                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type"
+                                :Value="Value.workexp[1]" />
                             <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
                                 :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
-                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
+                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type"
+                                :Value="Value.workexp[2]" />
                             <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
                                 :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
-                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
+                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type"
+                                :Value="Value.workexp[3]" />
 
                         </CardInformationComponent>
-                        <CardInformationComponent :showPopup="showPopup" index="4"
+                        <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
                             :detailsTitle="inputCardDetails[3].cardTitle" :showplus="true">
 
                             <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" />
+                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[0]" />
                             <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" />
+                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[1]" />
                             <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" />
+                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[2]" />
                             <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                                 :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" />
+                                :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[3]" />
 
                             <!-- <div class="select-field">
                                 <label for="skills">Skills</label>
@@ -177,7 +184,10 @@ export default {
                 github: "",
                 dob: '',
                 gender: '',
-                photo: ''
+                photo: '',
+                skills: ['Vue', 'Node', 'Angular', 'React'],
+                workexp: ['CaL', 'UBA', 'OLAM', 'MBA'],
+                education: ['Legon', 'Tech', 'UDS', 'UPSA'],
             },
 
             inputCardDetails: userprofileData
@@ -195,6 +205,8 @@ export default {
         this.Value.gender = userInfo.gender
         this.Value.dob = userInfo.date_of_birth.split('T')[0]
         this.Value.photo = "/images/" + userInfo?.photo
+        this.usersName = userInfo.first_name
+        // this.Value.skills = userInfo.skills
 
     },
 
@@ -521,5 +533,4 @@ export default {
 
     }
 
-}
-</style>
+}</style>
