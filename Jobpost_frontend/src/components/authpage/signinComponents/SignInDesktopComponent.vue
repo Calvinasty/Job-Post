@@ -132,21 +132,21 @@
             
 
             if(this.userType == 'jobPoster') {
-                axios.post(`http://192.168.1.36:5000/company/logInCompany`,user)
+                axios.post(`http://192.168.8.127:5000/company/logInCompany`,user)
                 .then(res =>{
                     console.log(res?.data);
                     if(res.data?.message){
                         let msg = res.data.message
-                        this.showToggle(msg, 'Login Success')
+                        this.showToast(msg, 'success')
                         this.loading = false
                     }
                     if(res.data?.token){
                         const token = JSON.stringify(res.data.token)
-                        localStorage.setItem('userToken', token)
+                        localStorage.setItem('companyToken', token)
                     }
-                    if(res.data?.user){
-                        const user = res.data.user
-                        this.setUser(user)
+                    if(res.data?.company){
+                        const company = res.data.company
+                        localStorage.setItem('companyState', JSON.stringify(company))
                         this.$router.push('/admin/analyticsView')
                     }
                     // res.data
@@ -165,11 +165,11 @@
             }
 
             if(this.userType == 'jobSeeker') {
-                axios.post(`http://192.168.1.36:5000/jobSeeker/logInJobSeeker`,user)
+                axios.post(`http://192.168.8.127:5000/jobSeeker/logInJobSeeker`,user)
                 .then(res =>{
                     if(res.data?.message){
                         let msg=res.data.message
-                        this.showToast(msg, 'Login Success')
+                        this.showToast(msg, 'success')
                         this.loading = false
                     }
                     if(res.data?.token){

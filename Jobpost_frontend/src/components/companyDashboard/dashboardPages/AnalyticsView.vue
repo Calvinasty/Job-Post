@@ -21,7 +21,6 @@
         },
         data(){
             return{
-                hello: 'hjhjkhkjhk',
                 card1Info: [
                     {type: 'card1', num: 0, text:'Jobs Active', link:'first', color:'#88CC00'},
                     {type: 'card1', num: 0, text:'Jobs Expired', link:'second', color:'#c73d3dd6'},
@@ -55,12 +54,16 @@
             }
         },
         computed:{
-            ...mapState(useDashboardStore, ['chartDataValues']),
+            ...mapState(useDashboardStore, ['chartDataValues','companyInfo']),
+            getTotalJobs(){
+              return console.log(this.companyInfo.Jobs)  
+            }
         },
-        mounted(){
+        created(){
             Object.values(this.chartDataValues).forEach((value,index) => {
                 this.chartData.datasets[0].data[index] = value
             })
+            this.getTotalJobs
         },
         beforeMount(){
             this.getCompanyData()
