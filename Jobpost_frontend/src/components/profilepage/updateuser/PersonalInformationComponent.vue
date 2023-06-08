@@ -38,10 +38,10 @@
             <!-- <EditInputComponent class="radio-gender" name="gender" id="gender" inputType="radio" />Male
             <EditInputComponent class="radio-gender" name="gender" id="gender" inputType="radio" />Female -->
         </div>
-        <!-- <div class="btnsec flex-center-row">
+        <div class="btnsec flex-center-row">
             <button class="btn" @click="handleSave">Save</button>
             <button class="btns" @click="handlecloseCard">Cancel</button>
-        </div> -->
+        </div>
     </div>
 </template>
 

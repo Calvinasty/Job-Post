@@ -16,11 +16,10 @@
             </div>
         </div>
 
-
-        <!-- <div class="btnsec flex-center-row">
+        <div class="btnsec flex-center-row">
             <button class="btn" @click="handleSave">Save</button>
             <button class="btns" @click="handlecloseCard">Cancel</button>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -36,6 +35,11 @@ export default {
             count: 1,
         }
     },
+
+    props: [
+        'handlecloseCard',
+        'handleSave',
+    ],
 
     methods: {
         add() {
@@ -65,12 +69,16 @@ export default {
     padding-right: 200px
 }
 
+.editicon {
+    cursor: pointer;
+}
+
 .add-skill {
     gap: 10px;
 
 }
 
-.editx-skill {
+.edit-skill {
     gap: 10px;
 
 }
