@@ -145,7 +145,7 @@ export default {
             newFormData.append("email",this.inputData.email)
             newFormData.append("password",this.inputData.password)
             newFormData.append("confirm_password", this.inputData.confirmPass)
-            newFormData.append("phone_number", this.inputData.contact)
+            newFormData.append("phone", this.inputData.contact)
             // console.log(newFormData);
             axios.post("http://192.168.1.90:5000/jobSeeker/registerJobSeeker", newFormData)
             .then(res => {
