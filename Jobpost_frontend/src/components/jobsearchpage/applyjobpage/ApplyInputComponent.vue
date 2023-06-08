@@ -1,0 +1,45 @@
+<template>
+    <div class="apply-input-container flex-center">
+        <label :for="id">{{ label }}</label>
+        <input :type="inputType" :id="id" :accept="fileTypes" :name="inputName"  :placeholder="placeholder" readonly>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'JobPostApplyInputComponent',
+    props:['label','inputType','inputName','id','placeholder','fileTypes'],
+    data() {
+        return {
+            
+        };
+    },
+
+    mounted() {
+        
+    },
+
+    methods: {
+        
+    },
+};
+</script>
+
+<style lang="css" scoped>
+.apply-input-container{
+    align-items: flex-start;
+    
+}
+    input{
+        border: 1px solid rgba(120, 114, 114, 1);
+        height: 30px;
+        padding-left:17px;
+        background: transparent;
+        max-width: 360px;
+        min-width: 278.6px;
+        border-radius: 8px;
+    }
+    label{
+   color: rgba(120, 114, 114, 1);
+}
+</style>

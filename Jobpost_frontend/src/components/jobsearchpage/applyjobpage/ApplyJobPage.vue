@@ -29,12 +29,18 @@ export default {
         ...mapState(useJobsStore,['postedJobs']),
         ...mapState(useUserStore,[''])
     },
-    beforeMount(){
+    // beforeMount(){
+    //     const route =useRoute()
+    //        const {jobId}= route.params
+    //     console.log(jobId);
+    //     this.handleJobDescription(jobId)
+
+    // },
+    created(){
         const route =useRoute()
            const {jobId}= route.params
         console.log(jobId);
         this.handleJobDescription(jobId)
-
     },
     methods: {
         handleJobDescription(jobId){
@@ -49,8 +55,8 @@ export default {
 <style lang="css" scoped>
 .job-container{
     width: 100%;
-    background: #286a439c;
-    padding: 0px 94px;
+    /* background: #286a439c; */
+    padding: 0px 50px;
     align-items: flex-start;
     justify-content: flex-start;
     gap:41px;
