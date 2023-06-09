@@ -34,6 +34,8 @@
 
 <script>
     import InputComponent from '../../authpage/InputComponent.vue';
+    import axios from 'axios'
+    const BASE_URL = import.meta.env.VITE_BASE_URL
     export default {
         components: {
             InputComponent
@@ -65,6 +67,14 @@
 
             handleSave(){
                 console.log(this.companyName);
+                const info = new FormData()
+                info.append( "companyName",this.companyName)
+                info.append( "companyNumber",this.companyNumber)
+                info.append( "companySite",this.companySite)
+                info.append( "industry",this.industry)
+
+                const token = JSON.parse(localStorage.getItem('companyToken'))
+                axios.post(`${BASE_URL}/company/updateInfo`,info, {headers: {token}})
             }
         },
         mounted() {
