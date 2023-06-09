@@ -1,41 +1,49 @@
 <template>
     
         <div class="container">
-            <ApplicantSummaryHead class="head"/>
+            <ApplicantSummaryHeader class="head"/>
             <main>
-                <ApplicantSummarySide class="side" />
+                <ApplicantSummaryInfos  :users="users" :addresses="addresses" class="side" />
                 <div class="details">
-                    <ApplicantSummaryCard class="card"/>
-                    <ApplicantSummaryCardSec class="card"/>
-                    <ApplicantSummaryCardTh class="card"/> 
+                    <ApplicantSumWorkExperience :experience="experience" class="card"/>
+                    <ApplicantSummarySkills :skills="skills"  class="card"/>
+                    <ApplicantSumEducation :educations="educations" class="card"/> 
                 </div>
                 </main>
         </div>
 </template>
 
 <script>
-import ApplicantSummarySide from '../dashboardPages/applicants_summary/ApplicantSummarySide.vue'
-import ApplicantSummaryCard from '../dashboardPages/applicants_summary/ApplicantSummaryCard.vue'
-import ApplicantSummaryCardSec from '../dashboardPages/applicants_summary/ApplicantSummaryCardSec.vue'
-import ApplicantSummaryCardTh from '../dashboardPages/applicants_summary/ApplicantSummaryCardTh.vue'
-import ApplicantSummaryHead from '../dashboardPages/applicants_summary/ApplicantSummaryHead.vue'
+import ApplicantSummaryInfos from '../dashboardPages/applicants_summary/ApplicantSummaryInfos.vue'
+import ApplicantSumWorkExperience from '../dashboardPages/applicants_summary/ApplicantSumWorkExperience.vue'
+import ApplicantSummarySkills from '../dashboardPages/applicants_summary/ApplicantSummarySkills.vue'
+import ApplicantSumEducation from '../dashboardPages/applicants_summary/ApplicantSumEducation.vue'
+import ApplicantSummaryHeader from '../dashboardPages/applicants_summary/ApplicantSummaryHeader.vue'
+import axios from 'axios'
 export default {
     components:{
-        ApplicantSummaryHead,
-        ApplicantSummarySide,
-        ApplicantSummaryCard,
-        ApplicantSummaryCardSec,
-        ApplicantSummaryCardTh
+        ApplicantSummaryHeader,
+        ApplicantSummaryInfos,
+        ApplicantSumWorkExperience,
+        ApplicantSummarySkills,
+        ApplicantSumEducation
     },
     data(){
         return{
-            // infos:
-            // [
-            //     {image: '/images/userprofile.svg', name: 'Daniella McDan', address: 'Coral Avenue, Hse 3, Tantra Hills, Accra-Ghana. GHA-393-133'},
-            //     {gender: 'Female', age: '27', email: 'danmcdan@gmail.com', linkedin: 'linkedin.com/daniellamcdan', number: '+233254775545'}
 
-            // ],
-            experiences: 
+            users: {
+                image: '/images/userprofile.svg',
+                name: 'Daniella McDan',
+            },
+            addresses: {
+                address: 'Coral Avenue, Hse 3, Tantra Hills, Accra-Ghana. GHA-393-133',
+                gender: 'Female',
+                age: '27',
+                email: 'danmcdan@gmail.com',
+                linkedin: 'linkedin.com/daniellamcdan',
+                number: '+233254775545'
+            },
+            experience: 
             [
                 {role:'UI/UX Designer', location: 'Zenith Bank | 2017-2022' },
                 {role:'UI/UX Designer', location: 'Zenith Bank | 2017-2022' },
@@ -57,8 +65,27 @@ export default {
             educations:
             [
                 {name: 'University of Ghana, Legon', type: 'BSc. Administration | 2014-2018'},
+                {name: 'University of Ghana, Legon', type: 'BSc. Administration | 2014-2018'},
+                {name: 'University of Ghana, Legon', type: 'BSc. Administration | 2014-2018'},
                 {name: 'University of Ghana, Legon', type: 'BSc. Administration | 2014-2018'}
             ]
+        }
+    },
+    mounted(){
+        this.getUser()
+    },
+    methods:{
+        getUser(){
+            const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3YWMzOTgyLTE4YTYtNDg5MS1iYTI4LWQyOWY2MjMzZDEwYiIsImZpcnN0X25hbWUiOiJTd2FuenkiLCJtaWRkbGVfbmFtZSI6IiIsImxhc3RfbmFtZSI6IkNpdHkiLCJkYXRlX29mX2JpcnRoIjoiMjAyMy0wMS0wMlQwMDowMDowMC4wMDBaIiwiZ2VuZGVyIjoibWFsZSIsImVtYWlsIjoiYXJhQGdtYWlsLmNvbSIsInBob25lIjoiIiwicGhvdG8iOiJwaG90b18xNjg2MTgwMzU0NjkyLmpwZWciLCJjcmVhdGVkQXQiOiIyMDIzLTA2LTA3VDIzOjE4OjM1LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTA2LTA3VDIzOjI1OjU0LjAwMFoiLCJkZWxldGVkQXQiOm51bGwsImlhdCI6MTY4NjE4NDIwM30.KYBSAyAauxZarQnh5IBp08wy7QUceOMh9qO0HbNaMeI'
+            axios.get('http://192.168.8.127:5000/jobSeeker/getAllInfo', {headers: {token}})
+            .then((res) =>{
+                console.log('res', res)
+            })
+            .catch((err) =>{
+                console.log('err', err)
+            })
+
+            
         }
     }
 

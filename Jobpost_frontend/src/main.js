@@ -7,19 +7,17 @@ import { createPinia } from 'pinia'
 
 const pinia = createPinia()
 // persist pinia state in local storage
-if(localStorage.getItem('userState')){
-    pinia.state.value.user = JSON.parse(localStorage.getItem('userState'))
-}
-watch(
-    () => pinia.state.value.user,
-    (state) => {
-        if(localStorage.getItem('userState')){
-        localStorage.setItem("userState", JSON.stringify(state))
-    }},
-    {deep: true}
-);
-
-
+// if(localStorage.getItem('userState')){
+//     pinia.state.value.user = JSON.parse(localStorage.getItem('userState'))
+// }
+// watch(
+//     () => pinia.state.value.user,
+//     (state) => {
+//         if(localStorage.getItem('userState')){
+//         localStorage.setItem("userState", JSON.stringify(state))
+//     }},
+//     {deep: true}
+// );
 
 const app = createApp(App)
 

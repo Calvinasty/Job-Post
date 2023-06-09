@@ -71,10 +71,10 @@
                 </div>
             </div>
 
-            <div class="btnsec flex-center-row">
+            <!-- <div class="btnsec flex-center-row">
                 <button class="btn" @click="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
-            </div>
+            </div> -->
         </section>
         <UpdateProfileComponent v-if="showModal == true" @close="showPopup()" :index="index" :handlecloseCard="showPopup"
             type="company" />
@@ -82,6 +82,8 @@
 </template>
 
 <script>
+import { mapState } from 'pinia';
+import { useCompanyStore } from '../../../stores/companies';
 import CardInformationComponent from '../../profilepage/CardInformationComponent.vue';
 import InputComponent from '../../profilepage/inputComponent.vue';
 import UpdateProfileComponent from '../../profilepage/UpdateProfileComponent.vue';
@@ -91,7 +93,7 @@ export default {
     props: ['showpencil'],
     data() {
         return {
-            title: '',
+            // title: '',
             companyName: '',
             numberOfPostedJobs: 0,
             index: 0,
@@ -169,7 +171,8 @@ export default {
 
 
 
-            ]
+            ],
+
 
         }
     },
@@ -182,6 +185,14 @@ export default {
     },
     beforeMount() {
         this.getCompanyInfo()
+    },
+
+    computed: {
+        ...mapState(useCompanyStore, ['company'])
+    },
+    mounted() {
+        this.companyName = this.company.company_name
+        // this.numberOfPostedJobs = this.company.
     },
     methods: {
         showPopup(index) {

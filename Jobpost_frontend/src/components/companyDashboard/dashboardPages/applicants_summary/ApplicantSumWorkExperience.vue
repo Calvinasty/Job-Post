@@ -2,18 +2,18 @@
 
     <div class="card-1">
         <h2>Work Experience</h2>
-        <div>
+        <div v-for="(item, index) in experience" :key="index">
+            <h3>{{item.role}}</h3>
+            <p>{{item.location}}</p>
+        </div>
+        <!-- <div>
             <h3>UI/UX Designer</h3>
             <p>Zenith Bank | 2017-2022</p>
         </div>
         <div>
             <h3>UI/UX Designer</h3>
             <p>Zenith Bank | 2017-2022</p>
-        </div>
-        <div>
-            <h3>UI/UX Designer</h3>
-            <p>Zenith Bank | 2017-2022</p>
-        </div>
+        </div> -->
         
     </div>
 
@@ -22,7 +22,7 @@
 <script>
     export default {
       props:[
-        'experiences'
+        'experience'
       ]  
     }
 </script>
@@ -39,6 +39,7 @@
 div{
     width: 100%;
     text-align: left;
+    font-size: 12px;
 }
 h3{
     color: rgba(86, 86, 86, 1);

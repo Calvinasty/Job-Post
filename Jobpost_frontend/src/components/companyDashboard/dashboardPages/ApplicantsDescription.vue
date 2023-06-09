@@ -154,6 +154,12 @@ export default {
 
     .hide.view span {
         color: #7D7474;
+         /* color: #000000; */
     }
+    .hide.view span:hover{
+        color: rgba(136, 204, 0, 1);
+        transition: 0.3s ease-in-out;
+        }
+    
 
 </style>

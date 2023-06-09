@@ -5,8 +5,8 @@
             <h3>{{ companyInfo.company_name }}</h3>
         </div>
         <div>
-            <button @click="$router.push('/jobsearch')" class="post flex-center-row">
-                View Other Jobs
+            <button @click="$router.push('/jobsearch')" class="post flex-center-row blink">
+                View <span v-if="blink">&emsp14;Your Job</span> <span v-else>&emsp14;Other Jobs </span> 
             </button>
             <button @click="addPost()" class="post flex-center-row">
                 <span class="material-symbols-outlined">add</span>
@@ -21,8 +21,12 @@
     import { useDashboardStore } from '../../stores/dashboard';
     export default {
         props: [ 'toggleNav' ],
+        data(){
+            return{
+            }
+        },
         computed:{
-            ...mapState(useDashboardStore, ['modalComponentId', 'companyInfo'])
+            ...mapState(useDashboardStore, ['modalComponentId', 'companyInfo', 'blink'])
         },
         methods:{
             ...mapActions(useDashboardStore, ['setModal']),
@@ -73,5 +77,15 @@
         outline: none;
         border: none;
         cursor: pointer;
+    }
+    .blink{
+        animation: blink 3s infinite;
+    }
+    @keyframes blink {
+        0%{background-color: #88CC00;}
+        25%{background-color: #cc6600;}
+        50%{background-color: #cc4b00;}
+        75%{background-color: #cc1800;}
+        100%{background-color: #ec0505;}
     }
 </style>

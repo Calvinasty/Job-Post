@@ -2,14 +2,14 @@
     <div class="card-2">
         <h2>Skills/Interests</h2>
              <ul class="skill">
-                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
+                 <li v-for="(item, index) in skills" :key="index"> <span class="material-symbols-outlined">{{item.icon}}</span> {{item.name}}</li>
+                <!-- <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
-                <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
-                <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
+                <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li> -->
             </ul>
     </div>
 </template>
@@ -31,17 +31,20 @@ export default {
     align-items: flex-start;
 
 }
+div{
+    font-size: 12px;
+}
 .skill{
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   color: rgba(120, 114, 114, 1);
 
+
 }
 .skill li{
     list-style: none;
     display: flex;
-    /* background: #000; */
     text-align: left;   
     justify-content: flex-start; 
     align-items: flex-start;
