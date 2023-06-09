@@ -10,6 +10,7 @@
     export default {
         methods:{
             handleLogout(){
+                localStorage.clear()
                 this.$router.push('/')
             }
         }
