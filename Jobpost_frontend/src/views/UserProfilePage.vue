@@ -1,79 +1,104 @@
 <template>
-    <div>
-        <div class="userprofile">
-            <JobSearchNav />
-            <section class="user-profile">
-                <div class="title">
-                    <h1>{{ title }}</h1>
-                </div>
-                <div class="profile-section">
-                    <div id="profile">
-                        <div class="profile-card">
-                            <img :src="Value.photo" alt="pic">
-                            <h3>{{ usersName }}</h3>
-                            <span>{{ userOccupation }}</span>
+    <div class="userprofile">
+        <JobSearchNav />
+        <section class="user-profile">
+            <div class="title">
+                <h1>{{ title }}</h1>
+            </div>
+            <div class="profile-section">
+                <div id="profile">
+                    <div class="profile-card">
+                        <img :src="Value.photo" alt="pic">
+                        <h3>{{ usersName }}</h3>
+                        <span>{{ userOccupation }}</span>
+                    </div>
+                    <div class="jobsapplied">
+                        <div class="jobsapplied-1">
+                            <img src="images/user_profile_icon.svg" alt="">
+                            <p>Jobs Applied</p>
                         </div>
-                        <div class="jobsapplied">
-                            <div class="jobsapplied-1">
-                                <img src="images/user_profile_icon.svg" alt="">
-                                <p>Jobs Applied</p>
-                            </div>
-                            <div class="jobsapplied-1">
-                                <img src="images/user_profile_icon.svg" alt="">
-                                <p>Jobs Applied</p>
-                            </div>
+                        <div class="jobsapplied-1">
+                            <img src="images/user_profile_icon.svg" alt="">
+                            <p>Jobs Applied</p>
                         </div>
                     </div>
-                    <div class="profile-details">
-                        <CardInformationComponent :userValue="Value" :showPopup="showPopup"
-                            :detailsTitle="inputCardDetails[0].cardTitle"
-                            :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true">
+                </div>
+                <div class="profile-details">
+                    <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="1"
+                        :detailsTitle="inputCardDetails[0].cardTitle"
+                        :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true" :showpencil="true">
 
 
-                            <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputOne.type" :Value="Value.fullname"
-                                :inputId="inputCardDetails[0].cardInputInformation.inputOne.id" />
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputOne.type" :Value="Value.fullname"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputOne.id" />
 
-                            <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputTwo?.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputTwo.type" :Value="Value.email"
-                                :inputId="inputCardDetails[0].cardInputInformation.inputTwo.id" />
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputTwo?.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputTwo.type" :Value="Value.email"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputTwo.id" />
 
-                            <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputThree?.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputThree.type" :Value="Value.contact"
-                                :inputId="inputCardDetails[0].cardInputInformation.inputThree.id" />
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputThree?.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputThree.type" :Value="Value.contact"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputThree.id" />
 
-                            <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputFour?.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputFour.type" :Value="Value.linkenin"
-                                :inputId="inputCardDetails[0].cardInputInformation.inputFour.id" />
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputFour?.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputFour.type" :Value="Value.linkenin"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputFour.id" />
 
-                            <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputEight?.name"
-                                :inputType="inputCardDetails[0].cardInputInformation.inputEight.type" :Value="Value.github"
-                                :inputId="inputCardDetails[0].cardInputInformation.inputEight.id" />
-                        </CardInformationComponent>
+                        <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputEight?.name"
+                            :inputType="inputCardDetails[0].cardInputInformation.inputEight.type" :Value="Value.github"
+                            :inputId="inputCardDetails[0].cardInputInformation.inputEight.id" />
+                    </CardInformationComponent>
 
-                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[1].cardTitle">
-                            <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
-                                :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
-                                :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" />
-                            <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputTwo.name"
-                                :inputType="inputCardDetails[1].cardInputInformation.inputTwo.type"
-                                :inputId="inputCardDetails[1].cardInputInformation.inputTwo.id" />
-                            <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputThree.name"
-                                :inputType="inputCardDetails[1].cardInputInformation.inputThree.type"
-                                :inputId="inputCardDetails[1].cardInputInformation.inputThree.id" />
+                    <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="2"
+                        :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
+                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="Value.education[0]" />
+                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputTwo.name"
+                            :inputType="inputCardDetails[1].cardInputInformation.inputTwo.type"
+                            :inputId="inputCardDetails[1].cardInputInformation.inputTwo.id" :Value="Value.education[1]" />
+                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputThree.name"
+                            :inputType="inputCardDetails[1].cardInputInformation.inputThree.type"
+                            :inputId="inputCardDetails[1].cardInputInformation.inputThree.id" :Value="Value.education[2]" />
+                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputFour.name"
+                            :inputType="inputCardDetails[1].cardInputInformation.inputFour.type"
+                            :inputId="inputCardDetails[1].cardInputInformation.inputFour.id" :Value="Value.education[3]" />
 
-                        </CardInformationComponent>
-                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[2].cardTitle">
-                            <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
-                                :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
-                                :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" />
-                            <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
-                                :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
-                                :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" />
+                    </CardInformationComponent>
+                    <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="3"
+                        :detailsTitle="inputCardDetails[2].cardTitle" :showplus="true">
+                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="Value.workexp[0]" />
+                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
+                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[1]" />
+                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
+                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[2]" />
+                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
+                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[3]" />
 
-                        </CardInformationComponent>
-                        <CardInformationComponent :showPopup="showPopup" :detailsTitle="inputCardDetails[3].cardTitle">
-                            <div class="select-field">
+                    </CardInformationComponent>
+                    <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
+                        :detailsTitle="inputCardDetails[3].cardTitle" :showplus="true">
+
+                        <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[0]" />
+                        <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[1]" />
+                        <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[2]" />
+                        <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[3]" />
+
+                        <!-- <div class="select-field">
                                 <label for="skills">Skills</label>
                                 <select name="skill" id="skills">
                                     <option value="">Select</option>
@@ -93,25 +118,24 @@
                                     <option value="">Node Js</option>
                                     <option value="">Angular </option>
                                 </select>
-                            </div>
-                        </CardInformationComponent>
-                    </div>
+                            </div> -->
+                    </CardInformationComponent>
                 </div>
-                <!-- <div class="btnsec">
+            </div>
+            <!-- <div class="btnsec">
                     <button class="btn">Save</button>
                     <button class="btns">Cancel</button>
                 </div> -->
-            </section>
+        </section>
 
 
-        </div>
         <FooterComponent />
-        <UpdateProfileComponentVue :userInfo="Value" v-show="showModal == true" type="user" :handlecloseCard="showPopup"
-            :handleSave="handleSaveButton" />
-
-        <!-- <EditPopups v-if="showModal" /> -->
-        <!-- <router-view></router-view> -->
+        <UpdateProfileComponentVue :userInfo="user" v-if="showModal == true" :index="index" type="user"
+            :handlecloseCard="showPopup" :handleSave="handleSaveButton" />
     </div>
+
+    <!-- <EditPopups v-if="showModal" /> -->
+    <!-- <router-view></router-view> -->
 </template>
 
 <script>
@@ -141,6 +165,7 @@ export default {
             usersName: '',
             userOccupation: '',
             showModal: false,
+            index: 0,
             Value: {
                 fullname: "",
                 email: "",
@@ -149,7 +174,10 @@ export default {
                 github: "",
                 dob: '',
                 gender: '',
-                photo: ''
+                photo: '',
+                skills: ['Vue', 'Node', 'Angular', 'React'],
+                workexp: ['CaL', 'UBA', 'OLAM', 'MBA'],
+                education: ['Legon', 'Tech', 'UDS', 'UPSA'],
             },
 
             inputCardDetails: userprofileData
@@ -161,18 +189,22 @@ export default {
     mounted() {
         console.log(this.user);
         const userInfo = this.user
-        this.Value.fullname = userInfo.first_name + ' ' + userInfo.last_name
-        this.Value.contact = userInfo.phone_number
-        this.Value.email = userInfo.email
-        this.Value.gender = userInfo.gender
-        this.Value.dob = userInfo.date_of_birth.split('T')[0]
+        this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
+        this.Value.contact = userInfo?.phone
+        this.Value.email = userInfo?.email
+        this.Value.gender = userInfo?.gender
+        this.Value.dob = userInfo?.date_of_birth.split('T')[0]
         this.Value.photo = "/images/" + userInfo?.photo
+        this.usersName = userInfo?.first_name
+        // this.Value.skills = userInfo.skills
 
     },
 
     methods: {
-        showPopup() {
+        showPopup(index) {
             this.showModal = !this.showModal
+            this.index = index
+
 
 
         },
@@ -188,6 +220,25 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.userprofile {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 70px;
+    width: 100dvw;
+    /* max-width: 1240px; */
+}
+
+.user-profile {
+    padding: 0px 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 50px;
+    width: 100dvw;
+
+}
+
 .title {
     font-weight: 600;
     font-size: 40px;
@@ -203,25 +254,6 @@ export default {
 
 }
 
-.userprofile {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    gap: 70px;
-    width: 100dvw;
-    max-width: 1240px;
-    /* background-color: #367192; */
-}
-
-.user-profile {
-    padding: 0px 50px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    gap: 50px;
-    width: 100dvw;
-
-}
 
 .profile {
     display: flex;
@@ -241,7 +273,7 @@ export default {
     justify-content: space-around;
     align-items: center;
     padding: 42px 10px;
-    height: 404px;
+    height: 400px;
     /* background: hsl(258, 76%, 50%); */
 }
 
@@ -291,34 +323,6 @@ export default {
     flex: 1;
 
 
-
-}
-
-
-
-.select-field {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-}
-
-.select-field label {
-    font-weight: 500;
-    font-size: 15px;
-    color: #898989;
-
-}
-
-.select-field select {
-    font-weight: 600;
-    font-size: 16px;
-    color: #000000;
-    outline: none;
-    padding: 8px 10px;
-    border-radius: 10px;
-    border-bottom: 1px solid #D9D9D9;
 
 }
 
@@ -390,22 +394,6 @@ export default {
         font-size: 15px;
     }
 
-
-    .select-field {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        width: 100%;
-        gap: 20px;
-    }
-
-    .select-field label {
-        font-weight: 500;
-        font-size: 18px;
-        color: #898989;
-
-    }
-
     .profile-details {
         /* background: aqua; */
         gap: 30px;
@@ -464,6 +452,31 @@ export default {
 
     .profile-details {
         justify-content: center;
+    }
+
+}
+
+
+@media screen and (min-width:1024px) and (max-width:1439px) {
+    .user-profile {
+        padding: 0px 20px;
+
+
+
+
+    }
+
+    .profile-card {
+        height: 380px;
+    }
+
+    .profile-details {
+
+        gap: 20px;
+
+
+
+
     }
 
 }

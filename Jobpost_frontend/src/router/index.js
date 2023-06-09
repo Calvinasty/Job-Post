@@ -5,7 +5,9 @@ import JobSearchPage from '@/views/JobSearchPage.vue'
 import AuthPage from '@/views/AuthPage.vue'
 import SelectUserPage from '@/components/authpage/SelectUserPage.vue'
 import CompanyPage from '@/views/CompanyPage.vue'
-import ApplyJobPage from '@/views/ApplyJobPage.vue'
+import Error404Page from '@/views/Error404Page.vue'
+import JobsList from '@/components/jobsearchpage/JobSearch.vue'
+import ApplyJob from '@/components/jobsearchpage/applyjobpage/ApplyJobPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,12 +25,21 @@ const router = createRouter({
     {
       path:'/jobsearch',
       name:'JobSearch',
-      component:JobSearchPage
-    },
-    {
-      path:'/jobsearch/:jobId',
-      name:'ApplyJob',
-      component:ApplyJobPage
+      component:JobSearchPage,
+      children:[
+        {
+          path:'',
+          alias:'/',
+          name:'JobList',
+          component:JobsList
+        },
+        {
+          path:'apply/:jobId',
+          name:'ApplyJob',
+          component:ApplyJob
+        },
+        
+      ]
     },
     {
       path:'/auth',
@@ -44,7 +55,8 @@ const router = createRouter({
       path:'/admin/:id',
       name:'Dashboard',
       component: CompanyPage
-    }
+    },
+    { path: '/:pathMatch(.*)*', name: 'not-found', component: Error404Page },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {

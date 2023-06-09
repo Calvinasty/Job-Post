@@ -57,8 +57,8 @@ export default {
     display: flex;
     flex-direction: column;
     max-width: 400px;
-    min-width: 300px;
-    padding-bottom: 15px;
+    min-width: 350px;
+    padding: 15px;
     box-shadow: 5px 5px 9px #a5a5a5,
     -5px -5px 9px #ECF7D6;
     background-color: #fff;
@@ -124,6 +124,7 @@ export default {
     color: #ffffff;
     font-weight: bolder;
     transition: all .3s ease;
+    border: 1px #88cc00 solid;
 }
 
 .company-section {

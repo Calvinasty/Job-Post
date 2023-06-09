@@ -15,10 +15,10 @@
             <textarea name="" id="" cols="72" rows="6"></textarea>
         </div>
 
-        <!-- <div class="btnsec flex-center-row">
+        <div class="btnsec flex-center-row">
             <button class="btn" @click="handleSave">Save</button>
             <button class="btns" @click="handlecloseCard">Cancel</button>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -28,6 +28,11 @@ export default {
     components: {
         EditInputComponent,
     },
+
+    props: [
+        'handlecloseCard',
+        'handleSave',
+    ],
 
     data() {
         return {

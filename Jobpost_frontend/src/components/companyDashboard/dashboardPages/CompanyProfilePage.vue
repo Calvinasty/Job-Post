@@ -21,7 +21,8 @@
                     </div>
                 </div>
                 <div class="profile-details">
-                    <CardInformationComponent :showPopup="showPopup" :detailsTitle="cardDetails[0].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" index="1" :detailsTitle="cardDetails[0].cardTitle"
+                        showpencil="showpencil">
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[0].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[0].cardInputInformation.inputOne.type"
@@ -42,7 +43,8 @@
                             :inputType="cardDetails[0].cardInputInformation.inputFour.type" />
                     </CardInformationComponent>
 
-                    <CardInformationComponent :showPopup="showPopup" :detailsTitle="cardDetails[1].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" index="2" :detailsTitle="cardDetails[1].cardTitle"
+                        showpencil="showpencil">
                         <InputComponent :fullName="cardDetails[1].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[1].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[1].cardInputInformation.inputOne.type" />
@@ -54,7 +56,8 @@
                             :inputType="cardDetails[1].cardInputInformation.inputThree.type" />
                     </CardInformationComponent>
 
-                    <CardInformationComponent :showPopup="showPopup" :detailsTitle="cardDetails[2].cardTitle">
+                    <CardInformationComponent :showPopup="showPopup" index="3" :detailsTitle="cardDetails[2].cardTitle"
+                        showpencil="showpencil">
                         <InputComponent :fullName="cardDetails[2].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[2].cardInputInformation.inputOne.id"
                             :inputType="cardDetails[2].cardInputInformation.inputOne.type" />
@@ -68,12 +71,12 @@
                 </div>
             </div>
 
-            <div class="btnsec flex-center-row">
+            <!-- <div class="btnsec flex-center-row">
                 <button class="btn" @click="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
-            </div>
+            </div> -->
         </section>
-        <UpdateProfileComponent v-show="showModal == true" @close="showPopup()" :handlecloseCard="showPopup"
+        <UpdateProfileComponent v-if="showModal == true" @close="showPopup()" :index="index" :handlecloseCard="showPopup"
             type="company" />
     </div>
 </template>
@@ -84,11 +87,14 @@ import InputComponent from '../../profilepage/inputComponent.vue';
 import UpdateProfileComponent from '../../profilepage/UpdateProfileComponent.vue';
 
 export default {
+
+    props: ['showpencil'],
     data() {
         return {
             title: '',
             companyName: '',
             numberOfPostedJobs: 0,
+            index: 0,
             showModal: false,
             companyProfileInfo: {},
             cardDetails: [
@@ -140,21 +146,21 @@ export default {
                 },
 
                 {
-                    cardTitle: 'Company Description',
+                    cardTitle: 'Location',
                     cardInputInformation: {
                         inputOne: {
-                            id: 'description',
-                            name: 'Description',
+                            id: 'country',
+                            name: 'Country',
                             type: 'text',
                         },
                         inputTwo: {
-                            id: 'industry',
-                            name: 'Industry',
+                            id: 'address',
+                            name: 'Address',
                             type: 'text',
                         },
                         inputThree: {
-                            id: 'address',
-                            name: 'Address',
+                            id: 'region',
+                            name: 'Region',
                             type: 'text',
                         }
                     },
@@ -163,7 +169,8 @@ export default {
 
 
 
-            ]
+            ],
+
 
         }
     },
@@ -178,8 +185,9 @@ export default {
         this.getCompanyInfo()
     },
     methods: {
-        showPopup() {
+        showPopup(index) {
             this.showModal = !this.showModal
+            this.index = index
         },
         getCompanyInfo() {
             const companyToken = localStorage.getItem('companyToken')

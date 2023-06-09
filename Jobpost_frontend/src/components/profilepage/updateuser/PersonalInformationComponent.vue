@@ -1,25 +1,31 @@
 <template>
-    <div class="card-detail">
+    <form action="" class="card-detail">
         <div class="input-container">
 
-            <EditInputComponent inputName="First Name" name="first_name" inputType="text" :handleChange="handleInput" />
+            <EditInputComponent inputName="First Name" name="first_name" inputType="text" :value="userInfo.first_name"
+                :handleChange="handleInput" />
         </div>
         <div class="input-container flex-center-row double">
-            <EditInputComponent inputName="Middle Name" name="middle_name" inputType="text" :handleChange="handleInput" />
-            <EditInputComponent inputName="Last Name" name="last_name" inputType="text" :handleChange="handleInput" />
+            <EditInputComponent inputName="Middle Name" name="middle_name" inputType="text" :value="userInfo.middle_name"
+                :handleChange="handleInput" />
+            <EditInputComponent inputName="Last Name" name="last_name" inputType="text" :value="userInfo.last_name"
+                :handleChange="handleInput" />
         </div>
         <div class="input-container">
-            <EditInputComponent inputName="Email" name="email" inputType="email" :handleChange="handleInput" />
+            <EditInputComponent inputName="Email" name="email" inputType="email" :value="userInfo.email"
+                :handleChange="handleInput" />
         </div>
         <div class="input-container">
-            <EditInputComponent inputName="Contact" name="contact" inputType="tel" :handleChange="handleInput" />
+            <EditInputComponent inputName="Contact" name="contact" inputType="tel" :value="userInfo.phone"
+                :handleChange="handleInput" />
         </div>
         <div class="input-container flex-center-row double">
             <EditInputComponent inputName="LinkedIn URl" name="linkedIn_url" inputType="text" :handleChange="handleInput" />
             <EditInputComponent inputName="GitHub URL" name="git_url" inputType="text" :handleChange="handleInput" />
         </div>
         <div class="input-container">
-            <EditInputComponent inputName="Date of Birth" name="dob" inputType="date" :handleChange="handleInput" />
+            <EditInputComponent inputName="Date of Birth" name="dob" inputType="date"
+                :value="userInfo.date_of_birth.split('T')[0]" :handleChange="handleInput" />
         </div>
         <div class="input-container">
             <EditInputComponent inputType="file" name="resume_cv" inputName="Resume CV" :handleChange="handleInput" />
@@ -35,14 +41,12 @@
                 <label for="female">Female</label>
             </span>
 
-            <!-- <EditInputComponent class="radio-gender" name="gender" id="gender" inputType="radio" />Male
-            <EditInputComponent class="radio-gender" name="gender" id="gender" inputType="radio" />Female -->
         </div>
-        <!-- <div class="btnsec flex-center-row">
+        <div class="btnsec flex-center-row">
             <button class="btn" @click="handleSave">Save</button>
             <button class="btns" @click="handlecloseCard">Cancel</button>
-        </div> -->
-    </div>
+        </div>
+    </form>
 </template>
 
 <script>
@@ -60,28 +64,28 @@ export default {
 
     data() {
         return {
-            personalInfo: {
-                first_name: '',
-                middle_name: '',
-                last_name: '',
-                email: '',
-                contact: '',
-                linkedIn_url: '',
-                git_url: '',
-                dob: '',
-                resume_cv: '',
-                gender: '',
-            }
+            // personalInfo: {
+            //     first_name: '',
+            //     middle_name: '',
+            //     last_name: '',
+            //     email: '',
+            //     contact: '',
+            //     linkedIn_url: '',
+            //     git_url: '',
+            //     dob: '',
+            //     resume_cv: '',
+            //     gender: '',
+            // }
         }
     },
     mounted() {
-        this.personalInfo.first_name = this.userInfo.first_name
-        this.personalInfo.middle_name = this.userInfo.middle_name
-        this.personalInfo.last_name = this.userInfo.last_name
-        this.personalInfo.email = this.userInfo.email
-        this.personalInfo.phone_number = this.userInfo.phone_number
-        this.personalInfo.dob = this.userInfo.dob
-        this.personalInfo.gender = this.userInfo.gender
+        // this.personalInfo.first_name = this.userInfo?.first_name
+        // this.personalInfo.middle_name = this.userInfo?.middle_name
+        // this.personalInfo.last_name = this.userInfo?.last_name
+        // this.personalInfo.email = this.userInfo?.email
+        // this.personalInfo.phone_number = this.userInfo?.phone_number
+        // this.personalInfo.dob = this.userInfo?.dob
+        // this.personalInfo.gender = this.userInfo?.gender
         // this.personalInfo.first_name=this.userInfo.first_name
         // this.personalInfo.first_name=this.userInfo.first_name
         // this.personalInfo.first_name=this.userInfo.first_name

@@ -3,7 +3,6 @@
         <form action="" class="register-field flex-center">
             {{ country }}
             <select class="form-select" id="country" name="country" v-model="country" :handleInput="handleInput">
-                <option value="default">select country</option>
                 <option v-for="(country,index) in countries" :key="index" :value="country">{{ country }}</option>
             </select>
             <InputComponent id="address" type="text" placeHolder="Address" name="address" :handleInput="handleInput"/>
@@ -54,6 +53,7 @@
     .form-select {
         font-weight: 400;
         padding: 10px;
+        width: 500px;
         color: #666;
         font-size: 14px;
         border: none;

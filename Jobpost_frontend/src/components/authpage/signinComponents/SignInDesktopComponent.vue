@@ -28,7 +28,10 @@
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row signin-btn">Log in </button>
+                    <button type="submit" class="flex-center-row signin-btn"> Log in
+                        <span class="material-symbols-outlined loading" v-show="loading"> cached </span>
+                        <span class="material-symbols-outlined" v-show="loading == false"> east </span>    
+                    </button>
 
                     <button type="button" class="forgot-btn">Forgotten Password? <span @click="toForgot()">Click Here</span></button>
 
@@ -37,17 +40,22 @@
             </form>
         </div>
     </div>
+    <ToastMessage v-show="toast.active" :toast="toast" />
 </template>
 
 <script>
     import {mapActions} from 'pinia'
     import { useUserStore } from '../../../stores/users'
+    import { useCompanyStore } from '../../../stores/companies'
     import axios from 'axios'
     import InputComponent from '@/components/authpage/InputComponent.vue'
+    import ToastMessage from '../../utils/ToastMessage.vue'
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    const BASE_URL = import.meta.env.VITE_BASE_URL
     export default {
         components : {
-            InputComponent
+            InputComponent,
+            ToastMessage
         },
 
        data () {
@@ -58,7 +66,10 @@
                 password: ''
             },
             userType: 'jobSeeker',
-
+            loading: false,
+            toast: {
+                active: false, msg: '', color: ''
+            }
         }
 
        },
@@ -73,6 +84,7 @@
 
        methods: {
         ...mapActions(useUserStore, ['setUser']),
+        ...mapActions(useCompanyStore, ['setCompany']),
         toForgot() {
             this.$router.push('/auth/forgot-password')
         },
@@ -82,12 +94,13 @@
 
         jobPoster() {
                 var z = document.getElementById("btn");
+                // console.log(z);
                 z.style.left = "50%"
                 z.innerHTML="Job Poster"
             
                 this.userType = "jobPoster"
 
-                console.log(this.userType);
+                // console.log(this.userType);
             
         },
         jobSeeker() {
@@ -96,7 +109,7 @@
                 z.innerHTML="Job Seeker"
                 this.userType = "jobSeeker"
 
-                console.log(this.userType);
+                // console.log(this.userType);
         },
 
         handleUserInput(data){
@@ -112,8 +125,9 @@
         },
 
         handleSignIn() {
+            this.loading = true
             console.log('Hello', this.inputData.email.match((validRegex)));
-            console.log(this.inputData);
+            // console.log(this.inputData);
 
             const user=new FormData()
             user.append( "email",this.inputData.email,)
@@ -121,37 +135,81 @@
             
 
             if(this.userType == 'jobPoster') {
-                axios.post(`http://192.168.1.36:5000/company/logInCompany`,user)
+                axios.post(`${BASE_URL}/company/logInCompany`,user)
                 .then(res =>{
-                    res.data
-                    localStorage.setItem('companyState', res.data.user)
-                    localStorage.setItem('userToken', res.data.token)
+                    console.log(res?.data);
+                    if(res.data?.message){
+                        let msg = res.data.message
+                        this.showToast(msg, 'success')
+                        this.loading = false
+                    }
+                    if(res.data?.token){
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('companyToken', token)
+                    }
+                    if(res.data?.company){
+                        const company = res.data.company
+                        this.setCompany(company)
                         this.$router.push('/admin/analyticsView')
+                    }
+                    // res.data
+                    // localStorage.setItem('companyState', res.data.user)
+                    // localStorage.setItem('userToken', res.data.token)
+                        
 
                    
                 })
                 .catch(err => {
+                    let msg = err.response? err.response.data.message : err.message
+                    this.showToast(msg, 'error')
+                    this.loading = false
                     console.log(err);
                 })
             }
 
             if(this.userType == 'jobSeeker') {
-                axios.post(`http://192.168.1.36:5000/jobSeeker/logInJobSeeker`,user)
+                axios.post(`${BASE_URL}/jobSeeker/logInJobSeeker`,user)
                 .then(res =>{
+                    if(res.data?.message){
+                        let msg=res.data.message
+                        this.showToast(msg, 'success')
+                        this.loading = false
+                    }
+                    if(res.data?.token){
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('userToken', token)
+                    }
+                    if(res.data?.user){
+                        const user = res.data.user
+                        user['photo']="avatar.jpg"
+                        this.setUser(user)
+                        this.$router.push('/userprofile')
+                    }
+                    // localStorage.setItem('userState', res.data.user)
+                    // localStorage.setItem('userToken', res.data.token)
+                    // const userInfo=res.data.user
                     
-                    localStorage.setItem('userState', res.data.user)
-                    localStorage.setItem('userToken', res.data.token)
-                    const userInfo=res.data.user
-                    
-                    userInfo['photo']="avatar.jpg"
-                    this.setUser(res.data?.user)
-                    this.$router.push('/userprofile')
+                    // userInfo['photo']="avatar.jpg"
+                    // this.setUser(res.data?.user)
+                    // this.$router.push('/userprofile')
                 })
                 .catch(err => {
+                    let msg = err.response? err.response.data.message : err.message
+                    this.showToast(msg, 'error')
+                    this.loading = false
                     console.log(err);
                 })
             }
                                                
+        },
+
+        showToast(msg, color){
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(()=>{
+                this.toast = {active: false, msg:'', color:''}
+            }, 6000)
         }
     }
     }
@@ -179,10 +237,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 40%;
-        padding: 100px;
         row-gap: 20px;
         border-radius: 20px;
+        width: 550px;
+        max-width: 622px;
+        padding-bottom: 80px;
+        padding-top: 30px;
     }
 
     header {
@@ -262,7 +322,7 @@
         display: flex;
         flex-direction: column;
         row-gap: 25px;
-        width: 100%; 
+        width: 80%; 
     }
 
     .user-field, .password-field {
@@ -323,22 +383,35 @@
         cursor: pointer;
     }
 
+    .loading {
+    transform: rotate(300deg);
+    animation: spin 1s infinite;
+    }
+
+    @keyframes spin {
+        0% {transform: rotate(0deg);}
+        25% {transform: rotate(90deg);}
+        50% {transform: rotate(180deg);}
+        75% {transform: rotate(270deg);}
+        100% {transform: rotate(360deg);}
+    }
+
     /* .desk-links p span {
         color: #7FBF4C;
         cursor: pointer;
     } */
 
-    @media screen and (max-width:1200px) and (min-width:1024px) {
+    /* @media screen and (max-width:1200px) and (min-width:1024px) {
         .signin{
-            width: 50%;
+            width: 550px;
         }
 
         .desk-links {
-            width: 80%;
+            width: 550px;
         }
-    }
+    } */
 
-    @media screen and (max-width: 1024px) and (min-width: 681px) {
+    /* @media screen and (max-width: 1024px) and (min-width: 681px) {
         .signin {
             width: 80%;
         }
@@ -350,7 +423,7 @@
             align-items: center;
             row-gap: 5px;
         }
-    }
+    } */
     
 
 </style>

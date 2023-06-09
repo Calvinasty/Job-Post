@@ -67,8 +67,9 @@ export default {
 .container header p {
     font-style: normal;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 34px;
+    text-align: center;
 }
 
 .box {
@@ -77,6 +78,7 @@ export default {
     align-content: center;
     justify-content: center;
     width: 80%;
+    max-width: 1642px;
     margin: 0 auto;
     margin-top: 30px;
     row-gap: 30px;
@@ -127,11 +129,20 @@ export default {
         font-size: 60px;
     }
 
-    .container header p {
-        font-size: 30px;
+    .box {
+        width: 80%;
     }
 }
 
+@media screen and (min-width: 600px) and (max-width: 900px) {
+    .box {
+        width: 100%;
+    }
+
+    .container header p {
+        width: 70%;
+    }
+}
 
 @media screen and (max-width: 480px) {
     .mobile-hide {

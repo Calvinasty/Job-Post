@@ -32,7 +32,7 @@
         width: 100%;
         padding: 14px;
         border: 1px solid #7FBF4C; 
-        border-radius: 5px;
+        border-radius: 10px;
        
         /* outline: none; */
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="input-field">
-        <input :placeholder="inputName" :name="name" v-model="value"
+        <input :placeholder="inputName" :name="name" :value="value"
             v-on:change="handleChange({ inputValue: value, inputName: name })" :type="inputType" :id="inputId"
             :accept="accept" :on-focus="this.type = 'date'">
     </div>
@@ -20,6 +20,7 @@ export default {
         "inputName",
         "name",
         "accept",
+        "value",
         "handleChange",
 
     ]
