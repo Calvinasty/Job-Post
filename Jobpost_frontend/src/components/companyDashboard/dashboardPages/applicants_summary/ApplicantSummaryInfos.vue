@@ -29,6 +29,7 @@ export default {
     width: 230px;
     padding: 10px;
     position: fixed;
+    font-size: 14px;
 
 }
 .contact-info{
@@ -37,8 +38,12 @@ export default {
     margin-top: 20px;
     align-items: flex-start;
     text-align: left;
-    gap: 15px;
+    font-size: 12px;
+    gap: 30px;
     color: rgba(120, 114, 114, 1);
+}
+h2{
+    font-size: 16px;
 }
 a{
     color: rgba(120, 114, 114, 1);

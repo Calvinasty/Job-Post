@@ -1,32 +1,32 @@
 <template>
     
         <div class="container">
-            <ApplicantSummaryHead class="head"/>
+            <ApplicantSummaryHeader class="head"/>
             <main>
-                <ApplicantSummarySide  :users="users" :addresses="addresses" class="side" />
+                <ApplicantSummaryInfos  :users="users" :addresses="addresses" class="side" />
                 <div class="details">
-                    <ApplicantSummaryCard :experience="experience" class="card"/>
-                    <ApplicantSummaryCardSec :skills="skills"  class="card"/>
-                    <ApplicantSummaryCardTh :educations="educations" class="card"/> 
+                    <ApplicantSumWorkExperience :experience="experience" class="card"/>
+                    <ApplicantSummarySkills :skills="skills"  class="card"/>
+                    <ApplicantSumEducation :educations="educations" class="card"/> 
                 </div>
                 </main>
         </div>
 </template>
 
 <script>
-import ApplicantSummarySide from '../dashboardPages/applicants_summary/ApplicantSummarySide.vue'
-import ApplicantSummaryCard from '../dashboardPages/applicants_summary/ApplicantSummaryCard.vue'
-import ApplicantSummaryCardSec from '../dashboardPages/applicants_summary/ApplicantSummaryCardSec.vue'
-import ApplicantSummaryCardTh from '../dashboardPages/applicants_summary/ApplicantSummaryCardTh.vue'
-import ApplicantSummaryHead from '../dashboardPages/applicants_summary/ApplicantSummaryHead.vue'
+import ApplicantSummaryInfos from '../dashboardPages/applicants_summary/ApplicantSummaryInfos.vue'
+import ApplicantSumWorkExperience from '../dashboardPages/applicants_summary/ApplicantSumWorkExperience.vue'
+import ApplicantSummarySkills from '../dashboardPages/applicants_summary/ApplicantSummarySkills.vue'
+import ApplicantSumEducation from '../dashboardPages/applicants_summary/ApplicantSumEducation.vue'
+import ApplicantSummaryHeader from '../dashboardPages/applicants_summary/ApplicantSummaryHeader.vue'
 import axios from 'axios'
 export default {
     components:{
-        ApplicantSummaryHead,
-        ApplicantSummarySide,
-        ApplicantSummaryCard,
-        ApplicantSummaryCardSec,
-        ApplicantSummaryCardTh
+        ApplicantSummaryHeader,
+        ApplicantSummaryInfos,
+        ApplicantSumWorkExperience,
+        ApplicantSummarySkills,
+        ApplicantSumEducation
     },
     data(){
         return{

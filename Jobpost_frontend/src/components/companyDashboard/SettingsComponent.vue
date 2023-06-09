@@ -5,10 +5,10 @@
                 <span class="material-symbols-outlined">{{ settings[0].icon }}</span>
                 {{ settings[0].name }}
             </button>
-            <button type="button">
+            <!-- <button type="button">
                 <span class="material-symbols-outlined">{{ settings[1].icon }}</span>
                 {{ settings[1].name }}
-            </button>
+            </button> -->
         </div>
         
         <button @click="handleLogout()" class="icon-btn">
@@ -57,7 +57,7 @@ export default {
         border: none;
         font-size: 15px;
         font-weight: 600;
-        margin: 5px 0;
+        margin: 45px 0;
         border-radius: 5px;
         cursor: pointer;
         text-align: left;
