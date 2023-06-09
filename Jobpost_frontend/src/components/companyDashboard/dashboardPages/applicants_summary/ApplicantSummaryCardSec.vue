@@ -2,14 +2,14 @@
     <div class="card-2">
         <h2>Skills/Interests</h2>
              <ul class="skill">
-                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
+                 <li v-for="(item, index) in skills" :key="index"> <span class="material-symbols-outlined">{{item.icon}}</span> {{item.name}}</li>
+                <!-- <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
-                <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
-                <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li>
+                <li> <span class="material-symbols-outlined">task_alt</span> JavaScript</li> -->
             </ul>
     </div>
 </template>
@@ -29,6 +29,7 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    font-size: 14px;
 
 }
 .skill{
@@ -36,6 +37,8 @@ export default {
   grid-template-columns: 1fr 1fr;
   width: 100%;
   color: rgba(120, 114, 114, 1);
+  /* background-color: blue;  */
+
 
 }
 .skill li{
@@ -47,6 +50,9 @@ export default {
     align-items: flex-start;
     gap: 10px;
     margin-top: 10px;
+    
+    /* background-color: blueviolet; */
+    /* width: 100%; */
 }
 .skill span{
     color: rgba(136, 204, 0, 1);

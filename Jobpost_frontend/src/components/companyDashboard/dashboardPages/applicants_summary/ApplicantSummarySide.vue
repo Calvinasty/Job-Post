@@ -1,16 +1,17 @@
 <template>
-    <div class="main-container">
+    <div  class="main-container">
         <div class="profile-pic-container">
             <img src="/images/userprofile.svg"  alt="pic">
-            <h2>Daniella McDan</h2>
+            <h2>{{ users.name }}</h2>
         </div>
-        <div class="contact-info">         
-                <p>Coral Avenue, Hse 3, Tantra Hills, Accra-Ghana. GHA-393-133'</p>
-                <p>Female</p>
-                <p>27</p>
-                <p> <a href="mailto:danmcdan@gmail.com">danmacdan@gmail.com</a></p>
-                <p><a href="linkedin.com/in/daniella-momo">linkedin.com/in/daniella-momo</a></p>
-                <p>+233237458923</p>
+
+        <div  class="contact-info">         
+                <p>{{addresses.address}}</p>
+                <p>{{addresses.gender}}</p>
+                <p>{{addresses.age}}</p>
+                <p> <a href="mailto:danmcdan@gmail.com">{{addresses.email}}</a></p>
+                <p><a href="linkedin.com/in/daniella-momo">{{addresses.linkedin}}</a></p>
+                <p>{{addresses.number}}</p>
         </div>
     </div>
 </template>
@@ -18,7 +19,8 @@
 <script>
 export default {
     props: [
-        'infos'
+        'users',
+        'addresses'
     ]
 }
 </script>

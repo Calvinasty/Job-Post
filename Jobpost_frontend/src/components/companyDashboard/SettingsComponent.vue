@@ -26,6 +26,7 @@ export default {
     ],
     methods:{
         handleLogout(){
+            localStorage.clear('companyState')
             this.$router.push('/')
         }
     }

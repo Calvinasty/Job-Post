@@ -1,20 +1,7 @@
 <template>
-    <!-- <Transition name="slide-fade">
-        <section class="side-bar flex-col-start" v-show="toggleNav">
-            <aside class="logo flex-center">
-                <img :src="user.image" alt="logo">
-            </aside>
-            <aside class="nav-items">
-                <NavItemComponent :navItems="navItems" :goto="goto" />
-            </aside>            
-            <aside class="nav-items">
-                <SettingsComponent :settings="settings" :user="user" />
-            </aside>
-        </section>
-    </Transition> -->
     <Transition name="slide-fade" v-show="toggleNav">
         <section>
-            <image>
+            <image @click="$router.push('/')">
                 <img :src="user.image" alt="logo">
             </image>
             <aside class="nav-items">
@@ -94,6 +81,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        cursor: pointer;
         /* border: 1px solid; */
     }
     image img{
