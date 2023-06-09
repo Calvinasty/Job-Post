@@ -10,8 +10,9 @@
 </template>
 
 <script>
-    import {mapState} from 'pinia'
+    import {mapState, mapActions} from 'pinia'
     import { useDashboardStore } from '../../../stores/dashboard';
+    import { useCompanyStore } from '../../../stores/companies';
     import CardComponent from './CardComponent.vue';
     import Chart from './Chart.vue';
     export default {
@@ -54,21 +55,31 @@
             }
         },
         computed:{
-            ...mapState(useDashboardStore, ['chartDataValues','companyInfo']),
-            getTotalJobs(){
-              return console.log(this.companyInfo.Jobs)  
+            ...mapState(useDashboardStore, ['chartDataValues']),
+            ...mapState(useCompanyStore, ['getTotalJobs'])
+        },
+        watch: {
+            card2Info(newInfo, oldInfo){
+                if(newInfo !== oldInfo){
+                    this.card2Info[0].num = this.getTotalJobs
+                    this.updateChartDataValues()
+                }
             }
         },
         created(){
             Object.values(this.chartDataValues).forEach((value,index) => {
                 this.chartData.datasets[0].data[index] = value
             })
-            this.getTotalJobs
         },
         beforeMount(){
             this.getCompanyData()
         },
+        mounted(){
+            this.card2Info[0].num = this.getTotalJobs
+            this.updateChartDataValues()
+        },
         methods:{
+            ...mapActions(useDashboardStore, ['updateChartDataValues']),
             getCompanyData(){
                 // alert('Hello')
             },

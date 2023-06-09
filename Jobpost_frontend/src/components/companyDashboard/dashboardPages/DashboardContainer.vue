@@ -1,13 +1,13 @@
 <template>
     <DashboardLayout class="main-container">
-        <component :is="componentId"></component>
+        <component :is="componentId" ></component>
     </DashboardLayout>
 </template>
 
 <script>
     import axios from 'axios'
     import {mapActions} from 'pinia'
-    import { useDashboardStore } from '../../../stores/dashboard';
+    import { useCompanyStore } from '../../../stores/companies';
     const BASE_URL = import.meta.env.VITE_BASE_URL
     import DashboardLayout from './DashboardLayout.vue';
     import AnalyticsView from './AnalyticsView.vue';
@@ -32,7 +32,6 @@
             }   
         },
         beforeMount(){
-
             this.componentId = this.$route.params.id
             this.getCompanyInfo()
         },
@@ -42,15 +41,15 @@
             }
         },
         methods: {
-            ...mapActions(useDashboardStore, ['setCompanyInfo']),
+            ...mapActions(useCompanyStore, ['setCompany']),
             getCompanyInfo(){
                 const token = JSON.parse(localStorage.getItem('companyToken'))
                 // console.log(token);
-                axios.get('http://192.168.1.90:5000/company/getAll', {headers: {token}})
+                axios.get(`${BASE_URL}/company/getAll`, {headers: {token}})
                 .then(res => {
                     const companyInfo = res.data[0]
-                    // console.log(companyInfo)
-                    this.setCompanyInfo(companyInfo)
+                    console.log(companyInfo)
+                    this.setCompany(companyInfo)
                 })
                 .catch(err => {
                     console.log('err', err);

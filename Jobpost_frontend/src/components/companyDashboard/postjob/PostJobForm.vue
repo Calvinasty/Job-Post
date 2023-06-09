@@ -64,16 +64,20 @@
 
         </form>
     </PostJobLayout>
+
+    <ToastMessage v-show="toast.active" :toast="toast"/>
 </template>
 
 <script>
     import axios from 'axios'
-    import PostJobLayout from './PostJobLayout.vue';
-    import {useDashboardStore} from '../../../stores/dashboard';
     import {mapState, mapActions} from 'pinia'
+    import {useDashboardStore} from '../../../stores/dashboard';
+    import PostJobLayout from './PostJobLayout.vue';
+    import ToastMessage from '@/components/utils/ToastMessage.vue'
+    const BASE_URL = import.meta.env.VITE_BASE_URL
     export default {
         components:{
-            PostJobLayout
+            PostJobLayout, ToastMessage
         },
         data(){
             return{
@@ -90,6 +94,10 @@
                     deadline: '',
                     howto: ''
                 },
+                toast:{
+                    active: false, msg:'', color:''
+                },
+                loading: false
             }
         },
         computed: {
@@ -98,20 +106,7 @@
         methods:{
             ...mapActions(useDashboardStore, ['setNext', 'setModal']),
             handlePost(){
-                let newPost = {
-                    job_title: this.postjob.title,
-                    job_type: this.postjob.jobtype,
-                    job_description: this.postjob.description,
-                    salary_range: this.postjob.salary,
-                    location: this.postjob.location,
-                    requirements: this.postjob.requirement,
-                    application_deadline: this.postjob.deadline,
-                    how_to_apply: this.postjob.howto,
-                    name_of_poster: this.postjob.recruiter,
-                    role: this.postjob.role,
-                    contact: this.postjob.contact
-                    
-                }
+                this.loading = true
                 const newFormData= new FormData()  
                 newFormData.append("job_title", this.postjob.title)
                 newFormData.append("job_type", this.postjob.jobtype)
@@ -125,43 +120,46 @@
                 newFormData.append("role", this.postjob.role)
                 newFormData.append("contact", this.postjob.contact)
 
-                let token = localStorage.getItem('companyToken')
+                let token = JSON.parse(localStorage.getItem('companyToken'))
                 console.log(token);
-                axios.post('http://192.168.1.36:5000/jobPost/postJob', newFormData, {headers: token})
+                axios.post('http://192.168.1.90:5000/job/postJob', newFormData, {headers: {token}})
                 .then(res => {
                     console.log(res.data);
-                    let newJob = res.data.job;
-                    const jobs = JSON.parse(localStorage.getItem('companyJobs'))
-                    if(jobs){
-                        let companyJobs = [newJob, ...jobs]
-                        localStorage.setItem('companyJobs', JSON.stringify( companyJobs))
-                    }else{
-                        let companyJobs = newJob
-                        localStorage.setItem('companyJobs', JSON.stringify(companyJobs))
+                    let msg = res.data?.message
+                    let newJob = res.data?.job;
+                    if(newJob){
+                        this.loading = false
+                        this.showToast(msg?msg:'Job Post Successful', 'success')
+                        this.$router.push('/jobsearch')
+                        this.clearForm()
                     }
-                    this.$router.push('/jobsearch')
-                    this.clearForm()
                 })
                 .catch(err => {
                     console.log(err);
-                    alert(err)
+                    this.loading = false
+                    let msg = err.response? err.response.data.message : err.message
+                    this.showToast(msg, 'error')
                 })
             },
             clearForm(){
-                this.postjob = {
-                    title: '',
-                    description: '',
-                    jobtype: '',
-                    location: '',
-                    salary: '',
-                    role: '',
-                    fname: '',
-                    mname: '',
-                    lname: '',
-                    role: '',
-                    contact: ''
-                },
+                Object.keys(this.postjob).forEach(key => {
+                    this.postjob[key] = ''
+                })
                 this.setModal('')
+
+                // this.postjob = {
+                //     title: '',
+                //     description: '',
+                //     jobtype: '',
+                //     location: '',
+                //     salary: '',
+                //     role: '',
+                //     fname: '',
+                //     mname: '',
+                //     lname: '',
+                //     role: '',
+                //     contact: ''
+                // },
             },
             cancelForm(){
                 if(confirm("Are you sure of this action?")){
@@ -169,6 +167,12 @@
                 }else{
                     return
                 }
+            },
+            showToast(msg, color){
+                this.toast = { active: true, msg, color }
+                setTimeout(() =>{
+                    this.toast = { active: false, msg: '', color: '' }
+                })
             }
         }
     }
