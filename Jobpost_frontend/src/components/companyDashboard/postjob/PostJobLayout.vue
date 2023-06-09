@@ -16,6 +16,13 @@
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="css" scoped>
+    div{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        /* align-items: center; */
+        justify-content: space-between;
+        gap: 20px;
+    }
 </style>

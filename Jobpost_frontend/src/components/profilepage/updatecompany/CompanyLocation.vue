@@ -7,8 +7,8 @@
                 </select>
             </label>
             
-            <InputComponent id="address" type="text" placeHolder="Address" name="address" :handleInput="handleInput"/>
-            <InputComponent id="region" type="text" placeHolder="Region" name="region" :handleInput="handleInput"/>
+            <InputComponent id="address" type="text" placeHolder="Address" name="address" :handleInput="handleInput" :Value="address"/>
+            <InputComponent id="region" type="text" placeHolder="Region" name="region" :handleInput="handleInput" :Value="region"/>
             <div class="btnsec flex-center-row">
                 <button class="btn" @click="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
@@ -27,7 +27,8 @@
 
         props: [
         'handlecloseCard',
-        'handleSave',
+        // 'handleSave',
+        'companyInfo'
         ],
 
         data(){
@@ -46,14 +47,24 @@
                 })
                 this.countries = getCountries
            })
+
+           this.country = this.companyInfo.location.country
+            this.address = this.companyInfo.location.address
+            this.region = this.companyInfo.location.region
         },
         methods: {
             handleInput(data) {
                 if(data.inputName == 'country') { this.country = data.inputValue }
                 if(data.inputName == 'address') { this.address = data.inputValue }
                 if(data.inputName == 'region') { this.region = data.inputValue }
+            },
+            handleSave(){
+                console.log(this.companyName);
             }
-        }
+        },
+
+        
+
     }
 </script>
 

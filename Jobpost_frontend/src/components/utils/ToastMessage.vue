@@ -45,6 +45,7 @@
     @media screen and (max-width: 480px){
         div{
             top: 10%;
+            z-index: 200;
         }
     }
 </style>

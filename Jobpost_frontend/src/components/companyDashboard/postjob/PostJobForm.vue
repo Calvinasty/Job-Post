@@ -73,7 +73,7 @@
     import {mapState, mapActions} from 'pinia'
     import {useDashboardStore} from '../../../stores/dashboard';
     import PostJobLayout from './PostJobLayout.vue';
-    import ToastMessage from '@/components/utils/ToastMessage.vue'
+    import ToastMessage from '../../utils/ToastMessage.vue';
     const BASE_URL = import.meta.env.VITE_BASE_URL
     export default {
         components:{
@@ -122,7 +122,7 @@
 
                 let token = JSON.parse(localStorage.getItem('companyToken'))
                 console.log(token);
-                axios.post('http://192.168.1.90:5000/job/postJob', newFormData, {headers: {token}})
+                axios.post(`${BASE_URL}/job/postJob`, newFormData, {headers: {token}})
                 .then(res => {
                     console.log(res.data);
                     let msg = res.data?.message
@@ -130,7 +130,7 @@
                     if(newJob){
                         this.loading = false
                         this.showToast(msg?msg:'Job Post Successful', 'success')
-                        this.$router.push('/jobsearch')
+                        // this.$router.push('/jobsearch')
                         this.clearForm()
                     }
                 })
@@ -139,6 +139,7 @@
                     this.loading = false
                     let msg = err.response? err.response.data.message : err.message
                     this.showToast(msg, 'error')
+                    // alert(msg)
                 })
             },
             clearForm(){
@@ -172,7 +173,7 @@
                 this.toast = { active: true, msg, color }
                 setTimeout(() =>{
                     this.toast = { active: false, msg: '', color: '' }
-                })
+                }, 6000)
             }
         }
     }
@@ -192,7 +193,6 @@
         gap: 10px;
         margin-top: 20px;
     }
-
     .first, .second, .third, .fourth{
         display: flex;
         flex-direction: column;
@@ -200,9 +200,15 @@
         justify-content: center;
         gap: 10px;
     }
-
     input, select, textarea{
-        padding: 10px;
+        padding: 20px;
+        border: 0.5px solid #88CC00;
+        border-radius: 20px;
+    }
+    label{
+        text-align: left;
+        color: #88CC00;
+        font-weight: bold;
     }
     .btns button{
         border: none;

@@ -149,7 +149,7 @@ export default {
         width: 100%;
         left: 30px;
         bottom: 5px;
-        z-index: 10;
+        /* z-index: 10; */
     }
 
     .hide.view span {

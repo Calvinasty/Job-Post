@@ -5,7 +5,7 @@
             <h3>{{ companyInfo.company_name }}</h3>
         </div>
         <div>
-            <button @click="$router.push('/jobsearch')" class="post flex-center-row blink">
+            <button @click="$router.push('/jobsearch')" class="post flex-center-row" :class="{blink}">
                 View <span v-if="blink">&emsp14;Your Job</span> <span v-else>&emsp14;Other Jobs </span> 
             </button>
             <button @click="addPost()" class="post flex-center-row">
