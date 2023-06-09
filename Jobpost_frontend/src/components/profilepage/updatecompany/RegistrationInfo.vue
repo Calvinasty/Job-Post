@@ -2,11 +2,11 @@
     <div class="register-info">
         <form action="" class="register-field flex-center">
             <InputComponent id="registrationNumber" type="text" placeHolder="Registration Number" name="registrationNumber"
-                :handleInput="handleInput" />
+                :handleInput="handleInput" :Value="registrationNumber"/>
             <InputComponent id="vatNumber" type="text" placeHolder="VAT Number" name="vatNumber"
-                :handleInput="handleInput" />
+                :handleInput="handleInput" :Value="vatNumber"/>
             <label class="flex-center">Company Certificate (Commencement, Incorporation, VAT)
-                <InputComponent id="companyCert" type="file" placeHolder="" name="companySite" :handleInput="handleInput" />
+                <InputComponent id="companyCert" type="file" placeHolder="" name="companySite" :handleInput="handleInput" :Value="companyCert"/>
             </label>
             <div class="btnsec flex-center-row">
                 <button class="btn" @click="handleSave">Save</button>
@@ -25,7 +25,8 @@ export default {
 
     props: [
         'handlecloseCard',
-        'handleSave',
+        // 'handleSave',
+        'companyInfo'
     ],
     data() {
         return {
@@ -39,7 +40,17 @@ export default {
             if (data.inputName == 'registrationNumber') { this.registrationNumber = data.inputValue }
             if (data.inputName == 'vatNumber') { this.vatNumber = data.inputValue }
             if (data.inputName == 'companyCert') { this.companyCert = data.inputValue }
+        },
+
+        handleSave(){
+                console.log(this.companyName);
         }
+    },
+    mounted() {
+            this.registrationNumber = this.companyInfo.company_registration.registration_number
+            this.vatNumber = this.companyInfo.company_registration.vat_number
+            this.companyCert = this.companyInfo.company_registration.company_certificate
+            
     }
 }
 </script>
