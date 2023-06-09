@@ -2,9 +2,9 @@
     <div class="job-card flex-center" v-on:click="()=>handleApplyJob(jobInfomation.id)">
         <header class="flex-center-row" >
             <span class="title flex-center-row">
-            <img :src="jobInfomation.jobPosterLogo" alt="company-logo">
+            <img src="/images/companySample_logo.png" alt="company-logo">
                 <span class="title-text">
-                    <h3>{{ jobInfomation.jobTitle }}</h3>
+                    <h3>{{ jobInfomation.job_title }}</h3>
                     <h4>{{ jobInfomation.jobPoster }}</h4>
                 </span>
             </span>
@@ -12,17 +12,17 @@
         </header>
 
         <main class="flex-center">
-             <JobDetailItem :detailIcon="jobDetailInfo[0].icon" :detailName="jobDetailInfo[0].altText" :detailText="jobInfomation.jobLocation"/>
+             <JobDetailItem :detailIcon="jobDetailInfo[0].icon" :detailName="jobDetailInfo[0].altText" :detailText="jobInfomation.location"/>
              
              <div class="job-detail flex-center-row">
-                 <JobDetailItem :detailIcon="jobDetailInfo[1].icon" :detailName="jobDetailInfo[1].altText" :detailText="jobInfomation.jobExperince"/>
-                 <JobDetailItem :detailIcon="jobDetailInfo[2].icon" :detailName="jobDetailInfo[2].altText" :detailText="jobInfomation.jobSalary"/>
+                 <JobDetailItem :detailIcon="jobDetailInfo[1].icon" :detailName="jobDetailInfo[1].altText" :detailText="jobInfomation.job_type"/>
+                 <JobDetailItem :detailIcon="jobDetailInfo[2].icon" :detailName="jobDetailInfo[2].altText" :detailText="jobInfomation.salary_range"/>
              </div>
         </main>
 
         <footer class="flex-center-row">
             <div class="slots-availab">{{jobInfomation.jobPositionsAvailable}}</div>
-            <div class="updated-at">Updated {{ jobInfomation.jobUpdatedAt }} ago</div>
+            <div class="updated-at">Updated {{ jobInfomation.updatedAt?.split('T')[0] }}</div>
         </footer>
     </div>
 </template>
@@ -35,6 +35,7 @@ export default {
 
     data() {
         return {
+            updatedAT:'',
             jobDetailInfo:[
                 {
                     icon:'/images/icon_locationpin.svg',
@@ -59,6 +60,8 @@ export default {
     ],
 
     mounted() {
+       
+        console.log();
         
     },
 

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="/images/logo.png" alt="logo" @click="handleLogout">
+            <img src="/images/logo.png" alt="logo" @click="handleHome">
         </div>
         <span>
             <div class="search-bar">
@@ -9,34 +9,57 @@
                 <input type="text" v-model="searchInput" v-on:change="() => handleSearch({ data: searchInput })"
                     placeholder="Search for job post,company,location">
             </div>
-            <div class="btn">
+            <div v-if="userExist" class="btn" @click="showProfile">
                 <span>{{ email }}</span>
-                <span v-if="email !== ''">CK</span>
+                <span >CK</span>
             </div>
         </span>
-        <div class="btn mobile">
+        <div v-if="userExist" class="btn mobile">
             <span>{{ email }}</span>
-            <span v-if="email !== ''">CK</span>
+            <span >CK</span>
         </div>
+        <div v-if="show">
+            <JobSearchButton />
+        </div>
+        
     </div>
 </template>
 
 <script>
 import { mapState } from 'pinia'
 import { useUserStore } from '../../stores/users';
+import JobSearchButton from './JobSearchButton.vue';
 export default {
-    props: [
-        'handleSearch'
-    ],
-    computed: {
-        ...mapState(useUserStore, ['email'])
+    components: {
+        JobSearchButton
     },
-    methods: {
-        handleLogout() {
-            this.$router.push('/')
+
+    data(){
+        return{
+            show: false,
+            userExist:true
+          
         }
     },
 
+    props: [
+        'handleSearch',
+        // 'userExist'
+    ],
+    computed: {
+        ...mapState(useUserStore, ['user'])
+    },
+  
+    methods: {
+        
+        handleHome() {
+            this.$router.push('/')            
+        },
+
+        showProfile(){
+            this.show = !this.show
+    },
+    }
 
 
 }
@@ -118,6 +141,7 @@ export default {
     background-color: #88CC00;
     margin-left: 50px;
     justify-content: center;
+    cursor: pointer;
 
 }
 

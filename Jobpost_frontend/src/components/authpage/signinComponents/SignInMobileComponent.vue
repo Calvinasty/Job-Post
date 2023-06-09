@@ -17,23 +17,12 @@
 
     <form @submit.prevent="handleSignIn" class="signin-field">
       <div>
-        <InputComponent
-          type="email"
-          id="email"
-          name="email"
-          placeHolder="Email"
-          :handleInput="handleUserInput"
-        />
+        <InputComponent type="email" id="email" name="email" placeHolder="Email" :handleInput="handleUserInput" />
       </div>
 
       <div>
-        <InputComponent
-          type="password"
-          id="password"
-          name="password"
-          placeHolder="Password"
-          :handleInput="handleUserInput"
-        />
+        <InputComponent type="password" id="password" name="password" placeHolder="Password"
+          :handleInput="handleUserInput" />
       </div>
 
       <button type="submit" class="mbn-btn">
@@ -61,6 +50,8 @@ import axios from 'axios'
 import InputComponent from '@/components/authpage/InputComponent.vue'
 import ToastMessage from '../../utils/ToastMessage.vue'
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export default {
   components: {
     InputComponent,
@@ -136,7 +127,7 @@ export default {
 
       if (this.userType == 'jobPoster') {
         axios
-          .post(`http://192.168.1.36:5000/company/logInCompany`, user)
+          .post(`${BASE_URL}/company/logInCompany`, user)
           .then((res) => {
             console.log(res?.data)
             if (res.data?.message) {
@@ -169,7 +160,7 @@ export default {
 
       if (this.userType == 'jobSeeker') {
         axios
-          .post(`http://192.168.1.36:5000/jobSeeker/logInJobSeeker`, user)
+          .post(`http://192.168.1.88:5000//jobSeeker/logInJobSeeker`, user)
           .then((res) => {
             if (res.data?.message) {
               let msg = res.data.message
@@ -204,13 +195,13 @@ export default {
           })
       }
     },
-    showToast(msg, color){
-            this.toast = {
-                active: true, msg, color
-            }
-            setTimeout(()=>{
-                this.toast = {active: false, msg:'', color:''}
-            }, 6000)
+    showToast(msg, color) {
+      this.toast = {
+        active: true, msg, color
+      }
+      setTimeout(() => {
+        this.toast = { active: false, msg: '', color: '' }
+      }, 6000)
     }
   }
 }
@@ -292,12 +283,14 @@ header img {
   color: #88cc00;
   text-transform: uppercase;
 }
+
 .signin-header p {
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
   color: #7d7474;
 }
+
 .signin-field {
   display: flex;
   flex-direction: column;
@@ -355,16 +348,30 @@ header img {
 }
 
 .loading {
-    transform: rotate(300deg);
-    animation: spin 1s infinite;
-    }
+  transform: rotate(300deg);
+  animation: spin 1s infinite;
+}
 
 @keyframes spin {
-    0% {transform: rotate(0deg);}
-    25% {transform: rotate(90deg);}
-    50% {transform: rotate(180deg);}
-    75% {transform: rotate(270deg);}
-    100% {transform: rotate(360deg);}
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* .signin-field p {
@@ -375,5 +382,4 @@ header img {
     } 
     .signin-field p a {
         color: #7FBF4C;
-    } */
-</style>
+    } */</style>

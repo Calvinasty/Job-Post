@@ -28,6 +28,7 @@ export default {
 /* @import '../assets/landing_assets/footerComponent.css'; */
 
 footer {
+    width: 100%;
     background-color: #363636;
     height: 210px;
 }
