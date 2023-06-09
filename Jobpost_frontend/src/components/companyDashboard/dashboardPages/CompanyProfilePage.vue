@@ -42,6 +42,17 @@
                             :inputId="cardDetails[0].cardInputInformation.inputFour.id"
                             :inputType="cardDetails[0].cardInputInformation.inputFour.type"
                             :Value="companyProfileInfo.website" />
+                        
+                        <InputComponent :fullName="cardDetails[0].cardInputInformation.inputFive.name"
+                        :inputId="cardDetails[0].cardInputInformation.inputFive.id"
+                        :inputType="cardDetails[0].cardInputInformation.inputFive.type"
+                        :Value="companyProfileInfo.linkIn" />
+
+                        <InputComponent :fullName="cardDetails[0].cardInputInformation.inputSix.name"
+                        :inputId="cardDetails[0].cardInputInformation.inputSix.id"
+                        :inputType="cardDetails[0].cardInputInformation.inputSix.type"
+                        :Value="companyProfileInfo.industry" />
+
                     </CardInformationComponent>
 
                     <CardInformationComponent :showPopup="showPopup" index="2" :detailsTitle="cardDetails[1].cardTitle"
@@ -64,13 +75,16 @@
                         showpencil="showpencil">
                         <InputComponent :fullName="cardDetails[2].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[2].cardInputInformation.inputOne.id"
-                            :inputType="cardDetails[2].cardInputInformation.inputOne.type" />
+                            :inputType="cardDetails[2].cardInputInformation.inputOne.type" 
+                            :Value="companyProfileInfo.country"/>
                         <InputComponent :fullName="cardDetails[2].cardInputInformation.inputTwo.name"
                             :inputId="cardDetails[2].cardInputInformation.inputTwo.id"
-                            :inputType="cardDetails[2].cardInputInformation.inputTwo.type" />
+                            :inputType="cardDetails[2].cardInputInformation.inputTwo.type" 
+                            :Value="companyProfileInfo.address"/>
                         <InputComponent :fullName="cardDetails[2].cardInputInformation.inputThree.name"
                             :inputId="cardDetails[2].cardInputInformation.inputThree.id"
-                            :inputType="cardDetails[2].cardInputInformation.inputThree.type" />
+                            :inputType="cardDetails[2].cardInputInformation.inputThree.type" 
+                            :Value="companyProfileInfo.region"/>
                     </CardInformationComponent>
                 </div>
             </div>
@@ -108,9 +122,14 @@ export default {
                 email: '',
                 mobile_number: '',
                 website: '',
+                linkIn: '',
+                industry: '',
                 register_number: '',
                 vat_number: '',
-                cert_file: ''
+                cert_file: '',
+                country: '',
+                address: '',
+                region: '',
             },
             cardDetails: [
                 {
@@ -135,7 +154,17 @@ export default {
                             id: 'company-website',
                             name: 'Company Website',
                             type: 'text',
-                        }
+                        },
+                        inputFive: {
+                            id: 'company-linkin',
+                            name: 'Company LinkIn',
+                            type: 'text',
+                        },
+                        inputSix: {
+                            id: 'industry-type',
+                            name: 'Industry',
+                            type: 'text',
+                        },
                     },
                 },
                 {
@@ -207,10 +236,17 @@ export default {
         this.companyProfileInfo.email = companyInfo?.email
         this.companyProfileInfo.mobile_number = companyInfo?.mobile_number
         this.companyProfileInfo.website = companyInfo?.website
+        this.companyProfileInfo.linkIn = companyInfo?.linkedin
+        this.companyProfileInfo.industry = companyInfo?.industry
+
         this.companyProfileInfo.register_number = companyInfo?.company_registration?.registration_number
         this.companyProfileInfo.vat_number = companyInfo?.company_registration?.vat_number
         this.companyProfileInfo.cert_file = companyInfo?.company_registration?.company_certificate
         this.companyProfileInfo.logo = companyInfo?.logo
+        
+        this.companyProfileInfo.country = companyInfo?.location?.country
+        this.companyProfileInfo.address = companyInfo?.location?.address
+        this.companyProfileInfo.region = companyInfo?.location?.region
 
     },
     methods: {
