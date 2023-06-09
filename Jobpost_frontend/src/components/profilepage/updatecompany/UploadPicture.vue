@@ -1,12 +1,16 @@
 <template>
     <div class="upload-picture">
-        {{ image }}
         <div class="company-logo">
             <img v-bind:src="imagePreview" alt="" class="display-image" id="display-image" @click="openUpload">
         </div>
 
         <form action="" class="image-field">
             <InputComponent type="file" id="image" placeHolder="image" name="image" accept="image/*" @change="updatePreview" :handleInput="handleInput"/>
+            
+            <div class="btnsec flex-center-row">
+                <button class="btn" @click="handleSave">Save</button>
+                <button class="btns" @click="handlecloseCard">Cancel</button>
+            </div>
         </form>
     </div>
 </template>
@@ -17,6 +21,11 @@
         components: {
              InputComponent
         },
+
+        props: [
+        'handlecloseCard',
+        'handleSave',
+    ],
 
         data() {
             return {
@@ -60,7 +69,7 @@
         justify-content: center;
         align-content: center;
         width: 60%;
-        height: 30dvh;
+        height: 40dvh;
         margin-top: 40px;
         row-gap: 20px;
         
@@ -79,6 +88,11 @@
 
     .image-field {
         margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 30px;
+        padding-top: 30px;
     }
 
     .company-logo img {
@@ -87,4 +101,33 @@
         object-fit: cover;
         border-radius: 50%;
     }
+
+    .btnsec {
+    /* position: absolute; */
+    column-gap: 20px;
+    bottom: 0;
+    /* background-color: aqua; */
+}
+
+.btnsec>* {
+    border: none;
+}
+
+.btn {
+    border-radius: 8px;
+    width: 140px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #88CC00;
+    color: #ffffff;
+}
+
+.btns {
+    border-radius: 8px;
+    width: 140px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #000000;
+    color: #ffffff;
+}
 </style>
