@@ -1,5 +1,5 @@
 <template>
-    <form action="" class="card-detail">
+    <form @submit.prevent="handleUpdate" class="card-detail">
         <div class="input-container">
 
             <EditInputComponent inputName="First Name" name="first_name" inputType="text" :value="userInfo.first_name"
@@ -19,10 +19,10 @@
             <EditInputComponent inputName="Contact" name="contact" inputType="tel" :value="userInfo.phone"
                 :handleChange="handleInput" />
         </div>
-        <div class="input-container flex-center-row double">
+        <!-- <div class="input-container flex-center-row double">
             <EditInputComponent inputName="LinkedIn URl" name="linkedIn_url" inputType="text" :handleChange="handleInput" />
             <EditInputComponent inputName="GitHub URL" name="git_url" inputType="text" :handleChange="handleInput" />
-        </div>
+        </div> -->
         <div class="input-container">
             <EditInputComponent inputName="Date of Birth" name="dob" inputType="date"
                 :value="userInfo.date_of_birth.split('T')[0]" :handleChange="handleInput" />
@@ -30,26 +30,39 @@
         <div class="input-container">
             <EditInputComponent inputType="file" name="resume_cv" inputName="Resume CV" :handleChange="handleInput" />
         </div>
-        <div class="input-container flex-center-row gender">
+        <div v-if="userInfo.gender == 'male'" class="input-container flex-center-row gender">
             <p>Gender :</p>
             <span>
-                <input type="radio" name="gender" id="male" :handleChange="handleInput">
+                <input type="radio" name="gender" checked id="male" :handleChange="handleInput">
                 <label for="male">Male</label>
             </span>
             <span>
-                <input type="radio" name="gender" id="female" :handleChange="handleInput">
+                <input type="radio" name="gender" :handleChange="handleInput">
+                <label for="female">Female</label>
+            </span>
+
+        </div>
+        <div v-if="userInfo.gender == 'female'" class="input-container flex-center-row gender">
+            <p>Gender :</p>
+            <span>
+                <input type="radio" name="gender" :handleChange="handleInput">
+                <label for="male">Male</label>
+            </span>
+            <span>
+                <input type="radio" name="gender" checked id="female" :handleChange="handleInput">
                 <label for="female">Female</label>
             </span>
 
         </div>
         <div class="btnsec flex-center-row">
-            <button class="btn" @click="handleSave">Save</button>
-            <button class="btns" @click="handlecloseCard">Cancel</button>
+            <button class="btn" type="submit">Save</button>
+            <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
     </form>
 </template>
 
 <script>
+
 import EditInputComponent from '../EditInputComponent.vue'
 export default {
     components: {
@@ -64,52 +77,45 @@ export default {
 
     data() {
         return {
-            // personalInfo: {
-            //     first_name: '',
-            //     middle_name: '',
-            //     last_name: '',
-            //     email: '',
-            //     contact: '',
-            //     linkedIn_url: '',
-            //     git_url: '',
-            //     dob: '',
-            //     resume_cv: '',
-            //     gender: '',
-            // }
+            personalInfo: {
+                first_name: '',
+                middle_name: '',
+                last_name: '',
+                email: '',
+                contact: '',
+                // linkedIn_url: '',
+                // git_url: '',
+                dob: '',
+                resume_cv: '',
+                gender: '',
+            }
         }
     },
     mounted() {
-        // this.personalInfo.first_name = this.userInfo?.first_name
-        // this.personalInfo.middle_name = this.userInfo?.middle_name
-        // this.personalInfo.last_name = this.userInfo?.last_name
-        // this.personalInfo.email = this.userInfo?.email
-        // this.personalInfo.phone_number = this.userInfo?.phone_number
-        // this.personalInfo.dob = this.userInfo?.dob
-        // this.personalInfo.gender = this.userInfo?.gender
-        // this.personalInfo.first_name=this.userInfo.first_name
-        // this.personalInfo.first_name=this.userInfo.first_name
-        // this.personalInfo.first_name=this.userInfo.first_name
-
-
+        console.log(this.userInfo)
     },
     methods: {
         handleUpdate() {
-            const userPersonalInfo = {
-                first_name: this.personalInfo.first_name,
-                middle_name: this.personalInfo.middle_name,
-                last_name: this.personalInfo.last_name,
-                email: this.personalInfo.email,
-                contact: this.personalInfo.contact,
-                linkedIn_url: this.personalInfo.linkedIn_url,
-                git_url: this.personalInfo.git_url,
-                dob: this.personalInfo.dob,
-                resume_cv: this.personalInfo.resume_cv,
-                gender: this.personalInfo.gender,
-            }
+            console.log(this.personalInfo);
+            // const userPersonalInfo = {
+            //     first_name: this.personalInfo.first_name,
+            //     middle_name: this.personalInfo.middle_name,
+            //     last_name: this.personalInfo.last_name,
+            //     email: this.personalInfo.email,
+            //     contact: this.personalInfo.contact,
+            //     // linkedIn_url: this.personalInfo.linkedIn_url,
+            //     // git_url: this.personalInfo.git_url,
+            //     dob: this.personalInfo.dob,
+            //     resume_cv: this.personalInfo.resume_cv,
+            //     gender: this.personalInfo.gender,
+            // }
+            // console.log(userPersonalInfo)
 
-            console.log(userPersonalInfo)
+        },
 
-        }
+        // handleSaveButton() {
+        //     alert("profile saved");
+        // }
 
 
 
@@ -155,8 +161,6 @@ export default {
             this.personalInfo.gender = data.inputValue
 
         }
-
-        console.log(this.personalInfo)
 
     }
 }
