@@ -33,11 +33,11 @@
         <div class="input-container flex-center-row gender">
             <p>Gender :</p>
             <span>
-                <input type="radio" name="gender" id="male" :handleChange="handleInput">
+                <input type="radio" name="gender" value="userInfo.male" id="male" :handleChange="handleInput">
                 <label for="male">Male</label>
             </span>
             <span>
-                <input type="radio" name="gender" id="female" :handleChange="handleInput">
+                <input type="radio" name="gender" value="userInfo.female" id="female" :handleChange="handleInput">
                 <label for="female">Female</label>
             </span>
 
