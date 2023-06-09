@@ -195,7 +195,7 @@ export default {
         this.Value.contact = userInfo?.phone
         this.Value.email = userInfo?.email
         this.Value.gender = userInfo?.gender
-        this.Value.dob = userInfo?.date_of_birth.split('T')[0]
+        this.Value.dob = userInfo?.date_of_birth?.split('T')[0]
         this.Value.photo = "/images/" + userInfo?.photo
         this.usersName = userInfo?.first_name
         // this.Value.skills = userInfo.skills
@@ -203,9 +203,9 @@ export default {
     },
     mounted(){
       const userDetails= JSON.parse(localStorage.getItem('userDetails'))
-      this.Value.skills=userDetails.Skills
-      this.Value.education=userDetails.education
-      this.Value.workexp=userDetails.experiences
+      this.Value.skills=userDetails?.Skills
+      this.Value.education=userDetails?.education
+      this.Value.workexp=userDetails?.experiences
       console.log('userDetails',userDetails);
     },
 

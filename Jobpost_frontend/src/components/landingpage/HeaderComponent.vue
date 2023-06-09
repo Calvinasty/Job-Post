@@ -20,7 +20,7 @@
         },
         data(){
             return{
-                headerMessage: '<h1>Find the <span class="color">jobs</span><br> that fit <span class="color">your</span> <br> career</h1>',
+                headerMessage: '<h1>Find the <span class="color">jobs</span><br> that fit <span class="color">your</span> career</h1>',
                 tagMessage: 'Connecting dream jobs with dream candidates.<br> Your one-stop job search solution.<br> Find your next career opportunity with ease.',
                 tagMessage_mobile: 'Connecting dream jobs with dream candidates...'
             }
