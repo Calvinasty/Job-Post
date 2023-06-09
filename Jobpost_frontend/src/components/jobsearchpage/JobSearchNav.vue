@@ -9,14 +9,14 @@
                 <input type="text" v-model="searchInput" v-on:change="() => handleSearch({ data: searchInput })"
                     placeholder="Search for job post,company,location">
             </div>
-            <div class="btn" @click="showProfile">
+            <div v-if="userExist" class="btn" @click="showProfile">
                 <span>{{ email }}</span>
-                <span  v-if="email !== ''">CK</span>
+                <span >CK</span>
             </div>
         </span>
-        <div class="btn mobile">
+        <div v-if="userExist" class="btn mobile">
             <span>{{ email }}</span>
-            <span v-if="email !== ''" >CK</span>
+            <span >CK</span>
         </div>
         <div v-if="show">
             <JobSearchButton />
@@ -37,15 +37,19 @@ export default {
     data(){
         return{
             show: false,
+            userExist:true
+          
         }
     },
 
     props: [
-        'handleSearch'
+        'handleSearch',
+        // 'userExist'
     ],
     computed: {
         ...mapState(useUserStore, ['user'])
     },
+  
     methods: {
         
         handleHome() {
@@ -54,9 +58,8 @@ export default {
 
         showProfile(){
             this.show = !this.show
-        }
     },
-
+    }
 
 
 }

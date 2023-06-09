@@ -38,12 +38,6 @@ export default {
                     console.log(res);          
                 })
                 .then(() => this.handleSearch())
-            // this.handleSearch()`
-
-
-
-            
-
 
         },
         handleSearch(data) {
