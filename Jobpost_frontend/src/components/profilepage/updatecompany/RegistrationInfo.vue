@@ -1,6 +1,5 @@
 <template>
     <div class="register-info">
-
         <form action="" class="register-field flex-center">
             <InputComponent id="registrationNumber" type="text" placeHolder="Registration Number" name="registrationNumber"
                 :handleInput="handleInput" />

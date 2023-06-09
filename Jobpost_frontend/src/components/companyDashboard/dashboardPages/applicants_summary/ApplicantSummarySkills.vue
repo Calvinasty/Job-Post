@@ -29,30 +29,27 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    font-size: 14px;
 
+}
+div{
+    font-size: 12px;
 }
 .skill{
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   color: rgba(120, 114, 114, 1);
-  /* background-color: blue;  */
 
 
 }
 .skill li{
     list-style: none;
     display: flex;
-    /* background: #000; */
     text-align: left;   
     justify-content: flex-start; 
     align-items: flex-start;
     gap: 10px;
     margin-top: 10px;
-    
-    /* background-color: blueviolet; */
-    /* width: 100%; */
 }
 .skill span{
     color: rgba(136, 204, 0, 1);
