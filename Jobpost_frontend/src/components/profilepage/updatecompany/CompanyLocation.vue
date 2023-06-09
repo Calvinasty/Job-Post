@@ -1,10 +1,12 @@
 <template>
     <div class="register-info">
         <form action="" class="register-field flex-center">
-            {{ country }}
-            <select class="form-select" id="country" name="country" v-model="country" :handleInput="handleInput">
-                <option v-for="(country,index) in countries" :key="index" :value="country">{{ country }}</option>
-            </select>
+            <label for="" class="country-label"> Country
+                <select class="form-select" id="country" name="country" v-model="country" :handleInput="handleInput">
+                    <option v-for="(country,index) in countries" :key="index" :value="country">{{ country }}</option>
+                </select>
+            </label>
+            
             <InputComponent id="address" type="text" placeHolder="Address" name="address" :handleInput="handleInput"/>
             <InputComponent id="region" type="text" placeHolder="Region" name="region" :handleInput="handleInput"/>
             <div class="btnsec flex-center-row">
@@ -79,10 +81,17 @@
     bottom: 0;
     /* background-color: aqua; */
 }
+    .country-label {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        color: #666;
+        font-size: 14px;
+    }
 
-.btnsec>* {
-    border: none;
-}
+    .btnsec>* {
+        border: none;
+    }
 
     .btn {
     border-radius: 8px;

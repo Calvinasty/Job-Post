@@ -8,7 +8,7 @@
                 <div class="profile">
                     <div class="profile-card">
                         <!-- <img class="f-editicon" src="images/edit_icon.svg" alt="editicon" /> -->
-                        <img src="/images/logo.png" alt="pic">
+                        <img :src="companyProfileInfo.logo" alt="pic">
                         <h3>{{ companyName }}</h3>
                         <!-- <span>{{ userOccupation }}</span> -->
                     </div>
@@ -40,20 +40,24 @@
 
                         <InputComponent :fullName="cardDetails[0].cardInputInformation.inputFour.name"
                             :inputId="cardDetails[0].cardInputInformation.inputFour.id"
-                            :inputType="cardDetails[0].cardInputInformation.inputFour.type" />
+                            :inputType="cardDetails[0].cardInputInformation.inputFour.type"
+                            :Value="companyProfileInfo.website" />
                     </CardInformationComponent>
 
                     <CardInformationComponent :showPopup="showPopup" index="2" :detailsTitle="cardDetails[1].cardTitle"
                         showpencil="showpencil">
                         <InputComponent :fullName="cardDetails[1].cardInputInformation.inputOne.name"
                             :inputId="cardDetails[1].cardInputInformation.inputOne.id"
-                            :inputType="cardDetails[1].cardInputInformation.inputOne.type" />
+                            :inputType="cardDetails[1].cardInputInformation.inputOne.type"
+                            :Value="companyProfileInfo.register_number" />
                         <InputComponent :fullName="cardDetails[1].cardInputInformation.inputTwo.name"
                             :inputId="cardDetails[1].cardInputInformation.inputTwo.id"
-                            :inputType="cardDetails[1].cardInputInformation.inputTwo.type" />
+                            :inputType="cardDetails[1].cardInputInformation.inputTwo.type" 
+                            :Value="companyProfileInfo.vat_number"/>
                         <InputComponent :fullName="cardDetails[1].cardInputInformation.inputThree.name"
                             :inputId="cardDetails[1].cardInputInformation.inputThree.id"
-                            :inputType="cardDetails[1].cardInputInformation.inputThree.type" />
+                            :inputType="cardDetails[1].cardInputInformation.inputThree.type" 
+                            :Value="companyProfileInfo.cert_file"/>
                     </CardInformationComponent>
 
                     <CardInformationComponent :showPopup="showPopup" index="3" :detailsTitle="cardDetails[2].cardTitle"
@@ -76,7 +80,7 @@
                 <button class="btns" @click="handlecloseCard">Cancel</button>
             </div> -->
         </section>
-        <UpdateProfileComponent v-if="showModal == true" @close="showPopup()" :index="index" :handlecloseCard="showPopup"
+        <UpdateProfileComponent v-if="showModal == true" :companyInfo="company" @close="showPopup()" :index="index" :handlecloseCard="showPopup"
             type="company" />
     </div>
 </template>
@@ -98,7 +102,16 @@ export default {
             numberOfPostedJobs: 0,
             index: 0,
             showModal: false,
-            companyProfileInfo: {},
+            companyProfileInfo: {
+                logo: '/images/logo.png',
+                company_name: '',
+                email: '',
+                mobile_number: '',
+                website: '',
+                register_number: '',
+                vat_number: '',
+                cert_file: ''
+            },
             cardDetails: [
                 {
                     cardTitle: 'Company Profile',
@@ -139,9 +152,9 @@ export default {
                             type: 'tel',
                         },
                         inputThree: {
-                            id: 'date',
-                            name: 'Date',
-                            type: 'date',
+                            id: 'cert_file',
+                            name: 'cert_file',
+                            type: 'text',
                         }
                     },
 
@@ -183,30 +196,29 @@ export default {
         UpdateProfileComponent,
 
     },
-    beforeMount() {
-        this.getCompanyInfo()
-    },
 
     computed: {
         ...mapState(useCompanyStore, ['company'])
     },
     mounted() {
-        this.companyName = this.company.company_name
-        // this.numberOfPostedJobs = this.company.
+        const companyInfo = this.company
+        this.companyName = companyInfo?.company_name
+        this.companyProfileInfo.company_name = companyInfo?.company_name
+        this.companyProfileInfo.email = companyInfo?.email
+        this.companyProfileInfo.mobile_number = companyInfo?.mobile_number
+        this.companyProfileInfo.website = companyInfo?.website
+        this.companyProfileInfo.register_number = companyInfo?.company_registration?.registration_number
+        this.companyProfileInfo.vat_number = companyInfo?.company_registration?.vat_number
+        this.companyProfileInfo.cert_file = companyInfo?.company_registration?.company_certificate
+        this.companyProfileInfo.logo = companyInfo?.logo
+
     },
     methods: {
         showPopup(index) {
             this.showModal = !this.showModal
             this.index = index
         },
-        getCompanyInfo() {
-            const companyToken = localStorage.getItem('companyToken')
-            if (companyToken) {
-                this.companyProfileInfo = localStorage.getItem('companyState')
-
-
-            }
-        }
+        
     },
 
 
