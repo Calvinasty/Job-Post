@@ -22,7 +22,7 @@ export default {
     props: [
         'type',
         'handlecloseCard',
-        'handleSave',
+        // 'handleSave',
         'index'
     ],
     data() {

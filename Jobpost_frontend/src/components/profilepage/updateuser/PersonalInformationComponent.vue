@@ -2,21 +2,21 @@
     <form @submit.prevent="handleUpdate" class="card-detail">
         <div class="input-container">
 
-            <EditInputComponent inputName="First Name" name="first_name" inputType="text" :value="userInfo.first_name"
+            <EditInputComponent inputName="First Name" name="first_name" inputType="text" :value="personalInfo.first_name"
                 :handleChange="handleInput" />
         </div>
         <div class="input-container flex-center-row double">
-            <EditInputComponent inputName="Middle Name" name="middle_name" inputType="text" :value="userInfo.middle_name"
-                :handleChange="handleInput" />
-            <EditInputComponent inputName="Last Name" name="last_name" inputType="text" :value="userInfo.last_name"
-                :handleChange="handleInput" />
-        </div>
-        <div class="input-container">
-            <EditInputComponent inputName="Email" name="email" inputType="email" :value="userInfo.email"
+            <EditInputComponent inputName="Middle Name" name="middle_name" inputType="text"
+                :value="personalInfo.middle_name" :handleChange="handleInput" />
+            <EditInputComponent inputName="Last Name" name="last_name" inputType="text" :value="personalInfo.last_name"
                 :handleChange="handleInput" />
         </div>
         <div class="input-container">
-            <EditInputComponent inputName="Contact" name="contact" inputType="tel" :value="userInfo.phone"
+            <EditInputComponent inputName="Email" name="email" inputType="email" :value="personalInfo.email"
+                :handleChange="handleInput" />
+        </div>
+        <div class="input-container">
+            <EditInputComponent inputName="Contact" name="contact" inputType="tel" :value="personalInfo.phone"
                 :handleChange="handleInput" />
         </div>
         <!-- <div class="input-container flex-center-row double">
@@ -25,24 +25,25 @@
         </div> -->
         <div class="input-container">
             <EditInputComponent inputName="Date of Birth" name="dob" inputType="date"
-                :value="userInfo.date_of_birth.split('T')[0]" :handleChange="handleInput" />
+                :value="personalInfo.date_of_birth.split('T')[0]" :handleChange="handleInput" />
         </div>
-        <div class="input-container">
-            <EditInputComponent inputType="file" name="resume_cv" inputName="Resume CV" :handleChange="handleInput" />
-        </div>
-        <div v-if="userInfo.gender == 'male'" class="input-container flex-center-row gender">
+        <!-- <div class="input-container">
+            <EditInputComponent inputType="file" accept=".pdf,.docx" name="resume_cv" inputName="Resume CV"
+                :handleChange="handleInput" />
+        </div> -->
+        <div class="input-container flex-center-row gender">
             <p>Gender :</p>
             <span>
-                <input type="radio" name="gender" checked id="male" :handleChange="handleInput">
+                <input type="radio" name="gender" value="male" v-model="personalInfo.gender" id="male">
                 <label for="male">Male</label>
             </span>
             <span>
-                <input type="radio" name="gender" :handleChange="handleInput">
+                <input type="radio" name="gender" value="female" v-model="personalInfo.gender">
                 <label for="female">Female</label>
             </span>
 
         </div>
-        <div v-if="userInfo.gender == 'female'" class="input-container flex-center-row gender">
+        <!-- <div v-if="personalInfo.gender == 'female'" class="input-container flex-center-row gender">
             <p>Gender :</p>
             <span>
                 <input type="radio" name="gender" :handleChange="handleInput">
@@ -53,15 +54,16 @@
                 <label for="female">Female</label>
             </span>
 
-        </div>
+        </div> -->
         <div class="btnsec flex-center-row">
-            <button class="btn" type="submit">Save</button>
+            <button class="btn" type="submit" @click.prevent="handleUpdate">Save</button>
             <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
     </form>
 </template>
 
 <script>
+import axios from 'axios'
 
 import EditInputComponent from '../EditInputComponent.vue'
 export default {
@@ -71,7 +73,7 @@ export default {
 
     props: [
         'handlecloseCard',
-        'handleSave',
+        // 'handleSave',
         'userInfo'
     ],
 
@@ -82,87 +84,89 @@ export default {
                 middle_name: '',
                 last_name: '',
                 email: '',
-                contact: '',
+                phone: '',
                 // linkedIn_url: '',
                 // git_url: '',
-                dob: '',
-                resume_cv: '',
+                date_of_birth: '',
+                // resume_cv: '',
                 gender: '',
             }
         }
     },
     mounted() {
-        console.log(this.userInfo)
+        this.personalInfo.first_name = this.userInfo.first_name
+        this.personalInfo.middle_name = this.userInfo.middle_name
+        this.personalInfo.last_name = this.userInfo.last_name
+        this.personalInfo.email = this.userInfo.email
+        this.personalInfo.phone = this.userInfo.phone
+        // linke this.personalInfo.linkedIn_url,
+        //  this.personalInfo.git_url,
+        this.personalInfo.date_of_birth = this.userInfo.date_of_birth
+        // this.personalInfo.resume_cv = this.userInfo.resume_cv
+        this.personalInfo.gender = this.userInfo.gender
     },
     methods: {
         handleUpdate() {
             console.log(this.personalInfo);
-            // const userPersonalInfo = {
-            //     first_name: this.personalInfo.first_name,
-            //     middle_name: this.personalInfo.middle_name,
-            //     last_name: this.personalInfo.last_name,
-            //     email: this.personalInfo.email,
-            //     contact: this.personalInfo.contact,
-            //     // linkedIn_url: this.personalInfo.linkedIn_url,
-            //     // git_url: this.personalInfo.git_url,
-            //     dob: this.personalInfo.dob,
-            //     resume_cv: this.personalInfo.resume_cv,
-            //     gender: this.personalInfo.gender,
-            // }
-            // console.log(userPersonalInfo)
+            const token = JSON.parse(localStorage.getItem('userToken'))
+            const updatedUserInfo = new FormData()
+            updatedUserInfo.append('first_name', this.personalInfo.first_name)
+            updatedUserInfo.append('middle_name', this.personalInfo.middle_name)
+            updatedUserInfo.append('last_name', this.personalInfo.last_name)
+            updatedUserInfo.append('email', this.personalInfo.email)
+            updatedUserInfo.append('phone', this.personalInfo.phone)
+            updatedUserInfo.append('date_of_birth', this.personalInfo.date_of_birth)
+            updatedUserInfo.append('gender', this.personalInfo.gender)
 
+            axios
+                .put('http://192.168.1.88:5000/jobSeeker/updateJobSeeker', updatedUserInfo, { headers: { token } })
+                .then((res) => {
+                    console.log(res?.data)
+                })
+                .catch((err) => {
+
+                    console.log(err)
+                })
+
+
+
+            // this.handleInput()
         },
+        handleInput(data) {
+            // console.log(this.personalInfo.gender);
+            if (data?.inputName == 'first_name') {
+                this.personalInfo.first_name = data.inputValue
+            }
+            if (data?.inputName == 'middle_name') {
+                this.personalInfo.middle_name = data?.inputValue
+            }
+            if (data?.inputName == 'last_name') {
+                this.personalInfo.last_name = data?.inputValue
+            }
+            if (data?.inputName == 'email') {
+                this.personalInfo.email = data?.inputValue
+            }
+            if (data?.inputName == 'contact') {
+                this.personalInfo.phone = data?.inputValue
+            }
+            if (data?.inputName == 'linkedIn_url') {
+                this.personalInfo.linkedIn_url = data?.inputValue
+            }
+            if (data?.inputName == 'git_url') {
+                this.personalInfo.git_url = data?.inputValue
+            }
+            if (data?.inputName == 'dob') {
+                this.personalInfo.dob = data?.inputValue
+            }
+            // if (data?.inputName == 'resume_cv') {
+            //     this.personalInfo.resume_cv = data?.inputValue
+            // }
+            // if (data?.inputName == 'gender') {
+            //     this.personalInfo.gender = data?.inputValue
+            // }
 
-        // handleSaveButton() {
-        //     alert("profile saved");
-        // }
-
-
-
+        }
     },
-    handleInput(data) {
-        if (data.inputName == 'first_name') {
-            this.personalInfo.first_name = data.inputValue
-
-        }
-        if (data.inputName == 'middle_name') {
-            this.personalInfo.middle_name = data.inputValue
-
-        }
-        if (data.inputName == 'last_name') {
-            this.personalInfo.last_name = data.inputValue
-
-        }
-        if (data.inputName == 'email') {
-            this.personalInfo.email = data.inputValue
-
-        }
-        if (data.inputName == 'contact') {
-            this.personalInfo.contact = data.inputValue
-
-        }
-        if (data.inputName == 'linkedIn_url') {
-            this.personalInfo.linkedIn_url = data.inputValue
-
-        }
-        if (data.inputName == 'git_url') {
-            this.personalInfo.git_url = data.inputValue
-
-        }
-        if (data.inputName == 'dob') {
-            this.personalInfo.dob = data.inputValue
-
-        }
-        if (data.inputName == 'resume_cv') {
-            this.personalInfo.resume_cv = data.inputValue
-
-        }
-        if (data.inputName == 'gender') {
-            this.personalInfo.gender = data.inputValue
-
-        }
-
-    }
 }
 
 </script>

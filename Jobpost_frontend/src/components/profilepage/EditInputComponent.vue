@@ -1,7 +1,7 @@
 <template>
     <div class="input-field">
-        <input :placeholder="inputName" :name="name" :value="value"
-            v-on:change="handleChange({ inputValue: value, inputName: name })" :type="inputType" :id="inputId"
+        <input :placeholder="value" :name="name" v-model="updateValue"
+            v-on:change="handleChange({ inputValue: updateValue, inputName: name })" :type="inputType" :id="inputId"
             :accept="accept" :on-focus="this.type = 'date'">
     </div>
 </template>
@@ -10,8 +10,12 @@
 export default {
     data() {
         return {
-
+            updateValue: '',
         }
+    },
+
+    beforeMount() {
+        this.updateValue = this.value
     },
 
     props: [
@@ -23,7 +27,10 @@ export default {
         "value",
         "handleChange",
 
-    ]
+    ],
+    watch: {
+
+    }
 
 }
 </script>
@@ -44,6 +51,11 @@ export default {
     border: 1px solid #7FBF4C;
     border-radius: 8px;
     width: 100%;
+}
+
+input::placeholder {
+    color: Black;
+
 }
 </style>
 
