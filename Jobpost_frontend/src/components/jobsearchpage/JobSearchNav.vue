@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="logo">
-            <img src="/images/logo.png" alt="logo" @click="handleLogout">
+            <img src="/images/logo.png" alt="logo" @click="handleHome">
         </div>
         <span>
             <div class="search-bar">
@@ -9,31 +9,51 @@
                 <input type="text" v-model="searchInput" v-on:change="() => handleSearch({ data: searchInput })"
                     placeholder="Search for job post,company,location">
             </div>
-            <div class="btn">
+            <div class="btn" @click="showProfile">
                 <span>{{ email }}</span>
-                <span v-if="email !== ''">CK</span>
+                <span  v-if="email !== ''">CK</span>
             </div>
         </span>
         <div class="btn mobile">
             <span>{{ email }}</span>
-            <span v-if="email !== ''">CK</span>
+            <span v-if="email !== ''" >CK</span>
         </div>
+        <div v-if="show">
+            <JobSearchButton />
+        </div>
+        
     </div>
 </template>
 
 <script>
 import { mapState } from 'pinia'
 import { useUserStore } from '../../stores/users';
+import JobSearchButton from './JobSearchButton.vue';
 export default {
+    components: {
+        JobSearchButton
+    },
+
+    data(){
+        return{
+            show: false,
+        }
+    },
+
     props: [
         'handleSearch'
     ],
     computed: {
-        ...mapState(useUserStore, ['email'])
+        ...mapState(useUserStore, ['user'])
     },
     methods: {
-        handleLogout() {
-            this.$router.push('/')
+        
+        handleHome() {
+            this.$router.push('/')            
+        },
+
+        showProfile(){
+            this.show = !this.show
         }
     },
 
@@ -118,6 +138,7 @@ export default {
     background-color: #88CC00;
     margin-left: 50px;
     justify-content: center;
+    cursor: pointer;
 
 }
 

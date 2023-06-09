@@ -39,7 +39,7 @@
 div{
     width: 100%;
     text-align: left;
-    font-size: 14px;
+    font-size: 12px;
 }
 h3{
     color: rgba(86, 86, 86, 1);

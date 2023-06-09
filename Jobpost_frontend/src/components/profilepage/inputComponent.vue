@@ -36,14 +36,14 @@ export default {
 
 .input-field label {
     font-weight: 500;
-    font-size: 15px;
+    font-size: 10px;
     color: #898989;
 
 }
 
 .input-field input {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 15px;
     color: #000000;
     border: none;
     outline: none;

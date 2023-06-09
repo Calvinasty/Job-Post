@@ -19,6 +19,9 @@ export default {
             
         }
     },
+    mounted(){
+        console.log(this.allJobs.contact);
+    }
     
 };
 </script>

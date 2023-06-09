@@ -1,29 +1,30 @@
 <template>
     <div class="company-info">
         <form action="" class="company-form">
-            <InputComponent id="companyName" type="text" placeHolder="Company name" name="companyName" :handleInput="handleInput"/>
-            <InputComponent id="phoneNumber" type="tel" placeHolder="Phone Number" name="phoneNumber" :handleInput="handleInput"/>
-            <InputComponent id="companySite" type="url" placeHolder="Company Site" name="companySite" :handleInput="handleInput"/>
-            <InputComponent id="linkin" type="url" placeHolder="LinkIn Link" name="linkin" :handleInput="handleInput"/>
-            <select class="select" name="industry" id="industry" v-model="industry" :handleInput="handleInput" >
-                <option value="default">Select Industry</option>
-                <option value="agriculture">Agriculture</option>
-                <option value="chemical">Chemical industries </option>
-                <option value="commerce">Commerce</option>
-                <option value="Construction">Construction</option>
-                <option value="education">Education</option>
-                <option value="financial">Financial services</option>
-                <option value="food">Food</option>
-                <option value="forestry">Forestry</option>
-                <option value="health">Health services</option>
-                <option value="hotels">Hotels</option>
-                <option value="mining">Mining</option>
-                <option value="mechanical">Mechanical and electrical engineering</option>
-                <option value="technology">Technology</option>
-            </select>
-
+            <InputComponent id="companyName" type="text" placeHolder="Company name" name="companyName" :handleInput="handleInput" :Value="companyName"/>
+            <InputComponent id="phoneNumber" type="tel" placeHolder="Phone Number" name="phoneNumber" :handleInput="handleInput" :Value="companyNumber"/>
+            <InputComponent id="companySite" type="url" placeHolder="Company Site" name="companySite" :handleInput="handleInput" :Value="companySite"/>
+            <InputComponent id="linkin" type="url" placeHolder="LinkIn Link" name="linkin" :handleInput="handleInput" :Value="linkIn"/>
+            <label for="" class="industry-label">Industry
+                <select class="select" name="industry" id="industry" v-model="industry" :handleInput="handleInput" :Value="industry">
+                    <option value="agriculture">Agriculture</option>
+                    <option value="chemical">Chemical industries </option>
+                    <option value="commerce">Commerce</option>
+                    <option value="Construction">Construction</option>
+                    <option value="education">Education</option>
+                    <option value="financial">Financial services</option>
+                    <option value="food">Food</option>
+                    <option value="forestry">Forestry</option>
+                    <option value="health">Health services</option>
+                    <option value="hotels">Hotels</option>
+                    <option value="mining">Mining</option>
+                    <option value="mechanical">Mechanical and electrical engineering</option>
+                    <option value="technology">Technology</option>
+                </select>
+            </label>
+            
             <div class="btnsec flex-center-row">
-                <button class="btn" @click="handleSave">Save</button>
+                <button class="btn" @click.prevent="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
         </form>
@@ -40,24 +41,37 @@
 
         props: [
         'handlecloseCard',
-        'handleSave',
+        // 'handleSave',
+        'companyInfo'
     ],
         data() {
             return {
                 companyName:'',
                 companyNumber: '',
                 companySite:'',
+                linkIn: '',
                 industry: '',
 
             }
         },
         methods:{
             handleInput(data){
+                console.log(data);
                 if(data.inputName == 'companyName') { this.companyName = data.inputValue }
                 if(data.inputName == 'companyNumber') { this.companyNumber = data.inputValue }
                 if(data.inputName == 'companySite') { this.companySite = data.inputValue }
                 if(data.inputName == 'industry') { this.industry = data.inputValue }
+            }, 
+
+            handleSave(){
+                console.log(this.companyName);
             }
+        },
+        mounted() {
+            this.companyName = this.companyInfo.company_name
+            this.companyNumber = this.companyInfo.mobile_number
+            this.companySite = this.companyInfo.website
+            
         }
     }
 </script>
@@ -89,6 +103,14 @@
     gap: 20px;
     bottom: 0;
     /* background-color: aqua; */
+}
+
+.industry-label {
+    display: flex;
+    flex-direction: column;
+    color: #666;
+    row-gap: 10px;
+    font-size: 14px;
 }
 
 .btnsec>* {

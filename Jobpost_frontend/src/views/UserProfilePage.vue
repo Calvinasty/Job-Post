@@ -131,8 +131,7 @@
 
         <FooterComponent />
         <UpdateProfileComponentVue :userInfo="user" v-if="showModal == true" :index="index" type="user"
-            :handlecloseCard="showPopup" :handleSave="handleSaveButton" 
-        />
+            :handlecloseCard="showPopup" :handleSave="handleSaveButton" />
     </div>
 
     <!-- <EditPopups v-if="showModal" /> -->
@@ -149,6 +148,7 @@ import CardInformationComponent from '../components/profilepage/CardInformationC
 // import EditPopups from '../components/profilepage/EditPopups.vue';
 import InputComponent from '../components/profilepage/inputComponent.vue';
 import { userprofileData } from '../data';
+import axios from 'axios';
 export default {
     components: {
         FooterComponent,
@@ -187,8 +187,13 @@ export default {
     computed: {
         ...mapState(useUserStore, ['user'])
     },
+
+    beforeMount() {
+
+    },
+
     mounted() {
-        console.log(this.user);
+        // console.log(this.user);
         const userInfo = this.user
         this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
         this.Value.contact = userInfo?.phone
@@ -199,20 +204,30 @@ export default {
         this.usersName = userInfo?.first_name
         // this.Value.skills = userInfo.skills
 
+        this.getAllUserInfo()
+
     },
 
     methods: {
         showPopup(index) {
             this.showModal = !this.showModal
             this.index = index
-
-
-
         },
 
-        handleSaveButton() {
-            alert("profile saved");
+        getAllUserInfo() {
+            const token = JSON.parse(localStorage.getItem('userToken'))
+            if (token) {
+
+                axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
+                    .then((res) => {
+                        console.log(res.data);
+                    })
+                    .catch((err) => console.log(err))
+            }
+
+
         }
+
 
 
     }

@@ -3,14 +3,15 @@
         <component v-show="type == 'user'" :is="componentId" :userInfo="userInfo" :handlecloseCard="handlecloseCard"
             :handleSave="handleSave">
         </component>
-        <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :is="componentId2"></component>
+        <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :companyInfo="companyInfo" :is="componentId2"></component>
     </EditProfileLayout>
 </template>
 
 <script>
-import { mapState } from "pinia";
-import { useUserProfileStore } from '../../stores/userprofile'
+import {mapState} from 'pinia'
+import { useUserProfileStore } from '../../stores/userprofile';
 import EditProfileLayout from './EditProfileLayout.vue'
+// user components
 import UploadPicture from './updateuser/UploadComponent.vue';
 import PersonalInfo from './updateuser/PersonalInformationComponent.vue';
 import EducationHistory from './updateuser/EducationHistoryComponent.vue';
@@ -21,12 +22,12 @@ import CompanyInformation from './updatecompany/CompanyInformation.vue'
 import RegistrationInfo from './updatecompany/RegistrationInfo.vue'
 import UploadCompanyPicture from './updatecompany/UploadPicture.vue'
 import CompanyLocation from "./updatecompany/CompanyLocation.vue";
-import { useUserStore } from '../../stores/users';
+
 
 
 export default {
 
-    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo', 'index'],
+    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo', 'index', 'companyInfo'],
 
 
     components: {
@@ -61,16 +62,13 @@ export default {
 
         }
     },
-
+    computed: {
+        ...mapState(useUserProfileStore, ['componentId', 'componentId2'])
+    },
     mounted() {
 
     },
 
-
-    computed: {
-        ...mapState(useUserProfileStore, ['componentId', 'componentId2']),
-        ...mapState(useUserStore, ['user'])
-    },
 }
 </script> 
 
