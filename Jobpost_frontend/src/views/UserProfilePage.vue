@@ -54,8 +54,8 @@
                         :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
                         <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="Value.education[0]" />
-                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputTwo.name"
+                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="Value.education[0]?.field_of_study" />
+                        <!-- <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputTwo.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputTwo.type"
                             :inputId="inputCardDetails[1].cardInputInformation.inputTwo.id" :Value="Value.education[1]" />
                         <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputThree.name"
@@ -63,15 +63,15 @@
                             :inputId="inputCardDetails[1].cardInputInformation.inputThree.id" :Value="Value.education[2]" />
                         <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputFour.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputFour.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputFour.id" :Value="Value.education[3]" />
+                            :inputId="inputCardDetails[1].cardInputInformation.inputFour.id" :Value="Value.education[3]" /> -->
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="3"
                         :detailsTitle="inputCardDetails[2].cardTitle" :showplus="true">
                         <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="Value.workexp[0]" />
-                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="Value.workexp[0]?.company_name" />
+                        <!-- <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
                             :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
                             :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[1]" />
                         <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
@@ -79,7 +79,7 @@
                             :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[2]" />
                         <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
                             :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
-                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[3]" />
+                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[3]" /> -->
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
@@ -87,16 +87,16 @@
 
                         <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[0]" />
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[0]?.skill_name" />
                         <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[1]" />
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[1]?.skill_name" />
+                        <!-- <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[2]?.skill_name" />
                         <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[2]" />
-                        <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
-                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[3]" />
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[3]?.skill_name" /> -->
 
                         <!-- <div class="select-field">
                                 <label for="skills">Skills</label>
@@ -176,9 +176,9 @@ export default {
                 dob: '',
                 gender: '',
                 photo: '',
-                skills: ['Vue', 'Node', 'Angular', 'React'],
-                workexp: ['CaL', 'UBA', 'OLAM', 'MBA'],
-                education: ['Legon', 'Tech', 'UDS', 'UPSA'],
+                skills: [],
+                workexp: [],
+                education: [],
             },
 
             inputCardDetails: userprofileData
@@ -187,13 +187,9 @@ export default {
     computed: {
         ...mapState(useUserStore, ['user'])
     },
-
     beforeMount() {
-
-    },
-
-    mounted() {
         // console.log(this.user);
+        
         const userInfo = this.user
         this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
         this.Value.contact = userInfo?.phone
@@ -203,9 +199,14 @@ export default {
         this.Value.photo = "/images/" + userInfo?.photo
         this.usersName = userInfo?.first_name
         // this.Value.skills = userInfo.skills
-
         this.getAllUserInfo()
-
+    },
+    mounted(){
+      const userDetails= JSON.parse(localStorage.getItem('userDetails'))
+      this.Value.skills=userDetails.Skills
+      this.Value.education=userDetails.education
+      this.Value.workexp=userDetails.experiences
+      console.log('userDetails',userDetails);
     },
 
     methods: {
@@ -220,7 +221,8 @@ export default {
 
                 axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
                     .then((res) => {
-                        console.log(res.data);
+                        localStorage.setItem("userDetails",JSON.stringify(res.data[0]))
+                        // console.log(res.data[0]);
                     })
                     .catch((err) => console.log(err))
             }

@@ -61,7 +61,7 @@ const userprofileData = [
         cardInputInformation: {
             inputOne: {
                 id: "level-of-study",
-                name: "Add Education",
+                name: "Education",
                 type: "text",
             },
             inputTwo: {
@@ -88,7 +88,7 @@ const userprofileData = [
         cardInputInformation: {
             inputOne: {
                 id: 'years-of-experience',
-                name: 'Add Experience',
+                name: 'Experience',
                 type: 'text',
 
 
@@ -108,7 +108,7 @@ const userprofileData = [
 
             inputOne: {
                 id: 'years-of-experience',
-                name: 'Add Skill/Interest',
+                name: 'Skill/Interest',
                 type: 'text',
     
     
