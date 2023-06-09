@@ -26,7 +26,8 @@
                 <div class="profile-details">
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="1"
                         :detailsTitle="inputCardDetails[0].cardTitle"
-                        :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true" :showpencil="true">
+                        :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true"
+                        showpencil="showpencil">
 
 
                         <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
@@ -52,19 +53,10 @@
 
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="2"
                         :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
-                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
+                        <!-- <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id"
-                            :Value="Value.education[0]?.field_of_study" />
-                        <!-- <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputTwo.name"
-                            :inputType="inputCardDetails[1].cardInputInformation.inputTwo.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputTwo.id" :Value="Value.education[1]" />
-                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputThree.name"
-                            :inputType="inputCardDetails[1].cardInputInformation.inputThree.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputThree.id" :Value="Value.education[2]" />
-                        <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputFour.name"
-                            :inputType="inputCardDetails[1].cardInputInformation.inputFour.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputFour.id" :Value="Value.education[3]" /> -->
+                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="Value.education[0]?.field_of_study" /> -->
+
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="3"
@@ -73,15 +65,6 @@
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[2].cardInputInformation.inputOne.id"
                             :Value="Value.workexp[0]?.company_name" />
-                        <!-- <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
-                            :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
-                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[1]" />
-                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
-                            :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
-                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[2]" />
-                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
-                            :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
-                            :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[3]" /> -->
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
@@ -95,12 +78,6 @@
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[3].cardInputInformation.inputOne.id"
                             :Value="Value.skills[1]?.skill_name" />
-                        <!-- <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
-                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[2]?.skill_name" />
-                        <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
-                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[3]?.skill_name" /> -->
 
                     </CardInformationComponent>
                 </div>
@@ -172,24 +149,28 @@ export default {
     },
     beforeMount() {
         // console.log(this.user);
-
-        const userInfo = this.user
-        this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
-        this.Value.contact = userInfo?.phone
-        this.Value.email = userInfo?.email
-        this.Value.gender = userInfo?.gender
-        this.Value.dob = userInfo?.date_of_birth?.split('T')[0]
-        this.Value.photo = "/images/" + userInfo?.photo
-        this.usersName = userInfo?.first_name
-        // this.Value.skills = userInfo.skills
-        this.getAllUserInfo()
+        if (this.user) {
+            const userInfo = this.user
+            this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
+            this.Value.contact = userInfo?.phone
+            this.Value.email = userInfo?.email
+            this.Value.gender = userInfo?.gender
+            this.Value.dob = userInfo?.date_of_birth?.split('T')[0]
+            this.Value.photo = "/images/" + userInfo?.photo
+            this.usersName = userInfo?.first_name
+            // this.Value.skills = userInfo.skills
+            this.getAllUserInfo()
+        }
     },
     mounted() {
         const userDetails = JSON.parse(localStorage.getItem('userDetails'))
-        this.Value.skills = userDetails?.Skills
-        this.Value.education = userDetails?.education
-        this.Value.workexp = userDetails?.experiences
-        console.log('userDetails', userDetails);
+
+        if (userDetails) {
+            this.Value.skills = userDetails?.Skills
+            this.Value.education = userDetails?.education
+            this.Value.workexp = userDetails?.experiences
+            console.log('userDetails', userDetails);
+        }
     },
 
     methods: {
@@ -480,5 +461,4 @@ export default {
 
     }
 
-}
-</style>
+}</style>

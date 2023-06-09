@@ -25,7 +25,7 @@
         </div> -->
         <div class="input-container">
             <EditInputComponent inputName="Date of Birth" name="dob" inputType="date"
-                :value="personalInfo.date_of_birth.split('T')[0]" :handleChange="handleInput" />
+                :value="personalInfo.date_of_birth?.split('T')[0]" :handleChange="handleInput" />
         </div>
         <!-- <div class="input-container">
             <EditInputComponent inputType="file" accept=".pdf,.docx" name="resume_cv" inputName="Resume CV"
