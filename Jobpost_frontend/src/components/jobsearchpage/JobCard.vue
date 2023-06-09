@@ -2,7 +2,7 @@
     <div class="job-card flex-center" v-on:click="()=>handleApplyJob(jobInfomation.id)">
         <header class="flex-center-row" >
             <span class="title flex-center-row">
-            <img :src="jobInfomation.jobPosterLogo" alt="company-logo">
+            <img src="/images/companySample_logo.png" alt="company-logo">
                 <span class="title-text">
                     <h3>{{ jobInfomation.job_title }}</h3>
                     <h4>{{ jobInfomation.jobPoster }}</h4>
@@ -56,7 +56,6 @@ export default {
     },
     props:[
         'jobInfomation',
-        'jobId'
        
     ],
 

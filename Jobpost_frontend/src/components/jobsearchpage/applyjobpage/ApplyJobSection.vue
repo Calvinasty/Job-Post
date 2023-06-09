@@ -17,7 +17,7 @@
             <div class="cv flex-center">
                 <ApplyInputComponent fileTypes=".pdf,.docx" id="cv" 
                 inputName="cv" inputType="file" label="CV/Resume" placeholder="cv" />
-                <button type="submit"></button>
+                <button class="apply-job-btn" type="submit" >Apply</button>
             </div>
            
         </form>
@@ -86,14 +86,29 @@ width: 100%;
 /* background: #000; */
 gap: 20px;
 position: relative;
-padding-bottom:120px;
+padding-bottom:150px;
 }
 
 .cv{
     border-top: 1px solid #898989 ;position: absolute;
-    background: #541d1d;
-    width: 100%;
+    /* background: #541d1d; */
+    width: 80%;
     bottom: 0;
-    height: 100px;
+    padding:10px 0;
+    /* height: 100px; */
+}
+.apply-job-btn{
+    background: rgb(22, 172, 22);
+    color:#fff;
+    width: 100%;
+    margin-top:20px;
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    border-radius:10px;
+    cursor: pointer;
+    
 }
 </style>

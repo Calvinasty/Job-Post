@@ -1,6 +1,6 @@
 <template>
     <div class="jobsearch-page">
-        <JobSearchNavVue :handleSearch="handleSearch" />
+        <JobSearchNavVue :handleSearch="handleSearch"  :userExist="user"/>
        <RouterView/>
     </div>
 </template>
