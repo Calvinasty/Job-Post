@@ -29,7 +29,7 @@ export default {
         'handleSearch'
     ],
     computed: {
-        ...mapState(useUserStore, ['email'])
+        ...mapState(useUserStore, ['user'])
     },
     methods: {
         handleLogout() {
