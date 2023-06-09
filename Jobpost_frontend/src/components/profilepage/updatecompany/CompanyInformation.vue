@@ -22,6 +22,10 @@
                 <option value="technology">Technology</option>
             </select>
 
+            <div class="btnsec flex-center-row">
+                <button class="btn" @click="handleSave">Save</button>
+                <button class="btns" @click="handlecloseCard">Cancel</button>
+            </div>
         </form>
         
     </div>
@@ -33,6 +37,11 @@
         components: {
             InputComponent
         },
+
+        props: [
+        'handlecloseCard',
+        'handleSave',
+    ],
         data() {
             return {
                 companyName:'',
@@ -72,5 +81,35 @@
     border: 1px solid #7FBF4C;
     border-radius: 8px;
     width: 500px;
+}
+
+.btnsec {
+    /* position: absolute; */
+    padding-bottom: 20px;
+    gap: 20px;
+    bottom: 0;
+    /* background-color: aqua; */
+}
+
+.btnsec>* {
+    border: none;
+}
+
+.btn {
+    border-radius: 8px;
+    width: 140px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #88CC00;
+    color: #ffffff;
+}
+
+.btns {
+    border-radius: 8px;
+    width: 140px;
+    height: 50px;
+    font-size: 18px;
+    background-color: #000000;
+    color: #ffffff;
 }
 </style>
