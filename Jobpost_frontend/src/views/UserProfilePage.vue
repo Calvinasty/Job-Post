@@ -54,7 +54,8 @@
                         :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
                         <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="Value.education[0]?.field_of_study" />
+                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id"
+                            :Value="Value.education[0]?.field_of_study" />
                         <!-- <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputTwo.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputTwo.type"
                             :inputId="inputCardDetails[1].cardInputInformation.inputTwo.id" :Value="Value.education[1]" />
@@ -70,7 +71,8 @@
                         :detailsTitle="inputCardDetails[2].cardTitle" :showplus="true">
                         <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="Value.workexp[0]?.company_name" />
+                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id"
+                            :Value="Value.workexp[0]?.company_name" />
                         <!-- <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputTwo.name"
                             :inputId="inputCardDetails[2].cardInputInformation.inputTwo.id"
                             :inputType="inputCardDetails[2].cardInputInformation.inputTwo.type" :Value="Value.workexp[1]" />
@@ -87,10 +89,12 @@
 
                         <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[0]?.skill_name" />
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id"
+                            :Value="Value.skills[0]?.skill_name" />
                         <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[1]?.skill_name" />
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id"
+                            :Value="Value.skills[1]?.skill_name" />
                         <!-- <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[2]?.skill_name" />
@@ -98,27 +102,6 @@
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="Value.skills[3]?.skill_name" /> -->
 
-                        <!-- <div class="select-field">
-                                <label for="skills">Skills</label>
-                                <select name="skill" id="skills">
-                                    <option value="">Select</option>
-                                    <option value="">Vue Js</option>
-                                    <option value="">Node Js</option>
-                                    <option value="">Full Stack </option>
-                                </select>
-                                <select name="skill" id="skills">
-                                    <option value="">Select</option>
-                                    <option value="">Vue Js</option>
-                                    <option value="">Node Js</option>
-                                    <option value="">Full Stack </option>
-                                </select>
-                                <select name="skill" id="skills">
-                                    <option value="">Select</option>
-                                    <option value="">Vue Js</option>
-                                    <option value="">Node Js</option>
-                                    <option value="">Angular </option>
-                                </select>
-                            </div> -->
                     </CardInformationComponent>
                 </div>
             </div>
@@ -189,7 +172,7 @@ export default {
     },
     beforeMount() {
         // console.log(this.user);
-        
+
         const userInfo = this.user
         this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
         this.Value.contact = userInfo?.phone
@@ -201,12 +184,12 @@ export default {
         // this.Value.skills = userInfo.skills
         this.getAllUserInfo()
     },
-    mounted(){
-      const userDetails= JSON.parse(localStorage.getItem('userDetails'))
-      this.Value.skills=userDetails.Skills
-      this.Value.education=userDetails.education
-      this.Value.workexp=userDetails.experiences
-      console.log('userDetails',userDetails);
+    mounted() {
+        const userDetails = JSON.parse(localStorage.getItem('userDetails'))
+        this.Value.skills = userDetails.Skills
+        this.Value.education = userDetails.education
+        this.Value.workexp = userDetails.experiences
+        console.log('userDetails', userDetails);
     },
 
     methods: {
@@ -221,7 +204,7 @@ export default {
 
                 axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
                     .then((res) => {
-                        localStorage.setItem("userDetails",JSON.stringify(res.data[0]))
+                        localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
                         // console.log(res.data[0]);
                     })
                     .catch((err) => console.log(err))
@@ -497,5 +480,4 @@ export default {
 
     }
 
-}
-</style>
+}</style>

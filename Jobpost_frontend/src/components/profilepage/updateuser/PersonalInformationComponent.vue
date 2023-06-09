@@ -43,6 +43,7 @@
             </span>
 
         </div>
+        <buttonComponent :handlecloseCard="handlecloseCard" />
         <!-- <div v-if="personalInfo.gender == 'female'" class="input-container flex-center-row gender">
             <p>Gender :</p>
             <span>
@@ -55,10 +56,7 @@
             </span>
 
         </div> -->
-        <div class="btnsec flex-center-row">
-            <button class="btn" type="submit" @click.prevent="handleUpdate">Save</button>
-            <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
-        </div>
+
     </form>
 </template>
 
@@ -66,14 +64,16 @@
 import axios from 'axios'
 
 import EditInputComponent from '../EditInputComponent.vue'
+import buttonComponent from './buttonComponent.vue'
 export default {
     components: {
         EditInputComponent,
+        buttonComponent,
     },
 
     props: [
         'handlecloseCard',
-        // 'handleSave',
+        'handleSave',
         'userInfo'
     ],
 
@@ -123,10 +123,13 @@ export default {
                 .then((res) => {
                     console.log(res?.data)
                 })
+
+                .then(() => this.handlecloseCard())
                 .catch((err) => {
 
                     console.log(err)
                 })
+
 
 
 
@@ -217,37 +220,6 @@ export default {
     margin-left: 8px;
 
 }
-
-.btnsec {
-    /* position: absolute; */
-    padding-bottom: 20px;
-    gap: 20px;
-    bottom: 0;
-    /* background-color: aqua; */
-}
-
-.btnsec>* {
-    border: none;
-}
-
-.btn {
-    border-radius: 8px;
-    width: 140px;
-    height: 50px;
-    font-size: 18px;
-    background-color: #88CC00;
-    color: #ffffff;
-}
-
-.btns {
-    border-radius: 8px;
-    width: 140px;
-    height: 50px;
-    font-size: 18px;
-    background-color: #000000;
-    color: #ffffff;
-}
-
 
 /* .double:nth-child(1) {
     max-width: 50%;

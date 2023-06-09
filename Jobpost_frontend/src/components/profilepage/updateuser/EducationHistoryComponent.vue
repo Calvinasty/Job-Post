@@ -36,14 +36,24 @@ export default {
     ],
 
     mounted() {
-
+        // this.education.institution = 
     },
 
     data() {
         return {
-
+            education: {
+                institution: '',
+                certification: '',
+                field_of_study: '',
+                start_date: '',
+                end_date: '',
+            }
         }
     },
+
+    methods: {
+
+    }
 }
 </script>
 
