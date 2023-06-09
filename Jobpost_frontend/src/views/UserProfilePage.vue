@@ -131,7 +131,7 @@
 
         <FooterComponent />
         <UpdateProfileComponentVue :userInfo="user" v-if="showModal == true" :index="index" type="user"
-            :handlecloseCard="showPopup" :handleSave="handleSaveButton" />
+            :handlecloseCard="showPopup" />
     </div>
 
     <!-- <EditPopups v-if="showModal" /> -->
@@ -209,9 +209,7 @@ export default {
 
         },
 
-        handleSaveButton() {
-            alert("profile saved");
-        }
+
 
 
     }
