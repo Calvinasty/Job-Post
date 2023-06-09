@@ -26,7 +26,8 @@
     gap: 20px;
     background-color: rgba(255, 255, 255, 1);
     width: 8%;
-    height: 8%;
+    height: fit-content;
+    padding: 10px;
     border: 1px solid rgba(144, 144, 144, 1);
     border-radius: 10px;
     position: absolute;

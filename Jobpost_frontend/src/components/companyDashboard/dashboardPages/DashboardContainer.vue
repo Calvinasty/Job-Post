@@ -31,6 +31,12 @@
                 companyProfile: CompanyProfile
             }   
         },
+        created(){
+            this.getCompanyInfo()
+        },
+        updated(){
+            this.getCompanyInfo()
+        },
         beforeMount(){
             this.componentId = this.$route.params.id
             this.getCompanyInfo()
