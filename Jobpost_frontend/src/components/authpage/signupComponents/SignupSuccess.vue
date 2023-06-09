@@ -23,7 +23,7 @@
 <style lang="css" scoped>
     .complete{
         height: 60%;
-        width: 100%;
+        width: 40%;
         border-radius: 20px;
         /* padding-top: 128px; */
         padding: 50px;

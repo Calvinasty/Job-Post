@@ -85,6 +85,8 @@ import { useUserStore } from '../../../stores/users';
 import { mapActions } from 'pinia';
 import InputComponent from '../InputComponent.vue';
 import ToastMessage from '../../utils/ToastMessage.vue'
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export default {
     components:{InputComponent, ToastMessage},
 
@@ -147,7 +149,7 @@ export default {
             newFormData.append("confirm_password", this.inputData.confirmPass)
             newFormData.append("phone", this.inputData.contact)
             // console.log(newFormData);
-            axios.post("http://192.168.1.90:5000/jobSeeker/registerJobSeeker", newFormData)
+            axios.post(`${BASE_URL}/jobSeeker/registerJobSeeker`, newFormData)
             .then(res => {
                 console.log(res?.data);
                 if(res.data?.message){

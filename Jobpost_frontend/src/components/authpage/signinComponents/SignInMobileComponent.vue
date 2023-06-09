@@ -50,6 +50,8 @@ import axios from 'axios'
 import InputComponent from '@/components/authpage/InputComponent.vue'
 import ToastMessage from '../../utils/ToastMessage.vue'
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+const BASE_URL = import.meta.env.VITE_BASE_URL
+
 export default {
   components: {
     InputComponent,
@@ -125,7 +127,7 @@ export default {
 
       if (this.userType == 'jobPoster') {
         axios
-          .post(`http://192.168.1.88:5000/company/logInCompany`, user)
+          .post(`${BASE_URL}/company/logInCompany`, user)
           .then((res) => {
             console.log(res?.data)
             if (res.data?.message) {
@@ -158,7 +160,7 @@ export default {
 
       if (this.userType == 'jobSeeker') {
         axios
-          .post(`http://192.168.1.88:5000/jobSeeker/logInJobSeeker`, user)
+          .post(`http://192.168.1.88:5000//jobSeeker/logInJobSeeker`, user)
           .then((res) => {
             if (res.data?.message) {
               let msg = res.data.message

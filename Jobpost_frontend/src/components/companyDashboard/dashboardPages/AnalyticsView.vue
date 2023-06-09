@@ -71,12 +71,21 @@
                 this.chartData.datasets[0].data[index] = value
             })
         },
+        updated(){
+            Object.values(this.chartDataValues).forEach((value,index) => {
+                this.chartData.datasets[0].data[index] = value
+            })
+        },
         beforeMount(){
             this.getCompanyData()
         },
         mounted(){
             this.card2Info[0].num = this.getTotalJobs
             this.updateChartDataValues()
+
+            Object.values(this.chartDataValues).forEach((value,index) => {
+                this.chartData.datasets[0].data[index] = value
+            })
         },
         methods:{
             ...mapActions(useDashboardStore, ['updateChartDataValues']),
