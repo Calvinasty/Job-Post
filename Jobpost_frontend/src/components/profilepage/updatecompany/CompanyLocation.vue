@@ -10,7 +10,7 @@
             <InputComponent id="address" type="text" placeHolder="Address" name="address" :handleInput="handleInput" :Value="address"/>
             <InputComponent id="region" type="text" placeHolder="Region" name="region" :handleInput="handleInput" :Value="region"/>
             <div class="btnsec flex-center-row">
-                <button class="btn" @click="handleSave">Save</button>
+                <button class="btn" @click.prevent="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
         </form>
@@ -19,6 +19,9 @@
 
 <script>
     import axios from 'axios';
+    import { mapActions } from 'pinia';
+    import { useCompanyStore } from '../../../stores/companies';
+    const BASE_URL = import.meta.env.VITE_BASE_URL
     import InputComponent from '../../authpage/InputComponent.vue';
     export default {
         components: {
@@ -39,6 +42,33 @@
                 region: ''
             }
         },
+        
+        methods: {
+            ...mapActions(useCompanyStore, ['updateCompany']),
+            handleInput(data) {
+                if(data.inputName == 'country') { this.country = data.inputValue }
+                if(data.inputName == 'address') { this.address = data.inputValue }
+                if(data.inputName == 'region') { this.region = data.inputValue }
+            },
+            handleSave(){
+                const location = new FormData()
+                location.append( "country", this.country)
+                location.append( "address", this.address)
+                location.append( "region", this.region)
+
+                const token = JSON.parse(localStorage.getItem('companyToken'))
+                axios.put(`${BASE_URL}/companyLocation/location`,location, {headers: {token}})
+                .then(res => {
+                    const updatedCompany = res.data.locationInfo
+                    console.log(updatedCompany)
+                    this.updateCompany(updatedCompany)
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            }
+        },
+
         mounted() {
            axios.get('https://restcountries.com/v3.1/all')
            .then(res => {
@@ -51,16 +81,6 @@
            this.country = this.companyInfo.location.country
             this.address = this.companyInfo.location.address
             this.region = this.companyInfo.location.region
-        },
-        methods: {
-            handleInput(data) {
-                if(data.inputName == 'country') { this.country = data.inputValue }
-                if(data.inputName == 'address') { this.address = data.inputValue }
-                if(data.inputName == 'region') { this.region = data.inputValue }
-            },
-            handleSave(){
-                console.log(this.companyName);
-            }
         },
 
         

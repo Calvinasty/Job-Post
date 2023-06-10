@@ -16,6 +16,13 @@ export const useCompanyStore = defineStore(
         actions: {
             setCompany(company){
                 this.company = company
+            },
+            updateCompany(updatedCompany) {
+                const oldCompanyInfo = this.company
+                const newCompanyInfo = {...oldCompanyInfo, ...updatedCompany}
+                this.company = newCompanyInfo
+
+                // this.company = updatedCompany
             }
         }
     }
