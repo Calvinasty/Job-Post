@@ -17,7 +17,7 @@ export default {
         return {
             date: "April 1st - May 30th",  
             jobs: [
-                {title: 'UI/UX Designer', role: 'Remote - Intern', experience:'2 years', location:'Ghana'},
+                {title: 'UI/UX Designerk', role: 'Remote - Intern', experience:'2 years', location:'Ghana'},
                 {title: 'Backend Engineer', role: 'On Site - Full Time', experience:'Intern', location:'Ghana'},
                 {title: 'UI/UX Designer', role: 'Remote - Part Time',experience:'5 years', location:'Ghana'},
                 {title: 'Full Stack', role: 'On Site - Full Time ', experience:'5 years', location:'Ghana'},
