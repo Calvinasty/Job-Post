@@ -1,19 +1,33 @@
 <template>
     <div class="jobsearch-page">
-        <JobSearchNavVue :handleSearch="handleSearch"  :userExist="user"/>
+        <JobSearchNav :handleSearch="handleSearch"  :userExist="user"/>
        <RouterView/>
     </div>
 </template>
 
 <script>
 // import { mapActions, } from 'pinia';
-
-import JobSearchNavVue from '../components/jobsearchpage/JobSearchNav.vue';
+import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue';
 export default {
     name: 'JobPostJobSearchPage',
     components: {
-        JobSearchNavVue
+        JobSearchNav
+
     },
+    data(){
+        return{
+            user:false
+        }
+    },
+    beforeMount(){
+        let userExits=JSON.parse(localStorage.getItem('userToken'))
+        if(userExits){
+            this.user=true
+        }else{
+            this.user=false
+        }
+
+    }
 };
 </script>
 
@@ -22,10 +36,9 @@ export default {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 98dvw;
-    margin: 0 auto;
     position: relative;
     gap: 30px;
 }

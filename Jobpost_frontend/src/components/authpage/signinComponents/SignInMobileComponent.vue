@@ -171,12 +171,12 @@ export default {
               const token = JSON.stringify(res.data.token)
               localStorage.setItem('userToken', token)
             }
-            if (res.data?.user) {
-              const user = res.data.user
-              user['photo'] = 'avatar.jpg'
-              this.setUser(user)
-              this.$router.push('/userprofile')
-            }
+
+            // if (res.data?.user) {
+            //   const user = res.data.user
+
+            // }
+            return res.data
 
             // res.data
             // localStorage.setItem('userState', res.data.user)
@@ -186,6 +186,20 @@ export default {
             // userInfo['photo']="avatar.jpg"
             // this.setUser(res.data?.user)
             // this.$router.push('/userprofile')
+          })
+
+          .then((res) => {
+            const token = res.token
+            axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
+              .then((res) => {
+                // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
+                // user['photo'] = 'avatar.jpg'
+                this.setUser(res.data[0])
+                this.$router.push('/userprofile')
+                // console.log(res.data[0]);
+              })
+              .catch((err) => console.log(err))
+
           })
           .catch((err) => {
             let msg = err.response ? err.response.data.message : err.message
@@ -382,4 +396,5 @@ header img {
     } 
     .signin-field p a {
         color: #7FBF4C;
-    } */</style>
+    } */
+</style>

@@ -14,7 +14,7 @@
 
 
                 <p class="elabel"> Gender </p>
-                <p>{{ userValue?.gender.charAt(0).toUpperCase() + userValue?.gender.slice(1) }}</p>
+                <p>{{ userValue?.gender?.charAt(0).toUpperCase() + userValue?.gender?.slice(1) }}</p>
 
             </div>
         </div>
