@@ -1,18 +1,17 @@
 <template>
     <div class="jobsearch-page">
-        <JobSearchNavVue :handleSearch="handleSearch"  :userExist="user"/>
+        <JobSearchNav :handleSearch="handleSearch"  :userExist="user"/>
        <RouterView/>
     </div>
 </template>
 
 <script>
 // import { mapActions, } from 'pinia';
-
-import JobSearchNavVue from '../components/jobsearchpage/JobSearchNav.vue';
+import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue';
 export default {
     name: 'JobPostJobSearchPage',
     components: {
-        JobSearchNavVue
+        JobSearchNav
     },
 };
 </script>

@@ -70,19 +70,22 @@ export default {
 h2{
     color: #000000;
     margin-bottom: 10px;
-    padding-left: 20px;
+    padding: 10px 40px;
 }
 .general-info{
-    padding-top: 20px ;
+    padding: 20px 40px ;
     border-top: 1px solid #898989;
+    max-width:556px;
 }
 h3{
     color:rgba(120, 114, 114, 1);
     font-weight: 700;
     margin-bottom: 10px;
+    width:100%;
 }
 form{
 width: 100%;
+align-items: flex-start;
 /* background: #000; */
 gap: 20px;
 position: relative;
