@@ -4,8 +4,8 @@
         Apply Job
     </h2>
     <div class="general-info ">
-        <h3>General Information</h3>
         <form @submit="handleApply" class="flex-center">
+            <h3>General Information</h3>
             <ApplyInputComponent v-for="(item,index) in  inputInfo" :key="index" 
             :id="item.id" :input-name="item.inputName" :input-type="item.inputType" 
             :label="item.label" :placeholder="item.placeholder" 
@@ -18,6 +18,7 @@
                 <ApplyInputComponent fileTypes=".pdf,.docx" id="cv" 
                 inputName="cv" inputType="file" label="CV/Resume" placeholder="cv" />
                 <button class="apply-job-btn" type="submit" >Apply</button>
+                <button class="apply-job-btn alt" type="button" >Cancel</button>
             </div>
            
         </form>
@@ -89,19 +90,21 @@ align-items: flex-start;
 /* background: #000; */
 gap: 20px;
 position: relative;
-padding-bottom:150px;
+padding-bottom:300px;
 }
 
 .cv{
-    border-top: 1px solid #898989 ;position: absolute;
+    border-top: 1px solid #898989 ;
+    position: absolute;
     /* background: #541d1d; */
-    width: 80%;
+    align-items: flex-start;
+    width: 100%;
     bottom: 0;
-    padding:10px 0;
+    padding:20px 0;
     /* height: 100px; */
 }
 .apply-job-btn{
-    background: rgb(22, 172, 22);
+    background:rgba(136, 204, 0, 1);
     color:#fff;
     width: 100%;
     margin-top:20px;
@@ -112,6 +115,15 @@ padding-bottom:150px;
     border: none;
     border-radius:10px;
     cursor: pointer;
-    
+}
+
+.apply-job-btn:hover{
+    background: rgb(98, 147, 2);
+    transition: all .3s ease;
+}
+.apply-job-btn.alt{
+    background: transparent;
+    color: #000;
+    border: 1px solid #898989;
 }
 </style>

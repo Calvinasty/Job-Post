@@ -20,35 +20,37 @@ export default {
 
     data() {
         return {
-            currentJob:[]
+            currentJob:[],
+            currentUser:''
             
         };
     },
 
     computed:{
         ...mapState(useJobsStore,['postedJobs']),
-        ...mapState(useUserStore,[''])
+        ...mapState(useUserStore,['user'])
     },
-    // beforeMount(){
+    beforeMount(){
+        const route =useRoute()
+           const {jobId}= route.params
+        console.log(jobId);
+        console.log(this.user);
+        this.handleJobDescription(jobId)
+
+    },
+    // created(){
     //     const route =useRoute()
     //        const {jobId}= route.params
     //     console.log(jobId);
     //     this.handleJobDescription(jobId)
-
     // },
-    created(){
-        const route =useRoute()
-           const {jobId}= route.params
-        console.log(jobId);
-        this.handleJobDescription(jobId)
-    },
     methods: {
         handleJobDescription(jobId){
             this.currentJob= this.postedJobs?.filter(job=>(job.id==jobId))
             console.log(this.currentJob);
         }   
         
-    },
+    }, 
 };
 </script>
 
@@ -58,7 +60,7 @@ export default {
     /* background: #286a439c; */
     padding: 0px 50px;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: centert;
     gap:41px;
 }
 

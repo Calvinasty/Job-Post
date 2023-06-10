@@ -12,7 +12,22 @@ export default {
     name: 'JobPostJobSearchPage',
     components: {
         JobSearchNav
+
     },
+    data(){
+        return{
+            user:false
+        }
+    },
+    beforeMount(){
+        let userExits=JSON.parse(localStorage.getItem('userToken'))
+        if(userExits){
+            this.user=true
+        }else{
+            this.user=false
+        }
+
+    }
 };
 </script>
 
@@ -21,10 +36,9 @@ export default {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width: 98dvw;
-    margin: 0 auto;
     position: relative;
     gap: 30px;
 }
