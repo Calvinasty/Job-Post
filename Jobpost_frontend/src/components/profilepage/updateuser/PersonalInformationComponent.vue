@@ -1,35 +1,30 @@
 <template>
     <form @submit.prevent="handleUpdate" class="card-detail">
         <div class="input-container">
-
-            <EditInputComponent inputName="First Name" name="first_name" inputType="text" :value="personalInfo.first_name"
-                :handleChange="handleInput" />
+            <InputComponent id="" type="text" placeHolder="First Name" name="first_name" :handleInput="handleInput"
+                :Value="personalInfo.first_name" />
         </div>
         <div class="input-container flex-center-row double">
-            <EditInputComponent inputName="Middle Name" name="middle_name" inputType="text"
-                :value="personalInfo.middle_name" :handleChange="handleInput" />
-            <EditInputComponent inputName="Last Name" name="last_name" inputType="text" :value="personalInfo.last_name"
-                :handleChange="handleInput" />
+            <InputComponent placeHolder="Middle Name" name="middle_name" type="text" :Value="personalInfo.middle_name"
+                :handleInput="handleInput" />
+            <InputComponent placeHolder="Last Name" name="last_name" type="text" :Value="personalInfo.last_name"
+                :handleInput="handleInput" />
         </div>
         <div class="input-container">
-            <EditInputComponent inputName="Email" name="email" inputType="email" :value="personalInfo.email"
-                :handleChange="handleInput" />
+            <InputComponent placeHolder="Email" name="email" type="email" :Value="personalInfo.email"
+                :handleInput="handleInput" />
         </div>
         <div class="input-container">
-            <EditInputComponent inputName="Contact" name="contact" inputType="tel" :value="personalInfo.phone"
-                :handleChange="handleInput" />
+            <InputComponent placeHolder="Contact" name="contact" type="tel" :Value="personalInfo.phone"
+                :handleInput="handleInput" />
         </div>
-        <!-- <div class="input-container flex-center-row double">
-            <EditInputComponent inputName="LinkedIn URl" name="linkedIn_url" inputType="text" :handleChange="handleInput" />
-            <EditInputComponent inputName="GitHub URL" name="git_url" inputType="text" :handleChange="handleInput" />
-        </div> -->
         <div class="input-container">
-            <EditInputComponent inputName="Date of Birth" name="dob" inputType="date"
-                :value="personalInfo.date_of_birth.split('T')[0]" :handleChange="handleInput" />
+            <InputComponent placeHolder="Date of Birth" name="dob" type="date"
+                :Value="personalInfo.date_of_birth?.split('T')[0]" :handleInput="handleInput" />
         </div>
         <!-- <div class="input-container">
-            <EditInputComponent inputType="file" accept=".pdf,.docx" name="resume_cv" inputName="Resume CV"
-                :handleChange="handleInput" />
+            <InputComponent type="file" accept=".pdf,.docx" name="resume_cv" placeHolder="Resume CV"
+                :handleInput="handleInput" />
         </div> -->
         <div class="input-container flex-center-row gender">
             <p>Gender :</p>
@@ -41,40 +36,36 @@
                 <input type="radio" name="gender" value="female" v-model="personalInfo.gender">
                 <label for="female">Female</label>
             </span>
-
         </div>
-        <!-- <div v-if="personalInfo.gender == 'female'" class="input-container flex-center-row gender">
-            <p>Gender :</p>
-            <span>
-                <input type="radio" name="gender" :handleChange="handleInput">
-                <label for="male">Male</label>
-            </span>
-            <span>
-                <input type="radio" name="gender" checked id="female" :handleChange="handleInput">
-                <label for="female">Female</label>
-            </span>
-
-        </div> -->
         <div class="btnsec flex-center-row">
             <button class="btn" type="submit" @click.prevent="handleUpdate">Save</button>
             <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
+        <!-- <buttonComponent :handlecloseCard="handlecloseCard" /> -->
+        <ToastMessage v-show="toast.active" :toast="toast" />
     </form>
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import { useUserStore } from '../../../stores/users'
 import axios from 'axios'
-
-import EditInputComponent from '../EditInputComponent.vue'
+import ToastMessage from '../../utils/ToastMessage.vue'
+import InputComponent from '../../authpage/InputComponent.vue'
+// import EditInputComponent from '../EditInputComponent.vue'
+// import buttonComponent from './buttonComponent.vue'
 export default {
     components: {
-        EditInputComponent,
+        // EditInputComponent,
+        InputComponent,
+        ToastMessage
+        // buttonComponent,
     },
 
     props: [
         'handlecloseCard',
-        // 'handleSave',
-        'userInfo'
+        'handleSave',
+        'userInfo',
     ],
 
     data() {
@@ -90,9 +81,14 @@ export default {
                 date_of_birth: '',
                 // resume_cv: '',
                 gender: '',
+            },
+            loading: false,
+            toast: {
+                active: false, msg: '', color: ''
             }
         }
     },
+
     mounted() {
         this.personalInfo.first_name = this.userInfo.first_name
         this.personalInfo.middle_name = this.userInfo.middle_name
@@ -104,8 +100,13 @@ export default {
         this.personalInfo.date_of_birth = this.userInfo.date_of_birth
         // this.personalInfo.resume_cv = this.userInfo.resume_cv
         this.personalInfo.gender = this.userInfo.gender
+        console.log(this.personalInfo);
     },
     methods: {
+
+        ...mapActions(useUserStore, ['setUser']),
+
+
         handleUpdate() {
             console.log(this.personalInfo);
             const token = JSON.parse(localStorage.getItem('userToken'))
@@ -121,12 +122,32 @@ export default {
             axios
                 .put('http://192.168.1.88:5000/jobSeeker/updateJobSeeker', updatedUserInfo, { headers: { token } })
                 .then((res) => {
-                    console.log(res?.data)
+                    if (res.data) {
+                        const token = JSON.parse(localStorage.getItem('userToken'))
+                        axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
+                            .then((res) => {
+                                // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
+                                // user['photo'] = 'avatar.jpg'
+                                if (res.data?.message) {
+                                    let msg = res.data.message
+                                    this.showToast(msg, 'Update Success')
+                                    this.loading = false
+                                }
+                                this.setUser(res.data[0])
+
+                            })
+                            .catch((err) => console.log(err))
+                    }
+
                 })
+
+                .then(() => this.handlecloseCard())
+
                 .catch((err) => {
 
                     console.log(err)
                 })
+
 
 
 
@@ -218,6 +239,7 @@ export default {
 
 }
 
+
 .btnsec {
     /* position: absolute; */
     padding-bottom: 20px;
@@ -228,6 +250,7 @@ export default {
 
 .btnsec>* {
     border: none;
+    cursor: pointer;
 }
 
 .btn {
@@ -247,7 +270,6 @@ export default {
     background-color: #000000;
     color: #ffffff;
 }
-
 
 /* .double:nth-child(1) {
     max-width: 50%;
