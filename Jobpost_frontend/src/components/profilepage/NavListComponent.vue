@@ -24,6 +24,7 @@ export default {
                 { title: 'Education History', active: false, link: 'EducationHistory' },
                 { title: 'Work Experience', active: false, link: 'WorkExperience' },
                 { title: 'Skill/Interests', active: false, link: 'SkillInterest' },
+                { title: 'Socials Links', active: false, link: 'SocialsLinks' },
             ],
             companyNav: [
                 { title: 'Upload Picture', active: true, link: 'UploadCompanyPicture' },

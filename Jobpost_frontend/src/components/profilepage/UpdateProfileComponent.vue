@@ -1,14 +1,15 @@
 <template>
     <EditProfileLayout @close="$emit('close')" :type="type" :index="index">
-        <component v-show="type == 'user'" :is="componentId" :userInfo="userInfo" :handlecloseCard="handlecloseCard"
-            :handleSave="handleSave">
+        <component v-show="type == 'user'" :key="key" :is="componentId" :userInfo="userInfo"
+            :handlecloseCard="handlecloseCard" :handleSave="handleSave">
         </component>
-        <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :companyInfo="companyInfo" :is="componentId2"></component>
+        <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :companyInfo="companyInfo"
+            :is="componentId2"></component>
     </EditProfileLayout>
 </template>
 
 <script>
-import {mapState} from 'pinia'
+import { mapState } from 'pinia'
 import { useUserProfileStore } from '../../stores/userprofile';
 import EditProfileLayout from './EditProfileLayout.vue'
 // user components
@@ -17,6 +18,7 @@ import PersonalInfo from './updateuser/PersonalInformationComponent.vue';
 import EducationHistory from './updateuser/EducationHistoryComponent.vue';
 import WorkExperience from './updateuser/WorkExperienceComponent.vue'
 import SkillInterest from './updateuser/SkillInterestComponent.vue'
+import SocialsLinks from './updateuser/socialsComponents.vue';
 // company components
 import CompanyInformation from './updatecompany/CompanyInformation.vue'
 import RegistrationInfo from './updatecompany/RegistrationInfo.vue'
@@ -27,7 +29,7 @@ import CompanyLocation from "./updatecompany/CompanyLocation.vue";
 
 export default {
 
-    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo', 'index', 'companyInfo'],
+    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo', 'index', 'companyInfo',],
 
 
     components: {
@@ -37,6 +39,7 @@ export default {
         EducationHistory,
         WorkExperience,
         SkillInterest,
+        SocialsLinks,
         // company components
         CompanyInformation,
         RegistrationInfo,
@@ -63,6 +66,9 @@ export default {
         }
     },
     computed: {
+        key() {
+            return this.$route.params + Math.random()
+        },
         ...mapState(useUserProfileStore, ['componentId', 'componentId2'])
     },
     mounted() {

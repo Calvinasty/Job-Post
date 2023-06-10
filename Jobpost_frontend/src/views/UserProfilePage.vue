@@ -24,12 +24,10 @@
                     </div>
                 </div>
                 <div class="profile-details">
-                    <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="1"
+                    <CardInformationComponent :key="key" :userValue="Value" :showPopup="showPopup" index="1"
                         :detailsTitle="inputCardDetails[0].cardTitle"
                         :inputInformation="inputCardDetails[0].cardInputInformation" :showDetails="true"
                         showpencil="showpencil">
-
-
                         <InputComponent :fullName="inputCardDetails[0].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[0].cardInputInformation.inputOne.type" :Value="Value.fullname"
                             :inputId="inputCardDetails[0].cardInputInformation.inputOne.id" />
@@ -53,32 +51,29 @@
 
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="2"
                         :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
-                        <!-- <InputComponent :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
+                        <InputComponent v-for="(school, index) in Value.education" :key="index"
+                            :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="Value.education[0]?.field_of_study" /> -->
+                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id"
+                            :Value="school?.field_of_study" />
 
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="3"
                         :detailsTitle="inputCardDetails[2].cardTitle" :showplus="true">
-                        <InputComponent :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
+                        <InputComponent v-for="(workexp, index) in Value.workexp" :key="index"
+                            :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[2].cardInputInformation.inputOne.id"
-                            :Value="Value.workexp[0]?.company_name" />
+                            :Value="workexp?.company_name" />
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
                         :detailsTitle="inputCardDetails[3].cardTitle" :showplus="true">
-
-                        <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
+                        <InputComponent v-for="(skill, index) in Value.skills" :key="index"
+                            :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id"
-                            :Value="Value.skills[0]?.skill_name" />
-                        <InputComponent :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
-                            :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id"
-                            :Value="Value.skills[1]?.skill_name" />
-
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="skill?.skill_name" />
                     </CardInformationComponent>
                 </div>
             </div>
@@ -108,7 +103,7 @@ import CardInformationComponent from '../components/profilepage/CardInformationC
 // import EditPopups from '../components/profilepage/EditPopups.vue';
 import InputComponent from '../components/profilepage/inputComponent.vue';
 import { userprofileData } from '../data';
-import axios from 'axios';
+// import axios from 'axios';
 export default {
     components: {
         FooterComponent,
@@ -158,37 +153,45 @@ export default {
             this.Value.dob = userInfo?.date_of_birth?.split('T')[0]
             this.Value.photo = "/images/" + userInfo?.photo
             this.usersName = userInfo?.first_name
-            // this.Value.skills = userInfo.skills
+            this.Value.skills = userInfo.Skills
+            this.Value.education = userInfo?.education
+            this.Value.workexp = userInfo?.experiences
+
             this.getAllUserInfo()
         }
     },
     mounted() {
-        const userDetails = JSON.parse(localStorage.getItem('userDetails'))
+        console.log(this.user)
+        // const userDetails = JSON.parse(localStorage.getItem('userDetails'))
 
-        if (userDetails) {
-            this.Value.skills = userDetails?.Skills
-            this.Value.education = userDetails?.education
-            this.Value.workexp = userDetails?.experiences
-            console.log('userDetails', userDetails);
-        }
+        // if (userDetails) {
+        //     this.Value.skills = userDetails?.Skills
+
+        //     console.log('userDetails', userDetails);
+        // }
+    },
+    key() {
+        return this.$route.params + Math.random()
     },
 
     methods: {
+
         showPopup(index) {
             this.showModal = !this.showModal
             this.index = index
         },
 
+
         getAllUserInfo() {
             const token = JSON.parse(localStorage.getItem('userToken'))
             if (token) {
 
-                axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
-                    .then((res) => {
-                        localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
-                        // console.log(res.data[0]);
-                    })
-                    .catch((err) => console.log(err))
+                // axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
+                //     .then((res) => {
+                //         localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
+                //         // console.log(res.data[0]);
+                //     })
+                //     .catch((err) => console.log(err))
             }
 
 
@@ -461,4 +464,5 @@ export default {
 
     }
 
-}</style>
+}
+</style>

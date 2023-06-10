@@ -55,7 +55,7 @@ export default {
     position: relative;
     border-radius: 20px;
     background-color: #ffffff;
-    width: 60%;
+    width: 65%;
     height: 90%;
     display: flex;
     flex-direction: column;
@@ -75,6 +75,7 @@ export default {
 
 .btnsec>* {
     border: none;
+    cursor: pointer;
 }
 
 .btn {
