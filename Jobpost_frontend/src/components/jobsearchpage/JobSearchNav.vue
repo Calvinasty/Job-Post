@@ -9,18 +9,19 @@
                 <input type="text" v-model="searchInput" v-on:change="() => handleSearch({ data: searchInput })"
                     placeholder="Search for job post,company,location">
             </div>
-            <div :v-if="userExist" class="btn" @click="showProfile">
+            <div class="btn" @click="showDropdown">
                 <span>{{ email }}</span>
-                <span >CK</span>
+                <span  v-if="email !== ''">CK</span>
             </div>
         </span>
-        <div :v-if="userExist" class="btn mobile">
-            <span>{{ email }}</span> 
-            <span >CK</span>
+        <div class="btn mobile">
+            <span>{{ email }}</span>
+            <span v-if="email !== ''" >CK</span>
         </div>
-        <div v-if="show">
-            <JobSearchButton />
-        </div>
+
+        <Transition name="slide-fade">
+            <JobSearchButton v-show="show" />
+        </Transition>
         
     </div>
 </template>
@@ -37,32 +38,26 @@ export default {
     data(){
         return{
             show: false,
-            userExits:true   
         }
     },
 
     props: [
-        'handleSearch',
-        'userExist'
+        'handleSearch'
     ],
     computed: {
-        ...mapState(useUserStore, ['user'])
+        ...mapState(useUserStore, ['email'])
     },
-  
     methods: {
         
         handleHome() {
             this.$router.push('/')            
         },
 
-        showProfile(){
+        showDropdown(){
             this.show = !this.show
+        }
     },
-    },
-    mounted(){
-        // console.log('mounted',this.user);
 
-    }
 
 
 }
@@ -87,6 +82,10 @@ export default {
     justify-content: flex-end;
     align-items: center;
     flex: 1;
+}
+.dropdown{
+    /* transition: 3s; */
+    /* transition-delay: 1s; */
 }
 
 .logo {
@@ -145,11 +144,25 @@ export default {
     margin-left: 50px;
     justify-content: center;
     cursor: pointer;
+    transition: 1s ease-in;
 
 }
 
 .btn.mobile {
     display: none;
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 
 @media screen and (min-width:871px) {

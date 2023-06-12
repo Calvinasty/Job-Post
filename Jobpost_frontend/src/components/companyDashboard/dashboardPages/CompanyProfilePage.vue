@@ -3,7 +3,7 @@
         <div class="title flex-center-row">
             <!-- <h1>{{ title }}</h1> -->
         </div>
-        <section class="company-profile-container">
+        <section class="company-profile-container" :key="componentKey">
             <div class="profile-section">
                 <div class="profile">
                     <div class="profile-card">
@@ -95,7 +95,7 @@
             </div> -->
         </section>
         <UpdateProfileComponent v-if="showModal == true" :companyInfo="company" @close="showPopup()" :index="index" :handlecloseCard="showPopup"
-            type="company" />
+            type="company"  :updateComponent="updateComponent"/>
     </div>
 </template>
 
@@ -111,7 +111,7 @@ export default {
     props: ['showpencil'],
     data() {
         return {
-            // title: '',
+            componentKey: 0,
             companyName: '',
             numberOfPostedJobs: 0,
             index: 0,
@@ -243,7 +243,7 @@ export default {
         this.companyProfileInfo.vat_number = companyInfo?.company_registration?.vat_number
         this.companyProfileInfo.cert_file = companyInfo?.company_registration?.company_certificate
         this.companyProfileInfo.logo = companyInfo?.logo
-        
+
         this.companyProfileInfo.country = companyInfo?.location?.country
         this.companyProfileInfo.address = companyInfo?.location?.address
         this.companyProfileInfo.region = companyInfo?.location?.region
@@ -254,7 +254,12 @@ export default {
             this.showModal = !this.showModal
             this.index = index
         },
-        
+        updateComponent(num){
+            this.componentKey += num
+            // this.$forceUpdate()
+            alert('updated')
+            this.$mount()
+        }
     },
 
 

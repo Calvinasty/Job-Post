@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_BASE_URL
 import InputComponent from '../../authpage/InputComponent.vue';
 export default {
     components: {
@@ -43,7 +45,20 @@ export default {
         },
 
         handleSave(){
-                console.log(this.companyName);
+           const registerInfo = new FormData()
+           registerInfo.append( "company_registration.registration_number",this.registrationNumber)     
+           registerInfo.append( "vat_number",this.vatNumber)     
+           registerInfo.append( "company_certificate",this.companyCert)
+           
+           const token = JSON.parse(localStorage.getItem('companyToken'))
+            axios.put(`${BASE_URL}/company/updateInfo`,registerInfo, {headers: {token}})
+            .then(res => {
+                const updatedCompany = res.data
+                console.log(updatedCompany)
+            })
+            .catch(err => {
+                console.log(err);
+            })
         }
     },
     mounted() {
