@@ -103,12 +103,12 @@
             }
         },
         mounted() {
-            this.companyName = this.companyInfo.company_name
-            this.companyEmail = this.companyInfo.email
-            this.companyNumber = this.companyInfo.mobile_number
-            this.companySite = this.companyInfo.website
-            this.linkedIn = this.companyInfo.linkedin
-            this.industry = this.companyInfo.industry
+            this.companyName = this.companyInfo?.company_name
+            this.companyEmail = this.companyInfo?.email
+            this.companyNumber = this.companyInfo?.mobile_number
+            this.companySite = this.companyInfo?.website
+            this.linkedIn = this.companyInfo?.linkedin
+            this.industry = this.companyInfo?.industry
             
         }
     }
