@@ -63,7 +63,7 @@
                     item['active']=false
                 ))
                 this.settings[0].active = true
-                this.$router.push(link)
+                this.$router.push('dashboardSettings')
             }
         },
     }

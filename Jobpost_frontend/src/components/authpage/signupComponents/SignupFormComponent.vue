@@ -116,24 +116,13 @@ export default {
         handleUserInput(data){
             // console.log(data);
             if(data.inputName == 'email') { this.inputData.email = data.inputValue}
-
             if(data.inputName == 'password') {this.inputData.password = data.inputValue}
-
             if(data.inputName == 'confirmPass') {this.inputData.confirmPass = data.inputValue}
-
             if(data.inputName == 'fname') {this.inputData.fname = data.inputValue}
-
             if(data.inputName == 'mdname') {this.inputData.mdname = data.inputValue}
-
             if(data.inputName == 'lname') {this.inputData.lname = data.inputValue}
-
             if(data.inputName == 'date') {this.inputData.date = data.inputValue}
-            
             if(data.inputName == 'contact') {this.inputData.contact = data.inputValue}
-
-            // if(data.inputName == 'gender') {
-            //     this.inputData.gender = data.inputValue
-            // }
         },
 
         handleSubmit() {
