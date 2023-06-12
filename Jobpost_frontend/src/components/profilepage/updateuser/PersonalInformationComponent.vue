@@ -54,6 +54,7 @@ import ToastMessage from '../../utils/ToastMessage.vue'
 import InputComponent from '../../authpage/InputComponent.vue'
 // import EditInputComponent from '../EditInputComponent.vue'
 // import buttonComponent from './buttonComponent.vue'
+const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
     components: {
         // EditInputComponent,
@@ -120,11 +121,11 @@ export default {
             updatedUserInfo.append('gender', this.personalInfo.gender)
 
             axios
-                .put('http://192.168.1.88:5000/jobSeeker/updateJobSeeker', updatedUserInfo, { headers: { token } })
+                .put(`${BASE_URL}/jobSeeker/updateJobSeeker`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
+                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
                                 // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
                                 // user['photo'] = 'avatar.jpg'
