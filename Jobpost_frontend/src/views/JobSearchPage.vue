@@ -1,12 +1,15 @@
 <template>
     <div class="jobsearch-page">
-        <JobSearchNav :handleSearch="handleSearch"  :userExist="user"/>
-       <RouterView/>
+        <JobSearchNav :handleSearch="handleSearch"  />
+       <RouterView :allJobs="filteredJobs" />
     </div>
 </template>
 
 <script>
 // import { mapActions, } from 'pinia';
+import axios from 'axios'
+import {useJobsStore} from '../stores/Jobs'
+import { mapActions, mapState, } from 'pinia';
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue';
 export default {
     name: 'JobPostJobSearchPage',
@@ -16,19 +19,41 @@ export default {
     },
     data(){
         return{
-            user:false
+            filteredJobs: [],
+            AllPostedJobs: []
         }
+    }, 
+    computed:{
+        ...mapState(useJobsStore,['postedJobs'])
     },
-    beforeMount(){
-        let userExits=JSON.parse(localStorage.getItem('userToken'))
-        if(userExits){
-            this.user=true
-        }else{
-            this.user=false
-        }
+    beforeMount() {
+        this.getAllJobs()
+    },
 
+    methods: {
+        ...mapActions(useJobsStore, ['setPostedJobs']),
+        getAllJobs() {
+            // this.AllPostedJobs = JSON.parse(localStorage.getItem('companyJobs'))
+            axios.get('http://192.168.1.88:5000/job/availableJobs')
+                .then(res => this.AllPostedJobs = res.data)
+                .then(res => {   this.setPostedJobs(res)  
+                    console.log(res);          
+                })
+                .then(() => this.handleSearch())
+
+        },
+        handleSearch(data) {
+            if (!data) {
+                return this.filteredJobs = this.AllPostedJobs
+            } else {
+                const result = this.AllPostedJobs.filter((item) => (item.jobTitle.toLocaleLowerCase().includes(data.data)))
+                return this.filteredJobs = [...result]
+            }
+
+        }
     }
-};
+    
+}
 </script>
 
 <style lang="css" scoped>

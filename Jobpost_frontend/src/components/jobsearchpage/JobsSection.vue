@@ -1,12 +1,13 @@
 <template>
     <section class="jobs-listing ">
-        <JobCard v-for="(job,index) in allJobs" :jobInfomation="job" :key="index"/>
+        <JobCard v-for="(job,index) in jobsPosted" :jobInfomation="job" :key="index"/>
             
     </section>
 </template>
 
 <script>
 import JobCard from './JobCard.vue';
+import { jobsPosted } from '../../data';
 
 export default {
     name: 'JobPostJobsSection',
@@ -16,6 +17,7 @@ export default {
     ],
     data(){
         return{
+            jobsPosted:jobsPosted
             
         }
     },

@@ -1,14 +1,15 @@
 <template>
     <div class="apply-input-container flex-center">
         <label :for="id">{{ label }}</label>
-        <input :type="inputType" :id="id" :accept="fileTypes" :name="inputName"  :placeholder="placeholder" :value="value" readonly>
+        <input :type="inputType" :id="id" :accept="fileTypes" :name="inputName" v-on:change="()=>handleInput({id})"  :placeholder="placeholder" :value="value" readonly>
     </div>
+    
 </template>
 
 <script>
 export default {
     name: 'JobPostApplyInputComponent',
-    props:['label','inputType','inputName','id','placeholder','fileTypes','value'],
+    props:['label','inputType','inputName','id','placeholder','fileTypes','value','handleInput'],
     data() {
         return {
             
@@ -20,6 +21,7 @@ export default {
     },
 
     methods: {
+    
         
     },
 };
