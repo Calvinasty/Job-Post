@@ -38,7 +38,7 @@
             </span>
         </div>
         <div class="btnsec flex-center-row">
-            <button class="btn" type="submit" @click.prevent="handleUpdate">Save</button>
+            <button class="btn" v-on="handleSave" type="submit" @click.prevent="handleUpdate">Save</button>
             <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
         <!-- <buttonComponent :handlecloseCard="handlecloseCard" /> -->
@@ -82,6 +82,7 @@ export default {
                 date_of_birth: '',
                 // resume_cv: '',
                 gender: '',
+                showPI: false,
             },
             loading: false,
             toast: {
@@ -104,10 +105,7 @@ export default {
         console.log(this.personalInfo);
     },
     methods: {
-
         ...mapActions(useUserStore, ['setUser']),
-
-
         handleUpdate() {
             console.log(this.personalInfo);
             const token = JSON.parse(localStorage.getItem('userToken'))
@@ -139,21 +137,15 @@ export default {
                             })
                             .catch((err) => console.log(err))
                     }
-
                 })
-
                 .then(() => this.handlecloseCard())
-
                 .catch((err) => {
-
                     console.log(err)
                 })
-
-
-
-
             // this.handleInput()
         },
+
+
         handleInput(data) {
             // console.log(this.personalInfo.gender);
             if (data?.inputName == 'first_name') {

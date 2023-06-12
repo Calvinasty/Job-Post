@@ -40,16 +40,13 @@ export default {
     methods: {
         updatePreview(e) {
             var reader, files = e.target.files
-
             if (files.length === 0) {
                 console.log('empty')
             }
-
             reader = new FileReader()
             reader.onload = (e) => {
                 this.imgPreview = e.target.result
             }
-
             reader.readAsDataURL(files[0])
         },
     }
