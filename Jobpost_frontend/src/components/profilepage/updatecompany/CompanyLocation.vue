@@ -78,9 +78,9 @@
                 this.countries = getCountries
            })
 
-           this.country = this.companyInfo.location.country
-            this.address = this.companyInfo.location.address
-            this.region = this.companyInfo.location.region
+            this.country = this.companyInfo?.location?.country
+            this.address = this.companyInfo?.location?.address
+            this.region = this.companyInfo?.location?.region
         },
 
         
