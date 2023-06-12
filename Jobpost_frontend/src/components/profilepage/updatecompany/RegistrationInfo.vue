@@ -9,7 +9,7 @@
                 <InputComponent id="companyCert" type="file" placeHolder="" name="companySite" :handleInput="handleInput" :Value="companyCert"/>
             </label>
             <div class="btnsec flex-center-row">
-                <button class="btn" @click="handleSave">Save</button>
+                <button class="btn" @click.prevent="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
         </form>
@@ -18,8 +18,11 @@
 
 <script>
 import axios from 'axios';
+import { mapActions } from 'pinia';
+import { useCompanyStore } from '../../../stores/companies';
 const BASE_URL = import.meta.env.VITE_BASE_URL
 import InputComponent from '../../authpage/InputComponent.vue';
+
 export default {
     components: {
         InputComponent
@@ -38,6 +41,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(useCompanyStore, ['updateCompany']),
         handleInput(data) {
             if (data.inputName == 'registrationNumber') { this.registrationNumber = data.inputValue }
             if (data.inputName == 'vatNumber') { this.vatNumber = data.inputValue }
@@ -46,12 +50,12 @@ export default {
 
         handleSave(){
            const registerInfo = new FormData()
-           registerInfo.append( "company_registration.registration_number",this.registrationNumber)     
+           registerInfo.append( "registration_number",this.registrationNumber)     
            registerInfo.append( "vat_number",this.vatNumber)     
            registerInfo.append( "company_certificate",this.companyCert)
            
            const token = JSON.parse(localStorage.getItem('companyToken'))
-            axios.put(`${BASE_URL}/company/updateInfo`,registerInfo, {headers: {token}})
+            axios.put(`${BASE_URL}/registration/registrationInfo`,registerInfo, {headers: {token}})
             .then(res => {
                 const updatedCompany = res.data
                 console.log(updatedCompany)
