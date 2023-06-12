@@ -8,7 +8,7 @@
                 <NavItemComponent :navItems="navItems" :goto="goto" />
             </aside>
             <aside class="settings-nav">
-                <SettingsComponent :settings="settings" :user="user" />
+                <SettingsComponent :settings="settings" :user="user" :gotoSettings="gotoSettings" />
             </aside>
         </section>
     </Transition>
@@ -34,8 +34,7 @@
                     { name: "Company Profile", icon: "account_circle", link: "companyProfile", active: false },
                 ],
                 settings: [
-                    { name: "Settings", icon: 'settings', link: "/settins" },
-                    { name: "Help Center", icon: 'help', link: "/settings" }
+                    { name: "Settings", icon: 'settings', link: "dashboardSettings", active:false },
                 ],
                 user: {
                     text: 'Logout',
@@ -56,6 +55,14 @@
                 this.navItems.map((item, navIndex) => (
                     navIndex == index ? item['active']=true : item['active']=false)
                 )
+                this.settings[0].active = false
+                this.$router.push(link)
+            },
+            gotoSettings(link){
+                this.navItems.map((item) => (
+                    item['active']=false
+                ))
+                this.settings[0].active = true
                 this.$router.push(link)
             }
         },

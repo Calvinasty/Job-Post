@@ -14,13 +14,16 @@
     import JobsView from './JobsViewComponent.vue';
     import ViewApplicant from './ViewAllApplicant.vue';
     import CompanyProfile from './CompanyProfilePage.vue';
+    import DashBoardSettings from './DashBoardSettings.vue';
+    
     export default {
         components:{
             DashboardLayout,
             AnalyticsView,
             JobsView,
             ViewApplicant,
-            CompanyProfile
+            CompanyProfile,
+            DashBoardSettings
         },
         data(){
             return{
@@ -28,7 +31,8 @@
                 analyticsView: AnalyticsView,
                 jobsView: JobsView,
                 viewApplicant: ViewApplicant,
-                companyProfile: CompanyProfile
+                companyProfile: CompanyProfile,
+                dashboardSettings: DashBoardSettings
             }   
         },
         created(){
@@ -39,10 +43,12 @@
         },
         beforeMount(){
             this.componentId = this.$route.params.id
+            console.log(this.componentId)
             this.getCompanyInfo()
         },
         watch:{
             $route(to){
+                console.log(to.params.id);
                 this.componentId = to.params.id
             }
         },

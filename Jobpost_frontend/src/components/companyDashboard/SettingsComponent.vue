@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="settings">
-            <button type="button">
+            <button type="button" :class="{ active:settings[0]?.active}" @click="() => gotoSettings(settings[0].link, index)">
                 <span class="material-symbols-outlined">{{ settings[0].icon }}</span>
                 {{ settings[0].name }}
             </button>
@@ -22,7 +22,8 @@
 export default {
     props: [
         "settings",
-        "user"
+        "user",
+        "gotoSettings"
     ],
     methods:{
         handleLogout(){
@@ -101,5 +102,15 @@ export default {
         transition: 0.2s ease-in-out;
         color:#000;
         font-weight: bold  
+    }
+
+    .settings .active{
+        background-color: #88CC00;
+        color: #fff;
+        font-weight: bolder;
+    }
+    .settings .active span{
+        color: #fff;
+        font-weight: bolder;
     }
 </style>
