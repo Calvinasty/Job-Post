@@ -1,56 +1,26 @@
 <template>
      <main class="jobs-section">
             <FilterSection />
-            <JobsSection :allJobs="filteredJobs" />
+            <JobsSection :allJobs="allJobs" />
         </main>
 </template>
 
 <script>
-import axios from 'axios'
-import { useJobsStore } from '../../stores/Jobs'
-import { mapActions, mapState, } from 'pinia';
+
 import FilterSection from './FilterSection.vue';
 import JobsSection from './JobsSection.vue';
 export default {
-    name: 'JobPostJobSearch',
+    // name: 'JobPostJobSearch',
     components:{FilterSection,JobsSection},
+    props:['allJobs'],
 
     data() {
         return {
-            filteredJobs: [],
-            AllPostedJobs: []
+          
         }
-    },
-    computed:{
-        ...mapState(useJobsStore,['postedJobs'])
-    },
-    beforeMount() {
-        this.getAllJobs()
-    },
-
-    methods: {
-        ...mapActions(useJobsStore, ['setPostedJobs']),
-        getAllJobs() {
-            // this.AllPostedJobs = JSON.parse(localStorage.getItem('companyJobs'))
-            axios.get('http://192.168.1.88:5000/job/availableJobs')
-                .then(res => this.AllPostedJobs = res.data)
-                .then(res => {   this.setPostedJobs(res)  
-                    console.log(res);          
-                })
-                .then(() => this.handleSearch())
-
-        },
-        handleSearch(data) {
-            if (!data) {
-                return this.filteredJobs = this.AllPostedJobs
-            } else {
-                const result = this.AllPostedJobs.filter((item) => (item.jobTitle.toLocaleLowerCase().includes(data.data)))
-                return this.filteredJobs = [...result]
-            }
-
-        },
     }
-};
+    } 
+
 </script>
 
 <style lang="css" scoped>

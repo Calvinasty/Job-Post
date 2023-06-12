@@ -1,8 +1,8 @@
 <template>
     <div class="dropdown">
-            <span  class="setting">Settings</span>
-            <span class="line"></span>
-            <span @click="handleLogout">Log Out</span>
+        <span  class="setting">Settings</span>
+        <span class="line"></span>
+        <span @click="handleLogout">Log Out</span>
     </div>
 </template>
 
@@ -31,10 +31,11 @@
     border: 1px solid rgba(144, 144, 144, 1);
     border-radius: 10px;
     position: absolute;
-    right: 80px;
+    right: 70px;
     top: 70px;   
     cursor: pointer;
 }
+
 button{
     padding: 20px;
     width: 100%;
