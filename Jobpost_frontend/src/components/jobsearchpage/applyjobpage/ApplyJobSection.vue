@@ -4,21 +4,29 @@
         Apply Job
     </h2>
     <div class="general-info ">
-        <form @submit="handleApply" class="flex-center">
+        <form  class="flex-center">
             <h3>General Information</h3>
-            <ApplyInputComponent v-for="(item,index) in  inputInfo" :key="index" 
-            :id="item.id" :input-name="item.inputName" :input-type="item.inputType" 
-            :label="item.label" :placeholder="item.placeholder" 
-            :file-types="item.fileTypes"/>
+            <ApplyInputComponent :id="inputInfo[0].id" :input-name="inputInfo[0].inputName" :input-type="inputInfo[0].inputType" 
+            :label="inputInfo[0].label" :placeholder="inputInfo[0].placeholder" :value="inputValues[1]?.toUpperCase()"/>
+            
+            <ApplyInputComponent :id="inputInfo[1].id" :input-name="inputInfo[1].inputName" :input-type="inputInfo[1].inputType" 
+            :label="inputInfo[1].label" :placeholder="inputInfo[1].placeholder"  :value="inputValues[3].toUpperCase()"/>
+
+            <ApplyInputComponent :id="inputInfo[2].id" :input-name="inputInfo[2].inputName" :input-type="inputInfo[2].inputType" 
+            :label="inputInfo[2].label" :placeholder="inputInfo[2].placeholder" :value="inputValues[7]"/>
+
+            <ApplyInputComponent :id="inputInfo[3].id" :input-name="inputInfo[3].inputName" :input-type="inputInfo[3].inputType" 
+            :label="inputInfo[3].label" :placeholder="inputInfo[3].placeholder" :value="inputValues[6]"/>
+
             <ApplyInputComponent id="cover-letter" input-name="cover-letter" 
             input-type="file" label="Cover Letter" placeholder="Kofi" 
-            file-types=".pdf,.docx"/>
+            file-types=".pdf,.docx"  :handleInput="handleInput"/>
         
             <div class="cv flex-center">
-                <ApplyInputComponent fileTypes=".pdf,.docx" id="cv" 
-                inputName="cv" inputType="file" label="CV/Resume" placeholder="cv" />
-                <button class="apply-job-btn" type="submit" >Apply</button>
-                <button class="apply-job-btn alt" type="button" >Cancel</button>
+                <ApplyInputComponent fileTypes=".pdf,.docx" id="cv"
+                inputName="cv" inputType="file" label="CV/Resume" placeholder="cv" :handleInput="handleInput"  />
+                <button class="apply-job-btn" type="button" @click.prevent="handleApply">Apply</button>
+                <button class="apply-job-btn alt" type="button" @click.prevent="handleCancel" >Cancel</button>
             </div>
            
         </form>
@@ -28,6 +36,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import {applyJobInput} from '../../../data';
 import ApplyInputComponent from './ApplyInputComponent.vue';
 export default {
@@ -36,19 +45,65 @@ export default {
 
     data() {
         return {
-            inputInfo:''     
+            inputInfo:''    ,
+            inputValues:[],
+            application:{
+                cv:false,
+                cover_letter:'',
+            }
         }
     },
-    props:['currentUser'],
+    props:['user','job','handleCancel'],
 
     created() {
         this.inputInfo=applyJobInput
-        console.log(this.inputInfo[0].id);
-
-        
+        this.setInputValues()  
     },
 
     methods: {
+        
+        axios(){
+            axios.post('')
+        },
+
+        handleApply(){
+            if(!this.application.cv){
+                console.log(this.application.cv);
+                alert('cv is required')
+                return
+            }
+            const token=JSON.parse(localStorage.getItem('userToken'))
+           
+                console.log(this.application)
+            const userAplly= new FormData()
+            userAplly.append('js_id',this.user.id)
+            userAplly.append('job_id',this.job.id)
+            userAplly.append('cv_resume',this.application.cv)
+            userAplly.append('cover_letter',this.application.cover_letter)
+
+            axios.post('ursl', userAplly,{headers:{token}})
+            .then(res=>{
+                if(res.message){
+                    alert(res.message)
+                }
+                if(res.data){
+                    console.log(res.data);
+                }
+            })
+            .catch((err)=>console.log(err))
+
+        },
+        handleInput(inputId){
+            if(inputId.id=="cv"){this.application.cv=event.target.files[0]   }
+            if(inputId.id=="cover-letter"){this.application.cover_letter=event.target.files[0]   }          
+
+        },
+        setInputValues(){
+            if(this.user){
+                this.inputValues=Object.values(this.user)
+            }
+        }
+
         
     },
 };

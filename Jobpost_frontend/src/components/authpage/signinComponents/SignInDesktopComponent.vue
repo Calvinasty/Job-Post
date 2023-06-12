@@ -173,7 +173,7 @@ export default {
 
             if (this.userType == 'jobSeeker') {
                 axios
-                    .post(`http://192.168.1.88:5000/jobSeeker/logInJobSeeker`, user)
+                    .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
                     .then((res) => {
 
                         if (res.data?.token) {
@@ -187,7 +187,7 @@ export default {
                     .then((res) => {
 
                         const token = res.token
-                        axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
+                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
                                 // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
                                 // user['photo'] = 'avatar.jpg'
