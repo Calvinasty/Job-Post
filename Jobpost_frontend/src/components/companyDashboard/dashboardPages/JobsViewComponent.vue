@@ -52,7 +52,7 @@
 
 <style lang="css" scoped>
 .container{
-    background: #F4F4F4;
+    /* background: #F4F4F4; */
     padding: 20px 0;
 }
 .text{
