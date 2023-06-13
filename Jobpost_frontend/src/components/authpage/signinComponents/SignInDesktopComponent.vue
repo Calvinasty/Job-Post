@@ -196,8 +196,12 @@ export default {
                                     this.showToast(msg, 'Login Success')
                                     this.loading = false
                                 }
-                                this.setUser(res.data[0])
+                                if(res.data.token){
+                                    this.setUser(res.data[0])
+                                console.log(res.data[0]);
                                 this.$router.push('/userprofile')
+                                }
+                                
 
 
                             })
