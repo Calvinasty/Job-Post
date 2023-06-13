@@ -3,7 +3,10 @@
         <Transition name="slide-fade">
             <div v-show="next == 0" class="first">
                 <div v-if="screen=='desktop'" class="headers">
-                    <img src="/images/logo.png" alt="logo">
+                    <div class="image-container">
+                        <span class="material-symbols-outlined" @click="$router.back()"> west</span>
+                        <img src="/images/logo.png" alt="logo">
+                    </div>
                     <h1 v-html="form1header"></h1>
                     <h3 v-html="form1sub"></h3>
                 </div>
@@ -116,24 +119,13 @@ export default {
         handleUserInput(data){
             // console.log(data);
             if(data.inputName == 'email') { this.inputData.email = data.inputValue}
-
             if(data.inputName == 'password') {this.inputData.password = data.inputValue}
-
             if(data.inputName == 'confirmPass') {this.inputData.confirmPass = data.inputValue}
-
             if(data.inputName == 'fname') {this.inputData.fname = data.inputValue}
-
             if(data.inputName == 'mdname') {this.inputData.mdname = data.inputValue}
-
             if(data.inputName == 'lname') {this.inputData.lname = data.inputValue}
-
             if(data.inputName == 'date') {this.inputData.date = data.inputValue}
-            
             if(data.inputName == 'contact') {this.inputData.contact = data.inputValue}
-
-            // if(data.inputName == 'gender') {
-            //     this.inputData.gender = data.inputValue
-            // }
         },
 
         handleSubmit() {

@@ -14,7 +14,7 @@
     import JobsView from './JobsViewComponent.vue';
     import ViewApplicant from './ViewAllApplicant.vue';
     import CompanyProfile from './CompanyProfilePage.vue';
-    import DashBoardSettings from './DashBoardSettings.vue';
+    import DashboardSettings from './DashboardSettings.vue';
     
     export default {
         components:{
@@ -23,30 +23,18 @@
             JobsView,
             ViewApplicant,
             CompanyProfile,
-            DashBoardSettings
+            DashboardSettings
         },
         data(){
             return{
                 componentId: 'analyticsView',
-                analyticsView: AnalyticsView,
-                jobsView: JobsView,
-                viewApplicant: ViewApplicant,
-                companyProfile: CompanyProfile,
-                dashboardSettings: DashBoardSettings
             }   
         },
-        created(){
-            this.getCompanyInfo()
-        },
-        updated(){
-            this.getCompanyInfo()
-        },
-        beforeMount(){
+        beforeMount(){ //rendering based on slots, beforeMounts always get updated when a new slot is mounted
             this.componentId = this.$route.params.id
-            console.log(this.componentId)
             this.getCompanyInfo()
         },
-        watch:{
+        watch:{ // watch route is ineffective in this code since we are rendering based on slots, beforeMounts always get updated
             $route(to){
                 console.log(to.params.id);
                 this.componentId = to.params.id

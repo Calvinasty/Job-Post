@@ -6,9 +6,13 @@
                     <option v-for="(country,index) in countries" :key="index" :value="country">{{ country }}</option>
                 </select>
             </label>
-            
+            <label for="" class="country-label"> Region/State
+                <select class="form-select" id="region" name="region" v-model="region" :handleInput="handleInput">
+                    <option v-for="(state,index) in states" :key="index" :value="states.includes(region) ? state : region">{{ state }}</option>
+                </select>
+            </label>
+            <!-- <InputComponent id="region" type="text" placeHolder="Region" name="region" :handleInput="handleInput" :Value="region" label="Region/State"/> -->
             <InputComponent id="address" type="text" placeHolder="Address" name="address" :handleInput="handleInput" :Value="address"/>
-            <InputComponent id="region" type="text" placeHolder="Region" name="region" :handleInput="handleInput" :Value="region"/>
             <div class="btnsec flex-center-row">
                 <button class="btn" @click.prevent="handleSave">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
@@ -37,18 +41,41 @@
         data(){
             return{
                 countries: [],
+                states: [],
                 country: '',
+                region: '',
                 address: '',
-                region: ''
             }
         },
-        
+        watch:{
+            country(newCountry, oldCountry){
+                if(newCountry !== oldCountry)
+                    this.getCountryStates()
+            }
+        },        
         methods: {
             ...mapActions(useCompanyStore, ['updateCompany']),
             handleInput(data) {
                 if(data.inputName == 'country') { this.country = data.inputValue }
                 if(data.inputName == 'address') { this.address = data.inputValue }
                 if(data.inputName == 'region') { this.region = data.inputValue }
+            },
+            getCountries() {
+                axios.get('https://countriesnow.space/api/v0.1/countries')
+                .then(res => {
+                    let getCountries = res.data.data.map(item => item.country)
+                    this.countries = getCountries
+                })
+                .then(() => this.getCountryStates() ) // method to get all states by country
+                .catch(err => console.log(err))
+            },
+            getCountryStates() {
+                axios.post('https://countriesnow.space/api/v0.1/countries/states', {country: this.country})
+                .then(res => {
+                    let states = res.data.data.states.map(state => state.name)
+                    this.states = states
+                })
+                .catch(err => console.log(err))
             },
             handleSave(){
                 const location = new FormData()
@@ -70,13 +97,15 @@
         },
 
         mounted() {
-           axios.get('https://restcountries.com/v3.1/all')
-           .then(res => {
-                let getCountries = res.data.map((item) => {
-                    return item.name.common
-                })
-                this.countries = getCountries
-           })
+        //    axios.get('https://restcountries.com/v3.1/all')
+        //    .then(res => {
+        //         let getCountries = res.data.map((item) => {
+        //             return item.name.common
+        //         })
+        //         this.countries = getCountries
+        //    })
+
+            this.getCountries() //method to get all countries from REST Api
 
             this.country = this.companyInfo?.location?.country
             this.address = this.companyInfo?.location?.address

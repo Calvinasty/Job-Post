@@ -1,59 +1,59 @@
 <template>
-    <div>  
+    <div class="container">  
         <JobsDescriptionComponent
             :myjobs="jobs"
         />
+        <h4 class="nojob-tag">📝 No Jobs posted / <span class="color-red">❌ Check network connections</span></h4>
     </div>
 </template>
 
 <script>
-import JobsDescriptionComponent from './JobsDescriptionComponent.vue';
-export default {
-    name: 'JobPostJobsViewComponent',
-    components: {
-        JobsDescriptionComponent,
-    },
-    data() {
-        return {
-            date: "April 1st - May 30th",  
-            jobs: [
-                {title: 'UI/UX Designerk', role: 'Remote - Intern', experience:'2 years', location:'Ghana'},
-                {title: 'Backend Engineer', role: 'On Site - Full Time', experience:'Intern', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'Remote - Part Time',experience:'5 years', location:'Ghana'},
-                {title: 'Full Stack', role: 'On Site - Full Time ', experience:'5 years', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'Remote', experience:'Intern', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'Hybride - Full Time', experience:'2 years', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'On Site - Intern', experience:'1 year', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'On Site - Intern', experience:'1 year', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'Remote - Intern', experience:'Intern', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'Remote', experience:'Intern', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'Remote', experience:'Intern', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'Remote', experience:'Intern', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'On Site - Intern', experience:'1 year', location:'Ghana'},
-                {title: 'UI/UX Designer', role: 'Hybride - Full Time', experience:'2 years', location:'Ghana'},
-                {title: 'Frontend Engineer', role: 'Remote - Part Time',experience:'3 years', location:'Ghana'},
-
-                
-            ]          
-        };
-    },
-
-    mounted() {
-        
-    },
-
-    methods: {
-        
-    },
-};
+    import axios from 'axios'
+    import {mapState, mapActions} from 'pinia'
+    import { useCompanyStore } from '../../../stores/companies'; 
+    const BASE_URL = import.meta.env.VITE_BASE_URL
+    import JobsDescriptionComponent from './JobsDescriptionComponent.vue';
+    export default {
+        name: 'JobPostJobsViewComponent',
+        components: {
+            JobsDescriptionComponent,
+        },
+        data() {
+            return {
+                date: "April 1st - May 30th",  
+                jobs: []          
+            };
+        },
+        computed:{
+            ...mapState(useCompanyStore, ['company'])
+        },
+        beforeMount() {
+            this.getPostedJobs()
+        },
+        mounted(){
+            this.jobs = this.company?.Jobs
+        },
+        methods: {
+            ...mapActions(useCompanyStore, ['updateCompany']),
+            getPostedJobs(){
+                const token = JSON.parse(localStorage.getItem('companyToken'))
+                axios.get(`${BASE_URL}/company/getAll`, {headers: {token}})
+                .then(res => {
+                    const companyInfo = res.data[0]
+                    this.updateCompany(companyInfo)
+                })
+                .catch(err => {
+                    console.log('err', err);
+                })
+            }
+        },
+    };
 </script>
 
 <style lang="css" scoped>
 .container{
-    display: flex;
-    flex-direction: row;
-    gap: 50%;
-    padding-top: 80px;
+    background: #F4F4F4;
+    padding: 20px 0;
 }
 .text{
     padding-left: 40px;
@@ -62,17 +62,14 @@ export default {
     color: #9C9595;
     font-size: 15px;
 }
-.date{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    gap: 5px;
-    border: 3px solid #88CC00;
+.nojob-tag{
+    font-weight: 500;
+    text-align: center;
+    padding-top: 50px;
+    color: #000;
 }
-.date span{
-    color: #88CC00;
+.color-red{
+    color: rgb(175, 11, 11);
 }
 
 </style>

@@ -1,14 +1,10 @@
 <template>
     <main>
         <div class="settings">
-            <button type="button" :class="{ active:settings[0]?.active}" @click="() => gotoSettings(settings[0].link, index)">
+            <button type="button" :class="{ active: settings[0].active }" @click="() => gotoSettings(settings[0].link, index)">
                 <span class="material-symbols-outlined">{{ settings[0].icon }}</span>
                 {{ settings[0].name }}
             </button>
-            <!-- <button type="button">
-                <span class="material-symbols-outlined">{{ settings[1].icon }}</span>
-                {{ settings[1].name }}
-            </button> -->
         </div>
         
         <button @click="handleLogout()" class="icon-btn">
