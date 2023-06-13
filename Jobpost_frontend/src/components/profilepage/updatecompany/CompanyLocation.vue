@@ -8,7 +8,7 @@
             </label>
             <label for="" class="country-label"> Region/State
                 <select class="form-select" id="region" name="region" v-model="region" :handleInput="handleInput">
-                    <option v-for="(state,index) in states" :key="index" :value="region">{{ state }}</option>
+                    <option v-for="(state,index) in states" :key="index" :value="states.includes(region) ? state : region">{{ state }}</option>
                 </select>
             </label>
             <!-- <InputComponent id="region" type="text" placeHolder="Region" name="region" :handleInput="handleInput" :Value="region" label="Region/State"/> -->
@@ -60,11 +60,19 @@
                 if(data.inputName == 'address') { this.address = data.inputValue }
                 if(data.inputName == 'region') { this.region = data.inputValue }
             },
+            getCountries() {
+                axios.get('https://countriesnow.space/api/v0.1/countries')
+                .then(res => {
+                    let getCountries = res.data.data.map(item => item.country)
+                    this.countries = getCountries
+                })
+                .then(() => this.getCountryStates() ) // method to get all states by country
+                .catch(err => console.log(err))
+            },
             getCountryStates() {
                 axios.post('https://countriesnow.space/api/v0.1/countries/states', {country: this.country})
                 .then(res => {
-                    const states = res.data.data.states.map(state => state.name)
-                    console.log(states);
+                    let states = res.data.data.states.map(state => state.name)
                     this.states = states
                 })
                 .catch(err => console.log(err))
@@ -97,12 +105,7 @@
         //         this.countries = getCountries
         //    })
 
-            axios.get('https://countriesnow.space/api/v0.1/countries')
-            .then(res => {
-                let getCountries = res.data.data.map(item => item.country)
-                this.countries = getCountries
-            })
-            .catch(err => console.log(err))
+            this.getCountries() //method to get all countries from REST Api
 
             this.country = this.companyInfo?.location?.country
             this.address = this.companyInfo?.location?.address
