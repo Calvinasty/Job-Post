@@ -196,7 +196,8 @@ export default {
                                     this.showToast(msg, 'Login Success')
                                     this.loading = false
                                 }
-                                this.setUser(res.data[0])
+                                console.log(res.data.allInfo[0]);
+                                this.setUser(res.data.allInfo[0])
                                 this.$router.push('/userprofile')
 
 

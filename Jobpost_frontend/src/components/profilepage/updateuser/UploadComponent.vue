@@ -1,5 +1,5 @@
 <template>
-    <div class="card-detail flex-center">
+    <form class="card-detail flex-center">
         <div class="profile-pic">
             <img :src="imgPreview" alt="pic">
         </div>
@@ -7,14 +7,18 @@
             <EditInputComponent inputName="daniellapic.jpeg" accept="image/*" @change="updatePreview" inputType="file" />
         </div>
         <div class="btnsec flex-center-row">
-            <button class="btn" @click="handleSave">Save</button>
-            <button class="btns" @click="handlecloseCard">Cancel</button>
+            <button class="btn" @click="handleUpdate">Save</button>
+            <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import { useUserStore } from '../../../stores/users'
 import EditInputComponent from '../EditInputComponent.vue'
+import axios from 'axios'
+const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
 
     components: {
@@ -24,20 +28,23 @@ export default {
         'type',
         'handlecloseCard',
         'handleSave',
-        'index'
+        'userInfo',
+        'index',
     ],
-
-
-
     data() {
         return {
             imgPreview: "/images/avatar.jpg",
-            img: ""
-
+            img: "",
+            showModal: false,
         }
     },
 
+    beforeMount() {
+        this.img = this.userInfo.photo
+    },
+
     methods: {
+        ...mapActions(useUserStore, ['setUser']),
         updatePreview(e) {
             var reader, files = e.target.files
             if (files.length === 0) {
@@ -49,6 +56,23 @@ export default {
             }
             reader.readAsDataURL(files[0])
         },
+
+        handleUpdate() {
+            const token = JSON.parse(localStorage.getItem('userToken'))
+            const updatedUserInfo = new FormData()
+            updatedUserInfo.append('photo', this.img.photo)
+            axios
+                .put(`${BASE_URL}/jobSeeker/updateJobSeeker`, updatedUserInfo, { headers: { token } })
+                .then((res) => {
+                    console.log(res.data);
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            this.handlecloseCard()
+        }
+
+
     }
 }
 </script>

@@ -82,7 +82,7 @@ export default {
                 date_of_birth: '',
                 // resume_cv: '',
                 gender: '',
-                showPI: false,
+
             },
             loading: false,
             toast: {
@@ -102,7 +102,7 @@ export default {
         this.personalInfo.date_of_birth = this.userInfo.date_of_birth
         // this.personalInfo.resume_cv = this.userInfo.resume_cv
         this.personalInfo.gender = this.userInfo.gender
-        console.log(this.personalInfo);
+        // console.log(this.personalInfo);
     },
     methods: {
         ...mapActions(useUserStore, ['setUser']),

@@ -143,7 +143,7 @@ export default {
         ...mapState(useUserStore, ['user'])
     },
     beforeMount() {
-        // console.log(this.user);
+        console.log(this.user);
         if (this.user) {
             const userInfo = this.user
             this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
