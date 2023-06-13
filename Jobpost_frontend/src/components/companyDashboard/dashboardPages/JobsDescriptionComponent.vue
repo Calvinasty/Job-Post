@@ -26,23 +26,19 @@ export default {
     props: [
         'myjobs'
     ],
-
     data() {
         return {
 
         };
     },
-
     mounted() {
 
     },
-
     methods: {
         show(param) {
             alert(param)
             // console.log(param)
         }
-
     },
 };
 </script>
@@ -60,10 +56,9 @@ export default {
     flex: 1;
     padding: 0px 90px 120px 100px;
 }
-.main ul{
+.main ul {
     list-style: none;
 }
-
 .table-head {
     display: flex;
     flex-direction: row;
@@ -74,14 +69,12 @@ export default {
     padding-top: 30px;
     padding-bottom: 10px;
     /* background-color: aqua; */
-
 }
-
-.table-head li{
+.table-head li {
     width: 20%;
     margin-left: 50px;
 }
-.table-body{
+.table-body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -90,13 +83,12 @@ export default {
     /* margin-right: 10px; */
     /* background-color: aqua; */
     padding: 10px;
-    
+
 }
-.table-body li{
+.table-body li {
     width: 20%;
     margin-left: 50px;
 }
 .table-body span {
     color: rgba(136, 204, 0, 1);
-}
-</style>
+}</style>

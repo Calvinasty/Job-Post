@@ -40,9 +40,11 @@
     input[type="date"]{
         background-color: #7FBF4C;
         color: #fff;
+        color-scheme: dark;
     }
     ::-webkit-calendar-picker-indicator{
         background-color: #fff;
+        color-scheme: light;
     }
     span:deep() .red-text{
         color: red;
