@@ -176,35 +176,23 @@ export default {
                     .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
                     .then((res) => {
 
+                        if (res.data?.message) {
+                            let msg = res.data.message
+                            this.showToast(msg, 'Login Success')
+                            this.loading = false
+                        }
                         if (res.data?.token) {
                             const token = JSON.stringify(res.data.token)
                             localStorage.setItem('userToken', token)
+                            console.log(res.data.allInfo[0]);
+                            this.setUser(res.data.allInfo[0])
+                            this.$router.push('/userprofile')
                         }
 
-                        return res.data
-                    })
-
-                    .then((res) => {
-
-                        const token = res.token
-                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
-                            .then((res) => {
-                                // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
-                                // user['photo'] = 'avatar.jpg'
-                                if (res.data?.message) {
-                                    let msg = res.data.message
-                                    this.showToast(msg, 'Login Success')
-                                    this.loading = false
-                                }
-                                console.log(res.data.allInfo[0]);
-                                this.setUser(res.data.allInfo[0])
-                                this.$router.push('/userprofile')
-
-
-                            })
-                            .catch((err) => console.log(err))
 
                     })
+
+
                     .catch((err) => {
                         let msg = err.response ? err.response.data.message : err.message
                         this.showToast(msg, 'error')

@@ -92,16 +92,16 @@ export default {
     },
 
     mounted() {
-        this.personalInfo.first_name = this.userInfo.first_name
-        this.personalInfo.middle_name = this.userInfo.middle_name
-        this.personalInfo.last_name = this.userInfo.last_name
-        this.personalInfo.email = this.userInfo.email
-        this.personalInfo.phone = this.userInfo.phone
+        this.personalInfo.first_name = this.userInfo?.first_name
+        this.personalInfo.middle_name = this.userInfo?.middle_name
+        this.personalInfo.last_name = this.userInfo?.last_name
+        this.personalInfo.email = this.userInfo?.email
+        this.personalInfo.phone = this.userInfo?.phone
         // linke this.personalInfo.linkedIn_url,
         //  this.personalInfo.git_url,
-        this.personalInfo.date_of_birth = this.userInfo.date_of_birth
+        this.personalInfo.date_of_birth = this.userInfo?.date_of_birth
         // this.personalInfo.resume_cv = this.userInfo.resume_cv
-        this.personalInfo.gender = this.userInfo.gender
+        this.personalInfo.gender = this.userInfo?.gender
         // console.log(this.personalInfo);
     },
     methods: {
@@ -132,7 +132,7 @@ export default {
                                     this.showToast(msg, 'Update Success')
                                     this.loading = false
                                 }
-                                this.setUser(res.data[0])
+                                this.setUser(res.data.allInfo[0])
 
                             })
                             .catch((err) => console.log(err))

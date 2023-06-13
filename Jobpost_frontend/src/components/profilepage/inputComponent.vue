@@ -1,8 +1,10 @@
 <template>
     <div class="input-field">
         <label :for="inputId">{{ fullName }}</label>
-        <input class="input-tag" :type="inputType" :name="inputName" :id="inputId" :value="Value" disabled>
-        <!-- <img class="editicon" src="/images/edit_icon.svg" alt="editicon" /> -->
+        <div>
+            <input class="input-tag" :type="inputType" :name="inputName" :id="inputId" :value="Value" disabled>
+            <img class="editicon" v-show="showpencil" src="/images/edit_icon.svg" alt="editicon" />
+        </div>
     </div>
 </template>
 
@@ -20,6 +22,7 @@ export default {
         "inputId",
         "inputName",
         "Value",
+        "showpencil"
     ]
 
 }
@@ -47,19 +50,22 @@ export default {
     color: #000000;
     border: none;
     outline: none;
-    border-bottom: 2px solid #D9D9D9;
+
     background-color: transparent;
+}
 
-
-
+div {
+    position: relative;
+    /* background: aqua; */
+    border-bottom: 2px solid #D9D9D9;
 }
 
 .editicon {
     position: absolute;
-    float: right;
-    left: 20px;
+    right: 0;
     cursor: pointer;
     width: 12px;
+    /* background: #000; */
 }
 
 @media screen and (max-width:480px) {

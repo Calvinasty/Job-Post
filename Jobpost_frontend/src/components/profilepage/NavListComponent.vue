@@ -53,7 +53,7 @@ export default {
     methods: {
         ...mapActions(useUserProfileStore, ['setNav', 'setNav2']),
         handleClick(item, itemIndex) {
-            this.type == 'user' ? this.setNav(item.link) : this.setNav2(item.link)
+            this.type == 'user' ? this.setNav(item?.link) : this.setNav2(item?.link)
 
             if (this.type == 'user') {
                 Object.keys(this.itemList).forEach((key, index) => {

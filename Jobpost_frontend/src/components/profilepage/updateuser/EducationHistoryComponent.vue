@@ -1,34 +1,31 @@
 <template>
-    <form action="" style="width:100%;" class=" form-container flex-center">
-        <span class="education-list">
-
-            <UserUpdateFormCard v-for="(school, index) in education" :key="index" class="card-detail flex-center"
-                :title="school.field_of_study">
-                <div class="input-container">
-                    <InputComponent id="" type="text" placeHolder="Add Institution" name="institution"
-                        :handleInput="handleInput" :Value="school.institution" />
-                </div>
-                <div class="input-container">
-                    <InputComponent id="" type="text" placeHolder="Add Education" name="certification"
-                        :handleInput="handleInput" :Value="school.certification" />
-                </div>
-                <div class="input-container">
-                    <InputComponent id="" type="text" placeHolder="Add Education" name="field_of_study"
-                        :handleInput="handleInput" :Value="school.field_of_study" />
-                </div>
-                <div class="input-container">
-                    <InputComponent id="" type="date" placeHolder="Add Education" name="start_date"
-                        :handleInput="handleInput" :Value="school.start_date.split('T')[0]" />
-                </div>
-                <div class="input-container">
-                    <InputComponent id="" type="date" placeHolder="Add Education" name="end_date" :handleInput="handleInput"
-                        :Value="school.end_date" />
-                </div>
-
-            </UserUpdateFormCard>
-
-        </span>
-
+    <form action="" class="card-detail">
+        <!-- style="width:100%;" -->
+        <!-- <span class="education-list"> -->
+        <!-- <UserUpdateFormCard v-for="(school, index) in education" :key="index" class="card-detail flex-center"
+                :title="school.field_of_study"> -->
+        <div class="input-container">
+            <InputComponent id="" type="text" placeHolder="Add Institution" name="institution" :handleInput="handleInput"
+                :Value="education.institution" />
+        </div>
+        <div class="input-container">
+            <InputComponent id="" type="text" placeHolder="Certification" name="certification" :handleInput="handleInput"
+                :Value="education.certification" />
+        </div>
+        <div class="input-container">
+            <InputComponent id="" type="text" placeHolder="Field of Study" name="field_of_study" :handleInput="handleInput"
+                :Value="education.field_of_study" />
+        </div>
+        <div class="input-container">
+            <InputComponent id="" type="date" placeHolder="Date" name="start_date" :handleInput="handleInput"
+                :Value="education.start_date" />
+        </div>
+        <div class="input-container">
+            <InputComponent id="" type="date" placeHolder="Date" name="end_date" :handleInput="handleInput"
+                :Value="education.end_date" />
+        </div>
+        <!-- </UserUpdateFormCard> -->
+        <!-- </span> -->
         <div class="btnsec flex-center-row">
             <button class="btn" type="submit" @click.prevent="handleUpdate">Save</button>
             <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
@@ -37,8 +34,11 @@
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import { useUserStore } from '../../../stores/users'
 import InputComponent from '../../authpage/InputComponent.vue';
-import UserUpdateFormCard from '../updateuser/UserUpdateFormCard.vue';
+// import UserUpdateFormCard from '../updateuser/UserUpdateFormCard.vue';
+// const BASE_URL = import.meta.env.VITE_BASE_URL
 // import { useUserStore } from '../../../stores/users'
 
 // import EditInputComponent from '../EditInputComponent.vue'
@@ -46,12 +46,17 @@ export default {
     components: {
         // EditInputComponent,
         InputComponent,
-        UserUpdateFormCard
+        // UserUpdateFormCard
     },
     data() {
         return {
-            education: []
-
+            education: {
+                institution: '',
+                certification: '',
+                field_of_study: '',
+                start_date: '',
+                end_date: ''
+            }
         }
     },
 
@@ -62,19 +67,21 @@ export default {
     ],
     beforeMount() {
 
-        this.education = [...this.userInfo.education]
+
     },
 
-    // mounted() {
-
-    //     // this.education.certification = this.userInfo.certification
-    //     // this.education.field_of_study = this.userInfo.field_of_study
-    //     // this.education.start_date = this.userInfo.start_date
-    //     // this.education.end_date = this.userInfo.end_date
-    // },
+    mounted() {
+        // this.education.institution = this.userInfo.education[0].institution
+        // this.education.certification = this.userInfo.education[0].certification
+        // this.education.field_of_study = this.userInfo.education[0].field_of_study
+        // this.education.start_date = this.userInfo.education[0].start_date.split('T')[0]
+        // this.education.end_date = this.userInfo.education[0].end_date.split('T')[0]
+    },
 
 
     methods: {
+        ...mapActions(useUserStore, ['setUser'])
+
 
     }
 }
@@ -83,26 +90,28 @@ export default {
 <style lang="css" scoped>
 .form-container {}
 
-.education-list {
+/* .education-list {
     height: 650px;
     overflow-y: scroll;
-}
+} */
 
 .card-detail {
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     gap: 20px;
-    /* background: #000; */
-    width: 520px;
-    padding-top: 20px;
+    width: 100%;
+    padding-top: 3%;
 
 
     /* padding-bottom: 70px; */
 }
 
 .input-container {
-    width: 400px;
-    /* background: #000; */
+    width: 100%;
+    padding-left: 200px;
+    padding-right: 200px
 }
 
 .btnsec {
@@ -116,6 +125,7 @@ export default {
 
 .btnsec>* {
     border: none;
+    cursor: pointer;
 }
 
 .btn {

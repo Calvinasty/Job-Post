@@ -54,8 +54,8 @@
                         <InputComponent v-for="(school, index) in Value.education" :key="index"
                             :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id"
-                            :Value="school?.field_of_study" />
+                            :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="school?.institution"
+                            :showpencil="true" />
 
 
                     </CardInformationComponent>
@@ -64,8 +64,8 @@
                         <InputComponent v-for="(workexp, index) in Value.workexp" :key="index"
                             :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id"
-                            :Value="workexp?.company_name" />
+                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="workexp?.company_name"
+                            :showpencil="true" />
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
@@ -73,7 +73,8 @@
                         <InputComponent v-for="(skill, index) in Value.skills" :key="index"
                             :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="skill?.skill_name" />
+                            :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="skill?.skill_name"
+                            :showpencil="true" />
                     </CardInformationComponent>
                 </div>
             </div>
