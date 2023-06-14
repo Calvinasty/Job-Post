@@ -59,7 +59,7 @@ export default {
             newFormData.append("mobile_number", this.userInfo.phone)
             newFormData.append("verification_method", this.userInfo.verification)
             // console.log(newFormData);
-            axios.post(`${BASE_URL}:5000/company/registerCompany`, newFormData)
+            axios.post(`${BASE_URL}/company/registerCompany`, newFormData)
                 .then(res => {
                     console.log(res?.data);
                     if (res.data?.message) {
