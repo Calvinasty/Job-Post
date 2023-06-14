@@ -6,7 +6,7 @@
     height: 100dvh;
     padding: 55px 105px;
     /* background-color: rgba(0, 0, 0, 0.56); */
-    background-image: url('/images/job_banner.png');
+    background-image: url('/images/job_banner.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 40%;
@@ -22,7 +22,7 @@
 }
 section .head {
     width: 60%;
-    font-size: 60px;
+    font-size: 41px;
     font-weight: bolder;
     color: #fff;
     letter-spacing:normal;
@@ -33,12 +33,14 @@ section .head :deep() h1 .color {
 }
 
 section .tag {
-    width: 40%;
+    width: 50%;
     font-size: 20px;
     color: #d1d1d1;
 }
 section .active-tag-desk{
     display: block;
+    /* border: 1px solid red; */
+    width: '100%';
 }
 section .active-tag-mob{
     display: none;

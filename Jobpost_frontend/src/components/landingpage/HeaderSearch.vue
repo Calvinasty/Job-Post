@@ -1,7 +1,9 @@
 <template>
     <aside class="action">
         <div>
-            <HeaderSearchInput v-for="(item,index) in search" :title="item.title" :placeholder="item.placeholder" :type="item.type" :key="index"/>
+            <HeaderSearchInput :title="filters.search.title" :placeholder="filters.search.placeholder" :type="filters.search.type"/>
+            <HeaderSearchInput type="select" data=""/>
+            <HeaderSearchInput type="select" />
             <button type="button" @click="handleSearch()">
                 <!-- <img src="/images/search.svg" alt="search"> -->
                 <span class="material-symbols-outlined"> search </span>
@@ -24,18 +26,13 @@
         components:{HeaderSearchInput},
         data(){
             return{
-                search:[
-                    {
+                filters:{
+                    search: {
                         title: "Location",
-                        placeholder: "Enter Location",
-                        type: "text"
-                    },
-                    {
-                        title: "Type",
-                        placeholder: "Enter type of job",
+                        placeholder: "Search for jobs",
                         type: "text"
                     }
-                ]
+                }
             }
         },
 

@@ -14,8 +14,8 @@
 
                 <div class="second" v-show="next == 1">
                     <label for="">Select Job Type</label>
-                    <select :v-model="postjob.jobtype">
-                        <option value="default">Select Job Type</option>
+                    <select v-model="postjob.jobtype">
+                        <!-- <option value="default">Select Job Type</option> -->
                         <option value="fullTime">Full Time</option>
                         <option value="partTime">Part Time</option>
                         <option value="remote">Remote</option>
@@ -33,9 +33,9 @@
 
                 <div class="third" v-show="next == 2">
                     <label for="">Select Salary</label>
-                    <select :v-model="postjob.salary" placeholder="Select Salary Range">
-                        <option value="default">Select Salary Range</option>
-                        <option value="disclosure">Disclosure</option>
+                    <select v-model="postjob.salary" placeholder="Select Salary Range">
+                        <!-- <option value="default">Select Salary Range</option> -->
+                        <option value="disclosure">Non-disclosure</option>
                         <option value="GH¢ 800-1,200">GH¢ 800 - 1,200</option>
                         <option value="GH¢ 1,200-1,800">GH¢ 1,200 - 1,800</option>
                         <option value="GH¢ 1,800-2,500">GH¢ 1,800 - 2,500</option>
@@ -82,7 +82,7 @@
         data(){
             return{
                 postjob: {
-                    title: '', description: '', requirement: '', jobtype: '',
+                    jobId: '', title: '', description: '', requirement: '', jobtype: '',
                     location: '', salary: '', role: '', recruiter: '',
                     contact: '',  deadline: '', howto: ''
                 },
@@ -111,7 +111,7 @@
                 })
                 console.log(job)
                 this.postjob ={
-                    title: job.job_title, description: job.job_description, requirement: job.requirements, jobtype: job.requirements, location: job.location,
+                    jobId: job.id, title: job.job_title, description: job.job_description, requirement: job.requirements, jobtype: job.requirements, location: job.location,
                     salary: job.salary_range, role: job.role, recruiter: job.name_of_poster, contact: job.contact, deadline: job.application_deadline.split('T')[0], howto: job.how_to_apply
                 }
             },
@@ -131,26 +131,48 @@
                 newFormData.append("contact", this.postjob.contact)
 
                 let token = JSON.parse(localStorage.getItem('companyToken'))
-                console.log(token);
-                axios.post(`${BASE_URL}/job/postJob`, newFormData, {headers: {token}})
-                .then(res => {
-                    console.log(res.data);
-                    let msg = res.data?.message
-                    let newJob = res.data?.job;
-                    if(newJob){
+                
+                if(this.updatePostModalId !== ''){
+                    const jobId = this.postjob.jobId
+                    console.log('jobId', jobId);
+                    axios.put(`${BASE_URL}/job/update/${jobId}`, newFormData, {headers: {token:token}})
+                    .then(res => {
+                        console.log(res.data);
+                        let msg = res.data?.message
+                        let newJob = res.data?.job;
+                        if(newJob){
+                            this.loading = false
+                            this.showToast(msg?msg:'Job Update Successful', 'success')
+                            this.clearForm()
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
                         this.loading = false
-                        this.showToast(msg?msg:'Job Post Successful', 'success')
-                        // this.$router.push('/jobsearch')
-                        this.clearForm()
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                    this.loading = false
-                    let msg = err.response? err.response.data.message : err.message
-                    this.showToast(msg, 'error')
-                    // alert(msg)
-                })
+                        let msg = err.response? err.response.data.message : err.message
+                        this.showToast(msg, 'error')
+                    })
+                }else{
+                    axios.post(`${BASE_URL}/job/postJob`, newFormData, {headers: {token}})
+                    .then(res => {
+                        console.log(res.data);
+                        let msg = res.data?.message
+                        let newJob = res.data?.job;
+                        if(newJob){
+                            this.loading = false
+                            this.showToast(msg?msg:'Job Post Successful', 'success')
+                            // this.$router.push('/jobsearch')
+                            this.clearForm()
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        this.loading = false
+                        let msg = err.response? err.response.data.message : err.message
+                        this.showToast(msg, 'error')
+                        // alert(msg)
+                    })
+                }
             },
             clearForm(){
                 Object.keys(this.postjob).forEach(key => {
