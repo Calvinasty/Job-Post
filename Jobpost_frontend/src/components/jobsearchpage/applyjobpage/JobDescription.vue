@@ -83,6 +83,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 .job-details{
     color: rgba(120, 114, 114, 1);
     /* background: #0000007e; */
@@ -129,6 +130,9 @@ export default {
     align-items: flex-start;
     text-align: left;
     padding: 20px;
+}
+h1,h2,h3{
+    font-size:18px;
 }
 .job-description ul{
     margin-top:20px;
