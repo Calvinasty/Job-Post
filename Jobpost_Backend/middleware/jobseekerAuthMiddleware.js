@@ -1,15 +1,16 @@
 import JobSeekersModel from "../models/jobSeekersModel.js";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 const jwtSecret = process.env.JWT_SECRET;
 import multer from "multer";
 import path from "path";
+// import { log } from "util";
 const absolutePath = path.resolve("./");
 
 //middleware to check if job seeker exists in the database and generate a JWT
 const jobseekerSignUpToken = async (req, res, next) => {
-  console.log(req.body);
   const {
     first_name,
     middle_name,
@@ -28,11 +29,10 @@ const jobseekerSignUpToken = async (req, res, next) => {
     email,
     phone_number,
   };
-  console.log(jobSeekerInfo);
   try {
     const findUser = await JobSeekersModel.findOne({ where: { email } });
     if (findUser) {
-      res.status(403).json("user already exist. Please login!");
+      res.status(403).json({ message: "user already exist. Please login!" });
       return;
     }
     // generate a token for job seeker registeration
@@ -55,31 +55,45 @@ const jobseekerLogInToken = async (req, res, next) => {
   const jobSeekerInfo = req.body;
   const findJobSeeker = await JobSeekersModel.findOne({
     where: { email: jobSeekerInfo.email },
-    attributes: { exclude: ["password"] },
   });
   if (!findJobSeeker) {
-    res
-      .status(403)
-      .json({ message: "user does not exist. Please sign up first!" });
+    return res.status(403).json({ message: "Invalid email or password!" });
   }
-  const token = jwt.sign(jobSeekerInfo.email, jwtSecret);
+
+  const passwordMatch = await bcrypt.compare(
+    jobSeekerInfo.password,
+    findJobSeeker.password
+  );
+  if (!passwordMatch) {
+    return res.status(403).json({ message: "Invalid credentials" });
+  }
+
+  const tokenVariables = {
+    id: findJobSeeker.dataValues.id,
+    first_name: findJobSeeker.dataValues.first_name,
+    middle_name: findJobSeeker.dataValues.middle_name,
+    last_name: findJobSeeker.dataValues.last_name,
+    email: findJobSeeker.dataValues.email,
+    gender: findJobSeeker.dataValues.gender,
+  };
+
+  const token = jwt.sign(tokenVariables, jwtSecret);
   req.token = token;
-  req.user = findJobSeeker;
+  req.user = findJobSeeker.dataValues;
   next();
 };
 
 // middleware to verify token
 const verifyJobseekerToken = async (req, res, next) => {
-  const token = req.headers.token;
-  if (!token) {
-    return res.status(401).json({ message: "No token provided" });
-  }
   try {
+    const token = req.headers.token;
+    if (!token) {
+      return res.status(401).json({ message: "No token provided" });
+    }
     const decodedToken = jwt.verify(token, jwtSecret);
     const jobSeekerInfo = decodedToken;
-    const userId = await JobSeekersModel.findAll({jobSeekerInfo,attributes: ["id"]});
-    if (userId) {
-      req.userId = userId[0].dataValues.id;
+    if (jobSeekerInfo) {
+      req.userId = jobSeekerInfo.id;
       next();
     }
   } catch (error) {
@@ -102,7 +116,17 @@ const uploadPhotoMiddleware = (destination) => {
     },
   });
 
-  const upload = multer({ storage });
+  const fileFilter = (req, file, cb) => {
+    const { mimetype } = file;
+    if (mimetype.includes("image")) {
+      cb(null, true);
+    } else {
+      cb(new Error("Upload only images!"));
+    }
+    return;
+  };
+
+  const upload = multer({ storage, fileFilter });
   return upload;
 };
 

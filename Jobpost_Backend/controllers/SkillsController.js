@@ -2,17 +2,17 @@ import skillsModel from "../models/skillsModel.js";
 
 // Create a new skills record for a jobseeker
 const createSkills = async (req, res) => {
-  const addSkills = req.body;
+  const addSkill = req.body;
   const id = req.userId;
-  addSkills["js_id"] = id;
+  addSkill["js_id"] = id;
   try {
-    const newSkills = await skillsModel.create(addSkills);
-    if (newSkills) {
-      return res.status(201).json({ message: "skills record created successfully" });
+    const newSkill = await skillsModel.create(addSkill);
+    if (newSkill) {
+      return res.status(201).json({ message: "skills record created successfully", addSkill });
     }
   } catch (error) {
     console.error("Error creating skills record:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -22,7 +22,7 @@ const updateSkills = async (req, res) => {
     const { id } = req.params;
     const existingSkills = await skillsModel.findByPk(id);
     if (!existingSkills) {
-      return res.status(404).json({ error: "Skills record not found" });
+      return res.status(404).json({ message: "Skills record not found" });
     }
     await existingSkills.update(req.body);
     return res.json({
@@ -30,40 +30,38 @@ const updateSkills = async (req, res) => {
       skills: existingSkills,
     });
   } catch (error) {
-    console.error("Error updating Skills record:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    console.error( error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
 // Get all Skills records for a jobseeker
 const getAllSkills = async (req, res) => {
   try {
-    const { id } = req.params;
-    const skillsRecords = await skillsModel.findAll({ where: { js_id: id } });
+    // const { id } = req.params;
+    const skillsRecords = await skillsModel.findAll({attributes:{exclude:["id","js_id","deletedAt"]} });
     if (!skillsRecords || skillsRecords.length === 0) {
-      return res.status(404).json({ error: "Skills not found" });
+      return res.status(404).json({ message: "Skills not found" });
     }
     return res.json(skillsRecords);
   } catch (error) {
-    console.error("Error fetching Skills records:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    console.error( error);
+    return res.status(500).json({ message: "Internal server error" });
   };
 };
 
 // Delete an existing Skills record for a jobseeker
-const deleteSkills = async(req, res) =>{
+const deleteSkill = async(req, res) =>{
   try {
     const { id } = req.params;
-    const existingSkills = await skillsModel.findByPk(id);
-    if (!existingSkills) {
-      return res.status(404).json({ error: "Skills record not found" });
-    }
-    await existingSkills.destroy();
+    const existingSkill = await skillsModel.findByPk(id);
+    if (!existingSkill) return res.status(404).json({ message: "Skills record not found" });
+    await existingSkill.destroy();
     return res.sendStatus(204);
   } catch (error) {
-    console.error("Error deleting Skills record:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 
-export  { getAllSkills, createSkills, updateSkills, deleteSkills,};
+export  { getAllSkills, createSkills, updateSkills, deleteSkill,};

@@ -1,32 +1,54 @@
-import express from"express";
+import express from "express";
 const router = express.Router();
 
-import { registerJobSeekerController, jobSeekerLoginController, getJobSeekerController, updateJobSeekerInfo} from "../controllers/jobSeekersController.js";
-import { jobSeekerRegisterValidator, jobSeekerLogInValidator} from "../validators/jobseekerValidator.js"
-import { jobseekerSignUpToken, jobseekerLogInToken, verifyJobseekerToken,uploadPhotoMiddleware } from "../middleware/jobseekerAuthMiddleware.js";
+import {
+  registerJobSeeker,
+  jobSeekerLogin,
+  getJobSeeker,
+  updateJobSeekerInfo,
+  getJobSeekerAllInfo,
+  deleteJobSeeker,
+  getAllJobSeekers,
+} from "../controllers/jobSeekersController.js";
 
-router.post("/registerJobSeeker",
-   uploadPhotoMiddleware("").none(),
-    jobSeekerRegisterValidator,
-    jobseekerSignUpToken,
-    registerJobSeekerController);
+import {
+  jobSeekerRegisterValidator,
+  jobSeekerLogInValidator,
+} from "../validators/jobseekerValidator.js";
 
-router.post("/logInJobSeeker",
-    uploadPhotoMiddleware("").none(),
-    jobSeekerLogInValidator,
-    jobseekerLogInToken,
-    // verifyJobseekerToken,
-    jobSeekerLoginController);
+import {
+  jobseekerSignUpToken,
+  jobseekerLogInToken,
+  verifyJobseekerToken,
+  uploadPhotoMiddleware,
+} from "../middleware/jobseekerAuthMiddleware.js";
 
-router.get("/getInfo",
-    verifyJobseekerToken,
-    getJobSeekerController,
+router.post(
+  "/registerJobSeeker",
+  uploadPhotoMiddleware("").none(),
+  jobSeekerRegisterValidator,
+  jobseekerSignUpToken,
+  registerJobSeeker
 );
-// router.get("/getAllInfo", verifyJobseekerToken,allJobSeekerInfo)
 
-router.put("/updateJobSeeker",
-    uploadPhotoMiddleware("public/uploads").single("photo"),
-    verifyJobseekerToken,
-    updateJobSeekerInfo);
+router.post(
+  "/logInJobSeeker",
+  uploadPhotoMiddleware("").none(),
+  jobSeekerLogInValidator,
+  jobseekerLogInToken,
+  jobSeekerLogin,
+  getJobSeekerAllInfo
+);
 
+router.get("/getInfo", verifyJobseekerToken, getJobSeeker);
+router.get("/getAllInfo", verifyJobseekerToken, getJobSeekerAllInfo);
+router.get("/allJobSeekers", getAllJobSeekers);// SHOULD GO TO THWE ADMIN
+
+router.put(
+  "/updateJobSeeker",
+  uploadPhotoMiddleware("public/uploads").single("photo"),
+  verifyJobseekerToken,
+  updateJobSeekerInfo
+);
+router.delete("/deleteJobSeeker/:id", deleteJobSeeker)
 export default router;

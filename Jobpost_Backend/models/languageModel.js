@@ -9,20 +9,18 @@ const languages = Sequelize.define("language", {
         allowNull: false,
     },
 
-    js_id: {
+   js_id: {
         type: DataTypes.UUID,
         references: {
-            model: "jobSeekers",
-            key: "id",
-        }
+            model: "job_seekers",
+            key: "id"
+       },
+        onDelete:"CASCADE"
     },
-
     language: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-}, {
-    timestamps: false
 });
     (async () => {
     await Sequelize.sync()

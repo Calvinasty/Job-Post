@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../dataBase/dbConfig.js";
 
-const jsSocialLinks = sequelize.define("jsSocialLinks",{
+const jsSocialLinks = sequelize.define("js_social_links",{
     id:{
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -12,9 +12,10 @@ const jsSocialLinks = sequelize.define("jsSocialLinks",{
     js_id:{
        type: DataTypes.UUID,
        references: {
-            model: "jobSeekers",
+            model: "job_seekers",
             key: "id"
-        }
+        },
+       onDelete:"CASCADE"
     },
 
    linkedIn_link:{
@@ -26,8 +27,6 @@ const jsSocialLinks = sequelize.define("jsSocialLinks",{
     type: DataTypes.STRING,
     allowNull: true
       }
-}, {
-    timestamps: false
 });
 (async() => {
     await sequelize.sync()

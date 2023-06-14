@@ -1,14 +1,31 @@
 import express from "express";
 const router = express.Router();
-import {getAllSkills, createSkills, updateSkills, deleteSkills,} from "../controllers/skillsController.js";
+import {
+  getAllSkills,
+  createSkills,
+  updateSkills,
+  deleteSkill,
+} from "../controllers/SkillsController.js";
 import skillsValidator from "../Validators/skillsValidator.js";
-import { verifyJobseekerToken } from "../middleware/jobseekerAuthMiddleware.js";
-import { uploadPhotoMiddleware } from "../middleware/jobseekerAuthMiddleware.js";
+import { verifyJobseekerToken, uploadPhotoMiddleware } from "../middleware/jobseekerAuthMiddleware.js";
+import { getJobSeekerAllInfo } from "../controllers/jobSeekersController.js";
 
 // Route to get all Skills records for a jobseeker
-router.post("/addSkills",uploadPhotoMiddleware("").none(), skillsValidator, verifyJobseekerToken, createSkills);
-router.get("/getSkills/:id", getAllSkills, verifyJobseekerToken); 
-router.put("/updateSkills/:id", skillsValidator,verifyJobseekerToken, updateSkills);
-router.delete("/deleteSkills/:id", deleteSkills, verifyJobseekerToken); 
+router.post(
+  "/addSkills",
+  uploadPhotoMiddleware("").none(),
+  skillsValidator,
+  verifyJobseekerToken,
+  createSkills,
+  getJobSeekerAllInfo
+);
+router.get("/getSkills/:id", getAllSkills);
+router.put(
+  "/updateSkills/:id",
+  skillsValidator,
+  verifyJobseekerToken,
+  updateSkills
+);
+router.delete("/deleteSkill/:id", deleteSkill, verifyJobseekerToken);
 
 export default router;
