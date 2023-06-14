@@ -133,7 +133,7 @@ export default {
                                     this.loading = false
                                 }
                                 this.setUser(res.data.allInfo[0])
-                                console.log(this.setUser);
+
 
                             })
                             .catch((err) => console.log(err))
