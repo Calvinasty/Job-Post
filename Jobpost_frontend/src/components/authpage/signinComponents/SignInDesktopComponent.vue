@@ -2,7 +2,10 @@
     <div class="signin-desktop">
         <div class="signin">
             <header>
-                <img src="/images/logo.png" alt="">
+                <div class="image-box">
+                    <span class="material-symbols-outlined back-arrow" @click="$router.back()"> west</span>
+                    <img src="/images/logo.png" alt="">
+                </div>
 
                 <h2>{{ nameHeader }}</h2>
 
@@ -210,6 +213,20 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.signin header {
+    position: relative;
+}
+.image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.back-arrow {
+    color: #7FBF4C;
+    position: absolute;
+    left: 0;
+}
 .signin-desktop {
     display: flex;
     justify-content: center;
