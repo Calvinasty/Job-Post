@@ -15,7 +15,7 @@
     <Transition name="slide-fade">
         <!-- close emits from child component to parent -->
         <ModalComponent
-            v-show="modalComponentId !== ''" 
+            v-show="modalComponentType !== ''" 
             @modal-close="showModal=false"
         />
         </Transition>
@@ -43,7 +43,7 @@
             }
         },
         computed:{
-            ...mapState(useDashboardStore, ['modalComponentId'])
+            ...mapState(useDashboardStore, ['modalComponentType'])
         },
         methods:{
         }
