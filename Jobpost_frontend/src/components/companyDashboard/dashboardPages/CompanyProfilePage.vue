@@ -80,11 +80,11 @@
                         <InputComponent :fullName="cardDetails[2].cardInputInformation.inputTwo.name"
                             :inputId="cardDetails[2].cardInputInformation.inputTwo.id"
                             :inputType="cardDetails[2].cardInputInformation.inputTwo.type" 
-                            :Value="companyProfileInfo.address"/>
+                            :Value="companyProfileInfo.region"/>
                         <InputComponent :fullName="cardDetails[2].cardInputInformation.inputThree.name"
                             :inputId="cardDetails[2].cardInputInformation.inputThree.id"
                             :inputType="cardDetails[2].cardInputInformation.inputThree.type" 
-                            :Value="companyProfileInfo.region"/>
+                            :Value="companyProfileInfo.address"/>
                     </CardInformationComponent>
                 </div>
             </div>
@@ -198,13 +198,13 @@ export default {
                             type: 'text',
                         },
                         inputTwo: {
-                            id: 'address',
-                            name: 'Address',
+                            id: 'region',
+                            name: 'Region',
                             type: 'text',
                         },
                         inputThree: {
-                            id: 'region',
-                            name: 'Region',
+                            id: 'address',
+                            name: 'Address',
                             type: 'text',
                         }
                     },
@@ -230,6 +230,7 @@ export default {
         ...mapState(useCompanyStore, ['company'])
     },
     mounted() {
+        console.log("dashboard",this.company);
         const companyInfo = this.company
         this.companyName = companyInfo?.company_name
         this.companyProfileInfo.company_name = companyInfo?.company_name

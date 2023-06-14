@@ -2,7 +2,10 @@
     <div class="signin-desktop">
         <div class="signin">
             <header>
-                <img src="/images/logo.png" alt="">
+                <div class="image-box">
+                    <span class="material-symbols-outlined back-arrow" @click="$router.back()"> west</span>
+                    <img src="/images/logo.png" alt="">
+                </div>
 
                 <h2>{{ nameHeader }}</h2>
 
@@ -140,35 +143,29 @@ export default {
 
             if (this.userType == 'jobPoster') {
                 axios.post(`${BASE_URL}/company/logInCompany`, user)
-                    .then(res => {
-                        console.log(res?.data);
-                        if (res.data?.message) {
-                            let msg = res.data.message
-                            this.showToast(msg, 'success')
-                            this.loading = false
-                        }
-                        if (res.data?.token) {
-                            const token = JSON.stringify(res.data.token)
-                            localStorage.setItem('companyToken', token)
-                        }
-                        if (res.data?.company) {
-                            const company = res.data.company
-                            this.setCompany(company)
-                            this.$router.push('/admin/analyticsView')
-                        }
-                        // res.data
-                        // localStorage.setItem('companyState', res.data.user)
-                        // localStorage.setItem('userToken', res.data.token)
-
-
-
-                    })
-                    .catch(err => {
-                        let msg = err.response ? err.response.data.message : err.message
-                        this.showToast(msg, 'error')
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data?.message) {
+                        let msg = res.data.message
+                        this.showToast(msg, 'Login success')
                         this.loading = false
-                        console.log(err);
-                    })
+                    }
+                    if (res.data?.token) {
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('companyToken', token)
+                        console.log('company', res.data.allCompanyInfo[0]);
+                        this.setCompany(res.data.allCompanyInfo[0])
+                    }
+                })
+                .then(()=>{
+                    this.$router.push('/admin/analyticsView')
+                })
+                .catch(err => {
+                    let msg = err.response ? err.response.data.message : err.message
+                    this.showToast(msg, 'error')
+                    this.loading = false
+                    console.log(err);
+                })
             }
 
             if (this.userType == 'jobSeeker') {
@@ -216,6 +213,20 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.signin header {
+    position: relative;
+}
+.image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.back-arrow {
+    color: #7FBF4C;
+    position: absolute;
+    left: 0;
+}
 .signin-desktop {
     display: flex;
     justify-content: center;

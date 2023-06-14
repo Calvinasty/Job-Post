@@ -30,7 +30,7 @@
                     </select>
                 </div>
 
-                <JobPosterFormFooter :pageNum="pageNumber" actionBtnText="Register" actionBtnType="submit"
+                <JobPosterFormFooter :pageNum="pageNumber" :loading="loading" actionBtnText="Register" actionBtnType="submit"
                     :handleSignUp="handleSignUp" />
             </form>
         </Transition>
@@ -66,6 +66,7 @@ export default {
         'handleUserInput',
         'handleVerify',
         'userInfo',
+        'loading'
 
 
     ],

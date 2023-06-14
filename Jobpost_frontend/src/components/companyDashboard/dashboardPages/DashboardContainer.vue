@@ -47,7 +47,7 @@
                 // console.log(token);
                 axios.get(`${BASE_URL}/company/getAll`, {headers: {token}})
                 .then(res => {
-                    const companyInfo = res.data[0]
+                    const companyInfo = res.data.allCompanyInfo[0]
                     console.log(companyInfo)
                     this.setCompany(companyInfo)
                 })
