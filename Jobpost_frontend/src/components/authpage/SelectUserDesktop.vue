@@ -3,7 +3,10 @@
         
         <section>
             <header>
-                <img src="/images/logo.png" alt="">
+                <div class="image-box">
+                    <span class="material-symbols-outlined back-arrow" @click="$router.back()"> west</span>
+                    <img src="/images/logo.png" alt="">
+                </div>
             </header>
 
             <div class="selector-header">
@@ -52,6 +55,19 @@
 </script>
 
 <style lang="css" scoped>
+    .image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .back-arrow {
+        color: #7FBF4C;
+        position: absolute;
+        left: 0;
+        font-size: 30px;
+        font-weight: bolder;
+        cursor: pointer;
+    }
     .desktopUser-selector {
         width: 100dvw;
         height: 100dvh;
@@ -73,7 +89,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        row-gap: 15px;
+        row-gap: 10px;
         background-color: #fff;
         border-radius: 20px;
         width: 550px;
@@ -83,6 +99,7 @@
     }
 
     header {
+        position: relative;
         display: flex;
         justify-content: center;
         flex-direction: column;

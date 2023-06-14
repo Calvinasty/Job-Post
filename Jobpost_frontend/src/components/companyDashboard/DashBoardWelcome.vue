@@ -1,13 +1,13 @@
 <template>
     <section class="container">
         <aside class="text">
-            <h4>Good Morning, Maxim</h4>
+            <h4>{{ greeting }}, {{ company.company_name }}</h4>
             <p>
                 Here is your job listing statictic and report from {{ date }}
             </p>
         </aside>
         <aside class="date">
-            <h5>April 1st - May 30th</h5><span class="material-symbols-outlined">
+            <h5>January 1st - May 30th</h5><span class="material-symbols-outlined">
                 calendar_month
             </span>
         </aside>
@@ -15,8 +15,47 @@
 </template>
 
 <script>
+import { mapState } from 'pinia';
+import { useCompanyStore } from '../../stores/companies';
+
 export default {
     name: 'JobPostDashBoardWelcome',
+    data(){
+        return{
+            greeting: ''
+        }
+    },
+    computed:{
+        ...mapState(useCompanyStore, ['company'])
+    },
+    mounted(){
+        this.updateGreeting()
+    },
+    methods:{
+        getGreeting(){
+            const date = new Date()
+            const getTime = date.getHours() 
+            console.log(getTime)
+
+            let greeting;
+
+            if(getTime  < 12){
+                greeting = 'Good morning'
+            }; 
+            if ((getTime >= 12) && (getTime <= 17)){
+                greeting = 'Good afternoon'
+            }
+            else if(getTime > 17){
+                greeting = 'Good evening'
+            }
+            return greeting 
+        },
+        
+         updateGreeting(){
+            this.greeting = this.getGreeting()
+         }
+        
+    }
 };
 </script>
 

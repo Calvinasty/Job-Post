@@ -1,7 +1,10 @@
 <template>
     
     <header class="flex-center">
-        <img src="/images/logo.png" alt="logo">
+        <div class="image-box">
+            <span class="material-symbols-outlined back-arrow" @click="$router.back()"> west</span>
+            <img src="/images/logo.png" alt="logo">
+        </div>
         <span>
             <span style="text-align: center;">
                 <h1>Sign Up</h1>
@@ -22,9 +25,27 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.back-arrow {
+    color: #7FBF4C;
+    position: absolute;
+    left: 0;
+    font-size: 30px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
 h1{ color: #7FBF4C; font-size: 20px;}
 h3{ margin-bottom: 30px; font-size: 13px;}
-header{ row-gap:20px;}
+header{ 
+    row-gap:20px;
+    position: relative;
+}
 header img{ height: 35px; width: auto;}
 h3{ margin-top: 10px; color: rgba(125, 116, 116, 1);}
 @media screen and (max-width:600px) {
