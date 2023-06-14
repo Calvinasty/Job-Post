@@ -64,6 +64,9 @@
         color: #7FBF4C;
         position: absolute;
         left: 0;
+        font-size: 30px;
+        font-weight: bolder;
+        cursor: pointer;
     }
     .desktopUser-selector {
         width: 100dvw;
@@ -86,7 +89,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        row-gap: 15px;
+        row-gap: 10px;
         background-color: #fff;
         border-radius: 20px;
         width: 550px;

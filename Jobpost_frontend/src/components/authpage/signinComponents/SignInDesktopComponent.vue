@@ -226,6 +226,9 @@ export default {
     color: #7FBF4C;
     position: absolute;
     left: 0;
+    font-size: 30px;
+    font-weight: bolder;
+    cursor: pointer;
 }
 .signin-desktop {
     display: flex;
