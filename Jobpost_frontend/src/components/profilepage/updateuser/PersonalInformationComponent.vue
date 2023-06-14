@@ -134,6 +134,7 @@ export default {
                                 }
                                 this.setUser(res.data.allInfo[0])
 
+
                             })
                             .catch((err) => console.log(err))
                     }

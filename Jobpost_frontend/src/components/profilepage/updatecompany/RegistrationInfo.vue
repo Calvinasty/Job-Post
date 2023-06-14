@@ -6,7 +6,8 @@
             <InputComponent id="vatNumber" type="text" placeHolder="VAT Number" name="vatNumber"
                 :handleInput="handleInput" :Value="vatNumber"/>
             <label class="flex-center">Company Certificate (Commencement, Incorporation, VAT)
-                <InputComponent id="companyCert" type="file" placeHolder="" name="companySite" :handleInput="handleInput" :Value="companyCert"/>
+                <InputComponent id="companyCert" type="file" placeHolder="" name="companyCert" :handleInput="handleInput"/>
+                📑 {{ companyCert }}
             </label>
             <div class="btnsec flex-center-row">
                 <button class="btn" @click.prevent="handleSave">Save</button>
@@ -66,9 +67,9 @@ export default {
         }
     },
     mounted() {
-            this.registrationNumber = this.companyInfo.company_registration.registration_number
-            this.vatNumber = this.companyInfo.company_registration.vat_number
-            this.companyCert = this.companyInfo.company_registration.company_certificate
+        this.registrationNumber = this.companyInfo.company_registration.registration_number
+        this.vatNumber = this.companyInfo.company_registration.vat_number
+        this.companyCert = this.companyInfo.company_registration.company_certificate
             
     }
 }
