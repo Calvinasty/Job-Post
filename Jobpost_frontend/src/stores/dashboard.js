@@ -8,7 +8,8 @@ export const useDashboardStore = defineStore(
         state: () => ({
             companyInfo: useStorage("companyState", {}),
             next: 0,     // set state of postjobform next in modal,
-            modalComponentId: '',   //set state for modal show postJob or Applicants Summary
+            modalComponentType: '',   //set state for modal show postJob or Applicants Summary
+            updatePostModalId: '',    //sets the id of the job post to be updated by a company
             chartDataValues: useStorage("chartDataValues", [10, 9, 20, 10, 0, 0]),
             blink: false
         }),
@@ -23,8 +24,10 @@ export const useDashboardStore = defineStore(
                 this.next = num
             },
             //trigger modal show for post job or applicant summary
-            setModal(id){
-                this.modalComponentId = id
+            // if second parameter is passed, it means we are updating a jobpost by the id argument passed
+            setModal(type, postId=''){
+                this.modalComponentType = type
+                this.updatePostModalId = postId
             },
             setCompanyInfo(info){
                 this.companyInfo = info

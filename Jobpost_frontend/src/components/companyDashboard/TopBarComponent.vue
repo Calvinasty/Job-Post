@@ -26,7 +26,7 @@
             }
         },
         computed:{
-            ...mapState(useDashboardStore, ['modalComponentId', 'companyInfo', 'blink'])
+            ...mapState(useDashboardStore, ['modalComponentType', 'companyInfo', 'blink'])
         },
         methods:{
             ...mapActions(useDashboardStore, ['setModal']),

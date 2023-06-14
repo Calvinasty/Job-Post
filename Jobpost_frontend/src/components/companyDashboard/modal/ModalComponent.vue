@@ -1,6 +1,6 @@
 <template>
     <ModalLayout>
-        <component :is="modalComponentId"></component>
+        <component :is="modalComponentType"></component>
     </ModalLayout>
 </template>
 
@@ -19,7 +19,7 @@
             }
         },
         computed:{
-            ...mapState(useDashboardStore, ['modalComponentId'])
+            ...mapState(useDashboardStore, ['modalComponentType'])
         },
         watch:{
             
