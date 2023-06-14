@@ -14,6 +14,7 @@ import axios from 'axios';
 import AuthLayout from '../AuthLayout.vue';
 import JobPosterFormHeader from './JobPosterFormHeader.vue';
 import JobPosterForm from './JobPosterForm.vue';
+const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
     components: {
         AuthLayout,
@@ -48,14 +49,7 @@ export default {
     methods: {
         handleComapnySignUp() {
             this.handleUserInput()
-            // const companyData = {
-            //     company_name: this.userInfo.name,
-            //     email: this.userInfo.email,
-            //     password: this.userInfo.password,
-            //     confirm_password: this.userInfo.password,
-            //     mobile_number: this.userInfo.phone,
-            //     verification_method: this.userInfo.verification
-            // }
+            
             const newFormData = new FormData()
             // newFormData.append('user',user)    
             newFormData.append("company_name", this.userInfo.name)
@@ -65,7 +59,7 @@ export default {
             newFormData.append("mobile_number", this.userInfo.phone)
             newFormData.append("verification_method", this.userInfo.verification)
             // console.log(newFormData);
-            axios.post('http://192.168.1.36:5000/company/registerCompany', newFormData)
+            axios.post(`${BASE_URL}:5000/company/registerCompany`, newFormData)
                 .then(res => {
                     console.log(res?.data);
                     if (res.data?.message) {
