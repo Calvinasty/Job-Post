@@ -2,7 +2,7 @@
     <header class="top-bar" :style="!toggleNav && {width: '100%'}">
         <div class="flex-center-row top-left">
             <span @click="toggleTop()" class="material-symbols-outlined"> menu </span>
-            <h3>{{ companyInfo.company_name }}</h3>
+            <h3>{{ company.company_name }}</h3>
         </div>
         <div>
             <button @click="$router.push('/jobsearch')" class="post flex-center-row" :class="{blink}">
@@ -19,6 +19,7 @@
 <script>
     import {mapActions, mapState} from 'pinia'
     import { useDashboardStore } from '../../stores/dashboard';
+    import { useCompanyStore } from '../../stores/companies';
     export default {
         props: [ 'toggleNav' ],
         data(){
@@ -26,7 +27,8 @@
             }
         },
         computed:{
-            ...mapState(useDashboardStore, ['modalComponentType', 'companyInfo', 'blink'])
+            ...mapState(useDashboardStore, ['modalComponentType', 'blink']),
+            ...mapState(useCompanyStore, ['company'])
         },
         methods:{
             ...mapActions(useDashboardStore, ['setModal']),

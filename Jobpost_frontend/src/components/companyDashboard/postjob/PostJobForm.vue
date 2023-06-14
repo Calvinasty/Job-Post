@@ -1,71 +1,70 @@
 <template>
-    <h3>POST A JOB {{ count }}</h3>
-    <PostJobLayout>
-
-        <form @submit.prevent="handlePost">
-            <div class="first" v-show="next == 0">
-                <input v-model="postjob.title" type="text" placeholder="Job Title">
-                <textarea v-model="postjob.description" name="description" id="description" cols="30" rows="10" placeholder="Enter job description..."></textarea>
-                <div class="btns">
-                    <button type="button" @click="()=>cancelForm()">Cancel</button>
-                    <button type="button" @click.prevent="setNext(1)">Next</button>
+    <div>
+        <h3>POST A JOB {{ count }}</h3>
+        <PostJobLayout>
+            <form @submit.prevent="handlePost">
+                <div class="first" v-show="next == 0">
+                    <input v-model="postjob.title" type="text" placeholder="Job Title">
+                    <textarea v-model="postjob.description" name="description" id="description" cols="30" rows="10" placeholder="Enter job description..."></textarea>
+                    <div class="btns">
+                        <button type="button" @click="()=>cancelForm()">Cancel</button>
+                        <button type="button" @click.prevent="setNext(1)">Next</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="second" v-show="next == 1">
-                <label for="">Select Job Type</label>
-                <select :v-model="postjob.jobtype">
-                    <!-- <option value="default">Select Type</option> -->
-                    <option value="fullTime">Full Time</option>
-                    <option value="partTime">Part Time</option>
-                    <option value="remote">Remote</option>
-                    <option value="internship">Internship</option>
-                    <option value="contract">Contract</option>
-                </select>
+                <div class="second" v-show="next == 1">
+                    <label for="">Select Job Type</label>
+                    <select :v-model="postjob.jobtype">
+                        <option value="default">Select Job Type</option>
+                        <option value="fullTime">Full Time</option>
+                        <option value="partTime">Part Time</option>
+                        <option value="remote">Remote</option>
+                        <option value="internship">Internship</option>
+                        <option value="contract">Contract</option>
+                    </select>
 
-                <input v-model="postjob.location" type="text" placeholder="Job Location">
-                <textarea v-model="postjob.requirement" name="requirements" id="requirements" cols="30" rows="10" placeholder="Enter job requirements..."></textarea>
-                <div class="btns">
-                    <button type="button" @click="()=>cancelForm()">Cancel</button>
-                    <button type="button" @click.prevent="setNext(2)">Next</button>
+                    <input v-model="postjob.location" type="text" placeholder="Job Location">
+                    <textarea v-model="postjob.requirement" name="requirements" id="requirements" cols="30" rows="10" placeholder="Enter job requirements..."></textarea>
+                    <div class="btns">
+                        <button type="button" @click="()=>cancelForm()">Cancel</button>
+                        <button type="button" @click.prevent="setNext(2)">Next</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="third" v-show="next == 2">
-                <label for="">Select Salary</label>
-                <select :v-model="postjob.salary" placeholder="Select Salary Range">
-                    <!-- <option value="default">Select Salary Range</option> -->
-                    <option value="disclosure">Disclosure</option>
-                    <option value="GH¢ 800-1,200">GH¢ 800 - 1,200</option>
-                    <option value="GH¢ 1,200-1,800">GH¢ 1,200 - 1,800</option>
-                    <option value="GH¢ 1,800-2,500">GH¢ 1,800 - 2,500</option>
-                    <option value="GH¢ 2,500-3,000">GH¢ 2,500 - 3,000</option>
-                    <option value="GH¢ 3,000-5,000">GH¢ 3,000 - 5,000</option>
-                    <option value="GH¢ 500+">5,000+</option>
-                </select>
-                <input v-model="postjob.deadline" type="date" placeholder="Deadline">
-                <textarea v-model="postjob.howto" name="howto" id="howto" cols="30" rows="5" placeholder="Enter job application method..."></textarea>
+                <div class="third" v-show="next == 2">
+                    <label for="">Select Salary</label>
+                    <select :v-model="postjob.salary" placeholder="Select Salary Range">
+                        <option value="default">Select Salary Range</option>
+                        <option value="disclosure">Disclosure</option>
+                        <option value="GH¢ 800-1,200">GH¢ 800 - 1,200</option>
+                        <option value="GH¢ 1,200-1,800">GH¢ 1,200 - 1,800</option>
+                        <option value="GH¢ 1,800-2,500">GH¢ 1,800 - 2,500</option>
+                        <option value="GH¢ 2,500-3,000">GH¢ 2,500 - 3,000</option>
+                        <option value="GH¢ 3,000-5,000">GH¢ 3,000 - 5,000</option>
+                        <option value="GH¢ 500+">5,000+</option>
+                    </select>
+                    <input v-model="postjob.deadline" type="date" placeholder="Deadline">
+                    <textarea v-model="postjob.howto" name="howto" id="howto" cols="30" rows="5" placeholder="Enter job application method..."></textarea>
 
-                <div class="btns">
-                    <button type="button" @click="()=>cancelForm()">Cancel</button>
-                    <button type="button" @click.prevent="setNext(3)">Next</button>
+                    <div class="btns">
+                        <button type="button" @click="()=>cancelForm()">Cancel</button>
+                        <button type="button" @click.prevent="setNext(3)">Next</button>
+                    </div>
                 </div>
-            </div>
 
-            <div class="fourth" v-show="next == 3">
-                <input v-model="postjob.recruiter" type="text" placeholder="Recruiter Name">
-                <input v-model="postjob.role" type="text" placeholder="Recruiter Role">
-                <input v-model="postjob.contact" type="text" placeholder="Recruiter Contact (optional)">
-                <div class="btns">
-                    <button type="button" @click="()=>cancelForm()">Cancel</button>
-                    <button type="submit">Submit</button>
+                <div class="fourth" v-show="next == 3">
+                    <input v-model="postjob.recruiter" type="text" placeholder="Recruiter Name">
+                    <input v-model="postjob.role" type="text" placeholder="Recruiter Role">
+                    <input v-model="postjob.contact" type="text" placeholder="Recruiter Contact (optional)">
+                    <div class="btns">
+                        <button type="button" @click="()=>cancelForm()">Cancel</button>
+                        <button type="submit">Submit</button>
+                    </div>
                 </div>
-            </div>
-
-        </form>
-    </PostJobLayout>
-
-    <ToastMessage v-show="toast.active" :toast="toast"/>
+            </form>
+        </PostJobLayout>
+        <ToastMessage v-show="toast.active" :toast="toast"/>
+    </div>
 </template>
 
 <script>
