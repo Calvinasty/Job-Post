@@ -1,32 +1,38 @@
 <template>
-    <div class="card-detail flex-center">
+    <form action="" class="card-detail">
 
         <div class="input-container">
-            <EditInputComponent inputName="Job Title / Role " inputType="text" />
+            <InputComponent id="" type="text" placeHolder="Job Title / Role" name="role" :handleInput="handleInput"
+                :Value="experience.role" />
         </div>
         <div class="input-container">
-            <EditInputComponent inputName="Company / Organization " inputType="text" />
+            <InputComponent id="" type="text" placeHolder="Company Organization" name="company_name"
+                :handleInput="handleInput" :Value="experience.company_name" />
         </div>
         <div class="input-container flex-center-row double">
-            <EditInputComponent inputName="Started year " inputType="date" />
-            <EditInputComponent inputName="Ended Year " inputType="date" />
+            <InputComponent placeHolder="Middle Name" name="middle_name" type="date" :Value="experience.start_date"
+                :handleInput="handleInput" />
+            <InputComponent placeHolder="Last Name" name="last_name" type="date" :Value="experience.end_date"
+                :handleInput="handleInput" />
         </div>
         <div class="input-container">
-            <textarea name="" id="" cols="72" rows="6"></textarea>
+            <textarea placeholder="Job Description" name="" id="" cols="70" rows="6"></textarea>
+        </div>
+        <div class="btnsec flex-center-row">
+            <button class="btn" v-on="handleSave" type="submit" @click.prevent="handleUpdate">Save</button>
+            <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
 
-        <div class="btnsec flex-center-row">
-            <button class="btn" @click="handleSave">Save</button>
-            <button class="btns" @click="handlecloseCard">Cancel</button>
-        </div>
-    </div>
+    </form>
 </template>
 
 <script>
-import EditInputComponent from '../EditInputComponent.vue'
+import InputComponent from '../../authpage/InputComponent.vue';
+// import EditInputComponent from '../EditInputComponent.vue'
 export default {
     components: {
-        EditInputComponent,
+        // EditInputComponent,
+        InputComponent,
     },
 
     props: [
@@ -36,7 +42,13 @@ export default {
 
     data() {
         return {
+            experience: {
+                role: '',
+                company_name: '',
+                start_date: '',
+                end_date: '',
 
+            }
         }
     },
 }
@@ -44,15 +56,24 @@ export default {
 
 <style lang="css" scoped>
 .card-detail {
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     gap: 20px;
-    width: 520px;
-    padding-top: 20px;
-    /* padding-bottom: 70px; */
+    width: 100%;
+    padding-top: 3%;
 }
 
 .input-container {
     width: 100%;
+    padding-left: 200px;
+    padding-right: 200px
+}
+
+.double {
+    gap: 20px;
+
 }
 
 textarea {
@@ -82,6 +103,7 @@ textarea {
 
 .btnsec>* {
     border: none;
+    cursor: pointer;
 }
 
 .btn {

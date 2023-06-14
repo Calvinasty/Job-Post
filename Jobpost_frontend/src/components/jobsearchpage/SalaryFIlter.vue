@@ -1,6 +1,9 @@
 <template>
         <div class="filter-card-wrapper salary-range">
-        <img src="/images/salary_range.svg" alt="salary range">
+        <!-- <img src="/images/salary_range.svg" alt="salary range"> -->
+        <div class="slider">
+        <input type="range" min="0" max="200" value="100" @input="handleRange">
+        </div>
         <span  class="salary-btn">
             <button>
                 <span>MIN</span>
@@ -16,8 +19,6 @@
 </template>
 
 <script>
-
-
 export default {
     components:{
       
@@ -36,6 +37,9 @@ export default {
     },
 
     methods: {
+        handleRange(){
+         this.minSalary=   event.target.value
+        }
         
     },
 };

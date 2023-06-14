@@ -160,8 +160,9 @@ export default {
 
       if (this.userType == 'jobSeeker') {
         axios
-          .post(`http://192.168.1.88:5000//jobSeeker/logInJobSeeker`, user)
+          .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
           .then((res) => {
+
             if (res.data?.message) {
               let msg = res.data.message
               this.showToast(msg, 'Login Success')
@@ -170,37 +171,15 @@ export default {
             if (res.data?.token) {
               const token = JSON.stringify(res.data.token)
               localStorage.setItem('userToken', token)
+              console.log(res.data.allInfo[0]);
+              this.setUser(res.data.allInfo[0])
+              this.$router.push('/userprofile')
             }
 
-            // if (res.data?.user) {
-            //   const user = res.data.user
-
-            // }
-            return res.data
-
-            // res.data
-            // localStorage.setItem('userState', res.data.user)
-            // localStorage.setItem('userToken', res.data.token)
-            // const userInfo=res.data.user
-
-            // userInfo['photo']="avatar.jpg"
-            // this.setUser(res.data?.user)
-            // this.$router.push('/userprofile')
-          })
-
-          .then((res) => {
-            const token = res.token
-            axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
-              .then((res) => {
-                // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
-                // user['photo'] = 'avatar.jpg'
-                this.setUser(res.data[0])
-                this.$router.push('/userprofile')
-                // console.log(res.data[0]);
-              })
-              .catch((err) => console.log(err))
 
           })
+
+
           .catch((err) => {
             let msg = err.response ? err.response.data.message : err.message
             this.showToast(msg, 'error')
