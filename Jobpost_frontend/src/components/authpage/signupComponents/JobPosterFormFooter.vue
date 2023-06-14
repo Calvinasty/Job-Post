@@ -5,8 +5,9 @@
                 <span class="material-symbols-outlined" style="transform: rotate(180deg);">arrow_right_alt</span>
                 Back 
             </button> -->
-            <button :type="actionBtnType" v-on:click.prevent="handleSignUp" class="flex-center">
+            <button :type="actionBtnType" v-on:click.prevent="handleSignUp" class="flex-center-row" style="justify-content:center;">
                 {{ actionBtnText }} 
+                <span class="material-symbols-outlined loading" v-show="loading"> cached </span>
             </button>
 
             <p v-if="pageNum==0"><span>Already registered?</span> <router-link :to="{name:'Auth', params:{id:'login'}}">Sign in</router-link></p>
@@ -30,7 +31,8 @@ export default {
         'actionBtnText',
         'actionBtnType',
         'handleSignUp',
-        'pageNum'
+        'pageNum',
+        'loading'
    ],
 
 }
@@ -73,6 +75,17 @@ export default {
     justify-content: space-evenly;
     width: 100%;
     padding:10px 5px;
+}
+.loading{
+    transform: rotate(300deg);
+    animation: spin 1s infinite;
+}
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    25% {transform: rotate(90deg);}
+    50% {transform: rotate(180deg);}
+    75% {transform: rotate(270deg);}
+    100% {transform: rotate(360deg);}
 }
 .oauth >span{font-size:1.5rem; font-weight: 700;}
 .oauth button{

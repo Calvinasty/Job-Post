@@ -1,10 +1,9 @@
 <template>
-    <div class="card-detail">
-        <!-- <div class="input-container">
-                <EditInputComponent inputName="Add Skill" name="add_skill" inputType="text" :handleChange="handleInput" />
-            </div> -->
+    <form class="card-detail">
         <div v-for="key in count" :key=key class="input-container">
-            <EditInputComponent inputName="Add Skill" name="add_skill" inputType="text" :handleChange="handleInput" />
+            <!-- <EditInputComponent inputName="Add Skill" name="add_skill" inputType="text" :handleChange="handleInput" /> -->
+            <InputComponent id="" type="text" placeHolder="Add Skill" name="skill_name" :handleInput="handleInput"
+                :Value="skills.skill_name" />
         </div>
         <div class="edit-skill flex-center-row">
             <div class="add-skill flex-center-row" @click="add">
@@ -20,20 +19,29 @@
             <button class="btn" @click="handleSave">Save</button>
             <button class="btns" @click="handlecloseCard">Cancel</button>
         </div>
-    </div>
+    </form>
 </template>
 
 <script>
-import EditInputComponent from '../EditInputComponent.vue';
+// import EditInputComponent from '../EditInputComponent.vue';
+import InputComponent from '../../authpage/InputComponent.vue';
 export default {
     components: {
-        EditInputComponent,
+        // EditInputComponent,
+        InputComponent,
     },
 
     data() {
         return {
             count: 1,
+            skills: {
+                skill_name: '',
+            }
         }
+    },
+
+    mounted() {
+
     },
 
     props: [

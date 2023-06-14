@@ -6,7 +6,7 @@ export const useDashboardStore = defineStore(
     'dashboard',
     {
         state: () => ({
-            companyInfo: useStorage("companyState", {}),
+            companyInfo: useStorage("companyInfo", {}),
             next: 0,     // set state of postjobform next in modal,
             modalComponentType: '',   //set state for modal show postJob or Applicants Summary
             updatePostModalId: '',    //sets the id of the job post to be updated by a company
