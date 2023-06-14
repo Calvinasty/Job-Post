@@ -132,9 +132,11 @@ export default {
                                     this.showToast(msg, 'Update Success')
                                     this.loading = false
                                 }
-                                this.setUser(res.data.allInfo[0])
+                                return  res.data
+                                
 
                             })
+                            .then((res)=>this.setUser(res.allInfo[0]))
                             .catch((err) => console.log(err))
                     }
                 })
