@@ -12,9 +12,10 @@ const skills = sequelize.define("Skills", {
   js_id: {
     type: DataTypes.UUID,
     references: {
-      model: "jobSeekers",
+      model: "job_seekers",
       key: "id",
     },
+    onDelete:"CASCADE"
   },
 
   skill_name: {

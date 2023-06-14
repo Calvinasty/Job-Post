@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../dataBase/dbConfig.js";
 
-const experienceModel = sequelize.define("experience", {
+const experience = sequelize.define("experience", {
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -11,11 +11,11 @@ const experienceModel = sequelize.define("experience", {
     js_id: {
         type: DataTypes.UUID,
         references: {
-            model: "jobSeekers",
+            model: "job_seekers",
             key: "id"
-        }
+        },
+        onDelete:"CASCADE"
     },
-
     company_name: {
         type: DataTypes.STRING,
         allowNull: false
@@ -37,4 +37,4 @@ const experienceModel = sequelize.define("experience", {
     await sequelize.sync()
 })();
 
-export default experienceModel;
+export default experience;
