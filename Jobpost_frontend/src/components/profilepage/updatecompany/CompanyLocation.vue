@@ -108,8 +108,8 @@
             this.getCountries() //method to get all countries from REST Api
 
             this.country = this.companyInfo?.location?.country
-            this.address = this.companyInfo?.location?.address
             this.region = this.companyInfo?.location?.region
+            this.address = this.companyInfo?.location?.address
         },
 
         
