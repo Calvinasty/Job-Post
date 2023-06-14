@@ -40,7 +40,7 @@ export default {
     },
 
     beforeMount() {
-        this.img = this.userInfo.photo
+        this.img = this.userInfo?.photo
     },
 
     methods: {

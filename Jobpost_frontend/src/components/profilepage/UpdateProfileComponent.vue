@@ -29,8 +29,6 @@ import CompanyLocation from "./updatecompany/CompanyLocation.vue";
 export default {
 
     props: ['handlecloseCard', 'handleSave', 'type', 'userInfo', 'index', 'companyInfo', 'updateComponent'],
-
-
     components: {
         EditProfileLayout,
         UploadPicture,
@@ -45,7 +43,6 @@ export default {
         UploadCompanyPicture,
         CompanyLocation
     },
-
     data() {
         return {
             uploadpicture: UploadPicture,

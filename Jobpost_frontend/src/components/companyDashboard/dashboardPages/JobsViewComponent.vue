@@ -3,7 +3,7 @@
         <JobsDescriptionComponent
             :myjobs="jobs"
         />
-        <h4 class="nojob-tag">📝 No Jobs posted / <span class="color-red">❌ Check network connections</span></h4>
+        <h4 class="nojob-tag" v-if="jobs?.length == 0">📝 No Jobs posted / <span class="color-red">❌ Check network connections</span></h4>
     </div>
 </template>
 
@@ -52,7 +52,7 @@
 
 <style lang="css" scoped>
 .container{
-    background: #F4F4F4;
+    /* background: #F4F4F4; */
     padding: 20px 0;
 }
 .text{
