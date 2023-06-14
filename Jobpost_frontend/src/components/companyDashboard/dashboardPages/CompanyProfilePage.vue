@@ -230,6 +230,7 @@ export default {
         ...mapState(useCompanyStore, ['company'])
     },
     mounted() {
+        console.log("dashboard",this.company);
         const companyInfo = this.company
         this.companyName = companyInfo?.company_name
         this.companyProfileInfo.company_name = companyInfo?.company_name

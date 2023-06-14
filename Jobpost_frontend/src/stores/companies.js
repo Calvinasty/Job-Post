@@ -5,7 +5,8 @@ export const useCompanyStore = defineStore(
     'company',
     {
         state: () => ({
-            company: useStorage("companyState", {})
+            company: useStorage("companyData", {})
+
         }),
         getters: {
             getTotalJobs(state) {
