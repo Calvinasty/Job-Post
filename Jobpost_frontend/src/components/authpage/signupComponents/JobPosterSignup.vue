@@ -70,19 +70,23 @@ export default {
                         this.showToast(msg, 'success')
                         this.loading=false
                     }
-                    // if (res.data?.token) {
-                    //     const token = JSON.stringify(res.data.token)
-                    //     localStorage.setItem('companyToken', token)
-                    // }
-                    // if (res.data?.company) {
-                    //     const company = res.data.company
-                    //     this.setCompany(company)
-                    // }
-                    // res.status == 201 ? ++this.pageNum : alert('invalid Input')
+                    if (res.data?.token) {
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('companyToken', token)
+                    }
+                    if (res.data?.company) {
+                        const company = res.data.company
+                        this.setCompany(company)
+                    }
+                    res.status == 201 ? ++this.pageNum : alert('invalid Input')
                 })
                 .catch(err => {
-                    let msg = err.response ? err.response.data.message[0] : err.message
-                    console.log(msg);
+                    let msg = err.response ? err.response.data.message : err.message
+            
+                    if(typeof(msg) == 'object'){
+                        msg=msg[0]
+                    }
+                    console.log(typeof(msg));
                     this.showToast(msg, 'error')
                     this.loading=false
                 })
