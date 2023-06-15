@@ -17,6 +17,7 @@ export const useDashboardStore = defineStore(
             getNext(state){
                 return state.count += 1
             }
+            
         },
         actions: {
             // trigger next num for postjobform
