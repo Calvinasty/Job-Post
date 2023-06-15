@@ -61,10 +61,7 @@ export default {
     background-color: rgba(238, 238, 238, 1);
     /* gap: 24px; */
 }
-.img-section{
-    /* width: 66px; */
-    
-}
+
 .image-container{
    
     background-size: cover;
@@ -232,8 +229,6 @@ a {
 
     }
 
-    .image-container {
-        width: 100%;
     .image-container{
         width: 80%;
         margin-left: 80px;
