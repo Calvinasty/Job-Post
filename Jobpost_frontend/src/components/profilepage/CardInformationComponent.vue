@@ -68,7 +68,7 @@ export default {
     max-width: 530px;
     min-width: 350px;
     height: 400px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .profile-detail-container {

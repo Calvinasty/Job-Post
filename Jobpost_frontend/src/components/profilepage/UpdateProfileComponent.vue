@@ -3,7 +3,8 @@
         <component v-show="type == 'user'" :key="key" :is="componentId" :userInfo="userInfo"
             :handlecloseCard="handlecloseCard" :handleSave="handleSave">
         </component>
-        <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :companyInfo="companyInfo" :updateComponent="updateComponent" :is="componentId2"></component>
+        <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :companyInfo="companyInfo"
+            :updateComponent="updateComponent" :is="componentId2"></component>
     </EditProfileLayout>
 </template>
 
