@@ -5,8 +5,8 @@
         </span>
         <div class="footer-link">
             <router-link to="">Featured Jobs</router-link>
-            <router-link to="">Apply Job</router-link>
-            <router-link to="">Post a Job</router-link>
+            <p @click="handleApplyJob">Apply Job</p>
+            <p @click="handlePostJob">Post a Job</p>
         </div>
         <div class="copyright">
             <p> &copy; Copyright {{ new Date().getFullYear() }} Job Post. All rights reserved.</p>
@@ -20,10 +20,24 @@ export default {
     methods: {
         toTop() {
             this.$router.push('/')
+        },
+        handlePostJob() {
+            const companyToken = localStorage.getItem('companyToken');
+            if (!companyToken) {
+                this.$router.push('/auth/poster-register')
+                return
+            }
+            this.$router.push('/admin/analytics')
+        },
+        handleApplyJob() {
+            const userToken = localStorage.getItem('userToken');
+            if (!userToken) {
+                this.$router.push('/auth/login')
+                return
+            }
+            this.$router.push('/jobsearch')
         }
     }
-
-
 }
 </script>
 
@@ -50,6 +64,14 @@ a.router-link-exact-active {
     /* color: #FFFFFF7A; */
     color: #ffffff;
 }
+
+p {
+    text-decoration: none;
+    /* color: #FFFFFF7A; */
+    color: #ffffff;
+}
+
+
 
 .copyright {
     display: flex;
