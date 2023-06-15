@@ -35,7 +35,7 @@ export default {
         getGreeting(){
             const date = new Date()
             const getTime = date.getHours() 
-            console.log(getTime)
+            // console.log(getTime)
 
             let greeting;
 
