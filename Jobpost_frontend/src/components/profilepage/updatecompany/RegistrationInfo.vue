@@ -1,6 +1,6 @@
 <template>
     <div class="register-info">
-        <form action="" class="register-field flex-center">
+        <form @submit.prevent="handleSave" class="register-field flex-center">
             <InputComponent id="registrationNumber" type="text" placeHolder="Registration Number" name="registrationNumber"
                 :handleInput="handleInput" :Value="registrationNumber"/>
             <InputComponent id="vatNumber" type="text" placeHolder="VAT Number" name="vatNumber"
@@ -10,7 +10,7 @@
                 📑 {{ companyCert }}
             </label>
             <div class="btnsec flex-center-row">
-                <button class="btn" @click.prevent="handleSave">Save</button>
+                <button type="submit" class="btn">Save</button>
                 <button class="btns" @click="handlecloseCard">Cancel</button>
             </div>
         </form>
@@ -19,7 +19,7 @@
 
 <script>
 import axios from 'axios';
-import { mapActions } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import { useCompanyStore } from '../../../stores/companies';
 const BASE_URL = import.meta.env.VITE_BASE_URL
 import InputComponent from '../../authpage/InputComponent.vue';
@@ -41,9 +41,13 @@ export default {
             companyCert: ''
         }
     },
+    computed: {
+        ...mapState(useCompanyStore, ['company'])
+    },
     methods: {
         ...mapActions(useCompanyStore, ['updateCompany']),
         handleInput(data) {
+            // console.log(this.company.id);
             if (data.inputName == 'registrationNumber') { this.registrationNumber = data.inputValue }
             if (data.inputName == 'vatNumber') { this.vatNumber = data.inputValue }
             if (data.inputName == 'companyCert') { this.companyCert = data.inputValue }
@@ -56,7 +60,7 @@ export default {
            registerInfo.append( "company_certificate",this.companyCert)
            
            const token = JSON.parse(localStorage.getItem('companyToken'))
-            axios.put(`${BASE_URL}/registration/update`,registerInfo, {headers: {token}})
+            axios.post(`${BASE_URL}/registration/registrationInfo`,registerInfo, {headers: {token}})
             .then(res => {
                 const updatedCompany = res.data
                 console.log(updatedCompany)
@@ -67,9 +71,9 @@ export default {
         }
     },
     mounted() {
-        this.registrationNumber = this.companyInfo.company_registration.registration_number
-        this.vatNumber = this.companyInfo.company_registration.vat_number
-        this.companyCert = this.companyInfo.company_registration.company_certificate
+        this.registrationNumber = this.companyInfo?.company_registration?.registration_number
+        this.vatNumber = this.companyInfo?.company_registration?.vat_number
+        this.companyCert = this.companyInfo?.company_registration?.company_certificate
             
     }
 }
