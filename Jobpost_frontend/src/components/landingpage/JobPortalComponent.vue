@@ -6,12 +6,13 @@
         <div class="text-section">
             <section class="text-heading">
                 <img src="/images/Vector.png" alt="icon">
-                <h2>Trusted & Popular <br> Job Portal</h2>
+                <h2>Trusted & Popular Job Portal</h2>
             </section>
 
             
-                <p class="main-text">Find your dream job from thousands daily updated job vacancies. Find the best jobs online from Ghana
-                    sites or apply directly on a business websites. Search and find jobs today!
+                <p class="main-text">Our job portal is trusted and popular amongst job seekers and employers alike,
+                    providing a reliable platform for finding the right job or candidate. With our extensive database
+                    and user-friendly interface, <br> we make the job search  process easy and efficient for everyone
                 </p>
 
             <section class="buttons">
@@ -57,22 +58,24 @@ export default {
     width: 100%;
     max-width: 480px;
     padding: 40px 10px;
-    /* background-color: aqua; */
-    gap: 24px;
+    background-color: rgba(238, 238, 238, 1);
+    /* gap: 24px; */
 }
 .img-section{
+    /* width: 66px; */
     
 }
 .image-container{
    
     background-size: cover;
-    background-color: rgba(73, 91, 55, 0.5);
+    background-color: rgba(17, 19, 15, 0.44);
+    /* background-color: rgba(73, 91, 55, 0.5); */
     background-blend-mode: overlay;
     background-image: url("/images/young-businessmen.jpeg");
     background-position: 100% 90%;
     border-radius: 15px;
-    width: 306px;
-    height: 236px;
+    width: 300px;
+    height: 200px;
 }
 
 .text-heading{
@@ -81,7 +84,7 @@ export default {
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 15px;
+    gap: 40px;
     height: 100%;
     font-weight: 700;
 }
@@ -124,6 +127,9 @@ export default {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+.text-section p{
+    font-size: 15px;
 }
 
 a{
@@ -187,6 +193,7 @@ a{
     }
     .text-section{
         width: 100%;
+        gap: 20px;
         align-items: flex-start;
         text-align: left;    }
     .img-section{
@@ -202,7 +209,8 @@ a{
 
     }
     .image-container{
-        width: 100%;
+        width: 80%;
+        margin-left: 80px;
         max-width: 721px;
         background-position: 100% 90%;
         height: 100%;

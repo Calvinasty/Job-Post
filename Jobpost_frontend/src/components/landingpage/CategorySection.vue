@@ -1,6 +1,6 @@
 <template>
     <div class="category-section">
-        <h3 class="category-title">Choose Your Desired <br/> Category</h3>
+        <h3 class="category-title">Choose Your Desired Category</h3>
         <div class="category-list">
             <CategoryCard v-for="(card,i) in categoryCardData" 
             :key="i" 
@@ -40,8 +40,8 @@ export default {
     }
     .category-title{
         /* font-weight: 800; */
-        font-size: 65px;
-        /* line-height: 106px; */
+        font-size: 40px;
+        /* line-height: 106p4; */
         text-align: center;
     }
     .category-list{
