@@ -3,11 +3,11 @@
         <aside class="text">
             <h4>{{ greeting }}, {{ company.company_name }}</h4>
             <p>
-                Here is your job listing statictic and report from {{ date }}
+                Here is your job listing statictic and report from {{  }}
             </p>
         </aside>
         <aside class="date">
-            <h5>January 1st - May 30th</h5><span class="material-symbols-outlined">
+            <h5> January 1st - {{ date }} </h5><span class="material-symbols-outlined">
                 calendar_month
             </span>
         </aside>
@@ -22,7 +22,10 @@ export default {
     name: 'JobPostDashBoardWelcome',
     data(){
         return{
-            greeting: ''
+            greeting: '',
+            date: ''
+            
+            
         }
     },
     computed:{
@@ -30,6 +33,7 @@ export default {
     },
     mounted(){
         this.updateGreeting()
+        this.updateDate()
     },
     methods:{
         getGreeting(){
@@ -49,12 +53,39 @@ export default {
                 greeting = 'Good evening'
             }
             return greeting 
-            
+
         },
         
          updateGreeting(){
             this.greeting = this.getGreeting()
+         },
+
+
+        currentDate(){
+         const monthNames = ["January", "February", "March", "April", "May", "June",
+                            "July", "August", "September", "October", "November", "December"];
+
+        const current = new Date();
+        const date = `${current.getDate()} ${monthNames[current.getMonth()]}`;
+        return date
+    },
+
+
+        //  currentDate(){
+        //     const current = new Date()
+        //     const date = `${current.getDate()}/${current.getMonth()+1}`;
+        //     return date  
+        //     },
+        
+       
+         updateDate(){
+            this.date = this.currentDate()
+    
          }
+
+
+
+
         
     }
 };
