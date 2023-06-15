@@ -56,7 +56,7 @@ export default {
            registerInfo.append( "company_certificate",this.companyCert)
            
            const token = JSON.parse(localStorage.getItem('companyToken'))
-            axios.put(`${BASE_URL}/registration/registrationInfo`,registerInfo, {headers: {token}})
+            axios.put(`${BASE_URL}/registration/update`,registerInfo, {headers: {token}})
             .then(res => {
                 const updatedCompany = res.data
                 console.log(updatedCompany)
