@@ -175,7 +175,7 @@ export default {
 
                         if (res.data?.message) {
                             let msg = res.data.message
-                            this.showToast(msg, 'Login Success')
+                            this.showToast(msg, 'success')
                             this.loading = false
                         }
                         if (res.data?.token) {

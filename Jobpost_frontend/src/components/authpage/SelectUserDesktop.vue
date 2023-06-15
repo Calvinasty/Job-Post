@@ -16,7 +16,7 @@
             <div class="user-select flex-center">
                     <div class="jobseeker flex-center-row" @click="jobSeekSignUp">
                         <div>
-                            <img src="/images/jobseeker.png" alt="">
+                            <img src="/images/jobseeker-icon.png" alt="">
                         </div>
                         <p>
                             Sign up as a job Seeker
@@ -26,7 +26,7 @@
 
                     <div class="poster flex-center-row" @click="jobPosterSignUp">
                         <div>
-                        <img src="/images/jobpost-bag-desktop.svg" alt="">
+                        <img src="/images/jobpost-bag.png" alt="">
                         </div>
                         <p>
                             Sign up as a job Poster
@@ -94,8 +94,7 @@
         border-radius: 20px;
         width: 550px;
         max-width: 622px;
-        padding-bottom: 160px;
-        padding-top: 30px;
+        padding-bottom: 100px;
     }
 
     header {
@@ -105,7 +104,7 @@
         flex-direction: column;
         align-content: center;
         align-items: center;
-        margin-bottom: 80px;
+        margin-top: 25px;
     }
 
     header img {
@@ -129,9 +128,9 @@
 
     .selector-header h2 {
         font-weight: bolder;
-        line-height: 38px;
-        color: #7FBF4C;
-        text-transform: uppercase;
+        line-height: 40px;
+        color: #4E4E4E;
+        text-transform:capitalize;
     }
 
     .selector-header p {
@@ -152,6 +151,7 @@
 
     .jobseeker, .poster {
         column-gap: 30px;
+        /* border: 1px solid rgba(155, 155, 155, 1); */
         border: 1px solid #7FBF4C;
         border-radius: 10px;
         padding: 14px;
@@ -159,7 +159,7 @@
     }
 
     .jobseeker div img, .poster div img {
-        width: 70%;
+        width: 80%;
     }
 
     .jobseeker p, .poster p {

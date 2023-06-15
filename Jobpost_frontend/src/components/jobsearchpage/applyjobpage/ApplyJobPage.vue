@@ -9,7 +9,7 @@
 
 import { useJobsStore } from '../../../stores/Jobs'
 import { useUserStore } from '../../../stores/users';
-import {jobsPosted} from '../../../data'
+// import {jobsPosted} from '../../../data'
 import { mapState } from 'pinia';
 import { useRoute } from 'vue-router';
 import JobDescription from './JobDescription.vue';
@@ -59,8 +59,9 @@ export default {
     methods: {
         handleJobDescription(jobId){
             console.log(jobId);
+            console.log(this.postedJobs);
             // this.currentJob= this.postedJobs.filter(job=>(job.id!==jobId))
-            this.currentJob=jobsPosted.find(job=>(job.id==jobId))
+            this.currentJob=this.postedJobs.find(job=>(job.id==jobId))
             console.log(this.currentJob);
         },
         handleCancel(){
