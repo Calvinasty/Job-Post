@@ -8,7 +8,7 @@
             </span>
         </header>
         <FilterCard :title="filterList[0]">
-           <SalaryFilter/>
+           <SalaryFilter :applyFilter="applyFilter"  />
         </FilterCard>
 
         <FilterCard :title="filterList[1]">
@@ -17,7 +17,7 @@
 
         <FilterCard :title="filterList[2]">
             <JobCategoryFilter/>
-        </FilterCard>
+        </FilterCard> 
 
         <FilterCard :title="filterList[3]">
             <LocationFilter/>
@@ -27,7 +27,7 @@
             <ExperinceFilter/>
         </FilterCard>
     </section>
-
+<!-- 
     <section class="filter-section mobile">    
         <header :class="{showFilters:hideFilters}">
         <h2>Filters</h2>
@@ -57,7 +57,7 @@
             <ExperinceFilter/>
         </FilterCard>
     </span>
-    </section>
+    </section> -->
 </div>
 </template>
 
@@ -95,6 +95,7 @@ export default {
     mounted() {
         
     },
+    props:['applyFilter'],
 
     methods: {
         toggleDropdown(){

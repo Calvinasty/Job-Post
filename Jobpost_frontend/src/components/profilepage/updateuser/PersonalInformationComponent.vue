@@ -125,6 +125,7 @@ export default {
                                 this.setUser(res.data.allInfo[0])
 
                             })
+                            .then(window.location.reload())
                             .catch((err) => console.log(err))
                     }
                 })

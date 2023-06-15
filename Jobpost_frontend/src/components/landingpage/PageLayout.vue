@@ -18,5 +18,6 @@ export default {
     align-items: center;
     /* gap: 50px; */
     width: 100%;
+    scroll-behavior: smooth;
 }
 </style>

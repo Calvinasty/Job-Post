@@ -17,10 +17,10 @@
                             <img src="images/user_profile_icon.svg" alt="">
                             <p>Jobs Applied</p>
                         </div>
-                        <div class="jobsapplied-1">
+                        <!-- <div class="jobsapplied-1">
                             <img src="images/user_profile_icon.svg" alt="">
                             <p>Jobs Applied</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="profile-details">
@@ -50,11 +50,11 @@
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="2"
                         :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
-                        <InputComponent v-for="(school, index) in user.education" :key="index"
+                        <InputComponent v-for="(school, schoolIndex) in user.education" :key="schoolIndex"
                             :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="school?.institution"
-                            :showpencil="true" />
+                            :showpencil="true" :itemId="school.id" :handleEdit="handleEdit" :itemIndex="index" />
 
 
                     </CardInformationComponent>
@@ -63,7 +63,7 @@
                         <InputComponent v-for="(workexp, index) in user.experiences" :key="index"
                             :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="workexp?.company_name"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="workexp?.role"
                             :showpencil="true" />
 
                     </CardInformationComponent>
@@ -157,7 +157,7 @@ export default {
             this.Value.workexp = userInfo?.experiences
             this.title = this.Value.fullname
 
-            this.getAllUserInfo()
+            // this.getAllUserInfo()
         }
     },
     mounted() {
@@ -175,21 +175,24 @@ export default {
             this.index = index
         },
 
+        handleEdit(itemId, itemIndex) {
+            this.showPopup(itemIndex)
 
-        getAllUserInfo() {
-            const token = JSON.parse(localStorage.getItem('userToken'))
-            if (token) {
+        },
+        // getAllUserInfo() {
+        //     const token = JSON.parse(localStorage.getItem('userToken'))
+        //     if (token) {
 
-                // axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
-                //     .then((res) => {
-                //         localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
-                //         // console.log(res.data[0]);
-                //     })
-                //     .catch((err) => console.log(err))
-            }
+        //         axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+        //             .then((res) => {
+        //                 localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
+        //                 // console.log(res.data[0]);
+        //             })
+        //             .catch((err) => console.log(err))
+        //     }
 
 
-        }
+        // }
 
 
 

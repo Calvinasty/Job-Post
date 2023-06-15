@@ -10,13 +10,13 @@
                 :handleInput="handleInput" :Value="experience.company_name" />
         </div>
         <div class="input-container flex-center-row double">
-            <InputComponent placeHolder="Start Date" name="Start Date" type="date" :Value="experience.start_date"
+            <InputComponent placeHolder="Start Date" name="start_date" type="date" :Value="experience.start_date"
                 :handleInput="handleInput" />
-            <InputComponent placeHolder="End Date" name="End Date" type="date" :Value="experience.end_date"
+            <InputComponent placeHolder="End Date" name="end_date" type="date" :Value="experience.end_date"
                 :handleInput="handleInput" />
         </div>
         <div class="input-container">
-            <textarea placeholder="Job Description" name="" id="" cols="70" rows="6"></textarea>
+            <textarea placeholder="Job Description" name="Job_Desc" id="" cols="70" rows="6"></textarea>
         </div>
         <div class="btnsec flex-center-row">
             <button class="btn" v-on="handleSave" type="submit" @click.prevent="handleUpdate">Save</button>
@@ -31,7 +31,6 @@ import { mapActions } from 'pinia'
 import { useUserStore } from '../../../stores/users'
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL
-
 import InputComponent from '../../authpage/InputComponent.vue';
 // import EditInputComponent from '../EditInputComponent.vue'
 export default {
@@ -39,13 +38,11 @@ export default {
         // EditInputComponent,
         InputComponent,
     },
-
     props: [
         'handlecloseCard',
         'handleSave',
         'userInfo',
     ],
-
     data() {
         return {
             title: 'Add / Edit Work Experience',
@@ -54,8 +51,6 @@ export default {
                 company_name: '',
                 start_date: '',
                 end_date: '',
-
-
             }
         }
     },
