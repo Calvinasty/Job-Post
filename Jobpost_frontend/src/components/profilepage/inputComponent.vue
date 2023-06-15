@@ -3,7 +3,8 @@
         <label :for="inputId">{{ fullName }}</label>
         <div>
             <input class="input-tag" :type="inputType" :name="inputName" :id="inputId" :value="Value" disabled>
-            <img class="editicon" v-show="showpencil" src="/images/edit_icon.svg" alt="editicon" />
+            <img class="editicon" v-show="showpencil" @click="handleEdit(itemId, itemIndex)" src="/images/edit_icon.svg"
+                alt="editicon" />
         </div>
     </div>
 </template>
@@ -22,8 +23,17 @@ export default {
         "inputId",
         "inputName",
         "Value",
-        "showpencil"
-    ]
+        "showpencil",
+        "handleEdit",
+        "itemId",
+        "itemIndex"
+
+    ],
+
+    methods: {
+
+    }
+
 
 }
 </script>

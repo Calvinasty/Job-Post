@@ -109,6 +109,7 @@ export default {
 
 .btnsec>* {
     border: none;
+    cursor: pointer;
 }
 
 .btn {
