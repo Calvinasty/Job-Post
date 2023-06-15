@@ -1,5 +1,6 @@
 <template>
-    <form class="card-detail">
+    <form action="" class="card-detail">
+        <h2>{{ title }}</h2>
         <div v-for="key in count" :key=key class="input-container">
             <!-- <EditInputComponent inputName="Add Skill" name="add_skill" inputType="text" :handleChange="handleInput" /> -->
             <InputComponent id="" type="text" placeHolder="Add Skill" name="skill_name" :handleInput="handleInput"
@@ -16,15 +17,19 @@
         </div>
 
         <div class="btnsec flex-center-row">
-            <button class="btn" @click="handleSave">Save</button>
-            <button class="btns" @click="handlecloseCard">Cancel</button>
+            <button class="btn" @click.prevent="handleUpdate">Save</button>
+            <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
     </form>
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import { useUserStore } from '../../../stores/users'
 // import EditInputComponent from '../EditInputComponent.vue';
 import InputComponent from '../../authpage/InputComponent.vue';
+import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
     components: {
         // EditInputComponent,
@@ -33,6 +38,7 @@ export default {
 
     data() {
         return {
+            title: 'Add / Edit Education Skills/Interest',
             count: 1,
             skills: {
                 skill_name: '',
@@ -47,15 +53,54 @@ export default {
     props: [
         'handlecloseCard',
         'handleSave',
+        'userInfo',
     ],
 
     methods: {
+        ...mapActions(useUserStore, ['setUser']),
         add() {
             this.count++;
         },
         remove() {
             this.count--;
+        },
+
+        handleUpdate() {
+            const token = JSON.parse(localStorage.getItem('userToken'))
+            const updatedUserInfo = new FormData()
+            updatedUserInfo.append('skill_name', this.skills.skill_name)
+
+            axios.post(`${BASE_URL}/skills/addSkills`, updatedUserInfo, { headers: { token } })
+                .then((res) => {
+                    if (res.data) {
+                        const token = JSON.parse(localStorage.getItem('userToken'))
+                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                            .then((res) => {
+                                console.log('Skills res data', res.data);
+                                this.setUser(res.data.allInfo[0])
+                            })
+                            .catch((err) => {
+                                console.log(err);
+                            })
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .finally(() => { this.handlecloseCard() })
+
+
+
+        },
+
+
+        handleInput(data) {
+            if (data?.inputName == 'skill_name') { this.skills.skill_name = data.inputValue }
         }
+
+
+
+
     }
 }
 </script>
@@ -102,6 +147,7 @@ export default {
 
 .btnsec>* {
     border: none;
+    cursor: pointer;
 }
 
 .btn {

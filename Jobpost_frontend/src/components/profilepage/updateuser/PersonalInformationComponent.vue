@@ -1,5 +1,7 @@
 <template>
-    <form @submit.prevent="handleUpdate" class="card-detail">
+    <form action="" class="card-detail">
+
+        <h2>{{ title }}</h2>
         <div class="input-container">
             <InputComponent id="" type="text" placeHolder="First Name" name="first_name" :handleInput="handleInput"
                 :Value="personalInfo.first_name" />
@@ -52,39 +54,29 @@ import { useUserStore } from '../../../stores/users'
 import axios from 'axios'
 import ToastMessage from '../../utils/ToastMessage.vue'
 import InputComponent from '../../authpage/InputComponent.vue'
-// import EditInputComponent from '../EditInputComponent.vue'
-// import buttonComponent from './buttonComponent.vue'
 const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
     components: {
-        // EditInputComponent,
         InputComponent,
-        ToastMessage
-        // buttonComponent,
+        ToastMessage,
     },
-
     props: [
         'handlecloseCard',
         'handleSave',
         'userInfo',
     ],
-
     data() {
         return {
+            title: 'Add / Edit Personal Information',
             personalInfo: {
                 first_name: '',
                 middle_name: '',
                 last_name: '',
                 email: '',
                 phone: '',
-                // linkedIn_url: '',
-                // git_url: '',
                 date_of_birth: '',
-                // resume_cv: '',
                 gender: '',
-
             },
-            loading: false,
             toast: {
                 active: false, msg: '', color: ''
             }
@@ -97,17 +89,14 @@ export default {
         this.personalInfo.last_name = this.userInfo?.last_name
         this.personalInfo.email = this.userInfo?.email
         this.personalInfo.phone = this.userInfo?.phone
-        // linke this.personalInfo.linkedIn_url,
-        //  this.personalInfo.git_url,
         this.personalInfo.date_of_birth = this.userInfo?.date_of_birth
-        // this.personalInfo.resume_cv = this.userInfo.resume_cv
         this.personalInfo.gender = this.userInfo?.gender
-        // console.log(this.personalInfo);
     },
+
     methods: {
         ...mapActions(useUserStore, ['setUser']),
         handleUpdate() {
-            console.log(this.personalInfo);
+            // console.log(this.personalInfo);
             const token = JSON.parse(localStorage.getItem('userToken'))
             const updatedUserInfo = new FormData()
             updatedUserInfo.append('first_name', this.personalInfo.first_name)
@@ -118,68 +107,54 @@ export default {
             updatedUserInfo.append('date_of_birth', this.personalInfo.date_of_birth)
             updatedUserInfo.append('gender', this.personalInfo.gender)
 
-            axios
-                .put(`${BASE_URL}/jobSeeker/updateJobSeeker`, updatedUserInfo, { headers: { token } })
+            axios.put(`${BASE_URL}/jobSeeker/updateJobSeeker`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
+                        // console.log('Personal', res.data);
                         const token = JSON.parse(localStorage.getItem('userToken'))
                         axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
                                 // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
-                                // user['photo'] = 'avatar.jpg'
+                                // user['photo'] = 'avatar.jpg'/
                                 if (res.data?.message) {
                                     let msg = res.data.message
                                     this.showToast(msg, 'Update Success')
-                                    this.loading = false
-                                }
-                                this.setUser(res.data.allInfo[0])
 
+                                }
+                                console.log('Personal res data', res.data);
+                                this.setUser(res.data.allInfo[0])
 
                             })
                             .catch((err) => console.log(err))
                     }
                 })
-                .then(() => this.handlecloseCard())
                 .catch((err) => {
                     console.log(err)
                 })
-            // this.handleInput()
+                .finally(() => this.handlecloseCard())
+            // console.log(updatedUserInfo);
+
+        },
+        showToast(msg, color) {
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(() => {
+                this.toast = { active: false, msg: '', color: '' }
+            }, 6000)
         },
 
 
         handleInput(data) {
-            // console.log(this.personalInfo.gender);
-            if (data?.inputName == 'first_name') {
-                this.personalInfo.first_name = data.inputValue
-            }
-            if (data?.inputName == 'middle_name') {
-                this.personalInfo.middle_name = data?.inputValue
-            }
-            if (data?.inputName == 'last_name') {
-                this.personalInfo.last_name = data?.inputValue
-            }
-            if (data?.inputName == 'email') {
-                this.personalInfo.email = data?.inputValue
-            }
-            if (data?.inputName == 'contact') {
-                this.personalInfo.phone = data?.inputValue
-            }
-            if (data?.inputName == 'linkedIn_url') {
-                this.personalInfo.linkedIn_url = data?.inputValue
-            }
-            if (data?.inputName == 'git_url') {
-                this.personalInfo.git_url = data?.inputValue
-            }
-            if (data?.inputName == 'dob') {
-                this.personalInfo.dob = data?.inputValue
-            }
-            // if (data?.inputName == 'resume_cv') {
-            //     this.personalInfo.resume_cv = data?.inputValue
-            // }
-            // if (data?.inputName == 'gender') {
-            //     this.personalInfo.gender = data?.inputValue
-            // }
-
+            // console.log(this.personalInfo);
+            if (data?.inputName == 'first_name') { this.personalInfo.first_name = data.inputValue }
+            if (data?.inputName == 'middle_name') { this.personalInfo.middle_name = data?.inputValue }
+            if (data?.inputName == 'last_name') { this.personalInfo.last_name = data?.inputValue }
+            if (data?.inputName == 'email') { this.personalInfo.email = data?.inputValue }
+            if (data?.inputName == 'contact') { this.personalInfo.phone = data?.inputValue }
+            if (data?.inputName == 'linkedIn_url') { this.personalInfo.linkedIn_url = data?.inputValue }
+            if (data?.inputName == 'git_url') { this.personalInfo.git_url = data?.inputValue }
+            if (data?.inputName == 'dob') { this.personalInfo.dob = data?.inputValue }
         }
     },
 }
