@@ -1,5 +1,8 @@
 <template>
     <footer>
+        <span class="scroll-top" @click="$router.push('/')">
+            <span class="material-symbols-outlined"> navigation </span>
+        </span>
         <div class="footer-link">
             <router-link to="">Featured Jobs</router-link>
             <router-link to="">Apply Job</router-link>
@@ -31,6 +34,7 @@ footer {
     width: 100%;
     background-color: #363636;
     height: 210px;
+    position: relative;
 }
 
 .footer-link {
@@ -56,6 +60,26 @@ a.router-link-exact-active {
     font-weight: 400;
     color: #ffffff;
 }
+.scroll-top{
+    position: absolute;
+    right: 5%;
+    bottom: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+    box-shadow: 5px 5px 9px #494949;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.scroll-top span{
+    color: #88cc00;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 
 @media screen and (max-width:480px) {
     .footer-link {

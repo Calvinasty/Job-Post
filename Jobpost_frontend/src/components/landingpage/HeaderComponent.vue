@@ -2,10 +2,12 @@
     <header class="container">
         <!-- <NavComponent /> -->
         <section>
-            <aside class="head" v-html="headerMessage"></aside>
-            <aside class="tag active-tag-desk"> <p v-html="tagMessage"></p> </aside>
-            <aside class="tag active-tag-mob"> <p v-html="tagMessage_mobile"></p> </aside>
-            <HeaderSearch />
+            <span class="all-headers">
+                <aside class="head" v-html="headerMessage"></aside>
+                <aside class="tag active-tag-desk"> <p v-html="tagMessage"></p> </aside>
+                <aside class="tag active-tag-mob"> <p v-html="tagMessage_mobile"></p> </aside>
+            </span>
+            <HeaderSearch class="head-search"/>
         </section>
     </header>
 </template>
@@ -37,4 +39,8 @@
 </script>
 <style lang="css" scoped>
     @import '../../assets/landing_assets/headerComponent.css';
+    .container{
+        scroll-behavior: smooth;
+        overflow: hidden;
+    }
 </style>
