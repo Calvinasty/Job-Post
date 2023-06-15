@@ -135,7 +135,6 @@ export default {
                                 return  res.data
                                 
 
-
                             })
                             .then((res)=>this.setUser(res.allInfo[0]))
                             .catch((err) => console.log(err))
