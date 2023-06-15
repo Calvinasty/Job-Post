@@ -1,5 +1,6 @@
 <template>
     <form class="card-detail flex-center">
+        <h2>{{ title }}</h2>
         <div class="profile-pic">
             <img :src="imgPreview" alt="pic">
         </div>
@@ -33,6 +34,7 @@ export default {
     ],
     data() {
         return {
+            title: 'Edit Profile Picture',
             imgPreview: "/images/avatar.jpg",
             img: "",
             showModal: false,
@@ -82,7 +84,7 @@ export default {
     justify-content: space-around;
     gap: 20px;
     width: 520px;
-    padding-top: 10%;
+    padding-top: 3%;
     /* padding-bottom: 70px; */
 }
 
