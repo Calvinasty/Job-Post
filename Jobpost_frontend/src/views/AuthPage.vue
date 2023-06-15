@@ -5,6 +5,7 @@
         <component v-if="routing == 'poster-register'" :is="posterSignUp"></component>
         <component v-if="routing == 'adminlogin'" :is="signInAdmin"></component>
         <component v-if="routing == 'forgot-password'" :is="forgotPassword"></component>
+        <component v-if="routing == 'new-password'" :is="newPassword"></component>
     </AuthLayout>
 
 </template>
@@ -15,7 +16,8 @@
     import SignUpPage from '../components/authpage/signupComponents/SignUpPage.vue';
     import JobPosterSignup from '../components/authpage/signupComponents/JobPosterSignup.vue'
     import SignInAdminPage from '../components/authpage/signinComponents/SignInAdminPage.vue';
-    import ForgotPasswordPage from '../components/authpage/ForgotPasswordPage.vue';
+    import ForgotPasswordPage from '../components/authpage/forgotpassword/ForgotPasswordPage.vue';
+    import NewPassword from '../components/authpage/forgotpassword/NewPasswordPage.vue';
     export default {
         components: {
             AuthLayout,
@@ -23,7 +25,8 @@
             SignUpPage,
             JobPosterSignup,
             SignInAdminPage,
-            ForgotPasswordPage
+            ForgotPasswordPage,
+            NewPassword
         },
         data(){
             return {
@@ -33,6 +36,7 @@
                 posterSignUp:JobPosterSignup,
                 signInAdmin: SignInAdminPage,
                 forgotPassword: ForgotPasswordPage,
+                newPassword: NewPassword
             }
         },
         beforeMount() {
@@ -46,6 +50,8 @@
             ? this.showAdminLogin()
             : this.$route.params.id == 'forgot-password'
             ? this.showForgotPassword()
+            : this.$route.params.id == 'new-password'
+            ? this.showNewPassword()
             : this.returnRoute()
 
             
@@ -65,6 +71,9 @@
             },
             showForgotPassword() {
                 this.routing = 'forgot-password'
+            },
+            showNewPassword() {
+                this.routing = 'new-password'
             },
             returnRoute(){
                 this.routing = ''

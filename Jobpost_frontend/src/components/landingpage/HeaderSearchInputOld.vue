@@ -1,8 +1,9 @@
 <template>
-    <div>
+    <span class="filter-container">
+        <!-- <label for="location">{{title}}</label> -->
         <span class="searchbar" v-if="type=='textFilter'">
-            <span class="material-symbols-outlined" style="color:grey;fontSize:30px;"> search </span>
-            <input type="text" placeholder="Search your preferred job">
+            <span class="material-symbols-outlined"> search </span>
+            <input :type="type" :placeholder="placeholder">
         </span>
 
         <select class="typebar" name="" id="" v-if="type=='filterType'">
@@ -18,13 +19,18 @@
             <option value="">Location</option>
             <option v-for="location in locations" :value="location">{{ location }}</option>
         </select>
-    </div>
+
+    </span>
 </template>
 
 <script>
     import axios from 'axios'
     export default {
-        props: ["type"],
+        props:[
+            "title",
+            "placeholder",
+            "type"
+        ],
         data(){
             return{
                 locations: []
@@ -45,18 +51,24 @@
         },
     }
 </script>
-
 <style lang="css" scoped>
-    .searchbar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .searchbar input, select{
+    /* @import '../../assets/landing_assets/headerComponent.css'; */
+    .filter-container{
         width: 100%;
-        padding: 20px;
-        font-size: 15px;
-        border: none;
-        outline: none;
     }
+    .searchbar{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        /* align-items: stretch; */
+    }
+    .typebar{
+
+    }
+    .locationbar{}
+    .searchbar span, input, select{
+        /* height: 100%; */
+        padding: 20px 0;
+    }
+
 </style>

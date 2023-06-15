@@ -37,16 +37,20 @@
                     return
                 }
                 this.showNavbar = currentScrollPosition < this.lastScrollPosition
-                if(currentScrollPosition <= 10){
+                if(currentScrollPosition <= 70){
                     navbar.style.position = 'relative'
+                    navbar.style.transition = '0.3s'
+                    navbar.style.boxShadow = 'none'
                 }
-                if(currentScrollPosition > 10 || scrollY > 10){
+                if(currentScrollPosition > 70 || scrollY > 70){
                     navbar.style.position = 'fixed'
                     navbar.style.transition = '0.3s'
+                    navbar.style.boxShadow = '0px 3px 9px #c0bebe'
                 }
                 if(!this.showNavbar){
                     navbar.style.position = 'relative'
                     navbar.style.transition = '0.3s'
+                    navbar.style.boxShadow = 'none'
                 }
                 this.lastScrollPosition = currentScrollPosition
             }
@@ -68,7 +72,8 @@
         position: relative;
         top: 0;
         z-index: 1000;
-        box-shadow: 0px 3px 9px #c0bebe;
+        box-shadow: none;
+        /* box-shadow: 0px 3px 9px #c0bebe; */
     }
     .navbar {
         transform: translate3d(0, 0, 0);
