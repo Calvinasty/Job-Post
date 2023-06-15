@@ -147,7 +147,7 @@ export default {
                     console.log(res.data);
                     if (res.data?.message) {
                         let msg = res.data.message
-                        this.showToast(msg, 'Login success')
+                        this.showToast(msg, 'success')
                         this.loading = false
                     }
                     if (res.data?.token) {
