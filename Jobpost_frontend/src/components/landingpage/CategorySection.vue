@@ -39,8 +39,9 @@ export default {
         row-gap:5rem;
     }
     .category-title{
-        /* font-weight: 800; */
-        font-size: 40px;
+        /* font-weight: 100%; */
+        font-size: 35px;
+        /* background-color: blue; */
         /* line-height: 106p4; */
         text-align: center;
     }
