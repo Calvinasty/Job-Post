@@ -3,7 +3,7 @@
         <JobSearchNav />
         <section class="user-profile">
             <div class="title">
-                <h1>{{ title }}</h1>
+                <h4>Welcome, {{ title }}</h4>
             </div>
             <div class="profile-section">
                 <div id="profile">
@@ -17,10 +17,10 @@
                             <img src="images/user_profile_icon.svg" alt="">
                             <p>Jobs Applied</p>
                         </div>
-                        <div class="jobsapplied-1">
+                        <!-- <div class="jobsapplied-1">
                             <img src="images/user_profile_icon.svg" alt="">
                             <p>Jobs Applied</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="profile-details">
@@ -48,29 +48,28 @@
                             :inputType="inputCardDetails[0].cardInputInformation.inputEight.type" :Value="Value.github"
                             :inputId="inputCardDetails[0].cardInputInformation.inputEight.id" />
                     </CardInformationComponent>
-
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="2"
                         :detailsTitle="inputCardDetails[1].cardTitle" :showplus="true">
-                        <InputComponent v-for="(school, index) in Value.education" :key="index"
+                        <InputComponent v-for="(school, schoolIndex) in user.education" :key="schoolIndex"
                             :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="school?.institution"
-                            :showpencil="true" />
+                            :showpencil="true" :itemId="school.id" :handleEdit="handleEdit" :itemIndex="index" />
 
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="3"
                         :detailsTitle="inputCardDetails[2].cardTitle" :showplus="true">
-                        <InputComponent v-for="(workexp, index) in Value.workexp" :key="index"
+                        <InputComponent v-for="(workexp, index) in user.experiences" :key="index"
                             :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
-                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="workexp?.company_name"
+                            :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="workexp?.role"
                             :showpencil="true" />
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
                         :detailsTitle="inputCardDetails[3].cardTitle" :showplus="true">
-                        <InputComponent v-for="(skill, index) in Value.skills" :key="index"
+                        <InputComponent v-for="(skill, index) in user.Skills" :key="index"
                             :fullName="inputCardDetails[3].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[3].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[3].cardInputInformation.inputOne.id" :Value="skill?.skill_name"
@@ -78,10 +77,6 @@
                     </CardInformationComponent>
                 </div>
             </div>
-            <!-- <div class="btnsec">
-                    <button class="btn">Save</button>
-                    <button class="btns">Cancel</button>
-                </div> -->
         </section>
 
 
@@ -103,6 +98,7 @@ import UpdateProfileComponentVue from '../components/profilepage/UpdateProfileCo
 import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
 // import EditPopups from '../components/profilepage/EditPopups.vue';
 import InputComponent from '../components/profilepage/inputComponent.vue';
+// const BASE_URL = import.meta.env.VITE_BASE_URL
 import { userprofileData } from '../data';
 // import axios from 'axios';
 export default {
@@ -118,7 +114,7 @@ export default {
 
     data() {
         return {
-            title: 'User Profile',
+            title: '',
             usersName: '',
             userOccupation: '',
             showModal: false,
@@ -153,23 +149,20 @@ export default {
             this.Value.gender = userInfo?.gender
             this.Value.dob = userInfo?.date_of_birth?.split('T')[0]
             this.Value.photo = "/images/" + userInfo?.photo
+            this.Value.linkenin = userInfo?.js_social_link?.linkedIn_link
+            this.Value.github = userInfo?.js_social_link?.gitHub_link
             this.usersName = userInfo?.first_name
             this.Value.skills = userInfo.Skills
             this.Value.education = userInfo?.education
             this.Value.workexp = userInfo?.experiences
+            this.title = this.Value.fullname
 
-            this.getAllUserInfo()
+            // this.getAllUserInfo()
         }
     },
     mounted() {
-        console.log(this.user)
-        // const userDetails = JSON.parse(localStorage.getItem('userDetails'))
 
-        // if (userDetails) {
-        //     this.Value.skills = userDetails?.Skills
 
-        //     console.log('userDetails', userDetails);
-        // }
     },
     key() {
         return this.$route.params + Math.random()
@@ -182,21 +175,24 @@ export default {
             this.index = index
         },
 
+        handleEdit(itemId, itemIndex) {
+            this.showPopup(itemIndex)
 
-        getAllUserInfo() {
-            const token = JSON.parse(localStorage.getItem('userToken'))
-            if (token) {
+        },
+        // getAllUserInfo() {
+        //     const token = JSON.parse(localStorage.getItem('userToken'))
+        //     if (token) {
 
-                // axios.get('http://192.168.1.88:5000/jobSeeker/getAllInfo', { headers: { token } })
-                //     .then((res) => {
-                //         localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
-                //         // console.log(res.data[0]);
-                //     })
-                //     .catch((err) => console.log(err))
-            }
+        //         axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+        //             .then((res) => {
+        //                 localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
+        //                 // console.log(res.data[0]);
+        //             })
+        //             .catch((err) => console.log(err))
+        //     }
 
 
-        }
+        // }
 
 
 

@@ -2,10 +2,12 @@
     <header class="container">
         <!-- <NavComponent /> -->
         <section>
-            <aside class="head" v-html="headerMessage"></aside>
-            <aside class="tag active-tag-desk"> <p v-html="tagMessage"></p> </aside>
-            <aside class="tag active-tag-mob"> <p v-html="tagMessage_mobile"></p> </aside>
-            <HeaderSearch />
+            <span class="all-headers">
+                <aside class="head" v-html="headerMessage"></aside>
+                <aside class="tag active-tag-desk"> <p v-html="tagMessage"></p> </aside>
+                <aside class="tag active-tag-mob"> <p v-html="tagMessage_mobile"></p> </aside>
+            </span>
+            <HeaderSearch class="head-search"/>
         </section>
     </header>
 </template>
@@ -20,8 +22,8 @@
         },
         data(){
             return{
-                headerMessage: '<h1>Find the <span class="color">jobs</span><br> that fit your <span class="color">career</span></h1>',
-                tagMessage: 'Connecting dream jobs with dream candidates.<br> Your one-stop job search solution.<br> Find your next career opportunity with ease.',
+                headerMessage: '<h1>Find the <span class="color">jobs</span> that fit your <span class="color">career</span></h1>',
+                tagMessage: 'Connecting dream jobs with dream candidates. Your one-stop job search solution. Find your next career opportunity with ease.',
                 tagMessage_mobile: 'Connecting dream jobs with dream candidates...'
             }
         },
@@ -37,4 +39,8 @@
 </script>
 <style lang="css" scoped>
     @import '../../assets/landing_assets/headerComponent.css';
+    .container{
+        scroll-behavior: smooth;
+        overflow: hidden;
+    }
 </style>
