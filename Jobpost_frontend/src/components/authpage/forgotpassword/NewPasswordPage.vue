@@ -78,7 +78,7 @@ export default {
   },
 
   computed: {
-    ...mapState(useUserProfileStore, ['forgotPasswordEmail', 'userType'])
+    ...mapState(useUserProfileStore, ['forgotPasswordEmail', 'userType', 'forgotPasswordId', 'forgotPassword'])
   },
 
   methods: {
@@ -97,7 +97,9 @@ export default {
       console.log(this.inputData.confirmPass)
       if (this.inputData.password == this.inputData.confirmPass) {
         const user = new FormData()
-        user.append('password', this.inputData.password)
+        user.append("newPassword", this.inputData.password)
+        user.append("id", this.forgotPasswordId)
+        user.append("password", this.forgotPassword)
 
         if (this.userType == 'jobSeeker') {
           axios

@@ -161,10 +161,15 @@ export default {
                     this.$router.push('/admin/analyticsView')
                 })
                 .catch(err => {
-                    let msg = err.response ? err.response.data.message : err.message
-                    this.showToast(msg, 'error')
-                    this.loading = false
-                    console.log(err);
+                    let msg 
+                        if(err.response) 
+                            msg = err.response.data.message 
+                        if(err.message)
+                            msg = err.message
+                        
+                        this.showToast(msg, 'error')
+                        this.loading = false
+                        console.log(err)
                 })
             }
 
@@ -191,7 +196,12 @@ export default {
 
 
                     .catch((err) => {
-                        let msg = err.response ? err.response.data.message : err.message
+                        let msg 
+                        if(err.response) 
+                            msg = err.response.data.message 
+                        if(err.message)
+                            msg = err.message
+                        
                         this.showToast(msg, 'error')
                         this.loading = false
                         console.log(err)
