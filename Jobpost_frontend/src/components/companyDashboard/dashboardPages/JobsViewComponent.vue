@@ -3,7 +3,7 @@
         <JobsDescriptionComponent
             :myjobs="jobs"
         />
-        <h4 class="nojob-tag" v-if="jobs?.length == 0">📝 No Jobs posted / <span class="color-red">❌ Check network connections</span></h4>
+        <h4 class="nojob-tag" v-if="jobs?.length == 0 || jobs == undefined">📝 No Jobs posted / <span class="color-red">❌ Check network connections</span></h4>
     </div>
 </template>
 
@@ -32,6 +32,7 @@
         },
         mounted(){
             this.jobs = this.company?.Jobs
+            console.log(this.company.Jobs);
         },
         methods: {
             ...mapActions(useCompanyStore, ['updateCompany']),
