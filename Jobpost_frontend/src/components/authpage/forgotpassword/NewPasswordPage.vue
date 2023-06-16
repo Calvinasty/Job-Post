@@ -21,6 +21,8 @@
           />
         </div>
 
+        <p v-show="showError" class="errorPassword"><i>*Password and Confirm Password does not match</i></p>
+
         <div class="reEnter-password">
           <InputComponent
             type="password"
@@ -69,7 +71,9 @@ export default {
         active: false,
         msg: '',
         color: ''
-      }
+      },
+
+      showError: false,
     }
   },
 
@@ -93,10 +97,10 @@ export default {
       console.log(this.inputData.confirmPass)
       if (this.inputData.password == this.inputData.confirmPass) {
         const user = new FormData()
-
         user.append('password', this.inputData.password)
 
-        axios
+        if (this.userType == 'jobSeeker') {
+          axios
           .put(`${BASE_URL}/jobSeeker/password`, user)
           .then((res) => {
             console.log(res.data)
@@ -119,7 +123,41 @@ export default {
             this.loading = false
             console.log(err)
           })
+        }
+
+        if (this.userType == 'jobPoster') {
+          axios
+          .put(`${BASE_URL}/company/password`, user)
+          .then((res) => {
+            console.log(res.data)
+            if (res.data?.message) {
+              let msg = res.data.message
+              this.showToast(msg, 'success')
+              this.loading = false
+            }
+            if (res.data?.token) {
+              const token = JSON.stringify(res.data.token)
+              localStorage.setItem('newPassword', token)
+            }
+          })
+          .then(() => {
+            this.$router.push('/auth/login')
+          })
+          .catch((err) => {
+            let msg = err.response ? err.response.data.message : err.message
+            this.showToast(msg, 'error')
+            this.loading = false
+            console.log(err)
+          })
+        }
+        
       }
+      if(this.inputData.password != this.inputData.confirmPass) {
+        this.showError = true
+        this.loading = false
+      }
+
+     
 
     },
 
@@ -238,6 +276,10 @@ export default {
   .loading {
     transform: rotate(300deg);
     animation: spin 1s infinite;
+  }
+
+  .errorPassword {
+    color: red;
   }
 
   @keyframes spin {
