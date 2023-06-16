@@ -69,7 +69,7 @@ export default {
                 'Salary Range',
                 'Job Type',
                 'Job Categories',
-                'Location',
+                'Location/Country',
                 'Experience'
             ],
             hideFilters:true,                

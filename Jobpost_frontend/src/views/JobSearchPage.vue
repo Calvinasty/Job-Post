@@ -35,9 +35,10 @@ export default {
         ...mapActions(useJobsStore, ['setPostedJobs']),
         getAllJobs() {
             // this.AllPostedJobs = JSON.parse(localStorage.getItem('companyJobs'))
-            axios.get(`${BASE_URL}/job/availableJobs`)
+            axios.get(`${BASE_URL}/company/allJobs`)
             .then(res =>{           
                     this.AllPostedJobs = res.data
+                    console.log(res.data);
                     return res.data
                 } )
                 .then(res => { 
