@@ -48,12 +48,14 @@ export default {
 
         },
         handleSearch(data) {
-            // console.log(this.AllPostedJobs)
-            if (!data) {
+            console.log(this.AllPostedJobs)
+            console.log(data);
+            if (!data|| data?.data=='') {
                 return this.filteredJobs = this.AllPostedJobs
             } else {
-                const result = this.AllPostedJobs.filter((item) => (item.jobTitle.toLocaleLowerCase().includes(data.data)))
-                return this.filteredJobs = [...result]
+                const result = this.AllPostedJobs.filter((item) => (item.job_title.toLocaleLowerCase().includes(data.data)))
+                console.log('result',result);
+                return this.filteredJobs = result
             }
 
         },
