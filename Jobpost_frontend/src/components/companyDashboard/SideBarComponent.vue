@@ -30,7 +30,7 @@
                 navItems: [
                     { name: "Dasboard", icon: "dashboard", link: "analyticsView", active: true},
                     { name: "View/Edit Jobs", icon: "edit_note", link: "jobsView", active: false },
-                    { name: "View All Aplicants", icon: "groups", link: "viewApplicant", active: false },
+                    // { name: "View All Aplicants", icon: "groups", link: "viewApplicant", active: false },
                     { name: "Company Profile", icon: "account_circle", link: "companyProfile", active: false },
                 ],
                 settings: [

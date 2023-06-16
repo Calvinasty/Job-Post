@@ -14,7 +14,7 @@
             <li>{{ item.job_type }}</li>
             <li>{{ item.location }}</li>
             <li>{{ item.application_deadline.split('T')[0] }}</li>
-            <li><span  @click="showApplicantsPage(index)" class="material-symbols-outlined tooltip" style="justifySelf:center">visibility</span></li>
+            <li style="text-align: center;"><span  @click="showApplicantsPage(item.id)" class="material-symbols-outlined tooltip">visibility</span></li>
             <li class="edit-btns">
                 <span @click="updatePost(item.id)" class="material-symbols-outlined">edit</span>
                 <span @click="deletePost(item.id)" class="material-symbols-outlined">close</span>
@@ -44,7 +44,7 @@ export default {
 
     },
     methods: {
-        ...mapActions(useDashboardStore, ['setModal']),
+        ...mapActions(useDashboardStore, ['setModal','setJobId']),
         updatePost(postId) {
             this.setModal('PostJobForm', postId)
             // console.log(param)
@@ -61,6 +61,10 @@ export default {
             }else{
                 return
             }
+        },
+        showApplicantsPage(jobId){
+            this.setJobId(jobId)
+            this.$router.push('/admin/viewApplicant')
         }
     },
 };
@@ -77,7 +81,7 @@ export default {
         height: 100%;
         width: 100%;
         padding: 20px 40px;
-        /* overflow: scroll; */
+        overflow: scroll;
         /* flex: 1; */
         /* padding: 0px 90px 120px 100px; */
     }
@@ -103,11 +107,11 @@ export default {
     .table-head li {
         width: 15%;
         padding: 10px;
-        text-align: center;
+        /* text-align: center; */
         /* margin-left: 50px; */
         /* border: 1px solid; */
     }
-    .table-head li:first-child{ width: 30%; }
+    .table-head li:first-child{ width: 30%; text-align: left; }
     .table-head li:last-child{ width: 10%; text-align: center;}
     .table-body {
         display: flex;

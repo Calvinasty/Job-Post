@@ -4,12 +4,27 @@
             <ul class="title">
                 <li>Applicant Name</li>
                 <li>Role Type</li>
-                <li>Requirements</li>
+                <li>Location</li>
                 <li>Download CV</li>
                 <li></li>
             </ul>
 
-            <ul v-for="(item, index) in applicants" :key="index" class="list-body">
+            <ul class="list-body">
+                <li>{{ applicants.first_name }} {{ applicants.last_name }}</li>
+                <li>{{ jobDetails.job_title }}</li>
+                <li>{{ jobDetails.location }}</li>
+                <li class="eye-icon">
+                    <span @click="()=>showTip()" class="material-symbols-outlined tooltip">visibility</span>
+                    <!-- <span v-show="edit==true" @click="()=>hideTip(false)" class="material-symbols-outlined tooltip">visibility_off</span> -->
+                    <p class="hide"  :class="{view:edit}">
+                        <span @click="setModal('ApplicantSummary')">View Applicant</span>
+                        <br>
+                        <span><a :href="cv" download style="text-decoration: none;color:#666"> Download Resume </a></span>
+                    </p>
+                </li><br>
+            </ul>
+                <div class="hide"  :class="{showCover:edit}"> <span style="color: #88cc00;"> COVER LETTER:</span> <br> {{ cover }} </div>
+            <!-- <ul v-for="(item, index) in applicants" :key="index" class="list-body">
                 <li>{{ item.applicant }}</li>
                 <li>{{ item.role }}</li>
                 <li>{{ item.requirements }}</li>
@@ -23,7 +38,7 @@
                         <span>Download Resume</span>
                     </p>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </template>
@@ -35,47 +50,62 @@ export default {
     components: {
     },
     props: [
-        'applicants'
+        'applicants',
+        'jobDetails',
+        'cv', 'cover'
     ],
 
     data() {
         return {
             showtip: '',
-            toolVisible: false
+            toolVisible: false,
+            edit: false
         };
     },
     mounted() {
-        
-        
+        // this.applicants.forEach(element => {
+        //     element['edit']=false        
+        // });
+        console.log(this.applicants);
     },
 
     methods: {
         ...mapActions(useDashboardStore, ['setModal']),
         showTip(index){
-            this.applicants.forEach(element => {
-                element['edit']=false        
-            });
-            this.applicants.map((item,id)=>{
-                console.log(item.edit);
-                if(id==index){
-                        return item.edit=true
-                }else{
-                   this.hideTip(index)
-                }
-            })
+            this.edit = !this.edit
             this.toolVisible=!this.toolVisible
+            console.log(index);
         },
         hideTip(index){
-            this.applicants.map((item,id)=>{
-                console.log(item.edit);
-                if(id==index){
-                        return item.edit=true
-                }else{
-                    return item.edit=false
-                }
-            })
+            this.edit = index
             this.toolVisible =! this.toolVisible
+            console.log(index);
         }
+        // showTip(index){
+        //     // this.applicants.forEach(element => {
+        //     //     element['edit']=false        
+        //     // });
+        //     this.applicants.map((item,id)=>{
+        //         // console.log(item.edit);
+        //         if(id==index){
+        //                 return item.edit=true
+        //         }else{
+        //            this.hideTip(index)
+        //         }
+        //     })
+        //     this.toolVisible=!this.toolVisible
+        // },
+        // hideTip(index){
+        //     this.applicants.map((item,id)=>{
+        //         // console.log(item.edit);
+        //         if(id==index){
+        //                 return item.edit=true
+        //         }else{
+        //             return item.edit=false
+        //         }
+        //     })
+        //     this.toolVisible =! this.toolVisible
+        // }
     },
 };
 </script>
@@ -88,9 +118,9 @@ export default {
         /* background: #F5F5F5; */
         flex: 1;
         height: 100%;
-        padding: 0px 90px 120px 100px;
+        padding: 20px;
         /* overflow: scroll; */
-        width: 100%;
+        /* width: 100% !important; */
     }
 
     .main ul {
@@ -142,14 +172,20 @@ export default {
     }
     .hide.view {
         display: block;
-        background: #FFFFFF;
-        border: 1px solid #919191;
+        background: #f1f1f1;
+        border: 3px solid #88cc00;
         text-align: center;
         position: relative;
-        width: 100%;
-        left: 30px;
+        /* width: 100%; */
+        left: 0px;
         bottom: 5px;
+        border-radius: 10px;
         /* z-index: 10; */
+    }
+    .hide.showCover{
+        display: block;
+        background-color: #f1f1f1;
+        padding: 20px;
     }
 
     .hide.view span {

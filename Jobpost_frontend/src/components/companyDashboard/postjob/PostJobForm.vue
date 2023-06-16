@@ -162,7 +162,9 @@
                             this.loading = false
                             this.showToast(msg?msg:'Job Post Successful', 'success')
                             // this.$router.push('/jobsearch')
-                            this.clearForm()
+                            setTimeout(()=>{
+                                this.clearForm()
+                            }, 6000)
                         }
                     })
                     .catch(err => {

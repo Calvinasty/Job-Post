@@ -11,7 +11,9 @@ export const useDashboardStore = defineStore(
             modalComponentType: '',   //set state for modal show postJob or Applicants Summary
             updatePostModalId: '',    //sets the id of the job post to be updated by a company
             chartDataValues: useStorage("chartDataValues", [10, 9, 20, 10, 0, 0]),
-            blink: false
+            blink: false,
+            jobId: '', //id of job clicked in the viewjobs to see applicants of that job,
+            jobSeeker: {}
         }),
         getters: {
             getNext(state){
@@ -44,6 +46,12 @@ export const useDashboardStore = defineStore(
                 setTimeout(() => {
                     this.blink = false
                 }, 10000)
+            },
+            setJobId(id){
+                this.jobId = id
+            },
+            setJobSeeker(seeker){
+                this.jobSeeker = seeker
             }
         }
     }
