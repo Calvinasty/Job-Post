@@ -56,11 +56,12 @@ export default {
 }
 
 .input-field input {
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: 500;
+    font-size: 13px;
     color: #000000;
     border: none;
     outline: none;
+    width: 100%;
 
     background-color: transparent;
 }

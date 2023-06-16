@@ -91,6 +91,7 @@
 
 <script>
 import { mapState } from 'pinia';
+import { mapActions } from 'pinia';
 import { useUserStore } from '../stores/users';
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
@@ -140,7 +141,7 @@ export default {
         ...mapState(useUserStore, ['user'])
     },
     beforeMount() {
-        console.log(this.user);
+        // console.log(this.user);
         if (this.user) {
             const userInfo = this.user
             this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
@@ -169,7 +170,7 @@ export default {
     },
 
     methods: {
-
+        ...mapActions(useUserStore, ['setUser']),
         showPopup(index) {
             this.showModal = !this.showModal
             this.index = index
@@ -182,22 +183,15 @@ export default {
         getAllUserInfo() {
             const token = JSON.parse(localStorage.getItem('userToken'))
             if (token) {
-
                 axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                     .then((res) => {
-                        localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
-                        // console.log(res.data[0]);
+                        console.log('Job Seeker All Info', res.data);
+                        this.setUser(res.data.allInfo[0])
                     })
                     .catch((err) => console.log(err))
             }
-
-
         }
-
-
-
     }
-
 }
 </script>
 
