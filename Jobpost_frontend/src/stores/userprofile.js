@@ -5,6 +5,9 @@ export const useUserProfileStore = defineStore('userprofile', {
         // userProfile: [],
         componentId: 'UploadPicture',
         componentId2: 'UploadCompanyPicture',
+        // forgot Password
+        forgotPasswordId: '',
+        forgotPassword: '',
         forgotPasswordEmail: '',
         userType: '',
     }),
@@ -18,8 +21,16 @@ export const useUserProfileStore = defineStore('userprofile', {
             this.componentId2 = link
         },
 
-        setForgotPassword(email){
+        setForgotId(id){
+            this.forgotPasswordId = id
+        },
+
+        setForgotEmail(email){
             this.forgotPasswordEmail = email
+        },
+
+        setForgotPassword(password){
+            this.forgotPassword = password
         },
 
         setUserType(user){

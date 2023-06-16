@@ -39,7 +39,7 @@
 
         <div class="desk-links">
           <button type="submit" class="flex-center-row reset-btn">Send Reset Link</button>
-          <button type="button" class="login-btn">Back to Login</button>
+          <button type="button" class="login-btn" @click="backToLogin">Back to Login</button>
         </div>
       </form>
     </div>
@@ -75,12 +75,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions(useUserProfileStore, ['setForgotPassword', 'setUserType']),
+    ...mapActions(useUserProfileStore, ['setForgotId', 'setForgotEmail', 'setForgotPassword', 'setUserType']),
     handleUserInput(data) {
       // console.log(data);
       if (data.inputName == 'email') {
         this.inputData.email = data.inputValue
       }
+    },
+
+    backToLogin() {
+      this.$router.push('/auth/login')
     },
 
     seeker() {
@@ -104,10 +108,12 @@ export default {
           .put(`${BASE_URL}/jobSeeker/email`, user)
           .then((res) => {
             console.log(res.data)
-            this.setForgotPassword(this.inputData.email)
+            this.setForgotEmail(this.inputData.email)
+            this.setForgotPassword(res.data?.user.password)
+            this.setForgotId(res.data?.user.id)
             this.setUserType(this.userType)
             if (res.data?.message) {
-                let msg = res.data.message
+              let msg = res.data?.message
               this.showToast(msg, 'success')
               this.loading = false
             }
@@ -116,9 +122,7 @@ export default {
               this.$router.push('/auth/new-password')
             }, 2000)
           })
-          // .then(() => {
-          //     this.$router.push('/auth/new-password')
-          // })
+          
           .catch((err) => {
             let msg = err.response ? err.response.data.message : err.message
 
@@ -138,7 +142,9 @@ export default {
           .put(`${BASE_URL}/company/email`, user)
           .then((res) => {
             console.log(res.data)
-            this.setForgotPassword(this.inputData.email)
+            this.setForgotEmail(this.inputData.email)
+            this.setForgotPassword(res.data?.Company.password)
+            this.setForgotId(res.data?.Company.id)
             this.setUserType(this.userType)
             if (res.data?.message) {
                 let msg = res.data.message
@@ -150,9 +156,7 @@ export default {
               this.$router.push('/auth/new-password')
             }, 2000)
           })
-          // .then(() => {
-          //     this.$router.push('/auth/new-password')
-          // })
+          
           .catch((err) => {
             let msg = err.response ? err.response.data.message : err.message
 
