@@ -130,7 +130,6 @@ export default {
             }
 
         },
-
         handleSignIn() {
             this.loading = true
             console.log('Hello', this.inputData.email.match((validRegex)));
@@ -157,7 +156,7 @@ export default {
                         this.setCompany(res.data.allCompanyInfo[0])
                     }
                 })
-                .then(()=>{
+                .then(() => {
                     this.$router.push('/admin/analyticsView')
                 })
                 .catch(err => {
@@ -172,42 +171,39 @@ export default {
                         console.log(err)
                 })
             }
-
+            //jobSeeker
             if (this.userType == 'jobSeeker') {
+                // console.log('hello');
                 axios
-                    .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
-                    .then((res) => {
+                .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
+                .then((res) => {
 
-                        if (res.data?.message) {
-                            let msg = res.data.message
-                            this.showToast(msg, 'success')
-                            this.loading = false
-                        }
-                        if (res.data?.token) {
-                            const token = JSON.stringify(res.data.token)
-                            localStorage.setItem('userToken', token)
-                            console.log(res.data.allInfo[0]);
-                            this.setUser(res.data.allInfo[0])
-                            this.$router.push('/userprofile')
-                        }
-
-
-                    })
-
-
-                    .catch((err) => {
-                        let msg 
-                        if(err.response) 
-                            msg = err.response.data.message 
-                        if(err.message)
-                            msg = err.message
-                        
-                        this.showToast(msg, 'error')
+                    if (res.data?.message) {
+                        let msg = res.data.message
+                        this.showToast(msg, 'success')
                         this.loading = false
-                        console.log(err)
-                    })
-            }
+                    }
+                    if (res.data?.token) {
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('userToken', token)
+                        console.log(res.data.allInfo[0]);
+                        this.setUser(res.data.allInfo[0])
+                        this.$router.push('/userprofile')
+                    }
 
+                })
+                .catch((err) => {
+                    let msg 
+                    if(err.response) 
+                        msg = err.response.data.message 
+                    if(err.message)
+                        msg = err.message
+                    
+                    this.showToast(msg, 'error')
+                    this.loading = false
+                    console.log(err)
+                })
+            }
         },
 
         showToast(msg, color) {
@@ -226,12 +222,14 @@ export default {
 .signin header {
     position: relative;
 }
+
 .image-box {
     display: flex;
     align-items: center;
     justify-content: center;
 
 }
+
 .back-arrow {
     color: #7FBF4C;
     position: absolute;
@@ -240,6 +238,7 @@ export default {
     font-weight: bolder;
     cursor: pointer;
 }
+
 .signin-desktop {
     display: flex;
     justify-content: center;
@@ -465,5 +464,4 @@ header h2 {
             align-items: center;
             row-gap: 5px;
         }
-    } */
-</style>
+    } */</style>

@@ -43,3 +43,30 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.apply-filter-btn{
+  width: 100%;
+  background:  #88CC00;
+  color: #fff;
+  font-weight: 700;
+  padding: 5px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.apply-filter-btn:hover{
+  background:  #5f8d04;
+  transition: .3s ease-in-out;
+}
+.apply-filter-btn .loading{
+  transform: rotate(300deg);
+  animation: spin 1s infinite;
+}
+
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(90deg);}
+  50% {transform: rotate(180deg);}
+  75% {transform: rotate(270deg);}
+  100% {transform: rotate(360deg);}
+}

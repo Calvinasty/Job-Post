@@ -9,14 +9,12 @@
                 <input type="text" v-model="searchInput" v-on:change="() => handleSearch({ data: searchInput })"
                     placeholder="Search for job post,company,location">
             </div>
-            <div class="btn" @click="showDropdown">
-                <span>{{ email }}</span>
-                <span  v-if="email !== ''">CK</span>
+            <div class="btn" v-show="userExist" @click="showDropdown">
+                <span> <span class="material-symbols-outlined"> person </span> </span>
             </div>
         </span>
-        <div class="btn mobile">
-            <span>{{ email }}</span>
-            <span v-if="email !== ''" >CK</span>
+        <div class="btn mobile"  v-show="userExist" @click="showDropdown">
+            <span> <span class="material-symbols-outlined"> person </span> </span>
         </div>
 
         <Transition name="slide-fade">
@@ -38,6 +36,7 @@ export default {
     data(){
         return{
             show: false,
+            userExist: false
         }
     },
 
@@ -46,6 +45,13 @@ export default {
     ],
     computed: {
         ...mapState(useUserStore, ['email'])
+    },
+    mounted(){
+        const userToken = JSON.parse(localStorage.getItem('userToken'))
+        const companyToken = JSON.parse(localStorage.getItem('companyToken'))
+        if(userToken || companyToken){
+            this.userExist = true
+        }
     },
     methods: {
         
@@ -99,7 +105,7 @@ export default {
 
 .logo img {
     padding: 0px;
-    max-width: 100px;
+    max-width: 200px;
     cursor: pointer;
 
 }
@@ -173,6 +179,7 @@ export default {
     .btn {
         margin-left: 124px;
     }
+
 }
 
 @media screen and (max-width:685px) {
@@ -222,5 +229,9 @@ export default {
     .search-bar input::placeholder {
         font-size: 8px;
     }
+    .logo img {
+        max-width: 100px;
+    }
+
 }
 </style>

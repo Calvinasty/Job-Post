@@ -14,7 +14,10 @@
                 <span> GH¢{{ maxSalary }}  </span>
             </button>
         </span>
-        <button @click.prevent="handleFilter" class="flex-center" style="cursor: pointer;">Apply</button>
+        <button @click.prevent="handleFilter" class="flex-cente-row apply-filter-btn" >
+            Apply
+            <span class="material-symbols-outlined loading" v-show="loading"> cached </span>
+        </button>
     </div>
       
 </template>
@@ -32,7 +35,7 @@ export default {
             maxSalary:6000,
         };
     },
-  props:['applyFilter'],
+  props:['applyFilter','loading'],
 
     methods: {
         ...mapActions(useJobFilterStore,['setSalaryRange']),

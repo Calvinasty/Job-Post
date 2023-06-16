@@ -13,8 +13,13 @@ export const useUserStore = defineStore(
             }
         },
         actions: {
-            setUser(user){
-                this.user = user
+            setUser(user,type='all'){
+                if(type=='socials'){
+                    if(!this.user.js_social_link || this.user.js_social_link == '')
+                    {this.user = {user}}
+                    else{ user.js_social_link=this.user.js_social_link   }
+                }
+                else{ this.user = user }
             }
         }
     }
