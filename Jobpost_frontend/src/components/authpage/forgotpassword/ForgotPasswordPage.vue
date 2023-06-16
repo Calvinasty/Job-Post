@@ -75,7 +75,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(useUserProfileStore, ['setForgotPassword']),
+    ...mapActions(useUserProfileStore, ['setForgotPassword', 'setUserType']),
     handleUserInput(data) {
       // console.log(data);
       if (data.inputName == 'email') {
@@ -105,6 +105,7 @@ export default {
           .then((res) => {
             console.log(res.data)
             this.setForgotPassword(this.inputData.email)
+            this.setUserType(this.userType)
             if (res.data?.message) {
                 let msg = res.data.message
               this.showToast(msg, 'success')
@@ -138,6 +139,7 @@ export default {
           .then((res) => {
             console.log(res.data)
             this.setForgotPassword(this.inputData.email)
+            this.setUserType(this.userType)
             if (res.data?.message) {
                 let msg = res.data.message
               this.showToast(msg, 'success')
