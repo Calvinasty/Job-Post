@@ -1,5 +1,5 @@
 <template>
-    <div id="Featured_Jobs" class="container">
+    <div class="container">
         <header>
             <h2>Featured Jobs</h2>
             <p>Discover the latest opportunities and stand out from the crowd with our featured jobs section</p>
@@ -50,6 +50,7 @@ export default {
     width: 100%;
     background-color: #88CC0029;
 }
+
 
 .container header {
     display: flex;
