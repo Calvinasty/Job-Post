@@ -1,10 +1,16 @@
 <template>
-      <div class="filter-card-wrapper input-filters">
-            <CheckInputCard :checkbox-text="jobTypes[0]"/>
-            <CheckInputCard :checkbox-text="jobTypes[1]"/>
-            <CheckInputCard :checkbox-text="jobTypes[2]"/>
-            <CheckInputCard :checkbox-text="jobTypes[3]"/>
-      </div>
+      
+          <div class="filter-card-wrapper input-filters">
+                <CheckInputCard :checkbox-text="jobTypes[0]"/>
+                <CheckInputCard :checkbox-text="jobTypes[1]"/>
+                <CheckInputCard :checkbox-text="jobTypes[2]"/>
+                <CheckInputCard :checkbox-text="jobTypes[3]"/>
+                <button @click.prevent="handleFilter" class="flex-cente-row apply-filter-btn" >
+                  Apply
+                  <span class="material-symbols-outlined loading" v-show="loading"> cached </span>
+              </button>
+          </div>
+      
 </template>
 
 <script>
@@ -31,8 +37,14 @@ export default {
         
     },
 
+    props:['applyFilter'],
+
     methods: {
-        
+        handleFilter(){
+            console.log('ggg');
+            this.setSalaryRange({minSalary:this.minSalary,maxSalary:this.maxSalary})
+            this.applyFilter('type')
+        }
     },
 };
 </script>

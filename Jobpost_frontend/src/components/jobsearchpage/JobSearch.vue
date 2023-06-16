@@ -24,7 +24,7 @@ export default {
             if(filter =='salary'){
                 alert('salary')
             }
-            if(filter =='jobtype'){
+            if(filter =='type'){
                 alert('jobtype')
             }
             if(filter =='location'){

@@ -70,7 +70,7 @@ export default {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 98dvw;
     position: relative;
@@ -87,7 +87,7 @@ export default {
 
 @media screen and (max-width:685px) {
     .jobsearch-page {
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 0;
     }
