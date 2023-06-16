@@ -2,10 +2,12 @@
     <form action="" class="card-detail">
         <h2>{{ title }}</h2>
         <div class="input-container">
-            <InputComponent placeHolder="LinkedIn URL" name="linkedIn_link" type="text" :handleInput="handleInput" />
+            <InputComponent placeHolder="LinkedIn URL" name="linkedIn_link" type="text" :handleInput="handleInput"
+                :Value="socialsLink.linkedIn_link" />
         </div>
         <div class="input-container">
-            <InputComponent placeHolder="GitHub URL" name="gitHub_link" type="text" :handleInput="handleInput" />
+            <InputComponent placeHolder="GitHub URL" name="gitHub_link" type="text" :handleInput="handleInput"
+                :Value="socialsLink.gitHub_link" />
         </div>
         <div class="btnsec flex-center-row">
             <button class="btn" @click.prevent="handleAdd">Save</button>
@@ -16,6 +18,7 @@
 
 <script>
 import { mapActions } from 'pinia'
+import { mapState } from 'pinia'
 import { useUserStore } from '../../../stores/users'
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL
@@ -43,40 +46,78 @@ export default {
         }
     },
 
-    mounted() {
+    computed: {
+        ...mapState(useUserStore, ['user'])
+    },
 
+    mounted() {
+        this.socialsLink.linkedIn_link = this.user?.js_social_link?.linkedIn_link
+        this.socialsLink.gitHub_link = this.user?.js_social_link?.gitHub_link
     },
 
     methods: {
         ...mapActions(useUserStore, ['setUser']),
         handleAdd() {
-            const token = JSON.parse(localStorage.getItem('userToken'))
-            // console.log(this.socialsLink.linkedIn_link, this.socialsLink.gitHub_link);
-            const updatedUserInfo = new FormData()
-            updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
-            updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
+            if (this.socialsLink.linkedIn_link == "" || this.socialsLink.gitHub_link == "") {
+                const token = JSON.parse(localStorage.getItem('userToken'))
+                // console.log(this.socialsLink.linkedIn_link, this.socialsLink.gitHub_link);
+                const updatedUserInfo = new FormData()
+                updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
+                updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
+                // console.log(this.socialsLink.linkedIn_link);
+                axios.post(`${BASE_URL}/links/jsLinks`, updatedUserInfo, { headers: { token } })
+                    .then((res) => {
+                        console.log(token);
+                        if (res.data) {
+                            console.log('update', res.data)
+                            // alert(res.data.message)
+                            const token = JSON.parse(localStorage.getItem('userToken'))
+                            axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                                .then((res) => {
+                                    console.log('Social res data', res.data);
+                                    this.setUser(res.data.allInfo[0])
+                                })
+                                // .then(window.location.reload())
+                                .catch((err) => {
+                                    console.log(err);
+                                })
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+                    .finally(() => { this.handlecloseCard() })
+            }
+            else {
+                const token = JSON.parse(localStorage.getItem('userToken'))
+                // console.log(this.socialsLink.linkedIn_link, this.socialsLink.gitHub_link);
+                const updatedUserInfo = new FormData()
+                updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
+                updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
 
-            axios.post(`${BASE_URL}/links/jsLinks`, updatedUserInfo, { headers: { token } })
-                .then((res) => {
-                    if (res.data) {
-                        // console.log('update', res.data)
-                        // alert(res.data.message)
-                        const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
-                            .then((res) => {
-                                console.log('Social res data', res.data);
-                                this.setUser(res.data.allInfo[0])
-                            })
-                            .then(window.location.reload())
-                            .catch((err) => {
-                                console.log(err);
-                            })
-                    }
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
-                .finally(() => { this.handlecloseCard() })
+                axios.put(`${BASE_URL}/links/jsLinks`, updatedUserInfo, { headers: { token } })
+                    .then((res) => {
+                        if (res.data) {
+                            // console.log('update', res.data)
+                            // alert(res.data.message)
+                            const token = JSON.parse(localStorage.getItem('userToken'))
+                            axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                                .then((res) => {
+                                    console.log('Social res data', res.data);
+                                    this.setUser(res.data.allInfo[0])
+                                })
+                                .then(window.location.reload())
+                                .catch((err) => {
+                                    console.log(err);
+                                })
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+                    .finally(() => { this.handlecloseCard() })
+            }
+
 
         },
         handleInput(data) {

@@ -27,7 +27,7 @@
             <button class="btn" type="submit" @click.prevent="handleUpdate">Save</button>
             <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
-
+        <ToastMessage v-show="toast.active" :toast="toast" />
     </form>
 </template>
 
@@ -36,12 +36,14 @@ import { mapActions } from 'pinia'
 import { useUserStore } from '../../../stores/users'
 import InputComponent from '../../authpage/InputComponent.vue';
 import axios from 'axios';
+import ToastMessage from '../../utils/ToastMessage.vue';
 // import UserUpdateFormCard from '../updateuser/UserUpdateFormCard.vue';
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
 export default {
     components: {
         InputComponent,
+        ToastMessage,
         // UserUpdateFormCard
     },
     data() {
@@ -53,6 +55,10 @@ export default {
                 field_of_study: '',
                 start_date: '',
                 end_date: ''
+            },
+            loading: false,
+            toast: {
+                active: false, msg: '', color: ''
             }
         }
     },
@@ -67,6 +73,7 @@ export default {
     },
 
     mounted() {
+
         // this.education.institution = this.userInfo.education[0].institution
     },
     methods: {
@@ -81,33 +88,49 @@ export default {
             updatedUserInfo.append('field_of_study', this.education.field_of_study)
             updatedUserInfo.append('start_date', this.education.start_date)
             updatedUserInfo.append('end_date', this.education.end_date)
+            console.log(this.education);
             axios.post(`${BASE_URL}/education/addEducation`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
-                    // if (res.data?.message) {
-                    //     const msg = res.data.message
-                    //     this.showToast(msg, 'success')
-                    //     this.loading = false
-                    // }
                     if (res.data) {
                         console.log('edudata', res.data)
                         const token = JSON.parse(localStorage.getItem('userToken'))
+                        console.log(token);
                         axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
-                                // if (res.data?.message) {
-                                //     let msg = res.data.message
-                                //     this.showToast(msg, 'Update Success')
-                                //     this.loading = false
-                                // }
+                                if (res.data?.message) {
+                                    // let msg = res.data.message
+                                    this.showToast('Record Updated Successful', 'success')
+                                    this.loading = false
+                                }
                                 console.log("Edu res data", res.data);
                                 this.setUser(res.data.allInfo[0])
                             })
-                            .catch((err) => console.log(err))
+                            .catch((err) => {
+                                let msg = err.response ? err.response.data.message : err.message
+                                this.showToast(msg, 'error')
+
+                                console.log(err.message)
+                            })
                     }
                 })
                 .catch((err) => {
-                    console.log(err)
+                    let msg
+                    if (err.response) {
+                        msg = err.response.data.message
+                    }
+                    if (err.message) {
+                        msg = err.message
+                    }
+                    this.showToast(msg, 'error')
+
+                    console.log(msg)
                 })
-                .finally(() => this.handlecloseCard())
+                .finally(() => {
+                    setTimeout(() => {
+                        this.handlecloseCard()
+                    }, 6000)
+
+                })
         },
         handleInput(data) {
             if (data?.inputName == 'institution') { this.education.institution = data.inputValue }
@@ -115,6 +138,15 @@ export default {
             if (data?.inputName == 'field_of_study') { this.education.field_of_study = data?.inputValue }
             if (data?.inputName == 'start_date') { this.education.start_date = data?.inputValue }
             if (data?.inputName == 'end_date') { this.education.end_date = data?.inputValue }
+        },
+
+        showToast(msg, color) {
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(() => {
+                this.toast = { active: false, msg: '', color: '' }
+            }, 6000)
         }
     }
 }
