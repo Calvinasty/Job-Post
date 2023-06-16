@@ -8,7 +8,7 @@
                 <div class="profile">
                     <div class="profile-card">
                         <!-- <img class="f-editicon" src="images/edit_icon.svg" alt="editicon" /> -->
-                        <img :src="companyProfileInfo.logo" alt="pic">
+                        <img src="/images/companySample_logo.png" alt="pic">
                         <h3>{{ companyName }}</h3>
                         <!-- <span>{{ userOccupation }}</span> -->
                     </div>
@@ -117,7 +117,7 @@ export default {
             index: 0,
             showModal: false,
             companyProfileInfo: {
-                logo: '/images/logo.png',
+                logo: '/images/companySample_logo.png',
                 company_name: '',
                 email: '',
                 mobile_number: '',
