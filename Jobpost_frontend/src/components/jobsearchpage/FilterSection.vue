@@ -12,28 +12,21 @@
         </FilterCard>
 
         <FilterCard :title="filterList[1]">
-            <JobTypeFilter/>
+            <JobTypeFilter :applyFilter="applyFilter" />
         </FilterCard>
 
-        <FilterCard :title="filterList[2]">
-            <JobCategoryFilter/>
-        </FilterCard> 
 
         <FilterCard :title="filterList[3]">
-            <LocationFilter/>
-        </FilterCard>
-
-        <FilterCard :title="filterList[4]">
-            <ExperinceFilter/>
+            <LocationFilter :applyFilter="applyFilter"/>
         </FilterCard>
     </section>
-<!-- 
+
     <section class="filter-section mobile">    
         <header :class="{showFilters:hideFilters}">
         <h2>Filters</h2>
-        <span >
+        <span class="flex-center-row" >
             <button class="filter-btn">Reset</button>
-            <img v-on:click="toggleDropdown"   src="/images/dropdown_arrow.svg" alt="arrow">
+            <img v-on:click="toggleDropdown" style="cursor: pointer;height: 20px;"   src="/images/dropdown_arrow.svg" alt="arrow">
         </span>
         </header>
         <span class="filter-container" :class="{hide:hideFilters}">
@@ -45,28 +38,20 @@
             <JobTypeFilter/>
         </FilterCard>
 
-        <FilterCard :title="filterList[2]">
-            <JobCategoryFilter/>
-        </FilterCard>
-
         <FilterCard :title="filterList[3]">
-            <LocationFilter/>
-        </FilterCard>
-
-        <FilterCard :title="filterList[4]">
-            <ExperinceFilter/>
+            <LocationFilter />
         </FilterCard>
     </span>
-    </section> -->
+    </section>
 </div>
 </template>
 
 <script>
 import SalaryFilter from './SalaryFIlter.vue'
 import FilterCard from './FilterCard.vue';
-import JobCategoryFilter from './JobCategoryFilter.vue';
+// import JobCategoryFilter from './JobCategoryFilter.vue';
 import JobTypeFilter from './JopTypeFilter.vue'
-import ExperinceFilter from './ExperinceFilter.vue';
+// import ExperinceFilter from './ExperinceFilter.vue';
 import LocationFilter from './LocationFilter.vue';
 export default {
     name: 'JobPostFilterSection',
@@ -74,8 +59,8 @@ export default {
         FilterCard,
         SalaryFilter,
         JobTypeFilter,
-        JobCategoryFilter,
-        ExperinceFilter,
+        // JobCategoryFilter,
+        // ExperinceFilter,
         LocationFilter
     },
     data() {
@@ -87,11 +72,9 @@ export default {
                 'Location',
                 'Experience'
             ],
-            hideFilters:true,
-                    
+            hideFilters:true,                
         };
     },
-
     mounted() {
         
     },
