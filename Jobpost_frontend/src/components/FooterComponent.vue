@@ -1,12 +1,12 @@
 <template>
     <footer>
-        <span class="scroll-top" @click="$router.push('/')">
+        <span class="scroll-top" @click="toTop">
             <span class="material-symbols-outlined"> navigation </span>
         </span>
         <div class="footer-link">
-            <router-link to="">Featured Jobs</router-link>
-            <router-link to="">Apply Job</router-link>
-            <router-link to="">Post a Job</router-link>
+            <router-link to="#Featured_Jobs"> Featured Jobs</router-link>
+            <p @click="handleApplyJob">Apply Job</p>
+            <p @click="handlePostJob">Post a Job</p>
         </div>
         <div class="copyright">
             <p> &copy; Copyright {{ new Date().getFullYear() }} Job Post. All rights reserved.</p>
@@ -17,13 +17,49 @@
 <script>
 export default {
 
+    data() {
+        return {
+            scTimer: 0,
+            scY: 0,
+        }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+
     methods: {
-        toTop() {
-            this.$router.push('/')
+        handleScroll: function () {
+            if (this.scTimer) return;
+            this.scTimer = setTimeout(() => {
+                this.scY = window.scrollY;
+                clearTimeout(this.scTimer);
+                this.scTimer = 0;
+            }, 100);
+        },
+        toTop: function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        },
+
+        handlePostJob() {
+            const companyToken = localStorage.getItem('companyToken');
+            if (!companyToken) {
+                this.$router.push('/auth/poster-register')
+                return
+            }
+            this.$router.push('/admin/analytics')
+        },
+        handleApplyJob() {
+            const userToken = localStorage.getItem('userToken');
+            if (!userToken) {
+                this.$router.push('/auth/login')
+                return
+            }
+            this.$router.push('/jobsearch')
         }
     }
-
-
 }
 </script>
 
@@ -43,6 +79,7 @@ footer {
     justify-content: center;
     font-size: 20px;
     gap: 50px;
+    cursor: pointer;
 }
 
 a.router-link-exact-active {
@@ -50,6 +87,15 @@ a.router-link-exact-active {
     /* color: #FFFFFF7A; */
     color: #ffffff;
 }
+
+p {
+    text-decoration: none;
+    /* color: #FFFFFF7A; */
+    color: #ffffff;
+}
+
+
+
 
 .copyright {
     display: flex;
@@ -60,7 +106,8 @@ a.router-link-exact-active {
     font-weight: 400;
     color: #ffffff;
 }
-.scroll-top{
+
+.scroll-top {
     position: absolute;
     right: 5%;
     bottom: 40%;
@@ -74,7 +121,8 @@ a.router-link-exact-active {
     border-radius: 50%;
     cursor: pointer;
 }
-.scroll-top span{
+
+.scroll-top span {
     color: #88cc00;
     font-size: 30px;
     font-weight: bold;

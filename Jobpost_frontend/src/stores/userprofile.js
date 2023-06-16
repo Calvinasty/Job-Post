@@ -5,6 +5,8 @@ export const useUserProfileStore = defineStore('userprofile', {
         // userProfile: [],
         componentId: 'UploadPicture',
         componentId2: 'UploadCompanyPicture',
+        forgotPasswordEmail: '',
+        userType: '',
     }),
 
     actions:{
@@ -14,6 +16,14 @@ export const useUserProfileStore = defineStore('userprofile', {
         // Company setNav
         setNav2(link){
             this.componentId2 = link
+        },
+
+        setForgotPassword(email){
+            this.forgotPasswordEmail = email
+        },
+
+        setUserType(user){
+            this.userType = user
         }
     },
 })

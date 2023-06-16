@@ -1,6 +1,6 @@
 <template>
      <main class="jobs-section">
-            <FilterSection />
+            <FilterSection :applyFilter="applyFilter"/>
             <JobsSection :allJobs="allJobs" />
         </main>
 </template>
@@ -18,7 +18,22 @@ export default {
         return {
           
         }
-    }
+    },
+    methods:{
+        applyFilter(filter){
+            if(filter =='salary'){
+                alert('salary')
+            }
+            if(filter =='type'){
+                alert('jobtype')
+            }
+            if(filter =='location'){
+                alert('location')
+            }
+
+
+        }
+    },
     } 
 
 </script>

@@ -2,14 +2,14 @@
     <form action="" class="card-detail">
         <h2>{{ title }}</h2>
         <div class="input-container">
-            <InputComponent placeHolder="LinkedIn URL" name="linkedIn_url" type="text" :handleInput="handleInput" />
+            <InputComponent placeHolder="LinkedIn URL" name="linkedIn_link" type="text" :handleInput="handleInput" />
         </div>
         <div class="input-container">
-            <InputComponent placeHolder="GitHub URL" name="git_url" type="text" :handleInput="handleInput" />
+            <InputComponent placeHolder="GitHub URL" name="gitHub_link" type="text" :handleInput="handleInput" />
         </div>
         <div class="btnsec flex-center-row">
-            <button class="btn" @click="handleUpdate">Save</button>
-            <button class="btns" @click="handlecloseCard">Cancel</button>
+            <button class="btn" @click.prevent="handleAdd">Save</button>
+            <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
     </form>
 </template>
@@ -49,29 +49,38 @@ export default {
 
     methods: {
         ...mapActions(useUserStore, ['setUser']),
-        handleUpdate() {
+        handleAdd() {
             const token = JSON.parse(localStorage.getItem('userToken'))
+            // console.log(this.socialsLink.linkedIn_link, this.socialsLink.gitHub_link);
             const updatedUserInfo = new FormData()
             updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
-            updatedUserInfo.append('gitHub_link', this.socialsLink.linkedIn_link)
-            axios.post(`${BASE_URL}/links/jsLinks`, updatedUserInfo, token)
+            updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
+
+            axios.post(`${BASE_URL}/links/jsLinks`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
+                        // console.log('update', res.data)
+                        // alert(res.data.message)
                         const token = JSON.parse(localStorage.getItem('userToken'))
                         axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
                                 console.log('Social res data', res.data);
                                 this.setUser(res.data.allInfo[0])
                             })
+                            .then(window.location.reload())
                             .catch((err) => {
                                 console.log(err);
                             })
                     }
                 })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .finally(() => { this.handlecloseCard() })
 
         },
-
         handleInput(data) {
+            // console.log(data);
             if (data?.inputName == 'linkedIn_link') { this.socialsLink.linkedIn_link = data.inputValue }
             if (data?.inputName == 'gitHub_link') { this.socialsLink.gitHub_link = data.inputValue }
         },
@@ -90,8 +99,6 @@ export default {
     gap: 20px;
     width: 100%;
     padding-top: 3%;
-    /* border: 2px solid aqua; */
-    /* padding-bottom: 70px; */
 }
 
 .input-container {
@@ -102,11 +109,10 @@ export default {
 
 
 .btnsec {
-    /* position: absolute; */
     padding-bottom: 20px;
     gap: 20px;
     bottom: 0;
-    /* background-color: aqua; */
+
 }
 
 .btnsec>* {

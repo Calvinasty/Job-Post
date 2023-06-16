@@ -32,6 +32,7 @@
         </form>
        
     </div>
+    <ToastMessage v-show="toast.active" :toast="toast" />
 </div>
 </template>
 
@@ -39,8 +40,10 @@
 import axios from 'axios';
 import {applyJobInput} from '../../../data';
 import ApplyInputComponent from './ApplyInputComponent.vue';
+import ToastMessage from '../../utils/ToastMessage.vue'
+const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
-  components: { ApplyInputComponent },
+  components: { ApplyInputComponent,ToastMessage },
     name: 'JobPostApplyJobSection',
 
     data() {
@@ -50,7 +53,12 @@ export default {
             application:{
                 cv:false,
                 cover_letter:'',
+            },
+            loading: false,
+            toast: {
+                active: false, msg: '', color: ''
             }
+
         }
     },
     props:['user','job','handleCancel'],
@@ -73,15 +81,20 @@ export default {
                 return
             }
             const token=JSON.parse(localStorage.getItem('userToken'))
-           
-                console.log(this.application)
+            if(!token){
+                this.showToast("Sign in to Apply", 'error')
+                setTimeout(()=>(this.$router.push('/auth/login')),6000)
+                return          
+            }
             const userAplly= new FormData()
             userAplly.append('js_id',this.user.id)
             userAplly.append('job_id',this.job.id)
+            userAplly.append('company_id',this.job.company_id)
             userAplly.append('cv_resume',this.application.cv)
             userAplly.append('cover_letter',this.application.cover_letter)
+            console.log();
 
-            axios.post('ursl', userAplly,{headers:{token}})
+            axios.post( `${BASE_URL}/application/jobApply`, userAplly,{headers:{token}})
             .then(res=>{
                 if(res.message){
                     alert(res.message)
@@ -96,12 +109,19 @@ export default {
         handleInput(inputId){
             if(inputId.id=="cv"){this.application.cv=event.target.files[0]   }
             if(inputId.id=="cover-letter"){this.application.cover_letter=event.target.files[0]   }          
-
         },
         setInputValues(){
             if(this.user){
                 this.inputValues=Object.values(this.user)
             }
+        },
+        showToast(msg, color) {
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(() => {
+                this.toast = { active: false, msg: '', color: '' }
+            }, 6000)
         }
 
         
