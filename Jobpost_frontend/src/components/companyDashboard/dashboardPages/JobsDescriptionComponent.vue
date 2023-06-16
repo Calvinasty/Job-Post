@@ -103,6 +103,7 @@ export default {
     .table-head li {
         width: 15%;
         padding: 10px;
+        text-align: center;
         /* margin-left: 50px; */
         /* border: 1px solid; */
     }
@@ -122,10 +123,11 @@ export default {
     .table-body li {
         width: 15%;
         padding: 10px;
+        justify-content: center;
         /* margin-left: 50px; */
         /* border: 1px solid; */
     }
-    .table-body li:first-child{ width: 30%; }
+    .table-body li:first-child{ width: 30%; justify-content: flex-start;}
     .table-body li:last-child{ width: 10%; justify-content: center;}
     .table-body li span {
         color: rgba(136, 204, 0, 1);
