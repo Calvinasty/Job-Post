@@ -2,7 +2,7 @@
     <AuthLayout class="auth-container">
         <div class="form-container" :class="{ centerForm: pageNum == 1 }">
             <JobPosterFormHeader :pageNum="pageNum" v-if="pageNum == 0" />
-            <JobPosterForm :loading="loading" :pageNumber="pageNum" :handleSignUp="handleComapnySignUp" :handleVerify="handleVerify"
+            <JobPosterForm  :companyEmail="companyEmail" :loading="loading" :pageNumber="pageNum" :handleSignUp="handleComapnySignUp" :handleVerify="handleVerify"
                 :userInfo="userInfo" :handleUserInput="handleUserInput" />
         </div>
         <ToastMessage v-show="toast.active" :toast="toast" />
@@ -28,6 +28,7 @@ export default {
     data() {
         return {
             activeClass: [false, false, false],
+            companyEmail:'',
             pageNum: 0,
             userInfo: {
                 name: "",
@@ -75,10 +76,13 @@ export default {
                         localStorage.setItem('companyToken', token)
                     }
                     if (res.data?.company) {
+                        this.companyEmail=res.data?.company?.email
                         const company = res.data.company
+                        
                         this.setCompany(company)
+                     
+                        res.status == 201 ? ++this.pageNum : alert('invalid Input')
                     }
-                    res.status == 201 ? ++this.pageNum : alert('invalid Input')
                 })
                 .catch(err => {
                     let msg = err.response ? err.response.data.message : err.message
