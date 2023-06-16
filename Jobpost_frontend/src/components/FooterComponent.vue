@@ -1,10 +1,10 @@
 <template>
     <footer>
-        <span class="scroll-top" @click="$router.push('/')">
+        <span class="scroll-top" @click="toTop">
             <span class="material-symbols-outlined"> navigation </span>
         </span>
         <div class="footer-link">
-            <router-link to="">Featured Jobs</router-link>
+            <router-link to="#Featured_Jobs"> Featured Jobs</router-link>
             <p @click="handleApplyJob">Apply Job</p>
             <p @click="handlePostJob">Post a Job</p>
         </div>
@@ -17,10 +17,32 @@
 <script>
 export default {
 
+    data() {
+        return {
+            scTimer: 0,
+            scY: 0,
+        }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+
     methods: {
-        toTop() {
-            this.$router.push('/')
+        handleScroll: function () {
+            if (this.scTimer) return;
+            this.scTimer = setTimeout(() => {
+                this.scY = window.scrollY;
+                clearTimeout(this.scTimer);
+                this.scTimer = 0;
+            }, 100);
         },
+        toTop: function () {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        },
+
         handlePostJob() {
             const companyToken = localStorage.getItem('companyToken');
             if (!companyToken) {
@@ -57,6 +79,7 @@ footer {
     justify-content: center;
     font-size: 20px;
     gap: 50px;
+    cursor: pointer;
 }
 
 a.router-link-exact-active {
@@ -73,6 +96,7 @@ p {
 
 
 
+
 .copyright {
     display: flex;
     justify-content: space-around;
@@ -82,7 +106,8 @@ p {
     font-weight: 400;
     color: #ffffff;
 }
-.scroll-top{
+
+.scroll-top {
     position: absolute;
     right: 5%;
     bottom: 40%;
@@ -96,7 +121,8 @@ p {
     border-radius: 50%;
     cursor: pointer;
 }
-.scroll-top span{
+
+.scroll-top span {
     color: #88cc00;
     font-size: 30px;
     font-weight: bold;

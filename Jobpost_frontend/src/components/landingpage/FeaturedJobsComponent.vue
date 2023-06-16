@@ -14,7 +14,8 @@
             <FeatureJobCard class="mobile-hide" />
         </div>
 
-        <button @click="handleJobs" class="main-btn mobile-hide">Find More Jobs <span class="material-symbols-outlined">arrow_right_alt</span>
+        <button @click="handleJobs" class="main-btn mobile-hide">Find More Jobs <span
+                class="material-symbols-outlined">arrow_right_alt</span>
         </button>
 
         <p class="mobile-show see-more" @click="handleJobs"> see more... </p>
@@ -29,11 +30,11 @@ export default {
         FeatureJobCard
     },
 
-    methods:{
-        handleJobs(){
+    methods: {
+        handleJobs() {
             this.$router.push('/jobsearch')
         }
-            
+
     }
 
 }
@@ -45,10 +46,11 @@ export default {
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    padding:70px 0;
+    padding: 70px 0;
     width: 100%;
     background-color: #88CC0029;
 }
+
 
 .container header {
     display: flex;

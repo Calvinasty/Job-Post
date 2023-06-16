@@ -1,7 +1,7 @@
 <template>
     <div class="jobsearch-page">
-        <JobSearchNav :handleSearch="handleSearch"  />
-       <RouterView :allJobs="filteredJobs" />
+        <JobSearchNav :handleSearch="handleSearch"/>
+       <RouterView :allJobs="filteredJobs"/>
     </div>
 </template>
 
@@ -9,7 +9,8 @@
 // import { mapActions, } from 'pinia';
 import axios from 'axios'
 import {useJobsStore} from '../stores/Jobs'
-import { mapActions, mapState, } from 'pinia';
+import { mapActions } from 'pinia';
+const BASE_URL = import.meta.env.VITE_BASE_URL
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue';
 export default {
     name: 'JobPostJobSearchPage',
@@ -20,11 +21,11 @@ export default {
     data(){
         return{
             filteredJobs: [],
-            AllPostedJobs: []
+            AllPostedJobs: [],
         }
     }, 
     computed:{
-        ...mapState(useJobsStore,['postedJobs'])
+        // ...mapState(useJobsStore,['postedJobs'])
     },
     beforeMount() {
         this.getAllJobs()
@@ -34,15 +35,19 @@ export default {
         ...mapActions(useJobsStore, ['setPostedJobs']),
         getAllJobs() {
             // this.AllPostedJobs = JSON.parse(localStorage.getItem('companyJobs'))
-            axios.get('http://192.168.1.88:5000/job/availableJobs')
-                .then(res => this.AllPostedJobs = res.data)
-                .then(res => {   this.setPostedJobs(res)  
-                    console.log(res);          
+            axios.get(`${BASE_URL}/job/availableJobs`)
+            .then(res =>{           
+                    this.AllPostedJobs = res.data
+                    return res.data
+                } )
+                .then(res => { 
+                    this.setPostedJobs(res) 
                 })
                 .then(() => this.handleSearch())
 
         },
         handleSearch(data) {
+            // console.log(this.AllPostedJobs)
             if (!data) {
                 return this.filteredJobs = this.AllPostedJobs
             } else {
@@ -50,6 +55,10 @@ export default {
                 return this.filteredJobs = [...result]
             }
 
+        },
+        handleRange(direction){
+            if(direction==='min'){this.minSalary=   event.target.value}
+            if(direction==='max'){this.maxSalary=   event.target.value}
         }
     }
     
@@ -61,7 +70,7 @@ export default {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 98dvw;
     position: relative;
@@ -78,7 +87,7 @@ export default {
 
 @media screen and (max-width:685px) {
     .jobsearch-page {
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 0;
     }

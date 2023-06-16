@@ -40,7 +40,7 @@
             </span>
         </div>
         <div class="btnsec flex-center-row">
-            <button class="btn" v-on="handleSave" type="submit" @click.prevent="handleUpdate">Save</button>
+            <button class="btn" type="submit" @click.prevent="handleUpdate">Save</button>
             <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
         <!-- <buttonComponent :handlecloseCard="handlecloseCard" /> -->

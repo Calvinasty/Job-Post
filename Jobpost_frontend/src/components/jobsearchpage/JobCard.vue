@@ -61,13 +61,12 @@ export default {
 
     mounted() {
        
-        console.log();
+        // console.log(this.jobDetailInfo);
         
     },
 
     methods: {
         handleApplyJob(jobId){
-
             this.$router.push(`/jobsearch/apply/${jobId}`)
         }
         
