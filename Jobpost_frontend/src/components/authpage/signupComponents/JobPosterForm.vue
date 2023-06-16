@@ -35,9 +35,7 @@
             </form>
         </Transition>
         <Transition name="slide-fade">
-            <div v-if="pageNumber == 1" class="success-form">
-
-
+            <div v-if="pageNumber == 2"  class="success-form">
                 <SignupSuccess :userEmail="comapanyEmail" :handleRoute="handleHome" />
             </div>
 
@@ -56,7 +54,6 @@ export default {
 
     data() {
         return {
-            companyEmail: ''
         };
     },
 
@@ -66,13 +63,11 @@ export default {
         'handleUserInput',
         'handleVerify',
         'userInfo',
-        'loading'
+        'loading',
+        'companyEmail'
 
 
     ],
-    beforeMount() {
-        this.companyEmail = JSON.parse(localStorage.getItem('comapnyState'))?.email
-    },
 
     methods: {
         handleHome() {
