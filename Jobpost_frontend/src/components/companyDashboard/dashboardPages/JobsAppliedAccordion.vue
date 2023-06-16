@@ -1,6 +1,6 @@
 <template>
     <div>
-        <FilterCard :title="info.Job.job_title" :subTitle="'Deadline: &emsp;' + info.Job.application_deadline.split('T')[0]"  v-for="(info,index) in applicantsInfo" :hideOption="index==0?false:true">
+        <FilterCard :title="info.Job?.job_title" :subTitle="'Deadline: &emsp;' + info.Job?.application_deadline.split('T')[0]"  v-for="(info,index) in applicantsInfo" :hideOption="index==0?false:true">
             <ApplicantsDescription :applicants="applicants"/>
         </FilterCard>
     </div>

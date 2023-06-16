@@ -5,6 +5,7 @@
             <li>Role Type </li>
             <li>Location</li>
             <li>Deadline🗓</li>
+            <li>View Applicants</li>
             <li>Edit 📝</li>
         </ul>
 
@@ -13,6 +14,7 @@
             <li>{{ item.job_type }}</li>
             <li>{{ item.location }}</li>
             <li>{{ item.application_deadline.split('T')[0] }}</li>
+            <li><span  @click="showApplicantsPage(index)" class="material-symbols-outlined tooltip" style="justifySelf:center">visibility</span></li>
             <li class="edit-btns">
                 <span @click="updatePost(item.id)" class="material-symbols-outlined">edit</span>
                 <span @click="deletePost(item.id)" class="material-symbols-outlined">close</span>
@@ -92,13 +94,14 @@ export default {
         padding: 0;
         /* padding-top: 30px; */
         /* padding-bottom: 10px; */
-        background-color: #88cc00;
-        color: #fff;
+        /* background-color: #88cc00; */
+        color: #000;
+        border-bottom: 5px solid #88cc00;
         /* border: 1px solid red ; */
         /* background-color: aqua; */
     }
     .table-head li {
-        width: 20%;
+        width: 15%;
         padding: 10px;
         /* margin-left: 50px; */
         /* border: 1px solid; */
@@ -117,7 +120,7 @@ export default {
         padding: 0px;
     }
     .table-body li {
-        width: 20%;
+        width: 15%;
         padding: 10px;
         /* margin-left: 50px; */
         /* border: 1px solid; */

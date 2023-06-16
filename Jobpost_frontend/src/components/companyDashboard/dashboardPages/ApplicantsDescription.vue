@@ -145,7 +145,7 @@ export default {
         background: #FFFFFF;
         border: 1px solid #919191;
         text-align: center;
-        position: absolute;
+        position: relative;
         width: 100%;
         left: 30px;
         bottom: 5px;
