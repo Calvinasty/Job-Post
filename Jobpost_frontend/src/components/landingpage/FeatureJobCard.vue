@@ -43,8 +43,8 @@
 export default {
 
 
-    methods:{
-        handleApply(){
+    methods: {
+        handleApply() {
             this.$router.push('/')
         }
     }
@@ -60,7 +60,7 @@ export default {
     min-width: 350px;
     padding: 15px;
     box-shadow: 5px 5px 9px #a5a5a5,
-    -5px -5px 9px #ECF7D6;
+        -5px -5px 9px #ECF7D6;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.48);
 }
@@ -154,8 +154,8 @@ export default {
     }
 
     .job h2 {
-    font-weight: 600;
-    font-size: 40px;
+        font-weight: 600;
+        font-size: 40px;
     }
 
     .job-details-section1 div {
@@ -178,7 +178,7 @@ export default {
 
     .job h2 {
         font-size: 23px;
-        
+
     }
 
     .job-details-section1 p {

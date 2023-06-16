@@ -1,22 +1,39 @@
 <template>
-    <div class="searchbar">
-        <HeaderSearchInput class="first" type='textFilter' />
-        <HeaderSearchInput class="second" type='filterType' />
-        <HeaderSearchInput class="third" type='filterLocation'/>
-        <span class="fourth">
-            <button>Search</button>
-        </span>
-    </div>
+    <aside class="action">
+        <div class="searchbar">
+            <HeaderSearchInput class="first" type='textFilter' />
+            <HeaderSearchInput class="second" type='filterType' />
+            <HeaderSearchInput class="third" type='filterLocation'/>
+            <span class="fourth">
+                <button @click="handleSearch">Search</button>
+            </span>
+        </div>
+        
+        <!-- button displays only on mobile -->
+        <button class="mobile-search" @click="handleSearch()">
+            <span class="material-symbols-outlined"> search </span>
+            Get started
+        </button>
+    </aside>
 </template>
 
 <script>
     import HeaderSearchInput from './HeaderSearchInput.vue';
     export default {
-        components:{HeaderSearchInput}
+        components:{HeaderSearchInput},
+        methods: {
+            handleSearch(){
+                this.$router.push('/jobSearch')
+            }
+        },
     }
 </script>
 
 <style lang="css" scoped>
+    @import '../../assets/landing_assets/headerComponent.css';
+    .action{
+        width: 100%;
+    }
     .searchbar{
         display: flex;
         flex-direction: row;

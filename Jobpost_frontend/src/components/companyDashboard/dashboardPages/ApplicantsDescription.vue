@@ -1,29 +1,29 @@
 <template>
     <div>
         <div class="main">
-                <ul class="title">
-                    <li>Applicant Name</li>
-                    <li>Role Type</li>
-                    <li>Requirements</li>
-                    <li>Download CV</li>
-                    <li></li>
-                </ul>
+            <ul class="title">
+                <li>Applicant Name</li>
+                <li>Role Type</li>
+                <li>Requirements</li>
+                <li>Download CV</li>
+                <li></li>
+            </ul>
 
-                <ul v-for="(item, index) in applicants" :key="index" class="list-body">
-                    <li>{{ item.applicant }}</li>
-                    <li>{{ item.role }}</li>
-                    <li>{{ item.requirements }}</li>
-                    <li>{{ item.download }}</li>
-                    <li class="eye-icon">
-                        <span v-show="item.edit"  @click="showTip(index)" class="material-symbols-outlined tooltip">visibility</span>
-                        <span v-show="!item.edit" @click="hideTip(index)" class="material-symbols-outlined tooltip">visibility_off</span>
-                        <p class="hide"  :class="{view:item.edit}">
-                            <span @click="setModal('ApplicantSummary')">View Applicant</span>
-                            <br>
-                            <span>Download Resume</span>
-                        </p>
-                    </li>
-                </ul>
+            <ul v-for="(item, index) in applicants" :key="index" class="list-body">
+                <li>{{ item.applicant }}</li>
+                <li>{{ item.role }}</li>
+                <li>{{ item.requirements }}</li>
+                <li>{{ item.download }}</li>
+                <li class="eye-icon">
+                    <span v-show="item.edit"  @click="showTip(index)" class="material-symbols-outlined tooltip">visibility</span>
+                    <span v-show="!item.edit" @click="hideTip(index)" class="material-symbols-outlined tooltip">visibility_off</span>
+                    <p class="hide"  :class="{view:item.edit}">
+                        <span @click="setModal('ApplicantSummary')">View Applicant</span>
+                        <br>
+                        <span>Download Resume</span>
+                    </p>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -65,7 +65,6 @@ export default {
             })
             this.toolVisible=!this.toolVisible
         },
-        
         hideTip(index){
             this.applicants.map((item,id)=>{
                 console.log(item.edit);
@@ -77,7 +76,6 @@ export default {
             })
             this.toolVisible =! this.toolVisible
         }
-
     },
 };
 </script>
@@ -92,6 +90,7 @@ export default {
         height: 100%;
         padding: 0px 90px 120px 100px;
         /* overflow: scroll; */
+        width: 100%;
     }
 
     .main ul {
@@ -122,6 +121,7 @@ export default {
         border-bottom: 1px solid #000;
         row-gap: 10px;
         padding-top: 15px;
+        overflow-y: scroll;
     }
 
     .list-body li {
@@ -145,7 +145,7 @@ export default {
         background: #FFFFFF;
         border: 1px solid #919191;
         text-align: center;
-        position: absolute;
+        position: relative;
         width: 100%;
         left: 30px;
         bottom: 5px;
