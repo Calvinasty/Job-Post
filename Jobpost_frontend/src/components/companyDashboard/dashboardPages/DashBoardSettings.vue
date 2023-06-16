@@ -19,13 +19,18 @@
             <button class="del-btn" @click="handleDelete">Delete</button>
         </div>
     </div>
+    <ToastMessage v-show="toast.active" :toast="toast" />
 </template>
 
 <script>
 import axios from 'axios'
+import {mapState} from 'pinia'
+import { useCompanyStore } from '../../../stores/companies'
+import ToastMessage from '../../utils/ToastMessage.vue'
+const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
     components: {
-
+        ToastMessage
     },
     data() {
         return {
@@ -37,17 +42,46 @@ export default {
             languages: {
                 type: 'Language',
                 option: 'Select your language preference'
+            },
+            toast: {
+                active: false, msg: '', color: ''
             }
         }
     },
+    computed:{
+        ...mapState(useCompanyStore, ['company'])
+    },
     methods: {
         handleDelete(){
-            alert('Are you sure you want to delete your account ?')
-            axios.delete()
-
+            const companId = this.company.id
+            if(confirm("Are you sure you want to delete your account ?")){
+                axios.delete(`${BASE_URL}/company/deleteCompany/${companId}`)
+                .then(res =>{
+                    console.log(res.data)
+                    let msg = res.data.message
+                    this.showToast(msg, 'success')
+                    setTimeout(() =>{
+                        localStorage.clear()
+                        this.$router.push('/')
+                    }, 6000)
+                })
+                .catch(err => {
+                    console.log(err)
+                    let msg = err.response ? err.response.data.message : err.message
+                    this.showToast(msg, 'error')
+                })     
+            }else{
+                return
+            }
+        },
+        showToast(msg, color) {
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(() => {
+                this.toast = { active: false, msg: '', color: '' }
+            }, 6000)
         }
-        // myAlert(){
-        // }
     }
 }
 </script>

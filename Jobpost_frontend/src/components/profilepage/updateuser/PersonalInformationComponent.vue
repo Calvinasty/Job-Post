@@ -49,6 +49,7 @@
 </template>
 
 <script>
+// import { mapState } from 'pinia'
 import { mapActions } from 'pinia'
 import { useUserStore } from '../../../stores/users'
 import axios from 'axios'
@@ -82,6 +83,10 @@ export default {
             }
         }
     },
+
+    // computed: {
+    //     ...mapState(useUserStore, ['showUser']),
+    // },
 
     mounted() {
         this.personalInfo.first_name = this.userInfo?.first_name
@@ -125,7 +130,7 @@ export default {
                                 this.setUser(res.data.allInfo[0])
 
                             })
-                            .then(window.location.reload())
+                            .then(() => { window.location.reload() })
                             .catch((err) => console.log(err))
                     }
                 })

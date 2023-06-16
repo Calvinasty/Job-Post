@@ -4,6 +4,8 @@
         <img class="editicon" v-show="showplus" src="/images/plusediticon.svg" alt="editicon" @click="showPopup(index)" />
 
         <h3>{{ detailsTitle }}</h3>
+        <h4 v-show="cardName == ''"> No Records Added</h4>
+        <!-- {{ cardName.length }} -->
         <div class="profile-detail-container">
             <div class="input-field-container flex-center">
                 <slot></slot>
@@ -46,7 +48,8 @@ export default {
         "userValue",
         "index",
         "showplus",
-        "showpencil"
+        "showpencil",
+        "cardName"
     ],
     mounted() {
 
