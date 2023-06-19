@@ -163,7 +163,7 @@ export default {
                     let msg 
                         if(err.response) 
                             msg = err.response.data.message 
-                        if(err.message)
+                        else
                             msg = err.message
                         
                         this.showToast(msg, 'error')
@@ -196,7 +196,7 @@ export default {
                     let msg 
                     if(err.response) 
                         msg = err.response.data.message 
-                    if(err.message)
+                    else
                         msg = err.message
                     
                     this.showToast(msg, 'error')

@@ -1,14 +1,14 @@
 <template>
     <form @submit.prevent="() => handleSubmit()" v-if="next !== 2">
-        <Transition name="slide-fade">
+        <Transition name="slide-fade1" mode="out-in">
             <div v-show="next == 0" class="first">
                 <div v-if="screen=='desktop'" class="headers">
                     <div class="image-container">
                         <span class="material-symbols-outlined" @click="$router.back()"> west</span>
                         <img src="/images/logo.png" alt="logo">
                     </div>
-                    <h1 v-html="form1header"></h1>
-                    <h3 v-html="form1sub"></h3>
+                    <h3 v-html="form1header"></h3>
+                    <h1 v-html="form1sub"></h1>
                 </div>
 
                 <h1 v-if="screen=='mobile'" v-html="form1header"></h1>
@@ -24,7 +24,7 @@
                 <InputComponent placeHolder="Confirm Password" type="password" name="confirmPass" :handleInput="handleUserInput" />
 
                 <button type="button" @click.prevent="()=>setNext(1)">
-                    Continue <span class="material-symbols-outlined">arrow_right_alt</span>
+                    Continue <span class="material-symbols-outlined">last_page</span>
                 </button>
                 <span class="progress">
                     <span></span>
@@ -32,25 +32,25 @@
                 </span>
             </div>
         </Transition>
-
-        <Transition name="slide-fade">
+        <Transition name="slide-fade2" mode="in-out">
             <div v-show="next == 1" class="second">
                 <div v-if="screen == 'desktop'" class="headers">
                     <img src="/images/logo.png" alt="logo">
-                    <h1 v-html="form2header"></h1>
-                    <h3 v-html="form2sub"></h3>
+                    <h3 v-html="form2header"></h3>
+                    <h1 v-html="form2sub"></h1>
                 </div>
 
                 <h1 v-if="screen=='mobile'" v-html="form1header"></h1>
                 <h3 v-if="screen=='mobile'" v-html="form1sub"></h3>
 
+                <br>
                 <InputComponent label="Select your date of Birth" type="date" name="date" :handleInput="handleUserInput" />
                 
                 <aside class="side-by-side">
                     <span>
                         <label for="gender">Gender</label>
                         <select v-model="inputData.gender" :handleInput="handleUserInput">
-                            <option value="default">Select Your Gender</option>
+                            <option value="">Select Your Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="others">Others</option>

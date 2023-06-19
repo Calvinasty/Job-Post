@@ -79,6 +79,7 @@
         outline: none;
         border: none;
         cursor: pointer;
+        border-radius: 8px;
     }
     .blink{
         animation: blink 3s infinite;
