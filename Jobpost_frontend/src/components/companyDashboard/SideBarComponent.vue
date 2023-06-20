@@ -33,9 +33,7 @@
                     // { name: "View All Aplicants", icon: "groups", link: "viewApplicant", active: false },
                     { name: "Company Profile", icon: "account_circle", link: "companyProfile", active: false },
                 ],
-                settings: [
-                    { name: "Settings", icon: 'settings', link: "dashboardSettings", active:false },
-                ],
+                settings: { name: "Settings", icon: 'settings', link: "dashboardSettings", active: false },
                 user: {
                     text: 'Logout',
                     email: 'user@email.com',
@@ -48,22 +46,30 @@
             let route = this.$route.params.id
             Object.keys(this.navItems).forEach(key => {
                 this.navItems[key].link == route ? this.navItems[key].active=true : this.navItems[key].active=false
+                console.log('first');
             })
+            if(route == this.settings.link){
+                this.settings.active = true
+                console.log('second');
+            }else{
+                this.settings.active = false
+                console.log('third');
+            }
         },
         methods: {
             goto(link, index) {
                 this.navItems.map((item, navIndex) => (
                     navIndex == index ? item['active']=true : item['active']=false)
                 )
-                this.settings[0].active = false
+                this.settings.active = false
                 this.$router.push(link)
             },
             gotoSettings(link){
+                this.settings.active = true
                 this.navItems.map((item) => (
                     item['active']=false
                 ))
-                this.settings[0].active = true
-                this.$router.push('dashboardSettings')
+                this.$router.push(link)
             }
         },
     }

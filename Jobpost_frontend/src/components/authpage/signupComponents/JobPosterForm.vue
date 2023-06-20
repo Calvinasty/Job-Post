@@ -71,7 +71,7 @@ export default {
 
     methods: {
         handleHome() {
-            this.$router.push('/admin/admin')
+            this.$router.push('/admin/analyticsView')
         },
     },
 };

@@ -107,8 +107,8 @@
         font-size: 15px;
         font-weight: bold;
         margin-left: 20px;
-        padding: 10px 20px;
-        border-radius: 15px;
+        padding: 10px 30px;
+        border-radius: 7px;
         text-decoration: none;
     }
     .auth-btns a:nth-child(1){

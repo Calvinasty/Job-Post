@@ -197,8 +197,9 @@ export default {
     float: right;
     top: 5%;
     left: 5%;
-    background-color: #88CC0073;
+    background-color: #88CC0029;
     z-index: -1;
+    border-radius: 10px;
 }
 .right .image {
     width: 563px;
@@ -208,12 +209,14 @@ export default {
     top: -10%;
     left: -10%;
     z-index: 2;
+    border-radius: 10px;
 }
 
 .right .image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 @keyframes fading {
@@ -291,7 +294,7 @@ export default {
         float: right;
         top: 5%;
         left: 5%;
-        background-color: #88CC0073;
+        background-color: #88CC0029;
         z-index: -1;
     }
     .main .image img {
@@ -363,7 +366,7 @@ export default {
         float: right;
         top: 5%;
         left: 5%;
-        background-color: #88CC0073;
+        background-color: #88CC0029;
         z-index: -1;
     }
     .main .image img {

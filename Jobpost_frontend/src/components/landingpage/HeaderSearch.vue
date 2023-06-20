@@ -32,7 +32,7 @@
 <style lang="css" scoped>
     @import '../../assets/landing_assets/headerComponent.css';
     .action{
-        width: 100%;
+        width: 70%;
     }
     .searchbar{
         display: flex;
@@ -41,7 +41,8 @@
         align-items: stretch;
         background-color: #fff;
         padding: 20px;
-        width: 70%;
+        /* width: 70%; */
+        width: 100%;
         border-radius: 10px;
     }
     .searchbar .first, .searchbar .second{
@@ -61,6 +62,8 @@
         height: 80%;
         background-color: #000;
         color: #f1f1f1;
+        font-size: 18px;
+        font-weight: 500;
         border: none;
         outline: none;
         cursor: pointer;

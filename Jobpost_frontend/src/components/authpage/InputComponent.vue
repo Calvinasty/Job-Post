@@ -43,8 +43,8 @@ select {
 }
 
 input[type="date"] {
-    background-color: #7FBF4C;
-    color: #fff;
+    background-color: transparent;
+    color: #000;
     color-scheme: dark;
 }
 

@@ -89,7 +89,6 @@
                     const updatedCompany = res.data.findCompany
                     console.log(updatedCompany)
                     this.updateCompany(updatedCompany)
-                    this.handlecloseCard()
 
                     // this.updateComponent(1)
                     // this.$router.push('/admin/companyProfile')
@@ -98,7 +97,7 @@
                     console.log(err);
                 })
                 .finally(() => {
-                    
+                    this.handlecloseCard()
                 })
             }
         },

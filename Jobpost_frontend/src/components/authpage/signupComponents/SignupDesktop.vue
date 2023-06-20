@@ -31,7 +31,7 @@ export default {
         return {
             screen: 'desktop',
             next: 0,
-            form1header: 'SIGN UP',
+            form1header: 'Sign Up',
             form1sub: 'Create a Job Seeker account',
             form2header: 'SIGN UP',
             form2sub: 'Enter additional details'

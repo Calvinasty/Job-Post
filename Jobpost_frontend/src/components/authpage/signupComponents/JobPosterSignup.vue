@@ -85,14 +85,15 @@ export default {
                     }
                 })
                 .catch(err => {
-                    let msg = err.response ? err.response.data.message : err.message
-            
-                    if(typeof(msg) == 'object'){
-                        msg=msg[0]
-                    }
-                    console.log(typeof(msg));
-                    this.showToast(msg, 'error')
-                    this.loading=false
+                    let msg 
+                        if(err.response) 
+                            msg = err.response.data.message 
+                        if(err.message)
+                            msg = err.message
+                        
+                        this.showToast(msg, 'error')
+                        this.loading = false
+                        console.log(err)
                 })
         },
         handleUserInput(data) {

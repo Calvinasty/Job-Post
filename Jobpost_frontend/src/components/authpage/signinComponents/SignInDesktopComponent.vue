@@ -130,7 +130,6 @@ export default {
             }
 
         },
-
         handleSignIn() {
             this.loading = true
             console.log('Hello', this.inputData.email.match((validRegex)));
@@ -143,61 +142,68 @@ export default {
 
             if (this.userType == 'jobPoster') {
                 axios.post(`${BASE_URL}/company/logInCompany`, user)
-                    .then(res => {
-                        console.log(res.data);
-                        if (res.data?.message) {
-                            let msg = res.data.message
-                            this.showToast(msg, 'success')
-                            this.loading = false
-                        }
-                        if (res.data?.token) {
-                            const token = JSON.stringify(res.data.token)
-                            localStorage.setItem('companyToken', token)
-                            console.log('company', res.data.allCompanyInfo[0]);
-                            this.setCompany(res.data.allCompanyInfo[0])
-                        }
-                    })
-                    .then(() => {
-                        this.$router.push('/admin/analyticsView')
-                    })
-                    .catch(err => {
-                        let msg = err.response ? err.response.data.message : err.message
-                        this.showToast(msg, 'error')
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data?.message) {
+                        let msg = res.data.message
+                        this.showToast(msg, 'success')
                         this.loading = false
-                        console.log(err);
-                    })
-            }
-
-            if (this.userType == 'jobSeeker') {
-                console.log('hello');
-                axios
-                    .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
-                    .then((res) => {
-
-                        if (res.data?.message) {
-                            let msg = res.data.message
-                            this.showToast(msg, 'success')
-                            this.loading = false
-                        }
-                        if (res.data?.token) {
-                            const token = JSON.stringify(res.data.token)
-                            localStorage.setItem('userToken', token)
-                            console.log(res.data.allInfo[0]);
-                            this.setUser(res.data.allInfo[0])
-                            this.$router.push('/userprofile')
-                        }
-
-                    })
-
-
-                    .catch((err) => {
-                        let msg = err.response ? err.response.data.message : err.message
+                    }
+                    if (res.data?.token) {
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('companyToken', token)
+                        console.log('company', res.data.allCompanyInfo[0]);
+                        this.setCompany(res.data.allCompanyInfo[0])
+                    }
+                })
+                .then(() => {
+                    this.$router.push('/admin/analyticsView')
+                })
+                .catch(err => {
+                    let msg 
+                        if(err.response) 
+                            msg = err.response.data.message 
+                        else
+                            msg = err.message
+                        
                         this.showToast(msg, 'error')
                         this.loading = false
                         console.log(err)
-                    })
+                })
             }
+            //jobSeeker
+            if (this.userType == 'jobSeeker') {
+                // console.log('hello');
+                axios
+                .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
+                .then((res) => {
 
+                    if (res.data?.message) {
+                        let msg = res.data.message
+                        this.showToast(msg, 'success')
+                        this.loading = false
+                    }
+                    if (res.data?.token) {
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('userToken', token)
+                        console.log(res.data.allInfo[0]);
+                        this.setUser(res.data.allInfo[0])
+                        this.$router.push('/userprofile')
+                    }
+
+                })
+                .catch((err) => {
+                    let msg 
+                    if(err.response) 
+                        msg = err.response.data.message 
+                    else
+                        msg = err.message
+                    
+                    this.showToast(msg, 'error')
+                    this.loading = false
+                    console.log(err)
+                })
+            }
         },
 
         showToast(msg, color) {
