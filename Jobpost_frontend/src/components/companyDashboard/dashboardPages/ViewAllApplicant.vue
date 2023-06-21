@@ -1,11 +1,20 @@
 <template>
-    <div>  
+    <div class="container">  
         <ApplicantsDescription
             :applicants="applicants"
             :jobDetails="jobDetails"
             :cv="cv"
             :cover="cover"
         />
+        <span class="no-app" v-if="applicants?.length == 0 || applicants == undefined">
+            <h4 class="no-app-tag">
+                📝 No Applications yet
+                <button class="sync-btn">
+                    <span class="material-symbols-outlined"> sync </span>
+                    <span>Reload</span>
+                </button>
+            </h4>
+        </span>
     </div>
 </template>
 
@@ -23,25 +32,25 @@ export default {
     },
     data() {
         return {
-            applicants: {
-                // {id:1,applicant: 'Kwame Amponsah', role: 'Remote - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Yemi Ogbedengbey', role: 'Remote - Full Time', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Joseph Atugubah', role: 'Remote - Part Time', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniel McDan', role: 'Remote - Part Time', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniel Kofi Tetteh', role: 'On Site - Full Time', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Prince Tindan', role: 'On Site - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Father Benjamin', role: 'Hybride - Full Time', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Razark Adams', role: 'Remote - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-                // {applicant: 'Daniella Momo', role: 'Hybride - Intern', requirements:'Intern', download:'Ghana'},
-            },
+            applicants: [
+                {id:1,name: 'Kwame Amponsah', role: 'Remote - Intern', location:'Accra', status:'Pending'},
+                {id:2,name: 'Yemi Ogbedengbey', role: 'Remote - Full Time', location:'Accra', status:'Pending'},
+                {id:3,name: 'Joseph Atugubah', role: 'Remote - Part Time', location:'Accra', status:'Pending'},
+                {id:4,name: 'Daniel McDan', role: 'Remote - Part Time', location:'Sunyani', status:'Pending'},
+                {id:5,name: 'Daniel Kofi Tetteh', role: 'On Site - Full Time', location:'Koforidua', status:'Pending'},
+                {id:6,name: 'Prince Tindan', role: 'On Site - Intern', location:'Koforidua', status:'Accepted'},
+                {id:7,name: 'Father Benjamin', role: 'Hybride - Full Time', location:'Takoradi', status:'Accepted'},
+                {id:8,name: 'Razark Adams', role: 'Remote - Intern', location:'Takoradi', status:'Rejected'},
+                {id:9,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Kumasi', status:'Pending'},
+                {id:10,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Tamale', status:'Rejected'},
+                {id:11,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Kumasi', status:'Rejected'},
+                {id:12,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Accra', status:'Rejected'},
+                {id:13,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Cape Coast', status:'Pending'},
+                {id:14,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Kumasi', status:'Pending'},
+                {id:15,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Cape Coast', status:'Pending'},
+                {id:16,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Cape Coast', status:'Pending'},
+                {id:17,name: 'Daniella Momo', role: 'Hybride - Intern', location:'Kumasi', status:'Pending'},
+            ],
             jobDetails: {},
             cv:'',
             cover:''       
@@ -73,10 +82,7 @@ export default {
 
 <style lang="css" scoped>
 .container{
-    display: flex;
-    flex-direction: row;
-    gap: 50%;
-    padding-top: 80px;
+    padding-bottom: 80px;
 }
 .text{
     padding-left: 40px;
@@ -85,17 +91,59 @@ export default {
     color: #9C9595;
     font-size: 15px;
 }
-.date{
+.no-app{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+}
+.no-app-tag{
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
-    gap: 5px;
-    border: 3px solid #88CC00;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 50px;
+    color: #000;
 }
-.date span{
-    color: #88CC00;
+.no-app button.post{
+    padding: 15px;
+    border-radius: 5px;
+    outline: none;
+    border: 0.5px solid #88cc00;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    font-weight: 500;
+    box-shadow: 5px 5px 9px rgb(215, 213, 213);
+}
+.no-app button.post:hover{
+    box-shadow: none;
+}
+.sync-btn{
+    color: green;
+    border-radius: 3px;
+    border: 0.5px solid #88cc00;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 2px 2px 9px rgb(215, 213, 213);
+}
+.sync-btn span:last-child{
+    position: absolute;
+    display: none;
+    left: 120%;
+    padding: 5px 10px;
+    border: 0.5px solid #88cc00;
+    background-color: #f1f1f1;
+}
+.sync-btn:hover{
+    box-shadow: none;
+}
+.sync-btn:hover span:last-child{
+    display: block;
 }
 
 </style>
