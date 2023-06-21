@@ -3,11 +3,15 @@
         <JobsDescriptionComponent
             :myjobs="jobs"
         />
-        <span class="nojob">
-            <h4 class="nojob-tag" v-if="jobs?.length == 0 || jobs == undefined">
-                📝 No Jobs posted / <span class="color-red">❌ Check network connections</span>
+        <span class="nojob" v-if="jobs?.length == 0 || jobs == undefined">
+            <h4 class="nojob-tag">
+                📝 No Jobs posted
+                <button class="sync-btn">
+                    <span class="material-symbols-outlined"> sync </span>
+                    <span>Reload</span>
+                </button>
             </h4>
-            <button @click="addPost()">
+            <button class="post" @click="addPost()">
                 Post your first Job!
             </button>
         </span>
@@ -28,7 +32,6 @@
         },
         data() {
             return {
-                date: "April 1st - May 30th",  
                 jobs: []          
             };
         },
@@ -65,7 +68,7 @@
 <style lang="css" scoped>
 .container{
     /* background: #F4F4F4; */
-    padding: 20px 0;
+    padding: 0;
 }
 .text{
     padding-left: 40px;
@@ -82,26 +85,50 @@
     gap: 50px;
 }
 .nojob-tag{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
     font-weight: 500;
     text-align: center;
     padding-top: 50px;
     color: #000;
 }
-.nojob button{
+.nojob button.post{
     padding: 15px;
     border-radius: 5px;
     outline: none;
-    border: 2px solid #88cc00;
+    border: 0.5px solid #88cc00;
     cursor: pointer;
     background-color: #f1f1f1;
     font-weight: 500;
     box-shadow: 5px 5px 9px rgb(215, 213, 213);
 }
-.nojob button:hover{
+.nojob button.post:hover{
     box-shadow: none;
 }
-.color-red{
-    color: rgb(175, 11, 11);
+.sync-btn{
+    color: green;
+    border-radius: 3px;
+    border: 0.5px solid #88cc00;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 2px 2px 9px rgb(215, 213, 213);
 }
-
+.sync-btn span:last-child{
+    position: absolute;
+    display: none;
+    left: 120%;
+    padding: 5px 10px;
+    border: 0.5px solid #88cc00;
+    background-color: #f1f1f1;
+}
+.sync-btn:hover{
+    box-shadow: none;
+}
+.sync-btn:hover span:last-child{
+    display: block;
+}
 </style>

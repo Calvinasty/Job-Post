@@ -1,44 +1,31 @@
 <template>
     <div>
         <div class="main">
-            <ul class="title">
+            <ul class="table-head">
+                <li>No.</li>
                 <li>Applicant Name</li>
                 <li>Role Type</li>
                 <li>Location</li>
-                <li>Download CV</li>
-                <li></li>
+                <li>Status</li>
             </ul>
 
-            <ul class="list-body">
-                <li>{{ applicants.first_name }} {{ applicants.last_name }}</li>
-                <li>{{ jobDetails.job_title }}</li>
-                <li>{{ jobDetails.location }}</li>
-                <li class="eye-icon">
+            <ul v-for="(applicant, index) in applicants" :key="applicant.id" class="table-body">
+                <li class="count">{{ index+1 }}</li>
+                <!-- <li>{{ applicant.first_name }} {{ applicant.last_name }}</li> -->
+                <li>{{ applicant.name }}</li>
+                <li>{{ applicant.role }}</li>
+                <li>{{ applicant.location }}</li>
+                <li><span class="status pending">{{ applicant.status }}</span></li>
+                <!-- <li class="eye-icon">
                     <span @click="()=>showTip()" class="material-symbols-outlined tooltip">visibility</span>
-                    <!-- <span v-show="edit==true" @click="()=>hideTip(false)" class="material-symbols-outlined tooltip">visibility_off</span> -->
                     <p class="hide"  :class="{view:edit}">
                         <span @click="setModal('ApplicantSummary')">View Applicant</span>
                         <br>
                         <span><a :href="cv" download style="text-decoration: none;color:#666"> Download Resume </a></span>
                     </p>
-                </li><br>
+                </li><br> -->
             </ul>
-                <div class="hide"  :class="{showCover:edit}"> <span style="color: #88cc00;"> COVER LETTER:</span> <br> {{ cover }} </div>
-            <!-- <ul v-for="(item, index) in applicants" :key="index" class="list-body">
-                <li>{{ item.applicant }}</li>
-                <li>{{ item.role }}</li>
-                <li>{{ item.requirements }}</li>
-                <li>{{ item.download }}</li>
-                <li class="eye-icon">
-                    <span v-show="item.edit"  @click="showTip(index)" class="material-symbols-outlined tooltip">visibility</span>
-                    <span v-show="!item.edit" @click="hideTip(index)" class="material-symbols-outlined tooltip">visibility_off</span>
-                    <p class="hide"  :class="{view:item.edit}">
-                        <span @click="setModal('ApplicantSummary')">View Applicant</span>
-                        <br>
-                        <span>Download Resume</span>
-                    </p>
-                </li>
-            </ul> -->
+            <!-- <div class="hide"  :class="{showCover:edit}"> <span style="color: #88cc00;"> COVER LETTER:</span> <br> {{ cover }} </div> -->
         </div>
     </div>
 </template>
@@ -63,9 +50,6 @@ export default {
         };
     },
     mounted() {
-        // this.applicants.forEach(element => {
-        //     element['edit']=false        
-        // });
         console.log(this.applicants);
     },
 
@@ -81,31 +65,6 @@ export default {
             this.toolVisible =! this.toolVisible
             console.log(index);
         }
-        // showTip(index){
-        //     // this.applicants.forEach(element => {
-        //     //     element['edit']=false        
-        //     // });
-        //     this.applicants.map((item,id)=>{
-        //         // console.log(item.edit);
-        //         if(id==index){
-        //                 return item.edit=true
-        //         }else{
-        //            this.hideTip(index)
-        //         }
-        //     })
-        //     this.toolVisible=!this.toolVisible
-        // },
-        // hideTip(index){
-        //     this.applicants.map((item,id)=>{
-        //         // console.log(item.edit);
-        //         if(id==index){
-        //                 return item.edit=true
-        //         }else{
-        //             return item.edit=false
-        //         }
-        //     })
-        //     this.toolVisible =! this.toolVisible
-        // }
     },
 };
 </script>
@@ -115,55 +74,78 @@ export default {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
-        /* background: #F5F5F5; */
-        flex: 1;
         height: 100%;
-        padding: 20px;
-        /* overflow: scroll; */
-        /* width: 100% !important; */
+        width: 100%;
+        padding: 20px 40px;
+        overflow: scroll;
     }
-
     .main ul {
         list-style: none;
-        text-align: start;
+        margin: 0;
     }
 
-    .main .title {
+    .table-head {
         display: flex;
-        justify-content: space-around;
-        font-weight: 500;
+        flex-direction: row;
+        font-weight: 800;
         font-size: 18px;
         line-height: 27px;
-        color: #000000;
-        padding-top: 20px;
+        padding: 0;
+        color: #000;
+        border-bottom: 2px solid #88cc00;
     }
-
-    .main .title li {
+    .table-head li {
         width: 25%;
-        margin-left: 50px;
+        padding: 10px;
     }
+    .table-head li:first-child{ width: 5%; text-align: center; }
+    .table-head li:nth-child(2){ width: 35%; }
+    .table-head li:nth-child(3){ width: 25%; }
+    .table-head li:nth-child(4){ width: 25%; }
+    .table-head li:last-child{ width: 10%; }
 
-    .main .list-body {
+    .table-body {
         display: flex;
-        justify-content: space-around;
-        line-height: 27px;
-        color: #000000;
-        border-bottom: 1px solid #000;
-        row-gap: 10px;
-        padding-top: 15px;
-        overflow-y: scroll;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid rgba(120, 114, 114, 1);
+        /* padding-top: 20px; */
+        cursor: pointer;
     }
-
-    .list-body li {
+    .table-body:hover {
+        font-weight: 600;
+        transition: 0.3s ease-in-out;
+        background-color: #f1f1f1;
+    }
+    .table-body:hover li:nth-child(2){
+        color: #88cc00;
+    }
+    .table-body li {
         width: 25%;
-        margin-left: 50px;
+        padding: 10px;
+    }
+    .table-body li:first-child{  width: 5%; text-align: center; font-weight: 600; color: #88cc00;}
+    .table-body li:nth-child(2){  width: 35%; }
+    .table-body li:nth-child(3){  width: 25%; }
+    .table-body li:nth-child(4){  width: 25%; }
+    .table-body li:last-child{  width: 10%; }
+
+    li span.status{
+        padding: 8px 15px;
+        color: #fff;
+        border-radius: 5px;
+        margin-top: 50px;
+    }
+    li span.pending{
+        background-color: rgb(236, 217, 109);
     }
 
-    .list-body span {
-    color: rgba(136, 204, 0, 1);
+   /* .table-body span {
+        color: rgba(136, 204, 0, 1);
     }
 
-    .eye-icon {
+  .eye-icon {
         position: relative;
         cursor: pointer;
     }
@@ -176,11 +158,9 @@ export default {
         border: 3px solid #88cc00;
         text-align: center;
         position: relative;
-        /* width: 100%; */
         left: 0px;
         bottom: 5px;
         border-radius: 10px;
-        /* z-index: 10; */
     }
     .hide.showCover{
         display: block;
@@ -190,12 +170,11 @@ export default {
 
     .hide.view span {
         color: #7D7474;
-         /* color: #000000; */
     }
     .hide.view span:hover{
         color: rgba(136, 204, 0, 1);
         transition: 0.3s ease-in-out;
-        }
+    } */
     
 
 </style>

@@ -6,11 +6,11 @@
             <li>Location</li>
             <li>Deadline🗓</li>
             <li>View Applicants</li>
-            <li>Edit 📝</li>
+            <li>Edit</li>
         </ul>
 
         <ul v-for="(item, index) in myjobs" :key="index" class="table-body">
-            <li>{{ item.job_title }}</li>
+            <li @click="showApplicantsPage(item.id)">{{ item.job_title }}</li>
             <li>{{ item.job_type }}</li>
             <li>{{ item.location }}</li>
             <li>{{ item.application_deadline.split('T')[0] }}</li>
@@ -35,14 +35,6 @@ export default {
     props: [
         'myjobs'
     ],
-    data() {
-        return {
-
-        };
-    },
-    mounted() {
-
-    },
     methods: {
         ...mapActions(useDashboardStore, ['setModal','setJobId']),
         updatePost(postId) {
@@ -75,18 +67,14 @@ export default {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
-        /* background-color: rgba(255, 255, 255, 1); */
-        /* margin-top: 20px; */
-        /* background: #F4F4F4; */
         height: 100%;
         width: 100%;
         padding: 20px 40px;
         overflow: scroll;
-        /* flex: 1; */
-        /* padding: 0px 90px 120px 100px; */
     }
     .main ul {
         list-style: none;
+        margin: 0;
     }
     .table-head {
         display: flex;
@@ -96,40 +84,36 @@ export default {
         font-size: 18px;
         line-height: 27px;
         padding: 0;
-        /* padding-top: 30px; */
-        /* padding-bottom: 10px; */
-        /* background-color: #88cc00; */
         color: #000;
-        border-bottom: 5px solid #88cc00;
-        /* border: 1px solid red ; */
-        /* background-color: aqua; */
+        border-bottom: 2px solid #88cc00;
     }
     .table-head li {
         width: 15%;
         padding: 10px;
-        /* text-align: center; */
-        /* margin-left: 50px; */
-        /* border: 1px solid; */
     }
     .table-head li:first-child{ width: 30%; text-align: left; }
     .table-head li:last-child{ width: 10%; text-align: center;}
     .table-body {
         display: flex;
         flex-direction: row;
-        /* justify-content: center; */
+        justify-content: center;
         border-bottom: 1px solid rgba(120, 114, 114, 1);
         padding-top: 15px;
-        /* margin-right: 10px; */
-        /* background-color: aqua; */
-        /* border: 1px solid green; */
-        padding: 0px;
+        cursor: pointer;
     }
+    .table-body:hover {
+        font-weight: 600;
+        transition: 0.3s ease-in-out;
+        background-color: #f1f1f1;
+    }
+    .table-body:hover li:first-child{
+        color: #88cc00;
+    }
+
     .table-body li {
         width: 15%;
         padding: 10px;
         justify-content: center;
-        /* margin-left: 50px; */
-        /* border: 1px solid; */
     }
     .table-body li:first-child{ width: 30%; justify-content: flex-start;}
     .table-body li:last-child{ width: 10%; justify-content: center;}
