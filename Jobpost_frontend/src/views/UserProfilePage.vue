@@ -154,7 +154,7 @@ export default {
             this.Value.github = userInfo?.js_social_link?.gitHub_link
             this.usersName = userInfo?.first_name
             this.Value.skills = userInfo.Skills
-            this.Value.education = userInfo?.education
+            this.Value.education = userInfo?.education.sort()
             this.Value.workexp = userInfo?.experiences
             this.title = this.Value.fullname
 

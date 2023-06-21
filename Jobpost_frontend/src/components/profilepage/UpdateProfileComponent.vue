@@ -1,6 +1,6 @@
 <template>
     <EditProfileLayout @close="$emit('close')" :type="type" :index="index">
-        <component v-show="type == 'user'" :key="key" :is="componentId" :userInfo="userInfo"
+        <component class="update-user" v-show="type == 'user'" :key="key" :is="componentId" :userInfo="userInfo"
             :handlecloseCard="handlecloseCard" :handleSave="handleSave">
         </component>
         <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :companyInfo="companyInfo"
@@ -75,4 +75,11 @@ export default {
 }
 </script> 
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.update-user {
+    /* background: #000; */
+    display: flex;
+    /* align-items: center; */
+    height: 100%;
+}
+</style>

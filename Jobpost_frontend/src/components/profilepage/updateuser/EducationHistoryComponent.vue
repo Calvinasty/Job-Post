@@ -92,9 +92,9 @@ export default {
             axios.post(`${BASE_URL}/education/addEducation`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
-                        console.log('edudata', res.data)
+                        // console.log('edudata', res.data)
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        console.log(token);
+                        // console.log(token);
                         axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
                                 if (res.data?.message) {
@@ -102,7 +102,7 @@ export default {
                                     this.showToast('Record Updated Successful', 'success')
                                     this.loading = false
                                 }
-                                console.log("Edu res data", res.data);
+                                // console.log("Edu res data", res.data);
                                 this.setUser(res.data.allInfo[0])
                             })
                             .catch((err) => {
@@ -128,7 +128,7 @@ export default {
                 .finally(() => {
                     setTimeout(() => {
                         this.handlecloseCard()
-                    }, 6000)
+                    }, 2000)
 
                 })
         },
@@ -146,7 +146,7 @@ export default {
             }
             setTimeout(() => {
                 this.toast = { active: false, msg: '', color: '' }
-            }, 6000)
+            }, 2000)
         }
     }
 }
@@ -160,7 +160,9 @@ export default {
     align-items: center;
     gap: 20px;
     width: 100%;
+    /* height: 100%; */
     padding-top: 3%;
+    /* background: #000; */
 }
 
 .input-container {

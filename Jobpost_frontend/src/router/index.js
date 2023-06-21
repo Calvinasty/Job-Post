@@ -8,6 +8,7 @@ import CompanyPage from '@/views/CompanyPage.vue'
 import Error404Page from '@/views/Error404Page.vue'
 import JobsList from '@/components/jobsearchpage/JobSearch.vue'
 import ApplyJob from '@/components/jobsearchpage/applyjobpage/ApplyJobPage.vue'
+import LogoutComponent from '@/components/LogoutComponent.vue'
 
 // route guard for restricting users to private pages
 const routeGuard = (to, from, next) => {
@@ -81,6 +82,11 @@ const router = createRouter({
       meta: {title: 'Dashboard'}
     },
     { path: '/:pathMatch(.*)*', name: 'not-found', component: Error404Page, meta: {title: 'Not Found'} },
+    {
+      path:'/logout',
+      name:'logout',
+      component: LogoutComponent
+    }
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {

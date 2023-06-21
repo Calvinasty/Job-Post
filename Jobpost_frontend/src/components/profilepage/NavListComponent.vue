@@ -87,9 +87,11 @@ a {
     text-decoration: none;
     color: black;
     font-weight: 600;
-    padding-bottom: 10px;
+    padding: 15px 0;
     font-size: 16px;
-    border-bottom: 5px solid transparent;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #C2C2C2;
 }
 
 a:hover,
@@ -99,8 +101,13 @@ a:hover,
 }
 
 .navitems {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    width: 30%;
+    height: 100%;
     gap: 31px;
-    border-bottom: 1px solid #C2C2C2;
+    /* background: #000; */
+    /* border-bottom: 1px solid #C2C2C2; */
 }
 </style>

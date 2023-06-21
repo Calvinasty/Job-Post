@@ -83,7 +83,7 @@ export default {
 .card-detail {
     justify-content: space-around;
     gap: 20px;
-    width: 520px;
+    width: 100%;
     padding-top: 3%;
     /* padding-bottom: 70px; */
 }
