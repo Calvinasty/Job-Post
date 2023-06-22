@@ -65,7 +65,7 @@
                             :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="workexp?.role"
-                            :showpencil="true" />
+                            :showpencil="true" :itemId="workexp.id" :handleEdit="handleEdit" itemIndex="3" />
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
@@ -172,7 +172,7 @@ export default {
 
     methods: {
         ...mapActions(useUserStore, ['setUser']),
-        ...mapActions(useUserProfileStore, ['setEduId']),
+        ...mapActions(useUserProfileStore, ['setEduId', 'setWorkexpId']),
         showPopup(index) {
             this.showModal = !this.showModal
             this.index = index
@@ -180,6 +180,7 @@ export default {
 
         handleEdit(itemId, itemIndex) {
             this.setEduId(itemId)
+            this.setWorkexpId(itemId)
             this.showPopup(itemIndex)
 
         },

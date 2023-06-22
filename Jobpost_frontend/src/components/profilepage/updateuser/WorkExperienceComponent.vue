@@ -27,23 +27,21 @@
 </template>
 
 <script>
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '../../../stores/users'
+import { useUserProfileStore } from '../../../stores/userprofile';
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL
 import InputComponent from '../../authpage/InputComponent.vue';
 import ToastMessage from '../../utils/ToastMessage.vue';
-// import EditInputComponent from '../EditInputComponent.vue'
 export default {
     components: {
-        // EditInputComponent,
         InputComponent,
         ToastMessage,
     },
     props: [
         'handlecloseCard',
         'handleSave',
-        'userInfo',
     ],
     data() {
         return {
@@ -53,8 +51,25 @@ export default {
                 company_name: '',
                 start_date: '',
                 end_date: '',
+            },
+            loading: false,
+            toast: {
+                active: false, msg: '', color: ''
             }
         }
+    },
+
+    mounted() {
+        const workexp = this.user.experiences.find(item => item.id == this.workexpId)
+        this.experience.role = workexp?.role
+        this.experience.company_name = workexp?.company_name
+        this.experience.start_date = workexp?.start_date.split('T')[0]
+        this.experience.end_date = workexp?.end_date.split('T')[0]
+    },
+
+    computed: {
+        ...mapState(useUserProfileStore, ['workexpId']),
+        ...mapState(useUserStore, ['user'])
     },
 
     methods: {
@@ -81,11 +96,11 @@ export default {
                         const token = JSON.parse(localStorage.getItem('userToken'))
                         axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
-                                // if (res.data?.message) {
-                                //     let msg = res.data.message
-                                //     this.showToast(msg, 'Update Success')
-                                //     this.loading = false
-                                // }
+                                if (res.data?.message) {
+                                    // let msg = res.data.message
+                                    this.showToast('Record Added Successful', 'success')
+                                    this.loading = false
+                                }
                                 console.log("Exp res data", res.data);
                                 this.setUser(res.data.allInfo[0])
                             })
