@@ -1,7 +1,7 @@
 <template>
     <div class="overlay">
         <div class="modal">
-            <span @click="setModal('')">X</span>
+            <span class="close" @click="setModal('')" @keyup.enter="setModal('')">X</span>
             <slot></slot>
         </div>
     </div>
@@ -37,9 +37,10 @@
         width: 50%;
         height: 85%;
         padding: 20px 40px;
-        border-radius: 10px;
+        border-radius: 15px;
     }
-    .modal span{
+    .modal span.close{
+        position: absolute;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -52,5 +53,6 @@
         color: #fff;
         border-radius: 50%;
         box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
+        z-index: 2;
     }
 </style>

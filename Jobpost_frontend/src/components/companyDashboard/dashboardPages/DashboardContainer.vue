@@ -11,8 +11,8 @@
     const BASE_URL = import.meta.env.VITE_BASE_URL
     import DashboardLayout from './DashboardLayout.vue';
     import AnalyticsView from './AnalyticsView.vue';
-    import JobsView from './JobsViewComponent.vue';
-    import ViewApplicant from './ViewAllApplicant.vue';
+    import JobsView from './viewJobs/JobsViewComponent.vue';
+    import ViewApplicant from './viewJobs/ViewAllApplicant.vue';
     import CompanyProfile from './CompanyProfilePage.vue';
     import DashboardSettings from './DashboardSettings.vue';
     
