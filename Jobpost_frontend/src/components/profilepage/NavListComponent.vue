@@ -1,11 +1,11 @@
 <template>
     <nav class="navitems flex-center-row">
-        <router-link v-show="type == 'user'" v-for="(item, index) in itemList" to="" @click="handleClick(item, index)"
-            :key="item" :class="{ active: item.active }">
+        <router-link v-show="type == 'user'" v-for="(item, index) in itemList" to="" @click="handleClick(index)" :key="item"
+            :class="{ active: item.active }">
             {{ item.title }}
         </router-link>
 
-        <router-link v-show="type == 'company'" v-for="(item, index) in companyNav" to="" @click="handleClick(item, index)"
+        <router-link v-show="type == 'company'" v-for="(item, index) in companyNav" to="" @click="handleClick(index)"
             :key="item" :class="{ active: item.active }">
             {{ item.title }}
         </router-link>
@@ -41,7 +41,7 @@ export default {
 
     mounted() {
         if (this.type == 'user') {
-            this.handleClick(this.itemList[this.index], this.index)
+            this.handleClick(this.index)
             this.itemList[this.index].active = true
         }
         if (this.type == 'company') {
@@ -52,12 +52,13 @@ export default {
     },
     methods: {
         ...mapActions(useUserProfileStore, ['setNav', 'setNav2']),
-        handleClick(item, itemIndex) {
-            this.type == 'user' ? this.setNav(item?.link) : this.setNav2(item?.link)
+        handleClick(navIndex) {
+            let selectedNav = this.itemList[navIndex]
+            this.type == 'user' ? this.setNav(selectedNav.link) : this.setNav2(selectedNav.link)
 
             if (this.type == 'user') {
                 Object.keys(this.itemList).forEach((key, index) => {
-                    if (itemIndex !== index) {
+                    if (navIndex !== index) {
                         this.itemList[key].active = false
                     }
                     else {
@@ -68,7 +69,7 @@ export default {
 
             if (this.type == 'company') {
                 Object.keys(this.companyNav).forEach((key, index) => {
-                    if (itemIndex !== index) {
+                    if (navIndex !== index) {
                         this.companyNav[key].active = false
                     }
                     else {
@@ -87,20 +88,28 @@ a {
     text-decoration: none;
     color: black;
     font-weight: 600;
-    padding-bottom: 10px;
+    padding: 31px 0;
     font-size: 16px;
-    border-bottom: 5px solid transparent;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #C2C2C2;
 }
 
 a:hover,
 .active {
-    border-bottom: 5px solid #88cc00;
+    /* border-bottom: 5px solid #88cc00; */
+    background: #E5E5E5;
     transition: all ease-in-out 0.5ms;
 }
 
 .navitems {
-    width: 100%;
-    gap: 31px;
-    border-bottom: 1px solid #C2C2C2;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    width: 30%;
+    height: 100%;
+    /* gap: 31px; */
+    /* background: #000; */
+    /* border-bottom: 1px solid #C2C2C2; */
 }
 </style>
