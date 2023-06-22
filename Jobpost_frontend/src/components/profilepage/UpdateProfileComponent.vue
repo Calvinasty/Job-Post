@@ -56,10 +56,6 @@ export default {
             companyinformation: CompanyInformation,
             registrationinfo: RegistrationInfo,
             companylocation: CompanyLocation,
-
-            //data from state
-            // user : []
-
         }
     },
     computed: {
@@ -77,9 +73,6 @@ export default {
 
 <style lang="css" scoped>
 .update-user {
-    /* background: #000; */
-    display: flex;
-    /* align-items: center; */
     height: 100%;
 }
 </style>
