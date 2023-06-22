@@ -91,9 +91,9 @@
 </template>
 
 <script>
-import { mapState } from 'pinia';
-import { mapActions } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import { useUserStore } from '../stores/users';
+import { useUserProfileStore } from '../stores/userprofile';
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
 import UpdateProfileComponentVue from '../components/profilepage/UpdateProfileComponent.vue';
@@ -172,13 +172,14 @@ export default {
 
     methods: {
         ...mapActions(useUserStore, ['setUser']),
+        ...mapActions(useUserProfileStore, ['setEduId']),
         showPopup(index) {
             this.showModal = !this.showModal
             this.index = index
         },
 
         handleEdit(itemId, itemIndex) {
-            console.log(itemId);
+            this.setEduId(itemId)
             this.showPopup(itemIndex)
 
         },

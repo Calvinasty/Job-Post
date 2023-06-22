@@ -10,6 +10,7 @@ export const useUserProfileStore = defineStore('userprofile', {
         forgotPassword: '',
         forgotPasswordEmail: '',
         userType: '',
+        eduId:'', // id for education selected to be edited
     }),
 
     actions:{
@@ -35,6 +36,10 @@ export const useUserProfileStore = defineStore('userprofile', {
 
         setUserType(user){
             this.userType = user
+        },
+
+        setEduId(id){
+            this.eduId = id
         }
     },
 })

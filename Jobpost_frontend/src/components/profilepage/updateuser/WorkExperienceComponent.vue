@@ -22,7 +22,7 @@
             <button class="btn" v-on="handleSave" type="submit" @click.prevent="handleUpdate">Save</button>
             <button class="btns" @click.prevent="handlecloseCard">Cancel</button>
         </div>
-
+        <ToastMessage v-show="toast.active" :toast="toast" />
     </form>
 </template>
 
@@ -32,11 +32,13 @@ import { useUserStore } from '../../../stores/users'
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL
 import InputComponent from '../../authpage/InputComponent.vue';
+import ToastMessage from '../../utils/ToastMessage.vue';
 // import EditInputComponent from '../EditInputComponent.vue'
 export default {
     components: {
         // EditInputComponent,
         InputComponent,
+        ToastMessage,
     },
     props: [
         'handlecloseCard',
@@ -87,20 +89,47 @@ export default {
                                 console.log("Exp res data", res.data);
                                 this.setUser(res.data.allInfo[0])
                             })
-                            .catch((err) => console.log(err))
+                            .catch((err) => {
+                                let msg = err.response ? err.response.data.message : err.message
+                                this.showToast(msg, 'error')
+
+                                console.log(err.message)
+                            })
                     }
                 })
                 .catch((err) => {
-                    console.log(err)
+                    let msg
+                    if (err.response) {
+                        msg = err.response.data.message
+                    }
+                    if (err.message) {
+                        msg = err.message
+                    }
+                    this.showToast(msg, 'error')
+
+                    console.log(msg)
                 })
-                .finally(() => this.handlecloseCard())
+                .finally(() => {
+                    setTimeout(() => {
+                        this.handlecloseCard()
+                    }, 2000)
+
+                })
         },
         handleInput(data) {
             if (data?.inputName == 'role') { this.experience.role = data.inputValue }
             if (data?.inputName == 'company_name') { this.experience.company_name = data?.inputValue }
-            // if (data?.inputName == 'field_of_study') { this.education.field_of_study = data?.inputValue }
             if (data?.inputName == 'start_date') { this.experience.start_date = data?.inputValue }
             if (data?.inputName == 'end_date') { this.experience.end_date = data?.inputValue }
+        },
+
+        showToast(msg, color) {
+            this.toast = {
+                active: true, msg, color
+            }
+            setTimeout(() => {
+                this.toast = { active: false, msg: '', color: '' }
+            }, 2000)
         }
     }
 }

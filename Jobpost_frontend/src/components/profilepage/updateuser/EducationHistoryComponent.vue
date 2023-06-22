@@ -32,8 +32,9 @@
 </template>
 
 <script>
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '../../../stores/users'
+import { useUserProfileStore } from '../../../stores/userprofile';
 import InputComponent from '../../authpage/InputComponent.vue';
 import axios from 'axios';
 import ToastMessage from '../../utils/ToastMessage.vue';
@@ -66,15 +67,25 @@ export default {
     props: [
         'handlecloseCard',
         'handleSave',
-        'userInfo'
     ],
+
+    computed: {
+        ...mapState(useUserProfileStore, ['eduId']),
+        ...mapState(useUserStore, ['user'])
+    },
     beforeMount() {
 
     },
 
     mounted() {
+        const education = this.user?.education.find(item => item.id == this.eduId)
+        console.log(education);
+        this.education.institution = education.institution
+        this.education.certification = education.certification
+        this.education.field_of_study = education.field_of_study
+        this.education.start_date = education.start_date.split('T')[0]
+        this.education.end_date = education.end_date.split('T')[0]
 
-        // this.education.institution = this.userInfo.education[0].institution
     },
     methods: {
         ...mapActions(useUserStore, ['setUser']),
