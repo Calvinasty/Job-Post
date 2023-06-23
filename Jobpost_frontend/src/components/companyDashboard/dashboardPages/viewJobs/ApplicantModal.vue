@@ -2,7 +2,7 @@
     <section class="main">
         <aside class="modal-nav" v-if="navLink=='default'">
             <h2>{{ applicant.name }}</h2>
-            <SelectTiles v-for="(nav,index) in modalNav" :key="nav.link" :navItem="nav" :navIndex="index" :handleClick="handleClick" :handleSelect="handleSelect"/>
+            <SelectTiles v-for="(nav,index) in modalNav" :key="nav.link" :navItem="nav" :handleClick="handleClick" />
         </aside>
 
         <aside class="status" v-if="navLink=='status'">
@@ -11,7 +11,7 @@
                 <h3>Application Status</h3>
             </span>
             <h4> Select the status of the application </h4>
-            <SelectTiles v-for="item in status" :key="item.link" :navItem="item" />
+            <SelectTiles v-for="(item,index) in status" :key="item.link" :navItem="item" :navIndex="index" :handleSelect="handleSelect"/>
         </aside>
 
         <aside class="cover" v-if="navLink=='cover'">
@@ -79,11 +79,9 @@
             handleSelect(itemIndex){
                 Object.keys(this.status).forEach((key, index) => {
                     if(itemIndex == index){
-                        this.status[itemIndex].active == true
-                        console.log('hello');
+                        this.status[key].active = true 
                     }else{
-                        this.status[itemIndex].active == false
-                        console.log('hi');
+                        this.status[key].active = false
                     }
                 })
             }
