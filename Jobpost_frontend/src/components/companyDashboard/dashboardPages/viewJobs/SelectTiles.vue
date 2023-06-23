@@ -2,16 +2,16 @@
     <div class="container" 
         @click="
             navItem.link=='pending'
-            ? handleSelect(navItem.link) 
+            ? handleSelectLocal(navItem.link, navIndex) 
             : navItem.link=='accepted'
-            ? handleSelect(navItem.link) 
+            ? handleSelectLocal(navItem.link, navIndex) 
             : navItem.link=='declined'
-            ? handleSelect(navItem.link) 
+            ? handleSelectLocal(navItem.link, navIndex) 
             : handleClick(navItem.link)
         " 
         :class="{
             pending:(navItem.link=='pending'), accepted:(navItem.link=='accepted'), declined:(navItem.link=='declined'), 
-            activePending: (activeStatus=='pending'), activeAccepted: (activeStatus=='accepted'), activeDeclined: (activeStatus=='declined') 
+            activePending: navItem.active, activeAccepted: navItem.active, activeDeclined: navItem.active 
         }"
     >
         {{ navItem.name }}
@@ -21,16 +21,16 @@
 
 <script>
     export default {
-        props:['navItem', 'handleClick'],
+        props:['navItem', 'navIndex', 'handleClick', 'handleSelect'],
         data(){
             return{
-                activeStatus: ''
+                // activeStatus: ''
             }
         },
         methods:{
-            handleSelect(link){
+            handleSelectLocal(link, navIndex){
                 if(confirm(`${link.toUpperCase()}: Are you sure of this action`)){
-                    this.activeStatus = link
+                    this.handleSelect(navIndex)
                 }else{
                     return
                 }
@@ -71,7 +71,7 @@
     /* pending */
     .container.pending{ background-color: #dcd40ecc; }
     .container.pending:hover, .container.activePending{ background-color: #fff; color: #000; font-weight: bold; border: 1px solid #dcd40ecc; border-left: 10px solid #dcd40ecc; }
-    .container.pending:hover .icon, .container.activeAccepted .icon{ display: block; color: #dcd40ecc; right: 20px; transition: 1s; }
+    .container.pending:hover .icon, .container.activePending .icon{ display: block; color: #dcd40ecc; right: 20px; transition: 1s; }
     /* accepted */
     .container.accepted{ background-color: #8C0; }
     .container.accepted:hover, .container.activeAccepted{ background-color: #fff; color: #000; font-weight: bold; border: 1px solid #8C0; border-left: 10px solid #8C0; }
@@ -79,8 +79,5 @@
     /* declined */
     .container.declined{ background-color: #d81a1acc; }
     .container.declined:hover, .container.activeDeclined{ background-color: #fff; color: #000; font-weight: bold; border: 1px solid #d81a1acc; border-left: 10px solid #d81a1acc; }
-    .container.declined:hover .icon,  .container.activeDeclined .icon{ display: block; color: #d81a1acc; right: 20px; transition: 1s; }
-
-
-
+    .container.declined:hover .icon, .container.activeDeclined .icon{ display: block; color: #d81a1acc; right: 20px; transition: 1s; }
 </style>
