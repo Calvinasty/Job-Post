@@ -25,7 +25,7 @@
                 <li><span 
                     class="status" 
                     @click="viewApplicant(applicant.id)"
-                    :class="{pending:applicant.status=='Pending'}, {accepted:applicant.status=='Accepted'}, {rejected:applicant.status=='Rejected'}"
+                    :class="{pending:applicant.status=='Pending'}, {accepted:applicant.status=='Accepted'}, {rejected:applicant.status=='Declined'}"
                 >
                     {{ applicant.status }}
                 </span></li>
@@ -58,7 +58,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(useDashboardStore, ['setModal']),
+        ...mapActions(useDashboardStore, ['setModal', 'setApplicant']),
         showTip(index){
             this.edit = !this.edit
             this.toolVisible=!this.toolVisible
@@ -70,6 +70,7 @@ export default {
             console.log(index);
         },
         viewApplicant(id){
+            this.setApplicant(id)
             this.setModal('ApplicantModal')
         }
     },

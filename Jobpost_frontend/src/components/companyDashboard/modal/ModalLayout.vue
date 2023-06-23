@@ -38,9 +38,11 @@
         height: 85%;
         padding: 20px 40px;
         border-radius: 15px;
+        position: relative;
     }
     .modal span.close{
         position: absolute;
+        right: 15px;
         display: flex;
         justify-content: center;
         align-items: center;
