@@ -1,7 +1,7 @@
 <template>
-    <div class="overlay">
+    <div class="overlay" @keypress.esc="setModal('')">
         <div class="modal">
-            <span class="close" @click="setModal('')" @keyup.enter="setModal('')">X</span>
+            <span class="close" @click="setModal('')">X</span>
             <slot></slot>
         </div>
     </div>

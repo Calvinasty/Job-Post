@@ -19,12 +19,13 @@
 <style lang="css" scoped>
     .nav-item {
         width: 100%;
-        /* height: 40%; */
-        padding: 0 20px;
-        /* gap: 10px; */
+        height: 100%;
+        /* padding: 0 20px; */
+        gap: 20px;
         display: flex;
         flex-direction: column;
-        position: relative;    
+        position: relative;
+        /* border: 1px solid green;     */
     }
 
     .nav-item button {
@@ -33,18 +34,18 @@
         justify-content: flex-start;
         align-items: center;
         width: 100%;
-        padding: 15px 20px;
+        padding: 20px 20px;
         outline: none;
         border: none;
         font-size: 15px;
         font-weight: 500;
         color: #666;
+        font-weight: 600;
         margin: 5px 0;
-        border-radius: 5px;
+        /* border-radius: 5px; */
         cursor: pointer;
         text-align: left;
         background-color: transparent;
-        /* border-bottom: 0.5px solid #666; */
         transition: 0.2s ease-in-out;
     }
 
@@ -63,12 +64,13 @@
     }
 
     .nav-item .active{
-        background-color: #88CC00;
-        color: #fff;
+        background-color: rgb(136, 204, 0,0.10000000149011612);
+        border-left: 10px solid #8c0;
+        color: #88cc00;
         font-weight: bolder;
     }
     .nav-item .active span{
-        color: #fff;
+        color: #8c0;
         font-weight: bolder;
     }
 </style>
