@@ -21,10 +21,14 @@
 
 <script>
     export default {
-        props:['navItem', 'navIndex', 'handleClick', 'handleSelect'],
+        props:['navItem', 'navIndex', 'status', 'handleClick', 'handleSelect'],
         data(){
             return{
+                localStatus: ''
             }
+        },
+        mounted(){
+            // this.localStatus = this.status.toLowerCase()
         },
         methods:{
             handleSelectLocal(link, navIndex){

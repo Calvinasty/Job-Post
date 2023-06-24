@@ -10,8 +10,15 @@
                 <span class="material-symbols-outlined" @click="handleClick('default')"> keyboard_backspace </span>
                 <h3>Application Status</h3>
             </span>
-            <h4> Select the status of the application </h4>
-            <SelectTiles v-for="(item,index) in status" :key="item.link" :navItem="item" :navIndex="index" :handleSelect="handleSelect"/>
+            <span class="status-sub">
+                <span class="status-tag">
+                    <span class="pending" v-if="status[0].active == true">Pending</span> 
+                    <span class="accepted" v-if="status[1].active == true">Accepted</span> 
+                    <span class="declined" v-if="status[2].active == true">Declined</span>
+                </span><br><br>
+                <h4> Select the status of the application </h4>
+            </span>
+            <SelectTiles v-for="(item,index) in status" :key="item.link" :navItem="item" :navIndex="index" :status="applicant.status" :handleSelect="handleSelect"/>
         </aside>
 
         <aside class="cover" v-if="navLink=='cover'">
@@ -71,8 +78,17 @@
         mounted(){
             const applicantResult = this.allApplicants.find(item => item.id == this.selectedApplicantId)
             this.applicant = applicantResult
+            this.setStatus()
         },
         methods:{
+            setStatus(){
+                Object.keys(this.status).forEach((key,index) => {
+                    if(this.applicant.status.toLowerCase() == this.status[index].link)
+                        this.status[key].active = true
+                    else
+                        this.status[key].active = false
+                })
+            },
             handleClick(link){
                 this.navLink = link
             },
@@ -124,10 +140,6 @@
         position: absolute;
         top: 5%;
     }
-    .status h4{
-        position: absolute;
-        top: 15%;
-    }
     .status-head span{
         position: absolute;
         left: 50px;
@@ -135,6 +147,21 @@
         font-weight: bold;
         cursor: pointer;
     }
+    .status-sub{
+        position: absolute;
+        top: 13%;
+    }
+    .status-tag span{
+        padding: 5px 10px;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 14px;
+        box-shadow: 5px 5px 9px rgb(215, 213, 213);
+    }
+    .status-tag span.pending{ background-color: #dcd40ecc;}
+    .status-tag span.accepted{ background-color: #8c0;}
+    .status-tag span.declined{ background-color: #d81a1acc;}
+
     .cover{
         display: flex;
         flex-direction: column;
