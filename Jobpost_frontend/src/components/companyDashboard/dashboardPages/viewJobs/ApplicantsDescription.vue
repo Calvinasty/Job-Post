@@ -24,7 +24,7 @@
                 <li style="text-align: center;"><span  @click="viewApplicant(applicant.id)" class="material-symbols-outlined tooltip">visibility</span></li>
                 <li><span 
                     class="status" 
-                    @click="viewApplicant(applicant.id)"
+                    @click="viewApplicant(applicant.id, 'status')"
                     :class="{pending:applicant.status=='Pending'}, {accepted:applicant.status=='Accepted'}, {rejected:applicant.status=='Declined'}"
                 >
                     {{ applicant.status }}
@@ -69,9 +69,9 @@ export default {
             this.toolVisible =! this.toolVisible
             console.log(index);
         },
-        viewApplicant(id){
+        viewApplicant(id, status=''){
             this.setApplicant(id)
-            this.setModal('ApplicantModal')
+            this.setModal('ApplicantModal', status)
         }
     },
 };

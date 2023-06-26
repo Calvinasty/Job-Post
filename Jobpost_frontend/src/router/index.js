@@ -15,6 +15,21 @@ const routeGuard = (to, from, next) => {
   const isAuthenticated = authenticated(to.name)
   isAuthenticated ? next() : next('/auth/login')
 }
+// route guard to restrict auth page access when user is already authenticated
+const guardAuth = (to, from, next) => {
+  console.log(to);
+  const companyToken = localStorage.getItem('companyToken')
+  const userToken = localStorage.getItem('userToken')
+  if(to.matched.path == '/auth/'){
+    console.log(to);
+    if(companyToken){next('/admin/analyticsView')}
+    else if(userToken) {next('/userprofile')}
+    else { next() }
+  }else{
+    console.log('no', to);
+    next()
+  } 
+}
 // check if user or company is authenticated
 const authenticated = (to) => {
   let localState;
@@ -66,6 +81,7 @@ const router = createRouter({
       path:'/auth',
       name:'AuthSelect',
       component:SelectUserPage,
+      beforeEnter: guardAuth,
       meta: {title: 'Authenticate'}
     },
     {
@@ -81,12 +97,12 @@ const router = createRouter({
       beforeEnter: routeGuard,
       meta: {title: 'Dashboard'}
     },
-    { path: '/:pathMatch(.*)*', name: 'not-found', component: Error404Page, meta: {title: 'Not Found'} },
     {
       path:'/logout',
       name:'logout',
       component: LogoutComponent
-    }
+    },
+    { path: '/:pathMatch(.*)*', name: 'not-found', component: Error404Page, meta: {title: 'Not Found'} },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {

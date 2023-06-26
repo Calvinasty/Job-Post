@@ -73,7 +73,12 @@
             }
         },
         computed:{
-            ...mapState(useDashboardStore, ['selectedApplicantId', 'allApplicants'])
+            ...mapState(useDashboardStore, ['selectedApplicantId', 'allApplicants', 'updatePostModalId'])
+        },
+        beforeMount(){
+            // check if status is clicked to route user to status tile
+            if(this.updatePostModalId == 'status')
+                this.navLink = 'status'
         },
         mounted(){
             const applicantResult = this.allApplicants.find(item => item.id == this.selectedApplicantId)
