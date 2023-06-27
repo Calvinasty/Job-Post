@@ -87,9 +87,9 @@ export default {
                 .catch(err => {
                     let msg 
                         if(err.response) 
-                            msg = err.response.data.message 
-                        if(err.message)
-                            msg = err.message
+                           { msg = err.response.data.message} 
+                        else if(err.message)
+                            {msg = err.message}
                         
                         this.showToast(msg, 'error')
                         this.loading = false

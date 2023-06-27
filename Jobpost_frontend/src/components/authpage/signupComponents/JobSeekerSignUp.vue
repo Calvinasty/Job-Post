@@ -144,7 +144,7 @@ export default {
             if (this.userType == 'jobSeeker') {
                 // console.log('hello');
                 axios
-                .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
+                .post(`${BASE_URL}/jobSeeker/signUp`, user)
                 .then((res) => {
 
                     if (res.data?.message) {

@@ -1,27 +1,36 @@
 <template>
     <section class="jobs-listing ">
-        <JobCard v-for="(job,index) in allJobs" :jobInfomation="job" :key="index"/>            
+        <JobCard v-for="(job,index) in allJobs" :jobInfomation="job" :key="index"  :handleAccountCheck="handleAccountCheck"/>
+        <SignInSignUpToApply :show="show" :handleClose="handleAccountCheck"/>          
     </section>
 </template>
 
 <script>
+
 import JobCard from './JobCard.vue';
+import SignInSignUpToApply from './SignInSignUpToApply.vue';
 // import { jobsPosted } from '../../data';
 
 export default {
     name: 'JobPostJobsSection',
-    components: { JobCard },
+    components: { JobCard, SignInSignUpToApply},
     props:[
     'allJobs'
     ],
     data(){
         return{
             // jobsPosted:jobsPosted
+            show:false
             
         }
     },
     created(){
         // console.log('alljobs-card',this.allJobs);
+    },
+    methods:{
+        handleAccountCheck(){
+            this.show=!this.show
+        }
     }
     
 };
