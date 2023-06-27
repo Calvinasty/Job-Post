@@ -1,7 +1,7 @@
 <template>
-    <div class="overlay">
+    <div class="overlay" @keypress.esc="handleClose('')">
         <div class="modal">
-            <span class="close" @click="setModal('')" @keyup.enter="setModal('')">X</span>
+            <span class="close" @click="handleClose('')">X</span>
             <slot></slot>
         </div>
     </div>
@@ -12,7 +12,11 @@
     import { useDashboardStore } from '../../../stores/dashboard';
     export default {
         methods:{
-            ...mapActions(useDashboardStore, ['setModal'])
+            ...mapActions(useDashboardStore, ['setModal', 'setNext']),
+            handleClose(){
+                this.setModal('','')
+                this.setNext(0)
+            }
         }
     }
 </script>
@@ -38,9 +42,11 @@
         height: 85%;
         padding: 20px 40px;
         border-radius: 15px;
+        position: relative;
     }
     .modal span.close{
         position: absolute;
+        right: 15px;
         display: flex;
         justify-content: center;
         align-items: center;

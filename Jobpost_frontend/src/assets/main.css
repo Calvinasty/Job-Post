@@ -58,7 +58,7 @@
   background:  #5f8d04;
   transition: .3s ease-in-out;
 }
-.apply-filter-btn .loading{
+.loading{
   transform: rotate(300deg);
   animation: spin 1s infinite;
 }

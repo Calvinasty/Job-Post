@@ -73,7 +73,7 @@ export default {
     },
     props:['job'],
     mounted() {
-        console.log(this.job);
+        // console.log(this.job);
     },
 
     methods: {

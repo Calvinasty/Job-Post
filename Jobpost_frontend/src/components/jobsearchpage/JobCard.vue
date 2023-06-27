@@ -24,6 +24,7 @@
             <div class="slots-availab">{{jobInfomation.jobPositionsAvailable}}</div>
             <div class="updated-at">Updated {{ jobInfomation.updatedAt?.split('T')[0] }}</div>
         </footer>
+        
     </div>
 </template>
 
@@ -36,6 +37,8 @@ export default {
     data() {
         return {
             updatedAT:'',
+            token:false ,
+            toaster:false,
             jobDetailInfo:[
                 {
                     icon:'/images/icon_locationpin.svg',
@@ -56,20 +59,25 @@ export default {
     },
     props:[
         'jobInfomation',
+        'handleAccountCheck'
        
     ],
 
     mounted() {
-       
+       this.token=JSON.parse(localStorage.getItem('userToken'))
         // console.log(this.jobDetailInfo);
         
     },
 
     methods: {
         handleApplyJob(jobId){
+            this.handleAccountCheck()
+            if(!this.token){
+                alert('sign i to apply')
+                return
+            }
             this.$router.push(`/jobsearch/apply/${jobId}`)
-        }
-        
+        }   
     },
 };
 </script>
@@ -84,10 +92,11 @@ export default {
         padding: 20px;
         gap:20px;
         cursor: pointer;
-        transition: .3s ease-in-out;
+        transition: .2s ease-in-out;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.568);
     }
     .job-card:hover{
-        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.568);
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.568);
     }
     .job-card >*{
         width: 100%;
@@ -142,6 +151,8 @@ export default {
         font-size: 12px;
 
     }
+
+   
     @media screen and (max-width: 1051px) 
     {
         .job-card main{

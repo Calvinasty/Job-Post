@@ -24,8 +24,8 @@
                 <li style="text-align: center;"><span  @click="viewApplicant(applicant.id)" class="material-symbols-outlined tooltip">visibility</span></li>
                 <li><span 
                     class="status" 
-                    @click="viewApplicant(applicant.id)"
-                    :class="{pending:applicant.status=='Pending'}, {accepted:applicant.status=='Accepted'}, {rejected:applicant.status=='Rejected'}"
+                    @click="viewApplicant(applicant.id, 'status')"
+                    :class="{pending:applicant.status=='Pending'}, {accepted:applicant.status=='Accepted'}, {rejected:applicant.status=='Declined'}"
                 >
                     {{ applicant.status }}
                 </span></li>
@@ -58,7 +58,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(useDashboardStore, ['setModal']),
+        ...mapActions(useDashboardStore, ['setModal', 'setApplicant']),
         showTip(index){
             this.edit = !this.edit
             this.toolVisible=!this.toolVisible
@@ -69,8 +69,9 @@ export default {
             this.toolVisible =! this.toolVisible
             console.log(index);
         },
-        viewApplicant(id){
-            this.setModal('ApplicantModal')
+        viewApplicant(id, status=''){
+            this.setApplicant(id)
+            this.setModal('ApplicantModal', status)
         }
     },
 };

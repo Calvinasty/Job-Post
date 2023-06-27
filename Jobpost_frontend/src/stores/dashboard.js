@@ -14,7 +14,8 @@ export const useDashboardStore = defineStore(
             blink: false,
             jobId: '', //id of job clicked in the viewjobs to see applicants of that job,
             jobSeeker: {},
-            selectedApplicant: {}
+            selectedApplicantId: '', //applicant Id used to load applicants information in ApplicantModal modal
+            allApplicants: {}
         }),
         getters: {
             getNext(state){
@@ -55,7 +56,10 @@ export const useDashboardStore = defineStore(
                 this.jobSeeker = seeker
             },
             setApplicant(applicant){
-                this.selectedApplicant = applicant
+                this.selectedApplicantId = applicant
+            },
+            setAllApplicantsData(applicants){
+                this.allApplicants = applicants
             }
         }
     }

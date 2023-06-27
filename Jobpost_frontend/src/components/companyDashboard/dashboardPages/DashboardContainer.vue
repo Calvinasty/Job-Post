@@ -64,6 +64,7 @@
         width: 100%;
         height: 100dvh;
         padding: 25px;
+        padding-bottom: 70px;
         overflow: scroll;
     }
 </style>

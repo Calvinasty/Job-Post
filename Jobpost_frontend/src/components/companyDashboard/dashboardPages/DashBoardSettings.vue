@@ -18,8 +18,8 @@
             <p>Once you delete your account, there is no going back. Please be certain</p>
             <button class="del-btn" @click="handleDelete">Delete</button>
         </div>
+        <ToastMessage v-show="toast.active" :toast="toast" />
     </div>
-    <ToastMessage v-show="toast.active" :toast="toast" />
 </template>
 
 <script>

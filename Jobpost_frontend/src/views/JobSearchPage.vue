@@ -16,7 +16,6 @@ export default {
     name: 'JobPostJobSearchPage',
     components: {
         JobSearchNav
-
     },
     data(){
         return{
@@ -38,7 +37,7 @@ export default {
             axios.get(`${BASE_URL}/company/allJobs`)
             .then(res =>{           
                     this.AllPostedJobs = res.data
-                    console.log(res.data);
+                    // console.log(res.data);
                     return res.data
                 } )
                 .then(res => { 
@@ -48,13 +47,13 @@ export default {
 
         },
         handleSearch(data) {
-            console.log(this.AllPostedJobs)
-            console.log(data);
+            // console.log(this.AllPostedJobs)
+            // console.log(data);
             if (!data|| data?.data=='') {
                 return this.filteredJobs = this.AllPostedJobs
             } else {
                 const result = this.AllPostedJobs.filter((item) => (item.job_title.toLocaleLowerCase().includes(data.data)))
-                console.log('result',result);
+                // console.log('result',result);
                 return this.filteredJobs = result
             }
 
@@ -74,10 +73,10 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     width: 98dvw;
     position: relative;
-    gap: 30px;
+    gap: 50px;
 }
 
 
