@@ -49,7 +49,8 @@ export default {
         "index",
         "showplus",
         "showpencil",
-        "cardName"
+        "cardName",
+        " handleEdit"
     ],
     mounted() {
 
@@ -78,7 +79,7 @@ export default {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    gap: 40px;
+    gap: 20px;
     /* height: 100%; */
     width: 100%;
 
@@ -97,7 +98,7 @@ export default {
 }
 
 .other-details {
-    width: 30%;
+    width: 25%;
     /* display: block; */
 }
 
@@ -112,6 +113,7 @@ h3 {
 
 .editicon {
     float: right;
+
     cursor: pointer;
 }
 

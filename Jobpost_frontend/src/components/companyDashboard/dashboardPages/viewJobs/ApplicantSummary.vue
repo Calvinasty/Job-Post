@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import ApplicantSummaryInfos from '../dashboardPages/applicants_summary/ApplicantSummaryInfos.vue'
-import ApplicantSumWorkExperience from '../dashboardPages/applicants_summary/ApplicantSumWorkExperience.vue'
-import ApplicantSummarySkills from '../dashboardPages/applicants_summary/ApplicantSummarySkills.vue'
-import ApplicantSumEducation from '../dashboardPages/applicants_summary/ApplicantSumEducation.vue'
-import ApplicantSummaryHeader from '../dashboardPages/applicants_summary/ApplicantSummaryHeader.vue'
+import ApplicantSummaryInfos from './applicants_summary/ApplicantSummaryInfos.vue'
+import ApplicantSumWorkExperience from './applicants_summary/ApplicantSumWorkExperience.vue'
+import ApplicantSummarySkills from './applicants_summary/ApplicantSummarySkills.vue'
+import ApplicantSumEducation from './applicants_summary/ApplicantSumEducation.vue'
+import ApplicantSummaryHeader from './applicants_summary/ApplicantSummaryHeader.vue'
 import axios from 'axios'
 export default {
     components:{
@@ -97,6 +97,8 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
+    /* border: 1px solid; */
     overflow: hidden;
     position: relative;
   }

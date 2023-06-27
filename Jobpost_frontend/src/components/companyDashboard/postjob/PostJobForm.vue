@@ -97,7 +97,7 @@
             ...mapState(useCompanyStore, ['company'])
         },
         beforeMount(){
-            if(this.updatePostModalId !== '') //checking if post is new post or an update
+            if(this.updatePostModalId !== '' && this.updatePostModalId !=='status') //checking if post is new post or an update
                 this.setUpdatePost()
         },
         methods:{

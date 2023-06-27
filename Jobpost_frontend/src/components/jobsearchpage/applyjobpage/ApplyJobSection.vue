@@ -19,20 +19,27 @@
             :label="inputInfo[3].label" :placeholder="inputInfo[3].placeholder" :value="inputValues[6]"/>
 
             <ApplyInputComponent id="cover-letter" input-name="cover-letter" 
-            input-type="file" label="Cover Letter" placeholder="Kofi" 
-            file-types=".pdf,.docx"  :handleInput="handleInput"/>
-        
+            input-type="file" label="Cover Letter"  
+            file-types=".pdf,.docx" :show="true"  :handleInput="handleInput">
+                <textarea name="cover-letter" id="cover-letter" value=''  style="width: 100%; padding: 5px;" cols="30" rows="" placeholder=" paste / type cover letter here" v-on:change="()=>handleInput({id:'cover-letter'})">
+
+                </textarea>
+            </ApplyInputComponent>
+            
             <div class="cv flex-center">
                 <ApplyInputComponent fileTypes=".pdf,.docx" id="cv"
                 inputName="cv" inputType="file" label="CV/Resume" placeholder="cv" :handleInput="handleInput"  />
-                <button class="apply-job-btn" type="button" @click.prevent="handleApply">Apply</button>
+                <button class="apply-job-btn flex-center-row" type="button" @click.prevent="handleApply">
+                    Apply
+                    <span class="material-symbols-outlined loading" style="margin-left:5px ;" v-show="loading"> cached </span>
+                </button>
                 <button class="apply-job-btn alt" type="button" @click.prevent="handleCancel" >Cancel</button>
             </div>
            
         </form>
        
     </div>
-    <ToastMessage v-show="toast.active" :toast="toast" />
+    <ToastMessage style="width: fit-content;" v-show="toast.active" :toast="toast" />
 </div>
 </template>
 
@@ -69,15 +76,10 @@ export default {
     },
 
     methods: {
-        
-        axios(){
-            axios.post('')
-        },
-
         handleApply(){
             if(!this.application.cv){
-                console.log(this.application.cv);
-                alert('cv is required')
+                // console.log(this.application.cv);
+                this.showToast("cv is required", 'error')
                 return
             }
             const token=JSON.parse(localStorage.getItem('userToken'))
@@ -86,29 +88,40 @@ export default {
                 setTimeout(()=>(this.$router.push('/auth/login')),6000)
                 return          
             }
-            const userAplly= new FormData()
-            userAplly.append('js_id',this.user.id)
-            userAplly.append('job_id',this.job.id)
-            userAplly.append('company_id',this.job.company_id)
-            userAplly.append('cv_resume',this.application.cv)
-            userAplly.append('cover_letter',this.application.cover_letter)
-            console.log();
 
-            axios.post( `${BASE_URL}/application/jobApply`, userAplly,{headers:{token}})
+            this.loading=true
+            const userApply= new FormData()
+            userApply.append('js_id',this.user.id)
+            userApply.append('job_id',this.job.id)
+            userApply.append('company_id',this.job.company_id)
+            userApply.append('cv_resume',this.application.cv)
+            userApply.append('cover_letter',this.application.cover_letter)
+            // console.log(token);
+            console.log();
+            axios.post( `${BASE_URL}/application/jobApply`, userApply,{headers:{token}})
             .then(res=>{
-                if(res.message){
-                    alert(res.message)
-                }
+                
                 if(res.data){
+                    let msg=res.data.message
+                    this.showToast(msg, 'success')       
                     console.log(res.data);
                 }
             })
-            .catch((err)=>console.log(err))
+            .catch((err)=>{
+                let msg 
+                        if(err.response) 
+                            msg = err.response.data.message 
+                        if(err.message)
+                            msg = err.message    
+                        this.showToast(msg, 'error')
+                        this.loading = false
+                        console.log(err)
+        })
 
         },
         handleInput(inputId){
             if(inputId.id=="cv"){this.application.cv=event.target.files[0]   }
-            if(inputId.id=="cover-letter"){this.application.cover_letter=event.target.files[0]   }          
+            if(inputId.id=="cover-letter"){this.application.cover_letter=event.target.value  }          
         },
         setInputValues(){
             if(this.user){
@@ -121,7 +134,7 @@ export default {
             }
             setTimeout(() => {
                 this.toast = { active: false, msg: '', color: '' }
-            }, 6000)
+            }, 1000)
         }
 
         
@@ -131,7 +144,7 @@ export default {
 
 <style lang="css" scoped>
 .apply-section{
-    max-width: 556px;
+    max-width: 400px;
     min-width: 320px;
     flex:1;
     height: 100%;
@@ -165,7 +178,7 @@ align-items: flex-start;
 /* background: #000; */
 gap: 20px;
 position: relative;
-padding-bottom:300px;
+padding-bottom:260px;
 }
 
 .cv{
@@ -190,6 +203,10 @@ padding-bottom:300px;
     border: none;
     border-radius:10px;
     cursor: pointer;
+}
+#cover-letter{
+    resize: none;
+    height: 100px;
 }
 
 .apply-job-btn:hover{

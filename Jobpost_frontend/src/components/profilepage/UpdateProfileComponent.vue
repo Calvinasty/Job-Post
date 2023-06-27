@@ -1,6 +1,6 @@
 <template>
     <EditProfileLayout @close="$emit('close')" :type="type" :index="index">
-        <component v-show="type == 'user'" :key="key" :is="componentId" :userInfo="userInfo"
+        <component class="update-user" v-show="type == 'user'" :key="key" :is="componentId" :userInfo="userInfo"
             :handlecloseCard="handlecloseCard" :handleSave="handleSave">
         </component>
         <component v-show="type == 'company'" :handlecloseCard="handlecloseCard" :companyInfo="companyInfo"
@@ -56,10 +56,6 @@ export default {
             companyinformation: CompanyInformation,
             registrationinfo: RegistrationInfo,
             companylocation: CompanyLocation,
-
-            //data from state
-            // user : []
-
         }
     },
     computed: {
@@ -75,4 +71,8 @@ export default {
 }
 </script> 
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.update-user {
+    height: 100%;
+}
+</style>

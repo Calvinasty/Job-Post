@@ -13,7 +13,7 @@
 <script>
     import AuthLayout from '../components/authpage/AuthLayout.vue';
     import SignInPage from '../components/authpage/signinComponents/SignInPage.vue'
-    import SignUpPage from '../components/authpage/signupComponents/SignUpPage.vue';
+    import SignUpPage from '../components/authpage/signupComponents/JobSeekerSignUp.vue';
     import JobPosterSignup from '../components/authpage/signupComponents/JobPosterSignup.vue'
     import SignInAdminPage from '../components/authpage/signinComponents/SignInAdminPage.vue';
     import ForgotPasswordPage from '../components/authpage/forgotpassword/ForgotPasswordPage.vue';

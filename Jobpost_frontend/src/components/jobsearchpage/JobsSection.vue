@@ -31,12 +31,18 @@ export default {
  .jobs-listing{
     /* flex: 1; */
     display: grid;
-    grid-template-columns: 2fr 2fr ;
+    grid-template-columns: 2fr 2fr 2fr ;
     width: 100%;
     row-gap: 28px;
     column-gap: 28px;
     padding-right:100px;
  }
+
+ @media screen and (max-width:1417px) {
+    .jobs-listing{
+        grid-template-columns: 2fr 2fr;
+    }
+}
  @media screen and (max-width:1019px){
     .jobs-listing{
         grid-template-columns: 1fr;
