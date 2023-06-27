@@ -62,7 +62,13 @@ export default {
     height: 100%;
 }
 .country-select{
-    width: 100%;}
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    border-radius:5px ;
+    border: 1px solid #88CC00;
+    outline:#88CC00;
+}
   
     
 </style>

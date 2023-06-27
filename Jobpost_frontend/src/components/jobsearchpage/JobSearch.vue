@@ -2,6 +2,15 @@
      <main class="jobs-section">
             <FilterSection :applyFilter="applyFilter"/>
             <JobsSection :allJobs="allJobs" />
+            <div class="toaster" v-show="toaster">
+            <div class="toaster-main">
+                <h2>Login OR Sign Up to Apply</h2>
+            <div >
+                <button @click.prevent="()=>this.$router.push('/auth/login')">Sign In</button>
+                <button @click.prevent="()=>this.$router.push('/auth')">Sign Up</button>
+            </div>'
+            </div>
+        </div>
         </main>
 </template>
 
@@ -16,7 +25,7 @@ export default {
 
     data() {
         return {
-          
+            toaster:false    
         }
     },
     methods:{
@@ -30,8 +39,6 @@ export default {
             if(filter =='location'){
                 alert('location')
             }
-
-
         }
     },
     } 
@@ -41,8 +48,8 @@ export default {
 <style lang="css" scoped>
 .jobs-section {
     position: relative;
-    margin-top: 85px;
-    max-width: 1460px;
+    /* margin-top: 85px; */
+    max-width: 1660px;
     height: 100%;
     display: flex;
     justify-content: flex-start;
@@ -50,6 +57,8 @@ export default {
     column-gap: 50px;
     width: 100%;
 }
+
+
 
 @media screen and (max-width:871px) {
     .jobs-section {
