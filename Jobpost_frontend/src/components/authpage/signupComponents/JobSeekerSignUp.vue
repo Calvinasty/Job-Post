@@ -147,8 +147,7 @@ export default {
                         this.loading = false
                         console.log(err)
                 })
-            
-            
+
         },
 
         showToast(msg, color) {
