@@ -25,7 +25,7 @@
 
 <script>
 import {mapActions} from 'pinia';
-import { useDashboardStore } from '../../../stores/dashboard';
+import { useDashboardStore } from '../../../../stores/dashboard';
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
@@ -66,7 +66,7 @@ export default {
     .main {
         display: flex;
         flex-direction: column;
-        row-gap: 20px;
+        /* row-gap: 20px; */
         height: 100%;
         width: 100%;
         padding: 20px 40px;

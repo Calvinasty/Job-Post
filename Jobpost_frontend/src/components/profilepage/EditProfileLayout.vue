@@ -3,11 +3,6 @@
         <div class="card">
             <NavListComponent class="nav-list" :type="type" :index="index" />
             <slot></slot>
-            <!-- <div class="btnsec flex-center-row">
-                <button class="btn" @click="handleSave">Save</button>
-                <button class="btns" @click="handlecloseCard">Cancel</button>
-            </div> -->
-
         </div>
 
     </div>

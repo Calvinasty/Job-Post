@@ -48,13 +48,14 @@
                             :inputType="inputCardDetails[0].cardInputInformation.inputEight.type" :Value="Value.github"
                             :inputId="inputCardDetails[0].cardInputInformation.inputEight.id" />
                     </CardInformationComponent>
+
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="2"
                         :detailsTitle="inputCardDetails[1].cardTitle" :cardName="user.education" :showplus="true">
                         <InputComponent v-for="(school, schoolIndex) in user.education" :key="schoolIndex"
                             :fullName="inputCardDetails[1].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[1].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[1].cardInputInformation.inputOne.id" :Value="school?.institution"
-                            :showpencil="true" :itemId="school.id" :itemIndex="index" />
+                            :showpencil="true" :itemId="school.id" :handleEdit="handleEdit" itemIndex="2" />
                         <!-- :handleEdit="handleEdit" -->
 
                     </CardInformationComponent>
@@ -64,7 +65,7 @@
                             :fullName="inputCardDetails[2].cardInputInformation.inputOne.name"
                             :inputType="inputCardDetails[2].cardInputInformation.inputOne.type"
                             :inputId="inputCardDetails[2].cardInputInformation.inputOne.id" :Value="workexp?.role"
-                            :showpencil="true" />
+                            :showpencil="true" :itemId="workexp.id" :handleEdit="handleEdit" itemIndex="3" />
 
                     </CardInformationComponent>
                     <CardInformationComponent :userValue="Value" :showPopup="showPopup" index="4"
@@ -90,9 +91,9 @@
 </template>
 
 <script>
-import { mapState } from 'pinia';
-import { mapActions } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import { useUserStore } from '../stores/users';
+import { useUserProfileStore } from '../stores/userprofile';
 import JobSearchNav from '../components/jobsearchpage/JobSearchNav.vue'
 import FooterComponent from '../components/FooterComponent.vue';
 import UpdateProfileComponentVue from '../components/profilepage/UpdateProfileComponent.vue';
@@ -171,15 +172,18 @@ export default {
 
     methods: {
         ...mapActions(useUserStore, ['setUser']),
+        ...mapActions(useUserProfileStore, ['setEduId', 'setWorkexpId']),
         showPopup(index) {
             this.showModal = !this.showModal
             this.index = index
         },
 
-        // handleEdit(itemId, itemIndex) {
-        //     this.showPopup(itemIndex)
+        handleEdit(itemId, itemIndex) {
+            this.setEduId(itemId)
+            this.setWorkexpId(itemId)
+            this.showPopup(itemIndex)
 
-        // },
+        },
         getAllUserInfo() {
             const token = JSON.parse(localStorage.getItem('userToken'))
             if (token) {
@@ -226,19 +230,13 @@ export default {
     align-items: flex-start;
     gap: 43px;
     margin-bottom: 50px;
-    /* background-color: aqua; */
-
 }
-
 
 .profile {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* padding-top: 66px; */
     width: 20%;
-
-
 }
 
 .profile-card {
@@ -250,13 +248,11 @@ export default {
     align-items: center;
     padding: 42px 10px;
     height: 400px;
-    /* background: hsl(258, 76%, 50%); */
 }
 
 .profile-card h3 {
     font-size: 30px;
     font-weight: 400;
-
 }
 
 .profile-card span {
@@ -291,7 +287,6 @@ export default {
     color: #040404;
 }
 
-
 .profile-details {
     display: flex;
     align-items: flex-start;
@@ -299,9 +294,6 @@ export default {
     gap: 60px;
     flex-wrap: wrap;
     flex: 1;
-
-
-
 }
 
 .btnsec {
@@ -310,11 +302,9 @@ export default {
     align-items: center;
     padding: 57px 0;
     gap: 56px;
-    /* background-color: aqua; */
 }
 
 .btn {
-
     border-radius: 8px;
     width: 194px;
     height: 64px;
@@ -337,7 +327,6 @@ export default {
     .user-profile {
         justify-content: center;
         gap: 30px;
-        /* background: #af4040; */
     }
 
     .title {

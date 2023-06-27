@@ -152,9 +152,17 @@ export default {
                     if (res.data?.token) {
                         const token = JSON.stringify(res.data.token)
                         localStorage.setItem('companyToken', token)
+                    }
+                })
+                .then(() => {
+                    const token = JSON.parse(localStorage.getItem('companyToken'))
+                    axios.get(`${BASE_URL}/company/getAll`, {headers: {token:token}})
+                    .then(res => {
                         console.log('company', res.data.allCompanyInfo[0]);
                         this.setCompany(res.data.allCompanyInfo[0])
-                    }
+                    }).catch(err => {
+                        console.log(err);
+                    })
                 })
                 .then(() => {
                     this.$router.push('/admin/analyticsView')

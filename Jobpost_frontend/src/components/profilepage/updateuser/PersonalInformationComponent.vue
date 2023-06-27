@@ -50,7 +50,7 @@
 
 <script>
 // import { mapState } from 'pinia'
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '../../../stores/users'
 import axios from 'axios'
 import ToastMessage from '../../utils/ToastMessage.vue'
@@ -64,7 +64,7 @@ export default {
     props: [
         'handlecloseCard',
         'handleSave',
-        'userInfo',
+        // 'userInfo',
     ],
     data() {
         return {
@@ -84,18 +84,18 @@ export default {
         }
     },
 
-    // computed: {
-    //     ...mapState(useUserStore, ['showUser']),
-    // },
+    computed: {
+        ...mapState(useUserStore, ['user']),
+    },
 
     mounted() {
-        this.personalInfo.first_name = this.userInfo?.first_name
-        this.personalInfo.middle_name = this.userInfo?.middle_name
-        this.personalInfo.last_name = this.userInfo?.last_name
-        this.personalInfo.email = this.userInfo?.email
-        this.personalInfo.phone = this.userInfo?.phone
-        this.personalInfo.date_of_birth = this.userInfo?.date_of_birth
-        this.personalInfo.gender = this.userInfo?.gender
+        this.personalInfo.first_name = this.user?.first_name
+        this.personalInfo.middle_name = this.user?.middle_name
+        this.personalInfo.last_name = this.user?.last_name
+        this.personalInfo.email = this.user?.email
+        this.personalInfo.phone = this.user?.phone
+        this.personalInfo.date_of_birth = this.user?.date_of_birth
+        this.personalInfo.gender = this.user?.gender
     },
 
     methods: {

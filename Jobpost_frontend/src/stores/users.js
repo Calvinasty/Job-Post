@@ -5,7 +5,7 @@ export const useUserStore = defineStore(
     'user',
     {
         state:()=>({
-            user: useStorage("userState", {})
+            user: useStorage("userState", {}) //user information from api or signin
         }),
         getters: {
             showUser:(state) => {

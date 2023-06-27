@@ -46,23 +46,18 @@ export default {
     beforeMount(){
         const route =useRoute()
            const {jobId}= route.params
-        //    console.log(jobId);
         this.handleJobDescription(jobId)
 
     },
-    // created(){
-    //     const route =useRoute()
-    //        const {jobId}= route.params
-    //     console.log(jobId);
-    //     this.handleJobDescription(jobId)
-    // },
+    created(){
+            this.currentUser=this.user
+
+    },
     methods: {
         handleJobDescription(jobId){
             console.log(jobId);
-            console.log(this.postedJobs);
-            // this.currentJob= this.postedJobs.filter(job=>(job.id!==jobId))
             this.currentJob=this.postedJobs.find(job=>(job.id==jobId))
-            console.log(this.currentJob);
+
         },
         handleCancel(){
             this.currentJob={}

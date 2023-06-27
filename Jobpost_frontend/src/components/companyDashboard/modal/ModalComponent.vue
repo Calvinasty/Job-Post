@@ -9,13 +9,13 @@
     import { useDashboardStore } from '../../../stores/dashboard';
     import ModalLayout from './ModalLayout.vue';
     import PostJobForm from '../postjob/PostJobForm.vue';
-    import ApplicantSummary from '../dashboardPages/ApplicantSummary.vue';
+    import ApplicantModal from '../dashboardPages/viewJobs/ApplicantModal.vue';
     export default {
-        components:{ModalLayout, PostJobForm, ApplicantSummary},
+        components:{ModalLayout, PostJobForm, ApplicantModal},
         data(){
             return{
                 postjobform: PostJobForm,
-                applicantsummary: ApplicantSummary
+                applicantmodal: ApplicantModal
             }
         },
         computed:{

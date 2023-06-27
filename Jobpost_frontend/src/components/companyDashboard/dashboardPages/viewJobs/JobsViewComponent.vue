@@ -21,8 +21,8 @@
 <script>
     import axios from 'axios'
     import {mapState, mapActions} from 'pinia'
-    import { useCompanyStore } from '../../../stores/companies';
-    import { useDashboardStore } from '../../../stores/dashboard';
+    import { useCompanyStore } from '../../../../stores/companies';
+    import { useDashboardStore } from '../../../../stores/dashboard';
     const BASE_URL = import.meta.env.VITE_BASE_URL
     import JobsDescriptionComponent from './JobsDescriptionComponent.vue';
     export default {
