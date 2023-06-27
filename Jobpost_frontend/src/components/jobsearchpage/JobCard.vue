@@ -71,9 +71,9 @@ export default {
 
     methods: {
         handleApplyJob(jobId){
-            this.handleAccountCheck()
+            
             if(!this.token){
-                alert('sign i to apply')
+                this.handleAccountCheck()
                 return
             }
             this.$router.push(`/jobsearch/apply/${jobId}`)
