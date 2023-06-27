@@ -135,7 +135,7 @@
                 if(this.updatePostModalId !== ''){
                     const jobId = this.postjob.jobId
                     console.log('jobId', jobId);
-                    axios.put(`${BASE_URL}/job/update/${jobId}`, newFormData, {headers: {token:token}})
+                    axios.put(`${BASE_URL}/company/updateJob/${jobId}`, newFormData, {headers: {token:token}})
                     .then(res => {
                         console.log(res.data);
                         let msg = res.data?.message
@@ -153,7 +153,7 @@
                         this.showToast(msg, 'error')
                     })
                 }else{
-                    axios.post(`${BASE_URL}/job/postJob`, newFormData, {headers: {token}})
+                    axios.post(`${BASE_URL}/company/postJob`, newFormData, {headers: {token}})
                     .then(res => {
                         console.log(res.data);
                         let msg = res.data?.message
