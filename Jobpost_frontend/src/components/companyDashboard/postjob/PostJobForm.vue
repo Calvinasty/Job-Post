@@ -15,12 +15,12 @@
                 <div class="second" v-show="next == 1">
                     <label for="">Select Job Type</label>
                     <select v-model="postjob.jobtype">
-                        <!-- <option value="default">Select Job Type</option> -->
-                        <option value="fullTime">Full Time</option>
-                        <option value="partTime">Part Time</option>
-                        <option value="remote">Remote</option>
-                        <option value="internship">Internship</option>
-                        <option value="contract">Contract</option>
+                        <option value="">Select Job Type</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Remote">Remote</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Contract">Contract</option>
                     </select>
 
                     <input v-model="postjob.location" type="text" placeholder="Job Location">
@@ -34,8 +34,8 @@
                 <div class="third" v-show="next == 2">
                     <label for="">Select Salary</label>
                     <select v-model="postjob.salary" placeholder="Select Salary Range">
-                        <!-- <option value="default">Select Salary Range</option> -->
-                        <option value="disclosure">Non-disclosure</option>
+                        <option value="">Select Salary Range</option>
+                        <option value="non-disclosure">Non-disclosure</option>
                         <option value="GH¢ 800-1,200">GH¢ 800 - 1,200</option>
                         <option value="GH¢ 1,200-1,800">GH¢ 1,200 - 1,800</option>
                         <option value="GH¢ 1,800-2,500">GH¢ 1,800 - 2,500</option>
@@ -97,7 +97,7 @@
             ...mapState(useCompanyStore, ['company'])
         },
         beforeMount(){
-            if(this.updatePostModalId !== '') //checking if post is new post or an update
+            if(this.updatePostModalId !== '' && this.updatePostModalId !=='status') //checking if post is new post or an update
                 this.setUpdatePost()
         },
         methods:{
@@ -181,6 +181,7 @@
                     this.postjob[key] = ''
                 })
                 this.setModal('','')
+                this.setNext(0)
             },
             cancelForm(){
                 if(confirm("Are you sure of this action?")){

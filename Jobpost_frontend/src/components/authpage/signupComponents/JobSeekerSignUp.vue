@@ -1,6 +1,6 @@
 <template>
-    <div class="signin-desktop">
-        <div class="signin">
+    <div class="signup-desktop signup-mobile">
+        <div class="signup">
             <header>
                 <div class="image-box">
                     <span class="material-symbols-outlined back-arrow" @click="$router.back()"> west</span>
@@ -9,19 +9,13 @@
 
                 <h2>{{ nameHeader }}</h2>
 
-                <div v-if="showToggle" class="login-option flex-center-row">
-                    <div id="btn">Job Seeker</div>
-                    <button type="button" class="toggle-btn" id="jobSeeker" @click="jobSeeker()">Job Seeker</button>
-                    <button type="button" class="toggle-btn" id="jobPoster" @click="jobPoster()">Job Poster</button>
-                </div>
-
             </header>
 
-            <div class="signin-header">
+            <div class="signup-header">
                 <h3>{{ nameTitle }}</h3>
             </div>
 
-            <form @submit.prevent="handleSignIn" class="signin-desktop-field">
+            <form @submit.prevent="handleSignIn" class="signup-desktop-field">
                 <div class="user-field">
                     <InputComponent type="email" id="email" name="email" placeHolder="Email"
                         :handleInput="handleUserInput" />
@@ -33,16 +27,13 @@
                 </div>
 
                 <div class="desk-links">
-                    <button type="submit" class="flex-center-row signin-btn"> Log in
+                    <button type="submit" class="flex-center-row signup-btn"> Register
                         <span class="material-symbols-outlined loading" v-show="loading"> cached </span>
                         <span class="material-symbols-outlined" v-show="loading == false"> east </span>
                     </button>
 
-                    <button type="button" class="forgot-btn">Forgotten Password? <span @click="toForgot()">Click
+                    <button type="button" class="signin-btn">Already a user? <span @click="toForgot()">Click
                             Here</span></button>
-
-                    <button type="button" v-if="showText" class="signup-btn">{{ userInfo }} <span
-                            @click="toSignup()">Register Now</span></button>
                 </div>
             </form>
         </div>
@@ -72,6 +63,8 @@ export default {
                 email: '',
                 password: ''
             },
+            nameHeader: 'Sign Up',
+            nameTitle: 'Create an account as a Job Seeker',
             userType: 'jobSeeker',
             loading: false,
             toast: {
@@ -82,8 +75,6 @@ export default {
     },
 
     props: [
-        'nameHeader',
-        'nameTitle',
         'userInfo',
         'showText',
         'showToggle'
@@ -92,31 +83,9 @@ export default {
     methods: {
         ...mapActions(useUserStore, ['setUser']),
         ...mapActions(useCompanyStore, ['setCompany']),
+
         toForgot() {
-            this.$router.push('/auth/forgot-password')
-        },
-        toSignup() {
-            this.$router.push('/auth')
-        },
-
-        jobPoster() {
-            var z = document.getElementById("btn");
-            // console.log(z);
-            z.style.left = "50%"
-            z.innerHTML = "Job Poster"
-
-            this.userType = "jobPoster"
-
-            // console.log(this.userType);
-
-        },
-        jobSeeker() {
-            var z = document.getElementById("btn");
-            z.style.left = "0"
-            z.innerHTML = "Job Seeker"
-            this.userType = "jobSeeker"
-
-            // console.log(this.userType);
+            this.$router.push('/auth/register')
         },
 
         handleUserInput(data) {
@@ -141,7 +110,7 @@ export default {
 
 
             if (this.userType == 'jobPoster') {
-                axios.post(`${BASE_URL}/company/logIn`, user)
+                axios.post(`${BASE_URL}/company/logInCompany`, user)
                 .then(res => {
                     console.log(res.data);
                     if (res.data?.message) {
@@ -152,17 +121,9 @@ export default {
                     if (res.data?.token) {
                         const token = JSON.stringify(res.data.token)
                         localStorage.setItem('companyToken', token)
-                    }
-                })
-                .then(() => {
-                    const token = JSON.parse(localStorage.getItem('companyToken'))
-                    axios.get(`${BASE_URL}/company/getAll`, {headers: {token:token}})
-                    .then(res => {
                         console.log('company', res.data.allCompanyInfo[0]);
                         this.setCompany(res.data.allCompanyInfo[0])
-                    }).catch(err => {
-                        console.log(err);
-                    })
+                    }
                 })
                 .then(() => {
                     this.$router.push('/admin/analyticsView')
@@ -183,7 +144,7 @@ export default {
             if (this.userType == 'jobSeeker') {
                 // console.log('hello');
                 axios
-                .post(`${BASE_URL}/jobSeeker/signIn`, user)
+                .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
                 .then((res) => {
 
                     if (res.data?.message) {
@@ -227,7 +188,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.signin header {
+@media screen and (min-width: 681px) {
+    .signup-mobile {
+        display: none;
+    }
+    .signup header {
     position: relative;
 }
 
@@ -235,6 +200,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    align-content: center;
 
 }
 
@@ -247,7 +213,7 @@ export default {
     cursor: pointer;
 }
 
-.signin-desktop {
+.signup-desktop {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -261,7 +227,7 @@ export default {
     height: 100dvh;
 }
 
-.signin {
+.signup {
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -310,7 +276,7 @@ header img {
 header h2 {
     font-weight: bolder;
     line-height: 41px;
-    color: #7FBF4C;
+    color: #4E4E4E;
 }
 
 #btn {
@@ -329,7 +295,7 @@ header h2 {
     font-size: 14px;
 }
 
-.signin-header {
+.signup-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -337,19 +303,19 @@ header h2 {
     text-align: center;
 }
 
-.signin-header h3 {
+.signup-header h3 {
     font-weight: bolder;
     line-height: 38px;
-    color: #7FBF4C;
+    color: #7D7474;
 }
 
-.signin-header p {
+.signup-header p {
     font-size: 14px;
     width: 70%;
     color: #7D7474;
 }
 
-.signin-desktop-field {
+.signup-desktop-field {
     display: flex;
     flex-direction: column;
     row-gap: 25px;
@@ -390,7 +356,7 @@ header h2 {
     line-height: 16px;
 }
 
-.desk-links .signin-btn {
+.desk-links .signup-btn {
     padding: 12px 9px;
     width: 100%;
     border-radius: 10px;
@@ -404,7 +370,7 @@ header h2 {
     cursor: pointer;
 }
 
-.desk-links .forgot-btn,
+.desk-links .signin-btn,
 .signup-btn {
     background: #fff;
     border: none;
@@ -412,9 +378,11 @@ header h2 {
     font-weight: 500;
 }
 
-.forgot-btn span,
-.signup-btn span {
+.signin-btn span {
     color: #7FBF4C;
+}
+.signup-btn span {
+    color: #eeeeee;
     cursor: pointer;
 }
 
@@ -444,32 +412,219 @@ header h2 {
         transform: rotate(360deg);
     }
 }
+}
 
-/* .desk-links p span {
-        color: #7FBF4C;
-        cursor: pointer;
+@media screen and (max-width: 681px) {
+    .signup-desktop {
+        display: none;
+    }
+
+    .signup header {
+    position: relative;
+}
+    .signup-mobile {
+        display: block;
+    }
+
+    .image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-arrow {
+    color: #7FBF4C;
+    position: absolute;
+    left: 0;
+    font-size: 30px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+    .signup {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    border-radius: 20px;
+    width: 100dvw;
+    height: 100dvh;
+    padding-bottom: 80px;
+    padding-top: 30px;
+    }
+
+    header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 25px;
+}
+
+header img {
+    width: 40%;
+    padding-bottom: 13px;
+}
+
+.login-option {
+    width: 100%;
+    border: 1px solid #88CC00;
+    border-radius: 5px 0px 0px 5px;
+    position: relative;
+}
+
+.toggle-btn {
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-weight: 700;
+    font-size: 14px;
+    color: #7FBF4C;
+}
+
+header h2 {
+    font-weight: bolder;
+    line-height: 41px;
+    color: #4E4E4E;
+}
+
+#btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 50%;
+    height: 40px;
+    background: #88CC00;
+    transition: .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.signup-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.signup-header h3 {
+    font-weight: bolder;
+    line-height: 38px;
+    color: #7D7474;
+}
+
+.signup-header p {
+    font-size: 14px;
+    width: 70%;
+    color: #7D7474;
+}
+
+.signup-desktop-field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    width: 80%;
+}
+
+.user-field,
+.password-field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.user-field label,
+.password-field label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 19px;
+}
+
+/* .user-field input, .password-field input {
+        padding: 15px;
+        border: 2px solid #7FBF4C;
+        border-radius: 8px;
     } */
+.desk-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    row-gap: 25px;
+}
 
-/* @media screen and (max-width:1200px) and (min-width:1024px) {
-        .signin{
-            width: 550px;
-        }
+.desk-links p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+}
 
-        .desk-links {
-            width: 550px;
-        }
-    } */
+.desk-links .signup-btn {
+    padding: 12px 9px;
+    width: 100%;
+    border-radius: 10px;
+    background: #7FBF4C;
+    color: #fff;
+    border: #7FBF4C;
+    column-gap: 5px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+}
 
-/* @media screen and (max-width: 1024px) and (min-width: 681px) {
-        .signin {
-            width: 80%;
-        }
+.desk-links .signin-btn,
+.signup-btn {
+    background: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+}
 
-        .desk-links {
-            width: 100%;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            row-gap: 5px;
-        }
-    } */</style>
+.signin-btn span {
+    color: #7FBF4C;
+}
+.signup-btn span {
+    color: #eeeeee;
+    cursor: pointer;
+}
+
+.loading {
+    transform: rotate(300deg);
+    animation: spin 1s infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(270deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+}
+</style>

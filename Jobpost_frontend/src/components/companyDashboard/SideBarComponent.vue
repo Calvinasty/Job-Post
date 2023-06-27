@@ -33,9 +33,7 @@
                     // { name: "View All Aplicants", icon: "groups", link: "viewApplicant", active: false },
                     { name: "Company Profile", icon: "account_circle", link: "companyProfile", active: false },
                 ],
-                settings: [
-                    { name: "Settings", icon: 'settings', link: "dashboardSettings", active:false },
-                ],
+                settings: { name: "Settings", icon: 'settings', link: "dashboardSettings", active: false },
                 user: {
                     text: 'Logout',
                     email: 'user@email.com',
@@ -48,22 +46,30 @@
             let route = this.$route.params.id
             Object.keys(this.navItems).forEach(key => {
                 this.navItems[key].link == route ? this.navItems[key].active=true : this.navItems[key].active=false
+                console.log('first');
             })
+            if(route == this.settings.link){
+                this.settings.active = true
+                console.log('second');
+            }else{
+                this.settings.active = false
+                console.log('third');
+            }
         },
         methods: {
             goto(link, index) {
                 this.navItems.map((item, navIndex) => (
                     navIndex == index ? item['active']=true : item['active']=false)
                 )
-                this.settings[0].active = false
+                this.settings.active = false
                 this.$router.push(link)
             },
             gotoSettings(link){
+                this.settings.active = true
                 this.navItems.map((item) => (
                     item['active']=false
                 ))
-                this.settings[0].active = true
-                this.$router.push('dashboardSettings')
+                this.$router.push(link)
             }
         },
     }
@@ -75,26 +81,28 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content:flex-start;
         align-items: center;
         background-color: #fff;
         box-shadow: 1px 0px 9px rgba(131, 131, 131, 0.633);
+        /* border: 1px solid red; */
+        position: relative;
     }
     image{
-        height: 10%;
-        /* padding: 20px; */
         width: 100%;
+        height: 75px;
         display: flex;
         justify-content: center;
         align-items: center;
         position: relative;
         cursor: pointer;
-        /* border: 1px solid; */
+        border-bottom: 1.5px solid #E0E0E0;
     }
     image img{
         width: 60%;
-        position: absolute;
+        position: relative;
         top: 0px;
+
     }
     aside{
         /* border-top: 0.2px solid #666; */
@@ -105,12 +113,16 @@
     }
     aside.nav-items{
         /* border-top: 0.2px solid #666; */
-        height: 50%;
+        height: 45%;
         width: 100%;
+        border-bottom: 1.5px solid #E0E0E0;
+        position: relative;
     }
     aside.settings-nav{
-        border-top: 0.2px solid #666;
-        height: 50%;
+        /* border-top: 0.2px solid #666; */
+        height: 55%;
+        /* border: 2px solid green; */
+        position: relative;
     }
     .slide-fade-enter-active {
         transition: 0.3s ease-out !important;

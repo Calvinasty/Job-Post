@@ -58,71 +58,73 @@ export default {
     methods: {
         ...mapActions(useUserStore, ['setUser']),
         handleAdd() {
-            if (this.socialsLink.linkedIn_link == "" || this.socialsLink.gitHub_link == "") {
-                const token = JSON.parse(localStorage.getItem('userToken'))
-                // console.log(this.socialsLink.linkedIn_link, this.socialsLink.gitHub_link);
-                const updatedUserInfo = new FormData()
-                updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
-                updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
-                // console.log(this.socialsLink.linkedIn_link);
-                axios.post(`${BASE_URL}/links/jsLinks`, updatedUserInfo, { headers: { token } })
-                    .then((res) => {
-                        console.log(token);
-                        if (res.data) {
-                            console.log('post', res.data)
-                            this.socialsLink = res.data.newLink
+            // console.log(this.user.js_social_link);
+            // if (!this.user.js_social_link || this.user.js_social_link == null) {
+            const token = JSON.parse(localStorage.getItem('userToken'))
+            // console.log(this.socialsLink.linkedIn_link, this.socialsLink.gitHub_link);
+            const updatedUserInfo = new FormData()
+            updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
+            updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
+            console.log(this.socialsLink);
+            axios.post(`${BASE_URL}/links/jsLinks`, updatedUserInfo, { headers: { token } })
+                .then((res) => {
+                    console.log(token);
+                    if (res.data) {
+                        console.log('post', res.data)
+                        // this.socialsLink = res.data.newLink
+                        console.log(this.socialsLink);
 
-                            const token = JSON.parse(localStorage.getItem('userToken'))
-                            axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
-                                .then((res) => {
-                                    console.log('Jobseeker All Info', res.data);
-                                    res.data.allInfo[0]['js_social_link'] = this.socialsLink
-                                    this.setUser(res.data.allInfo[0])
-                                })
-                                .then(() => window.location.reload())
-                                .catch((err) => {
-                                    console.log(err);
-                                })
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    })
-                    .finally(() => { this.handlecloseCard() })
-            }
-            else {
-                const token = JSON.parse(localStorage.getItem('userToken'))
-                const id = this.user.js_social_link.id
-                console.log(id);
-                const updatedUserInfo = new FormData()
-                updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
-                updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
+                        const token = JSON.parse(localStorage.getItem('userToken'))
+                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                            .then((res) => {
+                                console.log('Jobseeker All Info', res.data);
+                                // res.data.allInfo[0]['js_social_link'] = this.socialsLink
+                                this.setUser(res.data.allInfo[0], 'socials')
+                            })
+                            .then(() => window.location.reload())
+                            .catch((err) => {
+                                console.log(err);
+                            })
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .finally(() => { this.handlecloseCard() })
+            // }
+            // else {
+            //     const token = JSON.parse(localStorage.getItem('userToken'))
+            //     const id = this.user.js_social_link.id
+            //     console.log(id);
+            //     const updatedUserInfo = new FormData()
+            //     updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
+            //     updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
 
-                axios.put(`${BASE_URL}/links/update/${id}`, updatedUserInfo, { headers: { token } })
-                    .then((res) => {
-                        if (res.data) {
-                            console.log('update', res.data)
-                            // alert(res.data.message)
-                            this.socialsLink = res.data.newLink
+            //     axios.put(`${BASE_URL}/links/update/${id}`, updatedUserInfo, { headers: { token } })
+            //         .then((res) => {
+            //             if (res.data) {
+            //                 console.log('update', res.data)
+            //                 // alert(res.data.message)
+            //                 this.socialsLink = res.data.newLink
 
-                            const token = JSON.parse(localStorage.getItem('userToken'))
-                            axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
-                                .then((res) => {
-                                    console.log('Social res data', res.data);
-                                    res.data.allInfo[0]['js_social_link'] = this.socialsLink
-                                    this.setUser(res.data.allInfo[0], 'socials')
-                                })
-                                .then(window.location.reload())
-                                .catch((err) => {
-                                    console.log(err);
-                                })
-                        }
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    })
-                    .finally(() => { this.handlecloseCard() })
-            }
+            //                 const token = JSON.parse(localStorage.getItem('userToken'))
+            //                 axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+            //                     .then((res) => {
+            //                         console.log('All Job Seeker', res.data);
+            //                         res.data.allInfo[0]['js_social_link'] = this.socialsLink
+            //                         this.setUser(res.data.allInfo[0], 'socials')
+            //                     })
+            //                     .then(window.location.reload())
+            //                     .catch((err) => {
+            //                         console.log(err);
+            //                     })
+            //             }
+            //         })
+            //         .catch((err) => {
+            //             console.log(err);
+            //         })
+            //         .finally(() => { this.handlecloseCard() })
+            // }
 
 
         },

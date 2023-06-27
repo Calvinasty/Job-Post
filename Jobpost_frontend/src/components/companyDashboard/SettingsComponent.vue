@@ -1,9 +1,9 @@
 <template>
     <main>
         <div class="settings">
-            <button type="button" :class="{ active: settings[0].active }" @click="() => gotoSettings(settings[0].link, index)">
-                <span class="material-symbols-outlined">{{ settings[0].icon }}</span>
-                {{ settings[0].name }}
+            <button type="button" :class="{active:settings?.active}" @click="() => gotoSettings(settings.link, index)">
+                <span class="material-symbols-outlined">{{ settings.icon }}</span>
+                {{ settings.name }}
             </button>
         </div>
         
@@ -38,8 +38,8 @@ export default {
         align-items: center;
         width: 100%;
         height: 100%;
-        padding: 0 20px;
-        padding-bottom: 20px;
+        padding: 20px 0;
+        /* border: 1px solid; */
     }
     .settings {
         width: 100%;
@@ -51,16 +51,18 @@ export default {
         justify-content: flex-start;
         align-items: center;
         width: 100%;
-        padding: 15px 20px;
+        padding: 20px 20px;
+        outline: none;
         border: none;
         font-size: 15px;
+        color: #666;
         font-weight: 600;
-        margin: 45px 0;
-        border-radius: 5px;
+        margin: 5px 0;
+        /* border-radius: 5px; */
         cursor: pointer;
         text-align: left;
-        transition: 0.2s ease-in-out;
         background-color: transparent;
+        transition: 0.2s ease-in-out;
     }
     .settings button:hover {
         background-color: rgba(217, 217, 217, 1);
@@ -76,17 +78,24 @@ export default {
         color: #88CC00;
     }
     .icon-btn{
-        border: none;
         display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
         align-items: center;
-        gap: 15px;
-        transition: 0.2s ease-in-out;
-        width: 100%;
-        padding: 15px 20px;
+        gap: 10px;
+        width: 80%;
+        padding: 20px 20px 20px 40px;
+        outline: none;
+        border: none;
         font-size: 15px;
-        font-weight: 500;
+        color: #666;
+        font-weight: 600;
+        margin: 5px 0px;
         border-radius: 5px;
-        cursor: pointer;    
+        cursor: pointer;
+        text-align: left;
+        background-color: rgba(217, 217, 217, 1);
+        transition: 0.2s ease-in-out;    
 
     }
     .icon-btn .text{
@@ -96,17 +105,22 @@ export default {
     .icon-btn:hover{
         background-color: rgba(217, 217, 217, 1);
         transition: 0.2s ease-in-out;
-        color:#000;
+        color:#8c0;
         font-weight: bold  
     }
+    .icon-btn:hover .text{
+        color: #8c0;
+    }
+
 
     .settings .active{
-        background-color: #88CC00;
-        color: #fff;
+        background-color: rgb(136, 204, 0,0.10000000149011612);
+        border-left: 10px solid #8c0;
+        color: #88cc00;
         font-weight: bolder;
     }
     .settings .active span{
-        color: #fff;
+        color: #8c0;
         font-weight: bolder;
     }
 </style>

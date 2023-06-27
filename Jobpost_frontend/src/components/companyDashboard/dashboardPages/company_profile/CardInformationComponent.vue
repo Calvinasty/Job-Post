@@ -49,8 +49,7 @@ export default {
         "index",
         "showplus",
         "showpencil",
-        "cardName",
-        " handleEdit"
+        "cardName"
     ],
     mounted() {
 
@@ -69,9 +68,9 @@ export default {
     padding: 37px 34px;
     border-bottom: 5px solid #88cc00;
     flex: 1;
-    max-width: 530px;
+    max-width: 400px;
     min-width: 350px;
-    height: 400px;
+    height: 280px;
     overflow-y: scroll;
 }
 
@@ -79,7 +78,7 @@ export default {
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
     /* height: 100%; */
     width: 100%;
 
@@ -98,7 +97,7 @@ export default {
 }
 
 .other-details {
-    width: 25%;
+    width: 30%;
     /* display: block; */
 }
 
@@ -113,7 +112,6 @@ h3 {
 
 .editicon {
     float: right;
-
     cursor: pointer;
 }
 

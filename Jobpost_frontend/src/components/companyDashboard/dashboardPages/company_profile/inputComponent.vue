@@ -3,8 +3,9 @@
         <label :for="inputId">{{ fullName }}</label>
         <div>
             <input class="input-tag" :type="inputType" :name="inputName" :id="inputId" :value="Value" disabled>
-            <img class="editicon" v-show="showpencil" src="/images/edit_icon.svg" alt="editicon"
-                @click="handleEdit(itemId, itemIndex)" />
+            <img class="editicon" v-show="showpencil" src="/images/edit_icon.svg" alt="editicon" />
+            <!-- <span class="deleteicon">❌</span> -->
+            <!-- @click="handleEdit(itemId, itemIndex)" -->
         </div>
     </div>
 </template>
@@ -45,7 +46,6 @@ export default {
     flex-direction: column;
     width: 100%;
     gap: 10px;
-    /* background: #000; */
 }
 
 .input-field label {

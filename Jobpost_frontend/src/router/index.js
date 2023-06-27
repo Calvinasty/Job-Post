@@ -8,11 +8,27 @@ import CompanyPage from '@/views/CompanyPage.vue'
 import Error404Page from '@/views/Error404Page.vue'
 import JobsList from '@/components/jobsearchpage/JobSearch.vue'
 import ApplyJob from '@/components/jobsearchpage/applyjobpage/ApplyJobPage.vue'
+import LogoutComponent from '@/components/LogoutComponent.vue'
 
 // route guard for restricting users to private pages
 const routeGuard = (to, from, next) => {
   const isAuthenticated = authenticated(to.name)
   isAuthenticated ? next() : next('/auth/login')
+}
+// route guard to restrict auth page access when user is already authenticated
+const guardAuth = (to, from, next) => {
+  console.log(to);
+  const companyToken = localStorage.getItem('companyToken')
+  const userToken = localStorage.getItem('userToken')
+  if(to.matched.path == '/auth/'){
+    console.log(to);
+    if(companyToken){next('/admin/analyticsView')}
+    else if(userToken) {next('/userprofile')}
+    else { next() }
+  }else{
+    console.log('no', to);
+    next()
+  } 
 }
 // check if user or company is authenticated
 const authenticated = (to) => {
@@ -65,6 +81,7 @@ const router = createRouter({
       path:'/auth',
       name:'AuthSelect',
       component:SelectUserPage,
+      beforeEnter: guardAuth,
       meta: {title: 'Authenticate'}
     },
     {
@@ -79,6 +96,11 @@ const router = createRouter({
       component: CompanyPage,
       beforeEnter: routeGuard,
       meta: {title: 'Dashboard'}
+    },
+    {
+      path:'/logout',
+      name:'logout',
+      component: LogoutComponent
     },
     { path: '/:pathMatch(.*)*', name: 'not-found', component: Error404Page, meta: {title: 'Not Found'} },
   ],

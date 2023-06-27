@@ -102,9 +102,9 @@
 <script>
 import { mapState } from 'pinia';
 import { useCompanyStore } from '../../../stores/companies';
-import CardInformationComponent from '../../profilepage/CardInformationComponent.vue';
-import InputComponent from '../../profilepage/inputComponent.vue';
-import UpdateProfileComponent from '../../profilepage/UpdateProfileComponent.vue';
+import CardInformationComponent from './company_profile/CardInformationComponent.vue';
+import InputComponent from './company_profile/inputComponent.vue';
+import UpdateProfileComponent from './company_profile/UpdateProfileComponent.vue';
 
 export default {
 
@@ -305,7 +305,7 @@ export default {
     gap: 20px;
     align-items: center;
     padding: 42px 10px;
-    height: 404px;
+    height: 280px;
 }
 
 
@@ -315,7 +315,7 @@ export default {
 }
 
 .profile-card h3 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 400;
 
 }

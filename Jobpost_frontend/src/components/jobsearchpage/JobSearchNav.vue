@@ -13,14 +13,14 @@
                 <span> <span class="material-symbols-outlined"> person </span> </span>
             </div>
         </span>
-        <div class="btn mobile"  v-show="userExist" @click="showDropdown">
+        <div class="btn mobile" v-show="userExist" @click="showDropdown">
             <span> <span class="material-symbols-outlined"> person </span> </span>
         </div>
 
         <Transition name="slide-fade">
             <JobSearchButton v-show="show" />
         </Transition>
-        
+
     </div>
 </template>
 
@@ -33,8 +33,8 @@ export default {
         JobSearchButton
     },
 
-    data(){
-        return{
+    data() {
+        return {
             show: false,
             userExist: false
         }
@@ -46,20 +46,20 @@ export default {
     computed: {
         ...mapState(useUserStore, ['email'])
     },
-    mounted(){
+    mounted() {
         const userToken = JSON.parse(localStorage.getItem('userToken'))
         const companyToken = JSON.parse(localStorage.getItem('companyToken'))
-        if(userToken || companyToken){
+        if (userToken || companyToken) {
             this.userExist = true
         }
     },
     methods: {
-        
+
         handleHome() {
-            this.$router.push('/')            
+            this.$router.push('/')
         },
 
-        showDropdown(){
+        showDropdown() {
             this.show = !this.show
         }
     },
@@ -89,7 +89,8 @@ export default {
     align-items: center;
     flex: 1;
 }
-.dropdown{
+
+.dropdown {
     /* transition: 3s; */
     /* transition-delay: 1s; */
 }
@@ -157,18 +158,19 @@ export default {
 .btn.mobile {
     display: none;
 }
+
 .slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
+    transform: translateX(20px);
+    opacity: 0;
 }
 
 @media screen and (min-width:871px) {
@@ -229,9 +231,9 @@ export default {
     .search-bar input::placeholder {
         font-size: 8px;
     }
+
     .logo img {
         max-width: 100px;
     }
 
-}
-</style>
+}</style>

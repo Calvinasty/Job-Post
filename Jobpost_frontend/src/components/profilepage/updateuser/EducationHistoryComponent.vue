@@ -32,13 +32,14 @@
 </template>
 
 <script>
-import { mapActions } from 'pinia'
+import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '../../../stores/users'
-import InputComponent from '../../authpage/InputComponent.vue';
+import { useUserProfileStore } from '../../../stores/userprofile';
 import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_BASE_URL
+import InputComponent from '../../authpage/InputComponent.vue';
 import ToastMessage from '../../utils/ToastMessage.vue';
 // import UserUpdateFormCard from '../updateuser/UserUpdateFormCard.vue';
-const BASE_URL = import.meta.env.VITE_BASE_URL
 
 export default {
     components: {
@@ -66,15 +67,25 @@ export default {
     props: [
         'handlecloseCard',
         'handleSave',
-        'userInfo'
     ],
+
+    computed: {
+        ...mapState(useUserProfileStore, ['eduId']),
+        ...mapState(useUserStore, ['user'])
+    },
     beforeMount() {
 
     },
 
     mounted() {
+        const education = this.user?.education.find(item => item.id == this.eduId)
+        // console.log(education);
+        this.education.institution = education?.institution
+        this.education.certification = education?.certification
+        this.education.field_of_study = education?.field_of_study
+        this.education.start_date = education?.start_date.split('T')[0]
+        this.education.end_date = education?.end_date.split('T')[0]
 
-        // this.education.institution = this.userInfo.education[0].institution
     },
     methods: {
         ...mapActions(useUserStore, ['setUser']),
@@ -92,17 +103,17 @@ export default {
             axios.post(`${BASE_URL}/education/addEducation`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
-                        console.log('edudata', res.data)
+                        // console.log('edudata', res.data)
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        console.log(token);
+                        // console.log(token);
                         axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
                                 if (res.data?.message) {
                                     // let msg = res.data.message
-                                    this.showToast('Record Updated Successful', 'success')
+                                    this.showToast('Record Added Successful', 'success')
                                     this.loading = false
                                 }
-                                console.log("Edu res data", res.data);
+                                // console.log("Edu res data", res.data);
                                 this.setUser(res.data.allInfo[0])
                             })
                             .catch((err) => {
@@ -128,7 +139,7 @@ export default {
                 .finally(() => {
                     setTimeout(() => {
                         this.handlecloseCard()
-                    }, 6000)
+                    }, 2000)
 
                 })
         },
@@ -146,7 +157,7 @@ export default {
             }
             setTimeout(() => {
                 this.toast = { active: false, msg: '', color: '' }
-            }, 6000)
+            }, 2000)
         }
     }
 }
@@ -160,7 +171,9 @@ export default {
     align-items: center;
     gap: 20px;
     width: 100%;
+    /* height: 100%; */
     padding-top: 3%;
+    /* background: #000; */
 }
 
 .input-container {

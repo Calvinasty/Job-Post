@@ -1,8 +1,13 @@
 <template>
     <div class="card-container flex-center">
         <div class="card">
-            <NavListComponent class="nav-list" :type="type" :index="index" />
+            <NavListComponent :type="type" :index="index" />
             <slot></slot>
+            <!-- <div class="btnsec flex-center-row">
+                <button class="btn" @click="handleSave">Save</button>
+                <button class="btns" @click="handlecloseCard">Cancel</button>
+            </div> -->
+
         </div>
 
     </div>
@@ -50,18 +55,15 @@ export default {
     position: relative;
     border-radius: 20px;
     background-color: #ffffff;
-    width: 75%;
+    width: 65%;
     height: 90%;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    /* padding-top: 50px; */
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
 
 }
 
-.nav-list {
-    border: 1px solid #C2C2C2;
-}
 
 .btnsec {
     position: absolute;
