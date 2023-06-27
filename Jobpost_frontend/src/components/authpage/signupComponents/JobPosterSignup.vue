@@ -70,19 +70,21 @@ export default {
                         let msg = res.data.message
                         this.showToast(msg, 'success')
                         this.loading=false
+                    this.$router.push('/auth/login')
                     }
-                    if (res.data?.token) {
-                        const token = JSON.stringify(res.data.token)
-                        localStorage.setItem('companyToken', token)
-                    }
-                    if (res.data?.company) {
-                        this.companyEmail=res.data?.company?.email
-                        const company = res.data.company
+
+                    // if (res.data?.token) {
+                    //     const token = JSON.stringify(res.data.token)
+                    //     localStorage.setItem('companyToken', token)
+                    // }
+                    // if (res.data?.company) {
+                    //     this.companyEmail=res.data?.company?.email
+                    //     const company = res.data.company
                         
-                        this.setCompany(company)
+                    //     this.setCompany(company)
                      
-                        res.status == 201 ? ++this.pageNum : alert('invalid Input')
-                    }
+                    //     res.status == 201 ? ++this.pageNum : alert('invalid Input')
+                    // }
                 })
                 .catch(err => {
                     let msg 

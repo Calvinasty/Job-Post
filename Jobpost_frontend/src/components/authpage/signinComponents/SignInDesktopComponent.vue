@@ -141,7 +141,7 @@ export default {
 
 
             if (this.userType == 'jobPoster') {
-                axios.post(`${BASE_URL}/company/logInCompany`, user)
+                axios.post(`${BASE_URL}/company/logIn`, user)
                 .then(res => {
                     console.log(res.data);
                     if (res.data?.message) {
@@ -175,20 +175,20 @@ export default {
             if (this.userType == 'jobSeeker') {
                 // console.log('hello');
                 axios
-                .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
+                .post(`${BASE_URL}/jobSeeker/signIn`, user)
                 .then((res) => {
+                    console.log(res.data);
+                    if(res.data?.token) {
+                        const token = JSON.stringify(res.data.token)
+                        localStorage.setItem('userToken', token)
+                    }
 
                     if (res.data?.message) {
                         let msg = res.data.message
                         this.showToast(msg, 'success')
                         this.loading = false
-                    }
-                    if (res.data?.token) {
-                        const token = JSON.stringify(res.data.token)
-                        localStorage.setItem('userToken', token)
-                        console.log(res.data.allInfo[0]);
-                        this.setUser(res.data.allInfo[0])
                         this.$router.push('/userprofile')
+                    
                     }
 
                 })

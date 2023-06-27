@@ -22,7 +22,12 @@
                 </div>
 
                 <div class="password-field">
-                    <InputComponent type="password" id="password" name="password" placeHolder="Password"
+                    <InputComponent type="password" name="password" placeHolder="Password"
+                        :handleInput="handleUserInput" />
+                </div>
+
+                <div class="password-field">
+                    <InputComponent type="password" name="confirmpassword" placeHolder="Confirm Password"
                         :handleInput="handleUserInput" />
                 </div>
 
@@ -61,11 +66,11 @@ export default {
         return {
             inputData: {
                 email: '',
-                password: ''
+                password: '',
+                confirmPassword: '',
             },
             nameHeader: 'Sign Up',
             nameTitle: 'Create an account as a Job Seeker',
-            userType: 'jobSeeker',
             loading: false,
             toast: {
                 active: false, msg: '', color: ''
@@ -98,6 +103,9 @@ export default {
                 this.inputData.password = data.inputValue
             }
 
+            if (data.inputName == 'confirmpassword') {
+                this.inputData.confirmPassword = data.inputValue
+            }
         },
         handleSignIn() {
             this.loading = true
@@ -107,10 +115,10 @@ export default {
             const user = new FormData()
             user.append("email", this.inputData.email,)
             user.append("password", this.inputData.password)
+            user.append("confirm_password", this.inputData.password)
 
 
-            if (this.userType == 'jobPoster') {
-                axios.post(`${BASE_URL}/company/logInCompany`, user)
+                axios.post(`${BASE_URL}/jobSeeker/signUp`, user)
                 .then(res => {
                     console.log(res.data);
                     if (res.data?.message) {
@@ -126,7 +134,7 @@ export default {
                     }
                 })
                 .then(() => {
-                    this.$router.push('/admin/analyticsView')
+                    this.$router.push('/auth/login')
                 })
                 .catch(err => {
                     let msg 
@@ -139,40 +147,8 @@ export default {
                         this.loading = false
                         console.log(err)
                 })
-            }
-            //jobSeeker
-            if (this.userType == 'jobSeeker') {
-                // console.log('hello');
-                axios
-                .post(`${BASE_URL}/jobSeeker/logInJobSeeker`, user)
-                .then((res) => {
-
-                    if (res.data?.message) {
-                        let msg = res.data.message
-                        this.showToast(msg, 'success')
-                        this.loading = false
-                    }
-                    if (res.data?.token) {
-                        const token = JSON.stringify(res.data.token)
-                        localStorage.setItem('userToken', token)
-                        console.log(res.data.allInfo[0]);
-                        this.setUser(res.data.allInfo[0])
-                        this.$router.push('/userprofile')
-                    }
-
-                })
-                .catch((err) => {
-                    let msg 
-                    if(err.response) 
-                        msg = err.response.data.message 
-                    else
-                        msg = err.message
-                    
-                    this.showToast(msg, 'error')
-                    this.loading = false
-                    console.log(err)
-                })
-            }
+            
+            
         },
 
         showToast(msg, color) {
