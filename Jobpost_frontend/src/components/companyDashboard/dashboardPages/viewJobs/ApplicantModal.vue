@@ -48,8 +48,11 @@
 </template>
 
 <script>
+    import axios from 'axios'
     import {mapState} from 'pinia'
     import { useDashboardStore } from '../../../../stores/dashboard';
+    const BASE_URL = import.meta.env.VITE_BASE_URL
+
     import SelectTiles from './SelectTiles.vue';
     import ApplicantSummary from './ApplicantSummary.vue';
     export default {
@@ -71,6 +74,9 @@
                     {name: 'Accept', link:'accepted', icon: 'check_small', active: false},
                     {name: 'Decline', link:'declined', icon: 'close', active: false},
                 ],
+                //others
+                app_id: '',
+                job_id: ''
             }
         },
         computed:{
@@ -86,6 +92,8 @@
             this.applicant = applicantResult
             this.cv = this.applicant.cv
             this.coverletter = this.applicant.cover_letter
+            this.app_id = this.applicant.id,
+            this.job_id = this.applicant.job_id
             this.setStatus()
         },
         methods:{
@@ -101,6 +109,21 @@
                 this.navLink = link
             },
             handleSelect(itemIndex){
+                let status = this.status[itemIndex].link
+                status = status.charAt(0).toUpperCase() + status.slice(1)
+                const updateStatus =  new FormData()
+                updateStatus.append('app_id', this.app_id),
+                updateStatus.append('job_id', this.job_id),
+                updateStatus.append('status', status)
+
+                const companyToken = JSON.parse(localStorage.getItem('companyToken'))
+                axios.put(`${BASE_URL}/company/applications/status`, updateStatus, {headers: {companyToken}}).
+                then(res => {
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
                 Object.keys(this.status).forEach((key, index) => {
                     if(itemIndex == index){
                         this.status[key].active = true 
