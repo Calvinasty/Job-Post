@@ -12,7 +12,7 @@ export const useDashboardStore = defineStore(
             updatePostModalId: '',    //sets the id of the job post to be updated by a company
             chartDataValues: useStorage("chartDataValues", [10, 9, 20, 10, 0, 0]),
             blink: false,
-            jobId: '', //id of job clicked in the viewjobs to see applicants of that job,
+            jobId: useStorage('selectedJobId', ''), //id of job clicked in the viewjobs to see applicants of that job,
             jobSeeker: {},
             selectedApplicantId: '', //applicant Id used to load applicants information in ApplicantModal modal
             allApplicants: {}

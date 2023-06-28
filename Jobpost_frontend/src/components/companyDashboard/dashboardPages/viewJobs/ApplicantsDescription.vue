@@ -9,22 +9,22 @@
             <ul class="table-head">
                 <li>No.</li>
                 <li>Applicant Name</li>
-                <li>Role Type</li>
-                <li>Location</li>
+                <li>Gender</li>
+                <li>Email</li>
                 <li>View</li>
                 <li>Status</li>
             </ul>
 
-            <ul v-for="(applicant, index) in applicants" :key="applicant.id" class="table-body">
+            <ul v-for="(applicant, index) in applicants" :key="applicant.Job_seeker.id" class="table-body">
                 <li class="count">{{ index+1 }}</li>
                 <!-- <li>{{ applicant.first_name }} {{ applicant.last_name }}</li> -->
-                <li @click="viewApplicant(applicant.id)">{{ applicant.name }}</li>
-                <li>{{ applicant.role }}</li>
-                <li>{{ applicant.location }}</li>
-                <li style="text-align: center;"><span  @click="viewApplicant(applicant.id)" class="material-symbols-outlined tooltip">visibility</span></li>
+                <li @click="viewApplicant(applicant.js_id)">{{ applicant.Job_seeker.job_seeker_profile.first_name +'&emsp;'+ applicant.Job_seeker.job_seeker_profile.last_name }}</li>
+                <li>{{ applicant.Job_seeker.job_seeker_profile.gender }}</li>
+                <li>{{ applicant.Job_seeker.email }}</li>
+                <li style="text-align: center;"><span  @click="viewApplicant(applicant.js_id)" class="material-symbols-outlined tooltip">visibility</span></li>
                 <li><span 
                     class="status" 
-                    @click="viewApplicant(applicant.id, 'status')"
+                    @click="viewApplicant(applicant.js_id, 'status')"
                     :class="{pending:applicant.status=='Pending'}, {accepted:applicant.status=='Accepted'}, {rejected:applicant.status=='Declined'}"
                 >
                     {{ applicant.status }}
@@ -119,13 +119,13 @@ export default {
     }
     .table-head li {
         /* width: 25%; */
-        padding: 10px;
+        padding: 20px;
         /* border: 1px solid; */
     }
     .table-head li:first-child{ width: 5%; text-align: center; }
     .table-head li:nth-child(2){ width: 35%; }
-    .table-head li:nth-child(3){ width: 20%; }
-    .table-head li:nth-child(4){ width: 20%; }
+    .table-head li:nth-child(3){ width: 15%; }
+    .table-head li:nth-child(4){ width: 25%; }
     .table-head li:nth-child(5){ width: 10%; text-align: center; }
     .table-head li:last-child{ width: 10%; text-align: center; }
 
@@ -151,8 +151,8 @@ export default {
     }
     .table-body li:first-child{  width: 5%; text-align: center; font-weight: 600; color: #88cc00;}
     .table-body li:nth-child(2){  width: 35%; }
-    .table-body li:nth-child(3){  width: 20%; }
-    .table-body li:nth-child(4){  width: 20%; }
+    .table-body li:nth-child(3){  width: 15%; }
+    .table-body li:nth-child(4){  width: 25%; }
     .table-body li:nth-child(5){  width: 10%; text-align: center; }
     .table-body li:last-child{  width: 10%; display: flex; justify-content: center; align-items: center; }
     .table-body li span.status:last-child:hover{ border-radius: 10px; }
