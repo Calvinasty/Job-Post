@@ -7,10 +7,10 @@
 
 <script>
 
+import { mapState } from 'pinia';
 import { useJobsStore } from '../../../stores/Jobs'
 import { useUserStore } from '../../../stores/users';
 // import {jobsPosted} from '../../../data'
-import { mapState } from 'pinia';
 import { useRoute } from 'vue-router';
 import JobDescription from './JobDescription.vue';
 import ApplyJobSection from './ApplyJobSection.vue';
@@ -51,6 +51,7 @@ export default {
     },
     created(){
             this.currentUser=this.user
+            log
 
     },
     methods: {

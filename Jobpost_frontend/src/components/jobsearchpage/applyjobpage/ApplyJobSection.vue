@@ -10,7 +10,7 @@
             :label="inputInfo[0].label" :placeholder="inputInfo[0].placeholder" :value="inputValues[1]?.toUpperCase()"/>
             
             <ApplyInputComponent :id="inputInfo[1].id" :input-name="inputInfo[1].inputName" :input-type="inputInfo[1].inputType" 
-            :label="inputInfo[1].label" :placeholder="inputInfo[1].placeholder"  :value="inputValues[3].toUpperCase()"/>
+            :label="inputInfo[1].label" :placeholder="inputInfo[1].placeholder"  :value="inputValues[3]?.toUpperCase()"/>
 
             <ApplyInputComponent :id="inputInfo[2].id" :input-name="inputInfo[2].inputName" :input-type="inputInfo[2].inputType" 
             :label="inputInfo[2].label" :placeholder="inputInfo[2].placeholder" :value="inputValues[7]"/>
