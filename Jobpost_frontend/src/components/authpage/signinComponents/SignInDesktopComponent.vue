@@ -195,28 +195,30 @@ export default {
                     }
 
                     )
-                    // .then(() => {
-                    //     const token = JSON.parse(localStorage.getItem('userToken'))
-                    //     console.log(token);
-                    //     axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
-                    //         .then(res => {
-                    //             console.log(res.data);
+                    .then(() => {
+                        const token = JSON.parse(localStorage.getItem('userToken'))
+                        console.log(token);
+                        axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
+                            .then(res => {
+                                console.log(res.data);
+                            })
+                            .catch((err) => {
+                                let msg
+                                if (err.response)
+                                    msg = err.response.data.message
+                                else
+                                    msg = err.message
 
-                    //         })
-                    //         .catch((err) => {
-                    //             let msg
-                    //             if (err.response)
-                    //                 msg = err.response.data.message
-                    //             else
-                    //                 msg = err.message
+                                this.showToast(msg, 'error')
+                                this.loading = false
+                                console.log(err)
+                            })
 
-                    //             this.showToast(msg, 'error')
-                    //             this.loading = false
-                    //             console.log(err)
-                    //         })
-
-                    // }
-                    // )
+                    }
+                    )
+                    .then(() => {
+                        this.$router.push('/userprofile')
+                    })
                     .catch((err) => {
                         let msg
                         if (err.response)
