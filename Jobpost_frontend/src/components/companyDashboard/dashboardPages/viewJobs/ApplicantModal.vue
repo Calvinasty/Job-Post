@@ -1,7 +1,7 @@
 <template>
     <section class="main">
         <aside class="modal-nav" v-if="navLink=='default'">
-            <h2>{{ applicant.name }}</h2>
+            <h2>{{ applicant.Job_seeker?.job_seeker_profile?.first_name +' '+ applicant.Job_seeker?.job_seeker_profile?.last_name }}</h2>
             <SelectTiles v-for="(nav,index) in modalNav" :key="nav.link" :navItem="nav" :handleClick="handleClick" />
         </aside>
 
@@ -42,7 +42,7 @@
                 <h3> CV Download </h3>
             </span>
             <span class="material-symbols-outlined icon"> picture_as_pdf </span>
-            <a href="" download="C:\Users\Emmanuel Darko\Downloads\Netflix-Business-Model-Canvas.pdf"><button>Download</button></a>
+            <a href="" :download="cv"><button>Download</button></a>
         </aside>
     </section>
 </template>
@@ -58,6 +58,8 @@
             return{
                 navLink: 'default',
                 applicant: {},
+                cv: '',
+                coverletter:'Dear hiring manager, I’ve been working as a front- end web developer at TypoTech for 4 years, and now seek a new challenge.I think my experience and skills in JavaScript, HTML, and CSS make me perfect for this role.I’ve worked in large development teams that have sharpened my technical skills, improved my communication, and made me understand what it takes to meet tight deadlines. I’ve recently developed web - based applications for a project management client.My involvement as a designer and a front - end developer has given me the opportunity to manage a diverse range of client requests.I have also proven myself as a team player, which is another crucial requirement for this role. My keen interest in programming and design helps me find creative solutions to technical challenges and develop visually appealing websites.My extensive knowledge of technical standards helps me manage projects efficiently. Thank you for your time and consideration.I look forward to meeting you soon and I’m happy to answer any questions you have Regards, ',
                 modalNav:[
                     {name: 'Application Status', link:'status'},
                     {name: 'View Cover Letter', link:'cover'},
@@ -69,7 +71,6 @@
                     {name: 'Accept', link:'accepted', icon: 'check_small', active: false},
                     {name: 'Decline', link:'declined', icon: 'close', active: false},
                 ],
-                coverletter:'Dear hiring manager, I’ve been working as a front- end web developer at TypoTech for 4 years, and now seek a new challenge.I think my experience and skills in JavaScript, HTML, and CSS make me perfect for this role.I’ve worked in large development teams that have sharpened my technical skills, improved my communication, and made me understand what it takes to meet tight deadlines. I’ve recently developed web - based applications for a project management client.My involvement as a designer and a front - end developer has given me the opportunity to manage a diverse range of client requests.I have also proven myself as a team player, which is another crucial requirement for this role. My keen interest in programming and design helps me find creative solutions to technical challenges and develop visually appealing websites.My extensive knowledge of technical standards helps me manage projects efficiently. Thank you for your time and consideration.I look forward to meeting you soon and I’m happy to answer any questions you have Regards, '
             }
         },
         computed:{
@@ -81,8 +82,10 @@
                 this.navLink = 'status'
         },
         mounted(){
-            const applicantResult = this.allApplicants.find(item => item.id == this.selectedApplicantId)
+            const applicantResult = this.allApplicants.find(item => item.js_id == this.selectedApplicantId)
             this.applicant = applicantResult
+            this.cv = this.applicant.cv
+            this.coverletter = this.applicant.cover_letter
             this.setStatus()
         },
         methods:{
