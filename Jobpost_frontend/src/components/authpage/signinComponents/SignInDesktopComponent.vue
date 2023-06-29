@@ -142,75 +142,92 @@ export default {
 
             if (this.userType == 'jobPoster') {
                 axios.post(`${BASE_URL}/company/logIn`, user)
-                .then(res => {
-                    console.log(res.data);
-                    if (res.data?.message) {
-                        let msg = res.data.message
-                        this.showToast(msg, 'success')
-                        this.loading = false
-                    }
-                    if (res.data?.token) {
-                        const token = JSON.stringify(res.data.token)
-                        localStorage.setItem('companyToken', token)
-                    }
-                })
-                .then(() => {
-                    const token = JSON.parse(localStorage.getItem('companyToken'))
-                    axios.get(`${BASE_URL}/company/getAll`, {headers: {token:token}})
                     .then(res => {
-                        console.log('company', res.data.allCompanyInfo[0]);
-                        this.setCompany(res.data.allCompanyInfo[0])
-                    }).catch(err => {
-                        console.log(err);
+                        console.log(res.data);
+                        if (res.data?.message) {
+                            let msg = res.data.message
+                            this.showToast(msg, 'success')
+                            this.loading = false
+                        }
+                        if (res.data?.token) {
+                            const token = JSON.stringify(res.data.token)
+                            localStorage.setItem('companyToken', token)
+                        }
                     })
-                })
-                .then(() => {
-                    this.$router.push('/admin/analyticsView')
-                })
-                .catch(err => {
-                    let msg 
-                        if(err.response) 
-                            msg = err.response.data.message 
+                    .then(() => {
+                        const token = JSON.parse(localStorage.getItem('companyToken'))
+                        axios.get(`${BASE_URL}/company/getAll`, { headers: { token: token } })
+                            .then(res => {
+                                console.log('company', res.data.allCompanyInfo[0]);
+                                this.setCompany(res.data.allCompanyInfo[0])
+                            }).catch(err => {
+                                console.log(err);
+                            })
+                    })
+                    .then(() => {
+                        this.$router.push('/admin/analyticsView')
+                    })
+                    .catch(err => {
+                        let msg
+                        if (err.response)
+                            msg = err.response.data.message
                         else
                             msg = err.message
-                        
+
                         this.showToast(msg, 'error')
                         this.loading = false
                         console.log(err)
-                })
+                    })
             }
             //jobSeeker
             if (this.userType == 'jobSeeker') {
                 // console.log('hello');
                 axios
-                .post(`${BASE_URL}/jobSeeker/signIn`, user)
-                .then((res) => {
-                    console.log(res.data);
-                    if(res.data?.token) {
-                        const token = JSON.stringify(res.data.token)
-                        localStorage.setItem('userToken', token)
+                    .post(`${BASE_URL}/jobSeeker/signIn`, user)
+                    .then((res) => {
+                        console.log(res.data);
+                        if (res.data?.token) {
+                            const token = JSON.stringify(res.data.token)
+                            localStorage.setItem('userToken', token)
+
+                        }
+
                     }
 
-                    if (res.data?.message) {
-                        let msg = res.data.message
-                        this.showToast(msg, 'success')
+                    )
+                    // .then(() => {
+                    //     const token = JSON.parse(localStorage.getItem('userToken'))
+                    //     console.log(token);
+                    //     axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
+                    //         .then(res => {
+                    //             console.log(res.data);
+
+                    //         })
+                    //         .catch((err) => {
+                    //             let msg
+                    //             if (err.response)
+                    //                 msg = err.response.data.message
+                    //             else
+                    //                 msg = err.message
+
+                    //             this.showToast(msg, 'error')
+                    //             this.loading = false
+                    //             console.log(err)
+                    //         })
+
+                    // }
+                    // )
+                    .catch((err) => {
+                        let msg
+                        if (err.response)
+                            msg = err.response.data.message
+                        else
+                            msg = err.message
+
+                        this.showToast(msg, 'error')
                         this.loading = false
-                        this.$router.push('/userprofile')
-                    
-                    }
-
-                })
-                .catch((err) => {
-                    let msg 
-                    if(err.response) 
-                        msg = err.response.data.message 
-                    else
-                        msg = err.message
-                    
-                    this.showToast(msg, 'error')
-                    this.loading = false
-                    console.log(err)
-                })
+                        console.log(err)
+                    })
             }
         },
 
@@ -472,4 +489,5 @@ header h2 {
             align-items: center;
             row-gap: 5px;
         }
-    } */</style>
+    } */
+</style>
