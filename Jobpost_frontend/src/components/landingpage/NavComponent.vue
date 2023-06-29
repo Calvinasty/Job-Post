@@ -3,23 +3,37 @@
         <div>
             <router-link to="/"> <img src="/images/logo.png" alt="Logo"> </router-link>
         </div>
-        <div class="auth-btns">
+        <div class="auth-btns" v-show="!userExist">
             <router-link to="/auth/login">Sign in</router-link>
             <router-link to="/auth">Sign up</router-link>
         </div>
+        <div class="btn" v-show="userExist" @click="showDropdown">
+            <span> <span class="material-symbols-outlined"> person </span> </span>
+        </div>
+        <Transition name="slide-fade">
+            <JobSearchButton v-show="show" />
+        </Transition>
     </div>
 </template>
 
 <script>
+    import JobSearchButton from '@/components/jobsearchpage/JobSearchButton.vue'
     export default {
         data () {
             return {
                 showNavbar: true,
-                lastScrollPosition: 0
+                lastScrollPosition: 0,
+                show: false,
+                userExist: false
             }
         },
         mounted () {
             window.addEventListener('scroll', this.onScroll)
+            const userToken = JSON.parse(localStorage.getItem('userToken'))
+            const companyToken = JSON.parse(localStorage.getItem('companyToken'))
+            if (userToken || companyToken) {
+                this.userExist = true
+            }
         },
         beforeDestroy () {
             window.removeEventListener('scroll', this.onScroll)
@@ -53,6 +67,9 @@
                     navbar.style.boxShadow = 'none'
                 }
                 this.lastScrollPosition = currentScrollPosition
+            },
+            showDropdown() {
+                this.show = !this.show
             }
         },
 
@@ -89,7 +106,8 @@
         align-items: center;
     }
     .navbar div img{
-        width: 60%;
+        /* width: 60%; */
+        width: 170px;
         margin: 0;
         padding: 0;
     }
@@ -120,7 +138,34 @@
         background-color: #88CC00;
         color: #fff;
     }
+    .btn {
+        padding: 12px;
+        display: flex;
+        padding: 12px;
+        align-items: center;
+        border-radius: 30px;
+        width: 50px;
+        height: 50px;
+        /* gap: 50px; */
+        background-color: #88CC00;
+        margin-left: 50px;
+        justify-content: center;
+        cursor: pointer;
+        transition: 1s ease-in;
+    }
+    .slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+    }
 
+    .slide-fade-leave-active {
+        transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+
+    .slide-fade-enter-from,
+    .slide-fade-leave-to {
+        transform: translateX(20px);
+        opacity: 0;
+    }
   
 
     /* Mobile Media Queries*/
