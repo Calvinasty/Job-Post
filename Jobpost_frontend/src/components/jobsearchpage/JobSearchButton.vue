@@ -1,6 +1,6 @@
 <template>
     <div class="dropdown">
-        <span class="setting">Settings</span>
+        <span class="setting" @click="handleProfile">Profile</span>
         <span class="line"></span>
         <span @click="handleLogout">Log Out</span>
     </div>
@@ -12,6 +12,18 @@ export default {
         handleLogout() {
             localStorage.clear()
             this.$router.push('/logout')
+        },
+        handleProfile(){
+            const userToken = JSON.parse(localStorage.getItem('userToken'))
+            const companyToken = JSON.parse(localStorage.getItem('companyToken'))
+            if(userToken){
+                this.$router.push('/userprofile')
+                console.log('userToken', userToken);
+            }
+            if(companyToken){
+                this.$router.push('/admin/companyProfile')
+                console.log('companyToken', companyToken);
+            }
         }
     }
 }

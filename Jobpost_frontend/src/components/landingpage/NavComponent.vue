@@ -144,14 +144,15 @@
         padding: 12px;
         align-items: center;
         border-radius: 30px;
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         /* gap: 50px; */
         background-color: #88CC00;
         margin-right: 40px;
         justify-content: center;
         cursor: pointer;
         transition: 1s ease-in;
+        color: #fff;
     }
     .slide-fade-enter-active {
     transition: all 0.3s ease-out;
