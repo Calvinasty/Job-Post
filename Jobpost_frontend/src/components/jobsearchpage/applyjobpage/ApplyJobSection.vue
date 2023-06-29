@@ -34,6 +34,7 @@
                 <div class="cv flex-center">
                     <ApplyInputComponent fileTypes=".pdf,.docx" id="cv" inputName="cv" inputType="file" label="CV/Resume"
                         placeholder="cv" :handleInput="handleInput" />
+
                     <button class="apply-job-btn flex-center-row" type="button" @click.prevent="handleApply">
                         Apply
                         <span class="material-symbols-outlined loading" style="margin-left:5px ;" v-show="loading"> cached
@@ -97,7 +98,7 @@ export default {
 
             this.loading = true
             const userApply = new FormData()
-            userApply.append('js_id', this.user.id)
+            // userApply.append('js_id', this.user.id)
             userApply.append('job_id', this.job.id)
             userApply.append('company_id', this.job.company_id)
             userApply.append('cv_resume', this.application.cv)
@@ -123,9 +124,10 @@ export default {
                 })
 
         },
-        handleInput(inputId) {
-            if (inputId.id == "cv") { this.application.cv = event.target.files[0] }
-            if (inputId.id == "cover-letter") { this.application.cover_letter = event.target.value }
+        handleInput(input) {
+            if (input.id == "cv") { this.application.cv = event.target.value }
+            if (input.id == "cover-letter") { this.application.cover_letter = event.target.value }
+            console.log(this.application);
         },
         setInputValues() {
             if (this.user) {
