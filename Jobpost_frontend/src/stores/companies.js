@@ -21,6 +21,8 @@ export const useCompanyStore = defineStore(
                             active.push(jobs[key]);
                     })
                     return active.length
+                }else{
+                    return 0
                 }
             },
             getExpiredJobs(state){
@@ -32,6 +34,8 @@ export const useCompanyStore = defineStore(
                             expired.push(jobs[key]);
                     })
                     return expired.length
+                }else{
+                    return 0
                 }
             }
         },
