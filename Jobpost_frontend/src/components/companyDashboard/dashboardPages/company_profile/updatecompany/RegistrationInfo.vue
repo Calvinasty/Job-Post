@@ -2,11 +2,11 @@
     <div class="register-info">
         <form @submit.prevent="handleSave" class="register-field flex-center">
             <InputComponent id="registrationNumber" type="text" placeHolder="Registration Number" name="registrationNumber"
-                :handleInput="handleInput" :Value="registrationNumber"/>
-            <InputComponent id="vatNumber" type="text" placeHolder="VAT Number" name="vatNumber"
-                :handleInput="handleInput" :Value="vatNumber"/>
+                :handleInput="handleInput" :Value="registrationNumber" />
+            <InputComponent id="vatNumber" type="text" placeHolder="VAT Number" name="vatNumber" :handleInput="handleInput"
+                :Value="vatNumber" />
             <label class="flex-center">Company Certificate (Commencement, Incorporation, VAT)
-                <InputComponent id="companyCert" type="file" placeHolder="" name="companyCert" :handleInput="handleInput"/>
+                <InputComponent id="companyCert" type="file" placeHolder="" name="companyCert" :handleInput="handleInput" />
                 📑 {{ companyCert }}
             </label>
             <div class="btnsec flex-center-row">
@@ -53,31 +53,31 @@ export default {
             if (data.inputName == 'companyCert') { this.companyCert = data.inputValue }
         },
 
-        handleSave(){
-           const registerInfo = new FormData()
-           registerInfo.append( "registration_number",this.registrationNumber)     
-           registerInfo.append( "vat_number",this.vatNumber)     
-           registerInfo.append( "company_certificate",this.companyCert)
-           
-           const token = JSON.parse(localStorage.getItem('companyToken'))
-            axios.post(`${BASE_URL}/registration/registrationInfo`,registerInfo, {headers: {token}})
-            .then(res => {
-                const updatedCompany = res.data
-                console.log(updatedCompany)
-            })
-            .catch(err => {
-                console.log(err);
-            })
-            .finally(() => {
-                this.handlecloseCard()
-            })
+        handleSave() {
+            const registerInfo = new FormData()
+            registerInfo.append("registration_number", this.registrationNumber)
+            registerInfo.append("vat_number", this.vatNumber)
+            registerInfo.append("company_certificate", this.companyCert)
+
+            const token = JSON.parse(localStorage.getItem('companyToken'))
+            axios.post(`${BASE_URL}/registration/registrationInfo`, registerInfo, { headers: { token } })
+                .then(res => {
+                    const updatedCompany = res.data
+                    console.log(updatedCompany)
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+                .finally(() => {
+                    this.handlecloseCard()
+                })
         }
     },
     mounted() {
         this.registrationNumber = this.companyInfo?.company_registration?.registration_number
         this.vatNumber = this.companyInfo?.company_registration?.vat_number
         this.companyCert = this.companyInfo?.company_registration?.company_certificate
-            
+
     }
 }
 </script>
