@@ -13,7 +13,7 @@
             <li @click="showApplicantsPage(item.id)">{{ item.job_title }}</li>
             <li>{{ item.job_type }}</li>
             <li>{{ item.location }}</li>
-            <li>{{ item.application_deadline.split('T')[0] }}</li>
+            <li><span :class="{active: item.status=='active', inactive: item.status == 'inactive'}"> {{ item.application_deadline.split('T')[0] }} </span></li>
             <li style="text-align: center;"><span  @click="showApplicantsPage(item.id)" class="material-symbols-outlined tooltip">visibility</span></li>
             <li class="edit-btns">
                 <span @click="updatePost(item.id)" class="material-symbols-outlined">edit</span>
@@ -130,6 +130,18 @@ export default {
     }
     .edit-btns span:last-child{
         color: red;
+    }
+
+    li span.active{
+        background-color: #88cc00da;
+        padding: 5px;
+        color: #fff;
+    }
+    li span.inactive{
+        background-color: #c73d3dd6;
+        padding: 5px;
+
+        color: #fff;
     }
 
 </style>

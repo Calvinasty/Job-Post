@@ -227,10 +227,9 @@ export default {
     },
 
     computed: {
-        ...mapState(useCompanyStore, ['company'])
+        ...mapState(useCompanyStore, ['company','getTotalJobs'])
     },
     mounted() {
-        console.log("dashboard",this.company);
         const companyInfo = this.company
         this.companyName = companyInfo?.company_name
         this.companyProfileInfo.company_name = companyInfo?.company_name
@@ -248,6 +247,8 @@ export default {
         this.companyProfileInfo.country = companyInfo?.location?.country
         this.companyProfileInfo.address = companyInfo?.location?.address
         this.companyProfileInfo.region = companyInfo?.location?.region
+
+        this.numberOfPostedJobs = this.getTotalJobs
 
     },
     methods: {

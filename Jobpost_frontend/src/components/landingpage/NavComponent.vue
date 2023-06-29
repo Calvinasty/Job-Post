@@ -17,8 +17,9 @@
 </template>
 
 <script>
-    import JobSearchButton from '@/components/jobsearchpage/JobSearchButton.vue'
+    import JobSearchButton from '../jobsearchpage/JobSearchButton.vue'
     export default {
+        components: {JobSearchButton},
         data () {
             return {
                 showNavbar: true,
@@ -139,26 +140,26 @@
         color: #fff;
     }
     .btn {
-        padding: 12px;
         display: flex;
         padding: 12px;
         align-items: center;
         border-radius: 30px;
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
         /* gap: 50px; */
         background-color: #88CC00;
-        margin-left: 50px;
+        margin-right: 40px;
         justify-content: center;
         cursor: pointer;
         transition: 1s ease-in;
+        color: #fff;
     }
     .slide-fade-enter-active {
     transition: all 0.3s ease-out;
     }
 
     .slide-fade-leave-active {
-        transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+        transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
     }
 
     .slide-fade-enter-from,
