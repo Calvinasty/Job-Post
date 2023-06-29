@@ -23,9 +23,9 @@
         data(){
             return{
                 card1Info: [
-                    {type: 'card1', num: 0, text:'Jobs Active', link:'first', color:'#88CC00'},
-                    {type: 'card1', num: 0, text:'Jobs Expired', link:'second', color:'#c73d3dd6'},
-                    {type: 'card1', num: 0, text:'Jobs Deleted', link:'third', color:'#000000c8'},
+                    {type: 'card1', num: 0, text:'Jobs Active', link:'active', color:'#88CC00'},
+                    {type: 'card1', num: 0, text:'Jobs Expired', link:'expired', color:'#c73d3dd6'},
+                    {type: 'card1', num: 0, text:'Jobs Deleted', link:'deleted', color:'#000000c8'},
                 ],
                 card2Info: [
                     {type: 'card2', num: 0, title:'Total Job Posts', link:'/admin/jobsView', color:'#f5f5f5'}
@@ -56,7 +56,7 @@
         },
         computed:{
             ...mapState(useDashboardStore, ['chartDataValues']),
-            ...mapState(useCompanyStore, ['getTotalJobs'])
+            ...mapState(useCompanyStore, ['getTotalJobs', 'getActiveJobs', 'getExpiredJobs'])
         },
         watch: {
             card2Info(newInfo, oldInfo){
@@ -80,7 +80,10 @@
             this.getCompanyData()
         },
         mounted(){
-            this.card2Info[0].num = this.getTotalJobs
+            this.card2Info[0].num = this.getTotalJobs // get Total jobs
+            this.card1Info[0].num = this.getActiveJobs // get Active Jobs
+            this.card1Info[1].num = this.getExpiredJobs // get Expired Jobs
+
             this.updateChartDataValues()
 
             Object.values(this.chartDataValues).forEach((value,index) => {
@@ -92,9 +95,9 @@
             getCompanyData(){
                 // alert('Hello')
             },
-            getActiveJobs(){
-                // name, email, password, phone, verification
-            }
+            // getActiveJobs(){
+                
+            // }
         }
     }
 </script>
