@@ -51,8 +51,6 @@ export default {
     },
     created(){
             this.currentUser=this.user
-            log
-
     },
     methods: {
         handleJobDescription(jobId){
