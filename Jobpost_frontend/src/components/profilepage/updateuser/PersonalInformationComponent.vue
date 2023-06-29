@@ -103,7 +103,6 @@ export default {
         ...mapActions(useUserStore, ['setUser']),
         handleUpdate() {
             console.log(this.personalInfo);
-
             const token = JSON.parse(localStorage.getItem('userToken'))
             const updatedUserInfo = new FormData()
             updatedUserInfo.append('first_name', this.personalInfo.first_name)
