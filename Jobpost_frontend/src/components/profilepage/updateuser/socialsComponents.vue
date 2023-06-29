@@ -75,22 +75,44 @@ export default {
                         console.log(this.socialsLink);
 
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                        axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
                             .then((res) => {
                                 console.log('Jobseeker All Info', res.data);
                                 // res.data.allInfo[0]['js_social_link'] = this.socialsLink
                                 this.setUser(res.data.allInfo[0], 'socials')
                             })
-                            .then(() => window.location.reload())
                             .catch((err) => {
-                                console.log(err);
+                                let msg
+                                if (err.response)
+                                    msg = err.response.data.message
+                                else
+                                    msg = err.message
+
+                                this.showToast(msg, 'error')
+                                this.loading = false
+                                console.log(err)
                             })
                     }
                 })
-                .catch((err) => {
-                    console.log(err);
+                .then(() => {
+                    setTimeout(() => {
+                        this.handlecloseCard()
+                        window.location.reload()
+                    }, 2000)
+
                 })
-                .finally(() => { this.handlecloseCard() })
+                .catch((err) => {
+                    let msg
+                    if (err.response)
+                        msg = err.response.data.message
+                    else
+                        msg = err.message
+
+                    this.showToast(msg, 'error')
+                    this.loading = false
+                    console.log(err)
+                })
+            // .finally(() => { this.handlecloseCard() })
             // }
             // else {
             //     const token = JSON.parse(localStorage.getItem('userToken'))

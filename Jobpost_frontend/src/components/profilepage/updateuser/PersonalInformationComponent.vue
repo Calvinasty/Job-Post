@@ -21,7 +21,7 @@
                 :handleInput="handleInput" />
         </div>
         <div class="input-container">
-            <InputComponent placeHolder="Date of Birth" name="dob" type="date"
+            <InputComponent placeHolder="Date of Birth" name="date_of_birth" type="date"
                 :Value="personalInfo.date_of_birth?.split('T')[0]" :handleInput="handleInput" />
         </div>
         <!-- <div class="input-container">
@@ -96,48 +96,82 @@ export default {
         this.personalInfo.phone = this.user?.phone
         this.personalInfo.date_of_birth = this.user?.date_of_birth
         this.personalInfo.gender = this.user?.gender
+        console.log(this.user);
     },
 
     methods: {
         ...mapActions(useUserStore, ['setUser']),
         handleUpdate() {
-            // console.log(this.personalInfo);
+            console.log(this.personalInfo);
+
             const token = JSON.parse(localStorage.getItem('userToken'))
             const updatedUserInfo = new FormData()
             updatedUserInfo.append('first_name', this.personalInfo.first_name)
             updatedUserInfo.append('middle_name', this.personalInfo.middle_name)
             updatedUserInfo.append('last_name', this.personalInfo.last_name)
-            updatedUserInfo.append('email', this.personalInfo.email)
+            // updatedUserInfo.append('email', this.personalInfo.email)
             updatedUserInfo.append('phone', this.personalInfo.phone)
             updatedUserInfo.append('date_of_birth', this.personalInfo.date_of_birth)
             updatedUserInfo.append('gender', this.personalInfo.gender)
 
-            axios.put(`${BASE_URL}/jobSeeker/updateJobSeeker`, updatedUserInfo, { headers: { token } })
+            axios.post(`${BASE_URL}/jobSeeker/profile`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
                         // console.log('Personal', res.data);
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                        axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
                             .then((res) => {
                                 // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
                                 // user['photo'] = 'avatar.jpg'/
                                 if (res.data?.message) {
                                     let msg = res.data.message
-                                    this.showToast(msg, 'Update Success')
-
+                                    this.showToast(msg, 'success')
                                 }
                                 console.log('Personal res data', res.data);
-                                this.setUser(res.data.allInfo[0])
-
+                                const userInfo = res.data.allInfo[0].job_seeker_profile
+                                userInfo['profile_id'] = res.data.allInfo[0].id
+                                userInfo['email'] = res.data.allInfo[0].email
+                                userInfo['Skills'] = res.data.allInfo[0].Skills
+                                userInfo['languages'] = res.data.allInfo[0].languages
+                                userInfo['js_social_link'] = res.data.allInfo[0].js_social_link
+                                userInfo['experiences'] = res.data.allInfo[0].experiences
+                                userInfo['education'] = res.data.allInfo[0].education
+                                this.setUser(userInfo)
                             })
-                            .then(() => { window.location.reload() })
-                            .catch((err) => console.log(err))
+
+                            .catch((err) => {
+                                let msg
+                                if (err.response)
+                                    msg = err.response.data.message
+                                else
+                                    msg = err.message
+
+                                this.showToast(msg, 'error')
+                                this.loading = false
+                                console.log(err)
+                            })
                     }
                 })
-                .catch((err) => {
-                    console.log(err)
+                .then(() => {
+                    setTimeout(() => {
+                        this.handlecloseCard()
+                        window.location.reload()
+                    }, 2000)
+
                 })
-                .finally(() => this.handlecloseCard())
+                .catch((err) => {
+                    let msg
+                    if (err.response)
+                        msg = err.response.data.message
+                    else
+                        msg = err.message
+
+                    this.showToast(msg, 'error')
+                    this.loading = false
+                    console.log(err)
+
+                })
+            // .finally(() => this.handlecloseCard())
             // console.log(updatedUserInfo);
 
         },
@@ -147,7 +181,7 @@ export default {
             }
             setTimeout(() => {
                 this.toast = { active: false, msg: '', color: '' }
-            }, 6000)
+            }, 2000)
         },
 
 
@@ -160,7 +194,7 @@ export default {
             if (data?.inputName == 'contact') { this.personalInfo.phone = data?.inputValue }
             if (data?.inputName == 'linkedIn_url') { this.personalInfo.linkedIn_url = data?.inputValue }
             if (data?.inputName == 'git_url') { this.personalInfo.git_url = data?.inputValue }
-            if (data?.inputName == 'dob') { this.personalInfo.dob = data?.inputValue }
+            if (data?.inputName == 'date_of_birth') { this.personalInfo.date_of_birth = data?.inputValue }
         }
     },
 }

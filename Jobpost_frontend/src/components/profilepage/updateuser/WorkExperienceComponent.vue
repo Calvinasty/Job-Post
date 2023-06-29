@@ -94,7 +94,7 @@ export default {
                     if (res.data) {
                         console.log('Expdata', res.data)
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                        axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
                             .then((res) => {
                                 if (res.data?.message) {
                                     // let msg = res.data.message
@@ -112,6 +112,13 @@ export default {
                             })
                     }
                 })
+                .then(() => {
+                    setTimeout(() => {
+                        this.handlecloseCard()
+                        window.location.reload()
+                    }, 2000)
+
+                })
                 .catch((err) => {
                     let msg
                     if (err.response) {
@@ -124,12 +131,12 @@ export default {
 
                     console.log(msg)
                 })
-                .finally(() => {
-                    setTimeout(() => {
-                        this.handlecloseCard()
-                    }, 2000)
+            // .finally(() => {
+            //     setTimeout(() => {
+            //         this.handlecloseCard()
+            //     }, 2000)
 
-                })
+            // })
         },
         handleInput(data) {
             if (data?.inputName == 'role') { this.experience.role = data.inputValue }

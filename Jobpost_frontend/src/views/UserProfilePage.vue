@@ -187,10 +187,21 @@ export default {
         getAllUserInfo() {
             const token = JSON.parse(localStorage.getItem('userToken'))
             if (token) {
-                axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
                     .then((res) => {
                         console.log('Job Seeker All Info', res.data);
-                        this.setUser(res.data.allInfo[0])
+                        // if(!res.data.allInfo[0].job_seeker_profile){
+                        //     this.setUser(res.data.allInfo[0])
+                        // }
+                        const userInfo = res.data.allInfo[0].job_seeker_profile ? res.data.allInfo[0].job_seeker_profile : []
+                        userInfo['profile_id'] = res.data.allInfo[0].id
+                        userInfo['email'] = res.data.allInfo[0].email
+                        userInfo['Skills'] = res.data.allInfo[0].Skills
+                        userInfo['languages'] = res.data.allInfo[0].languages
+                        userInfo['js_social_link'] = res.data.allInfo[0].js_social_link
+                        userInfo['experiences'] = res.data.allInfo[0].experiences
+                        userInfo['education'] = res.data.allInfo[0].education
+                        this.setUser(userInfo)
                     })
                     .catch((err) => console.log(err))
             }
