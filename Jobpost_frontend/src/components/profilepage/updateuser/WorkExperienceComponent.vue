@@ -31,7 +31,7 @@ import { mapActions, mapState } from 'pinia'
 import { useUserStore } from '../../../stores/users'
 import { useUserProfileStore } from '../../../stores/userprofile';
 import axios from 'axios';
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 import InputComponent from '../../authpage/InputComponent.vue';
 import ToastMessage from '../../utils/ToastMessage.vue';
 export default {
@@ -84,7 +84,7 @@ export default {
             updatedUserInfo.append('start_date', this.experience.start_date)
             updatedUserInfo.append('end_date', this.experience.end_date)
             // updatedUserInfo.append('end_date', this.education.end_date)
-            axios.post(`${BASE_URL}/experience/addExperience`, updatedUserInfo, { headers: { token } })
+            axios.post(`${BASE_URL_USER}/experience/addExperience`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     // if (res.data?.message) {
                     //     const msg = res.data.message
@@ -94,7 +94,7 @@ export default {
                     if (res.data) {
                         console.log('Expdata', res.data)
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
+                        axios.get(`${BASE_URL_USER}/jobSeeker/allInfo`, { headers: { token } })
                             .then((res) => {
                                 if (res.data?.message) {
                                     // let msg = res.data.message

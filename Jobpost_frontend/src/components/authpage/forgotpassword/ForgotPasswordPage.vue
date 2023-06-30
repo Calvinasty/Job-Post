@@ -12,14 +12,7 @@
 
       <form @submit.prevent="handleForgotPassword" class="forgot-desktop-field">
         <div class="container">
-          <input
-            type="radio"
-            name="gender"
-            value="seeker"
-            id="seeker"
-            checked="checked"
-            @click="seeker"
-          />
+          <input type="radio" name="gender" value="seeker" id="seeker" checked="checked" @click="seeker" />
           <label for="seeker">Job Seeker</label>
 
           <input type="radio" name="gender" value="poster" id="poster" @click="poster" />
@@ -27,14 +20,8 @@
         </div>
 
         <div class="user-field">
-          <InputComponent
-            type="email"
-            name="email"
-            required
-            inputId="email"
-            placeHolder="Email"
-            :handleInput="handleUserInput"
-          />
+          <InputComponent type="email" name="email" required inputId="email" placeHolder="Email"
+            :handleInput="handleUserInput" />
         </div>
 
         <div class="desk-links">
@@ -54,6 +41,7 @@ import { useUserProfileStore } from '../../../stores/userprofile'
 import ToastMessage from '../../utils/ToastMessage.vue'
 import InputComponent from '../InputComponent.vue'
 const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 export default {
   components: {
     ToastMessage,
@@ -105,7 +93,7 @@ export default {
 
       if (this.userType == "jobSeeker") {
         axios
-          .put(`${BASE_URL}/jobSeeker/email`, user)
+          .put(`${BASE_URL_USER}/jobSeeker/email`, user)
           .then((res) => {
             console.log(res.data)
             this.setForgotEmail(this.inputData.email)
@@ -122,7 +110,7 @@ export default {
               this.$router.push('/auth/new-password')
             }, 2000)
           })
-          
+
           .catch((err) => {
             let msg = err.response ? err.response.data.message : err.message
 
@@ -147,7 +135,7 @@ export default {
             this.setForgotId(res.data?.Company.id)
             this.setUserType(this.userType)
             if (res.data?.message) {
-                let msg = res.data.message
+              let msg = res.data.message
               this.showToast(msg, 'success')
               this.loading = false
             }
@@ -156,7 +144,7 @@ export default {
               this.$router.push('/auth/new-password')
             }, 2000)
           })
-          
+
           .catch((err) => {
             let msg = err.response ? err.response.data.message : err.message
 
@@ -188,6 +176,7 @@ export default {
   .forgot-mobile {
     display: none;
   }
+
   .forgot-desktop {
     display: flex;
     justify-content: center;
@@ -286,12 +275,12 @@ export default {
     margin-right: 20px;
   }
 
-  .container input[type='radio']:checked + label {
+  .container input[type='radio']:checked+label {
     background-color: #7fbf4c;
     color: #fff;
   }
 
-  .container input[type='radio']:checked + label:before {
+  .container input[type='radio']:checked+label:before {
     height: 15px;
     width: 15px;
     border: 8px solid white;
@@ -340,6 +329,7 @@ export default {
   .forgot-mobile {
     display: block;
   }
+
   .forgot {
     background-color: #fff;
     display: flex;

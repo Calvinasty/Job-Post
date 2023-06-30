@@ -13,23 +13,15 @@
         </div>
 
         <div class="password">
-          <InputComponent
-            type="password"
-            name="password"
-            placeHolder="New Password (8+ character required)"
-            :handleInput="handleUserInput"
-          />
+          <InputComponent type="password" name="password" placeHolder="New Password (8+ character required)"
+            :handleInput="handleUserInput" />
         </div>
 
         <p v-show="showError" class="errorPassword"><i>*Password and Confirm Password does not match</i></p>
 
         <div class="reEnter-password">
-          <InputComponent
-            type="password"
-            name="confirmPass"
-            placeHolder="Re-Enter Password"
-            :handleInput="handleUserInput"
-          />
+          <InputComponent type="password" name="confirmPass" placeHolder="Re-Enter Password"
+            :handleInput="handleUserInput" />
         </div>
 
         <div class="desk-links">
@@ -51,6 +43,7 @@ import { mapState } from 'pinia'
 import { useUserProfileStore } from '../../../stores/userprofile'
 import ToastMessage from '../../utils/ToastMessage.vue'
 const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 import InputComponent from '../InputComponent.vue'
 export default {
   components: {
@@ -103,63 +96,63 @@ export default {
 
         if (this.userType == 'jobSeeker') {
           axios
-          .put(`${BASE_URL}/jobSeeker/password`, user)
-          .then((res) => {
-            console.log(res.data)
-            if (res.data?.message) {
-              let msg = res.data.message
-              this.showToast(msg, 'success')
+            .put(`${BASE_URL_USER}/jobSeeker/password`, user)
+            .then((res) => {
+              console.log(res.data)
+              if (res.data?.message) {
+                let msg = res.data.message
+                this.showToast(msg, 'success')
+                this.loading = false
+              }
+              if (res.data?.token) {
+                const token = JSON.stringify(res.data.token)
+                localStorage.setItem('newPassword', token)
+              }
+            })
+            .then(() => {
+              this.$router.push('/auth/login')
+            })
+            .catch((err) => {
+              let msg = err.response ? err.response.data.message : err.message
+              this.showToast(msg, 'error')
               this.loading = false
-            }
-            if (res.data?.token) {
-              const token = JSON.stringify(res.data.token)
-              localStorage.setItem('newPassword', token)
-            }
-          })
-          .then(() => {
-            this.$router.push('/auth/login')
-          })
-          .catch((err) => {
-            let msg = err.response ? err.response.data.message : err.message
-            this.showToast(msg, 'error')
-            this.loading = false
-            console.log(err)
-          })
+              console.log(err)
+            })
         }
 
         if (this.userType == 'jobPoster') {
           axios
-          .put(`${BASE_URL}/company/password`, user)
-          .then((res) => {
-            console.log(res.data)
-            if (res.data?.message) {
-              let msg = res.data.message
-              this.showToast(msg, 'success')
+            .put(`${BASE_URL}/company/password`, user)
+            .then((res) => {
+              console.log(res.data)
+              if (res.data?.message) {
+                let msg = res.data.message
+                this.showToast(msg, 'success')
+                this.loading = false
+              }
+              if (res.data?.token) {
+                const token = JSON.stringify(res.data.token)
+                localStorage.setItem('newPassword', token)
+              }
+            })
+            .then(() => {
+              this.$router.push('/auth/login')
+            })
+            .catch((err) => {
+              let msg = err.response ? err.response.data.message : err.message
+              this.showToast(msg, 'error')
               this.loading = false
-            }
-            if (res.data?.token) {
-              const token = JSON.stringify(res.data.token)
-              localStorage.setItem('newPassword', token)
-            }
-          })
-          .then(() => {
-            this.$router.push('/auth/login')
-          })
-          .catch((err) => {
-            let msg = err.response ? err.response.data.message : err.message
-            this.showToast(msg, 'error')
-            this.loading = false
-            console.log(err)
-          })
+              console.log(err)
+            })
         }
-        
+
       }
-      if(this.inputData.password != this.inputData.confirmPass) {
+      if (this.inputData.password != this.inputData.confirmPass) {
         this.showError = true
         this.loading = false
       }
 
-     
+
 
     },
 
@@ -311,9 +304,11 @@ export default {
   .forgot-desktop {
     display: none;
   }
+
   .forgot-mobile {
     display: block;
   }
+
   .forgot {
     background-color: #fff;
     display: flex;

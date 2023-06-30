@@ -55,7 +55,7 @@ import { useUserStore } from '../../../stores/users'
 import axios from 'axios'
 import ToastMessage from '../../utils/ToastMessage.vue'
 import InputComponent from '../../authpage/InputComponent.vue'
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 export default {
     components: {
         InputComponent,
@@ -113,12 +113,12 @@ export default {
             updatedUserInfo.append('date_of_birth', this.personalInfo.date_of_birth)
             updatedUserInfo.append('gender', this.personalInfo.gender)
 
-            axios.post(`${BASE_URL}/jobSeeker/profile`, updatedUserInfo, { headers: { token } })
+            axios.post(`${BASE_URL_USER}/jobSeeker/profile`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
                         // console.log('Personal', res.data);
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
+                        axios.get(`${BASE_URL_USER}/jobSeeker/allInfo`, { headers: { token } })
                             .then((res) => {
                                 // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
                                 // user['photo'] = 'avatar.jpg'/
@@ -128,6 +128,7 @@ export default {
                                 }
                                 console.log('Personal res data', res.data);
                                 const userInfo = res.data.allInfo[0].job_seeker_profile
+                                // const userInfo = res.data.allInfo[0]
                                 userInfo['profile_id'] = res.data.allInfo[0].id
                                 userInfo['email'] = res.data.allInfo[0].email
                                 userInfo['Skills'] = res.data.allInfo[0].Skills

@@ -55,7 +55,7 @@ import axios from 'axios';
 import { applyJobInput } from '../../../data';
 import ApplyInputComponent from './ApplyInputComponent.vue';
 import ToastMessage from '../../utils/ToastMessage.vue'
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 export default {
     components: { ApplyInputComponent, ToastMessage },
     name: 'JobPostApplyJobSection',
@@ -104,7 +104,7 @@ export default {
             userApply.append('cv_resume', this.application.cv)
             userApply.append('cover_letter', this.application.cover_letter)
             console.log(token);
-            axios.post(`${BASE_URL}/jobSeeker/apply`, userApply, { headers: { token } })
+            axios.post(`${BASE_URL_USER}/jobSeeker/apply`, userApply, { headers: { token } })
                 .then(res => {
                     if (res.data) {
                         let msg = res.data.message

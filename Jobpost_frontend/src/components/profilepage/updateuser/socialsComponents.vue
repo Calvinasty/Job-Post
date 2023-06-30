@@ -21,7 +21,7 @@ import { mapActions } from 'pinia'
 import { mapState } from 'pinia'
 import { useUserStore } from '../../../stores/users'
 import axios from 'axios';
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 import InputComponent from '../../authpage/InputComponent.vue';
 export default {
 
@@ -66,7 +66,7 @@ export default {
             updatedUserInfo.append('linkedIn_link', this.socialsLink.linkedIn_link)
             updatedUserInfo.append('gitHub_link', this.socialsLink.gitHub_link)
             console.log(this.socialsLink);
-            axios.post(`${BASE_URL}/links/jsLinks`, updatedUserInfo, { headers: { token } })
+            axios.post(`${BASE_URL_USER}/links/jsLinks`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     console.log(token);
                     if (res.data) {
@@ -75,7 +75,7 @@ export default {
                         console.log(this.socialsLink);
 
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
+                        axios.get(`${BASE_URL_USER}/jobSeeker/allInfo`, { headers: { token } })
                             .then((res) => {
                                 console.log('Jobseeker All Info', res.data);
                                 // res.data.allInfo[0]['js_social_link'] = this.socialsLink

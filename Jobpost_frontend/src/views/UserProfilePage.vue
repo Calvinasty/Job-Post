@@ -100,7 +100,7 @@ import UpdateProfileComponentVue from '../components/profilepage/UpdateProfileCo
 import CardInformationComponent from '../components/profilepage/CardInformationComponent.vue';
 // import EditPopups from '../components/profilepage/EditPopups.vue';
 import InputComponent from '../components/profilepage/inputComponent.vue';
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 import { userprofileData } from '../data';
 import axios from 'axios';
 export default {
@@ -142,7 +142,32 @@ export default {
         ...mapState(useUserStore, ['user'])
     },
     beforeMount() {
-        // console.log(this.user);
+        // alert('before-mounted')
+
+
+        // if (this.user) {
+        //     const userInfo = this.user
+        //     this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
+        //     this.Value.contact = userInfo?.phone
+        //     this.Value.email = userInfo?.email
+        //     this.Value.gender = userInfo?.gender
+        //     this.Value.dob = userInfo?.date_of_birth?.split('T')[0]
+        //     this.Value.photo = "/images/" + userInfo?.photo
+        //     this.Value.linkenin = userInfo?.js_social_link?.linkedIn_link
+        //     this.Value.github = userInfo?.js_social_link?.gitHub_link
+        //     this.usersName = userInfo?.first_name
+        //     this.Value.skills = userInfo.Skills
+        //     this.Value.education = userInfo?.education?.sort()
+        //     this.Value.workexp = userInfo?.experiences
+        //     this.title = this.Value.fullname
+
+        //     this.getAllUserInfo()
+        // }
+    },
+    mounted() {
+        // alert('mounted')
+        console.log("user", this.user);
+
         if (this.user) {
             const userInfo = this.user
             this.Value.fullname = userInfo?.first_name + ' ' + userInfo?.last_name
@@ -161,9 +186,6 @@ export default {
 
             this.getAllUserInfo()
         }
-    },
-    mounted() {
-
 
     },
     key() {
@@ -187,7 +209,7 @@ export default {
         getAllUserInfo() {
             const token = JSON.parse(localStorage.getItem('userToken'))
             if (token) {
-                axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
+                axios.get(`${BASE_URL_USER}/jobSeeker/allInfo`, { headers: { token } })
                     .then((res) => {
                         console.log('Job Seeker All Info', res.data);
                         // if(!res.data.allInfo[0].job_seeker_profile){

@@ -29,7 +29,7 @@ import { useUserStore } from '../../../stores/users'
 // import EditInputComponent from '../EditInputComponent.vue';
 import InputComponent from '../../authpage/InputComponent.vue';
 import axios from 'axios';
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 export default {
     components: {
         // EditInputComponent,
@@ -70,11 +70,11 @@ export default {
             const updatedUserInfo = new FormData()
             updatedUserInfo.append('skill_name', this.skills.skill_name)
 
-            axios.post(`${BASE_URL}/skills/addSkills`, updatedUserInfo, { headers: { token } })
+            axios.post(`${BASE_URL_USER}/skills/addSkills`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
                         const token = JSON.parse(localStorage.getItem('userToken'))
-                        axios.get(`${BASE_URL}/jobSeeker/getAllInfo`, { headers: { token } })
+                        axios.get(`${BASE_URL_USER}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
                                 console.log('Skills res data', res.data);
                                 this.setUser(res.data.allInfo[0])

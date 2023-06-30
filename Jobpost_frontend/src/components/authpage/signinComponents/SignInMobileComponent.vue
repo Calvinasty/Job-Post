@@ -51,6 +51,7 @@ import InputComponent from '@/components/authpage/InputComponent.vue'
 import ToastMessage from '../../utils/ToastMessage.vue'
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 
 export default {
   components: {
@@ -159,37 +160,37 @@ export default {
       }
 
       if (this.userType == 'jobSeeker') {
-                // console.log('hello');
-                axios
-                .post(`${BASE_URL}/jobSeeker/signIn`, user)
-                .then((res) => {
-                    console.log(res.data);
-                    if(res.data?.token) {
-                        const token = JSON.stringify(res.data.token)
-                        localStorage.setItem('userToken', token)
-                    }
-
-                    if (res.data?.message) {
-                        let msg = res.data.message
-                        this.showToast(msg, 'success')
-                        this.loading = false
-                        this.$router.push('/userprofile')
-                    
-                    }
-
-                })
-                .catch((err) => {
-                    let msg 
-                    if(err.response) 
-                        msg = err.response.data.message 
-                    else
-                        msg = err.message
-                    
-                    this.showToast(msg, 'error')
-                    this.loading = false
-                    console.log(err)
-                })
+        // console.log('hello');
+        axios
+          .post(`${BASE_URL_USER}/jobSeeker/signIn`, user)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data?.token) {
+              const token = JSON.stringify(res.data.token)
+              localStorage.setItem('userToken', token)
             }
+
+            if (res.data?.message) {
+              let msg = res.data.message
+              this.showToast(msg, 'success')
+              this.loading = false
+              this.$router.push('/userprofile')
+
+            }
+
+          })
+          .catch((err) => {
+            let msg
+            if (err.response)
+              msg = err.response.data.message
+            else
+              msg = err.message
+
+            this.showToast(msg, 'error')
+            this.loading = false
+            console.log(err)
+          })
+      }
     },
     showToast(msg, color) {
       this.toast = {

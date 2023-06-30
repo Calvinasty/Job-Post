@@ -19,7 +19,7 @@ import { mapActions } from 'pinia'
 import { useUserStore } from '../../../stores/users'
 import EditInputComponent from '../EditInputComponent.vue'
 import axios from 'axios'
-const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 export default {
 
     components: {
@@ -64,7 +64,7 @@ export default {
             const updatedUserInfo = new FormData()
             updatedUserInfo.append('photo', this.img.photo)
             axios
-                .put(`${BASE_URL}/jobSeeker/updateJobSeeker`, updatedUserInfo, { headers: { token } })
+                .put(`${BASE_URL_USER}/jobSeeker/updateJobSeeker`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     console.log(res.data);
                 })

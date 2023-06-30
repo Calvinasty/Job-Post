@@ -59,6 +59,7 @@ import InputComponent from '@/components/authpage/InputComponent.vue'
 import ToastMessage from '../../utils/ToastMessage.vue'
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 const BASE_URL = import.meta.env.VITE_BASE_URL
+const BASE_URL_USER = import.meta.env.VITE_BASE_URL_USER
 export default {
     components: {
         InputComponent,
@@ -183,7 +184,7 @@ export default {
             if (this.userType == 'jobSeeker') {
                 // console.log('hello');
                 axios
-                    .post(`${BASE_URL}/jobSeeker/signIn`, user)
+                    .post(`${BASE_URL_USER}/jobSeeker/signIn`, user)
                     .then((res) => {
                         console.log(res.data);
                         if (res.data?.token) {
@@ -194,18 +195,26 @@ export default {
                     })
                     .then((token) => {
                         console.log(token);
-                        axios.get(`${BASE_URL}/jobSeeker/allInfo`, { headers: { token } })
+                        axios.get(`${BASE_URL_USER}/jobSeeker/allInfo`, { headers: { token } })
                             .then(res => {
-                                const userInfo = res.data.allInfo[0].job_seeker_profile ? res.data.allInfo[0].job_seeker_profile : []
-                                userInfo['profile_id'] = res.data.allInfo[0].id
-                                userInfo['email'] = res.data.allInfo[0].email
-                                userInfo['Skills'] = res.data.allInfo[0].Skills
-                                userInfo['languages'] = res.data.allInfo[0].languages
-                                userInfo['js_social_link'] = res.data.allInfo[0].js_social_link
-                                userInfo['experiences'] = res.data.allInfo[0].experiences
-                                userInfo['education'] = res.data.allInfo[0].education
+                                let userInfo = []
+                                if (!res.data.allInfo[0].job_seeker_profile) {
+                                    userInfo = res.data.allInfo[0]
+                                }
+                                else {
+                                    userInfo = res.data.allInfo[0].job_seeker_profile
+                                    userInfo['profile_id'] = res.data.allInfo[0].id
+                                    userInfo['email'] = res.data.allInfo[0].email
+                                    userInfo['Skills'] = res.data.allInfo[0].Skills
+                                    userInfo['languages'] = res.data.allInfo[0].languages
+                                    userInfo['js_social_link'] = res.data.allInfo[0].js_social_link
+                                    userInfo['experiences'] = res.data.allInfo[0].experiences
+                                    userInfo['education'] = res.data.allInfo[0].education
+                                }
+
+
                                 this.setUser(userInfo)
-                                console.log(res.data);
+                                console.log("userInfo", userInfo);
                             })
                             .catch((err) => {
                                 let msg
