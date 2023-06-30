@@ -102,6 +102,7 @@
         },
         methods:{
             ...mapActions(useDashboardStore, ['setNext', 'setModal']),
+            ...mapActions(useCompanyStore, ['setCompany']),
             setUpdatePost(){
                 // alert(this.updatePostModalId)
                 let job;
@@ -139,11 +140,13 @@
                     .then(res => {
                         console.log(res.data);
                         let msg = res.data?.message
-                        let newJob = res.data?.job;
-                        if(newJob){
+                        if(msg){
                             this.loading = false
+                            this.getPostedJobs()
                             this.showToast(msg?msg:'Job Update Successful', 'success')
-                            this.clearForm()
+                            setTimeout(()=>{
+                                this.clearForm()
+                            }, 2000)
                         }
                     })
                     .catch(err => {
@@ -160,11 +163,11 @@
                         let newJob = res.data?.job;
                         if(newJob){
                             this.loading = false
+                            this.getPostedJobs()
                             this.showToast(msg?msg:'Job Post Successful', 'success')
-                            // this.$router.push('/jobsearch')
                             setTimeout(()=>{
                                 this.clearForm()
-                            }, 6000)
+                            }, 2000)
                         }
                     })
                     .catch(err => {
@@ -195,7 +198,20 @@
                 setTimeout(() =>{
                     this.toast = { active: false, msg: '', color: '' }
                 }, 6000)
-            }
+            },
+            getPostedJobs(){
+                const token = JSON.parse(localStorage.getItem('companyToken'))
+                axios.get(`${BASE_URL}/company/getAll`, {headers: {token}})
+                .then(res => {
+                    console.log(res.data);
+                    const companyInfo = res.data[0]
+                    this.setCompany(companyInfo)
+                })
+                .then(() => window.location.reload())
+                .catch(err => {
+                    console.log('err', err);
+                })
+            },
         }
     }
 </script>

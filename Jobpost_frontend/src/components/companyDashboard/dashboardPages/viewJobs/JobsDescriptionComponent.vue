@@ -9,7 +9,7 @@
             <li>Edit</li>
         </ul>
 
-        <ul v-for="(item, index) in myjobs" :key="index" class="table-body">
+        <ul v-for="(item, index) in company.Jobs" :key="index" class="table-body">
             <li @click="showApplicantsPage(item.id)">{{ item.job_title }}</li>
             <li>{{ item.job_type }}</li>
             <li>{{ item.location }}</li>
@@ -24,8 +24,9 @@
 </template>
 
 <script>
-import {mapActions} from 'pinia';
+import {mapActions, mapState} from 'pinia';
 import { useDashboardStore } from '../../../../stores/dashboard';
+import { useCompanyStore } from '../../../../stores/companies';
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_BASE_URL
 export default {
@@ -33,19 +34,24 @@ export default {
     components: {
     },
     props: [
-        'myjobs'
+        // 'myjobs'
     ],
+    computed:{
+        ...mapState(useCompanyStore, ['company'])
+    },
     methods: {
         ...mapActions(useDashboardStore, ['setModal','setJobId']),
+        ...mapActions(useCompanyStore, ['setCompany']),
         updatePost(postId) {
             this.setModal('PostJobForm', postId)
             // console.log(param)
         },
         deletePost(postId){
             if(confirm("Are you want to delete this job?")){
-                axios.delete(`${BASE_URL}/job/deleteJob/${postId}`)
+                axios.delete(`${BASE_URL}/company/deleteJob/${postId}`)
                 .then(res => {
                     console.log(res.data)
+                    this.getUpdatedJobs()
                 })
                 .catch(err => {
                     console.log(err);
@@ -57,7 +63,20 @@ export default {
         showApplicantsPage(jobId){
             this.setJobId(jobId)
             this.$router.push('/admin/viewApplicant')
-        }
+        },
+        getUpdatedJobs(){
+            const token = JSON.parse(localStorage.getItem('companyToken'))
+            axios.get(`${BASE_URL}/company/getAll`, {headers: {token}})
+            .then(res => {
+                console.log(res.data);
+                const companyInfo = res.data[0]
+                this.setCompany(companyInfo)
+            })
+            .then(() => window.location.reload())
+            .catch(err => {
+                console.log('err', err);
+            })
+        },
     },
 };
 </script>

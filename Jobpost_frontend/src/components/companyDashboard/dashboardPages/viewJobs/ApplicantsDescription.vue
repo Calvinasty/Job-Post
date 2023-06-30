@@ -15,7 +15,7 @@
                 <li>Status</li>
             </ul>
 
-            <ul v-for="(applicant, index) in applicants" :key="applicant.Job_seeker.id" class="table-body">
+            <ul v-for="(applicant, index) in allApplicants" :key="applicant.Job_seeker.id" class="table-body">
                 <li class="count">{{ index+1 }}</li>
                 <!-- <li>{{ applicant.first_name }} {{ applicant.last_name }}</li> -->
                 <li @click="viewApplicant(applicant.js_id)">{{ applicant.Job_seeker.job_seeker_profile.first_name +'&emsp;'+ applicant.Job_seeker.job_seeker_profile.last_name }}</li>
@@ -35,13 +35,12 @@
 </template>
 
 <script>
-import {mapActions} from 'pinia'
+import {mapActions, mapState} from 'pinia'
 import { useDashboardStore } from '../../../../stores/dashboard';
 export default {
     components: {
     },
     props: [
-        'applicants',
         'jobDetails',
         'cv', 'cover'
     ],
@@ -52,6 +51,9 @@ export default {
             toolVisible: false,
             edit: false
         };
+    },
+    computed:{
+        ...mapState(useDashboardStore, ['allApplicants'])
     },
     mounted() {
         console.log(this.applicants);

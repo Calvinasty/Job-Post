@@ -4,7 +4,7 @@
         <h2>Work Experience</h2>
         <div v-for="(item, index) in experience" :key="index">
             <h3>{{item.role}}</h3>
-            <p>{{item.location}}</p>
+            <p>{{item.start_date}}</p>
         </div>
         <!-- <div>
             <h3>UI/UX Designer</h3>

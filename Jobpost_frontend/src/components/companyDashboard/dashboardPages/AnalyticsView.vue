@@ -71,14 +71,6 @@
                 this.chartData.datasets[0].data[index] = value
             })
         },
-        updated(){
-            Object.values(this.chartDataValues).forEach((value,index) => {
-                this.chartData.datasets[0].data[index] = value
-            })
-        },
-        beforeMount(){
-            this.getCompanyData()
-        },
         mounted(){
             this.card2Info[0].num = this.getTotalJobs // get Total jobs
             this.card1Info[0].num = this.getActiveJobs // get Active Jobs
@@ -92,12 +84,6 @@
         },
         methods:{
             ...mapActions(useDashboardStore, ['updateChartDataValues']),
-            getCompanyData(){
-                // alert('Hello')
-            },
-            // getActiveJobs(){
-                
-            // }
         }
     }
 </script>

@@ -17,7 +17,7 @@
             <span> <span class="material-symbols-outlined"> person </span> </span>
         </div>
 
-        <Transition name="slide-fade">
+        <Transition name="slide-fade" style="margin-top: 20px;">
             <JobSearchButton v-show="show" />
         </Transition>
 
@@ -164,7 +164,7 @@ export default {
 }
 
 .slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,

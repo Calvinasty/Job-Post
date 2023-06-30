@@ -2,7 +2,7 @@
     <div class="card-2">
         <h2>Skills/Interests</h2>
              <ul class="skill">
-                 <li v-for="(item, index) in skills" :key="index"> <span class="material-symbols-outlined">{{item.icon}}</span> {{item.name}}</li>
+                 <li v-for="(item, index) in skills" :key="index"> <span class="material-symbols-outlined">task_alt</span> {{item.skill_name}}</li>
                 <!-- <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>
                 <li> <span class="material-symbols-outlined">task_alt</span> SQL</li>

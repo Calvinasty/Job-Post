@@ -2,8 +2,8 @@
     <div  class="card-3">
         <h2>Education History</h2>
         <div v-for="(item, index) in educations" :key="index">
-            <h3>{{item.name}}</h3> 
-            <p>{{item.type}}</p>
+            <h3>{{item.institution}}</h3> 
+            <p>{{item.field_of_study}} | {{ item.start_date }}</p>
         </div> 
          <!-- <div>
             <h3>University of Ghana, Legon</h3>
