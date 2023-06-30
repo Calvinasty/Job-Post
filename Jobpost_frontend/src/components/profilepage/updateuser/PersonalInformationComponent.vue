@@ -124,7 +124,9 @@ export default {
                                 // user['photo'] = 'avatar.jpg'/
                                 if (res.data?.message) {
                                     let msg = res.data.message
+
                                     this.showToast(msg, 'success')
+
                                 }
                                 console.log('Personal res data', res.data);
                                 const userInfo = res.data.allInfo[0].job_seeker_profile
@@ -155,7 +157,6 @@ export default {
                 .then(() => {
                     setTimeout(() => {
                         this.handlecloseCard()
-                        window.location.reload()
                     }, 2000)
 
                 })

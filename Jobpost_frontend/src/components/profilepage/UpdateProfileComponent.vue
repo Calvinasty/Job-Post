@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 import { mapState } from 'pinia'
 import { useUserProfileStore } from '../../stores/userprofile';
 import EditProfileLayout from './EditProfileLayout.vue'
@@ -29,7 +30,7 @@ import CompanyLocation from "./updatecompany/CompanyLocation.vue";
 
 export default {
 
-    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo', 'index', 'companyInfo', 'updateComponent'],
+    props: ['handlecloseCard', 'handleSave', 'type', 'userInfo', 'index', 'companyInfo', 'handleReload', 'updateComponent'],
     components: {
         EditProfileLayout,
         UploadPicture,
@@ -66,7 +67,8 @@ export default {
     },
     mounted() {
 
-    },
+    }
+
 
 }
 </script> 

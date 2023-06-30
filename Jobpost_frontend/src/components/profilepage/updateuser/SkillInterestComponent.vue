@@ -70,24 +70,48 @@ export default {
             const updatedUserInfo = new FormData()
             updatedUserInfo.append('skill_name', this.skills.skill_name)
 
-            axios.post(`${BASE_URL_USER}/skills/addSkills`, updatedUserInfo, { headers: { token } })
+            axios.post(`${BASE_URL_USER}/jobSeeker/addSkills`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     if (res.data) {
                         const token = JSON.parse(localStorage.getItem('userToken'))
                         axios.get(`${BASE_URL_USER}/jobSeeker/getAllInfo`, { headers: { token } })
                             .then((res) => {
-                                console.log('Skills res data', res.data);
-                                this.setUser(res.data.allInfo[0])
+                                // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
+                                // user['photo'] = 'avatar.jpg'/
+                                if (res.data?.message) {
+                                    let msg = res.data.message
+
+                                    this.showToast(msg, 'success')
+
+                                }
+                                console.log('Personal res data', res.data);
+                                const userInfo = res.data.allInfo[0].job_seeker_profile
+                                // const userInfo = res.data.allInfo[0]
+                                userInfo['profile_id'] = res.data.allInfo[0].id
+                                userInfo['email'] = res.data.allInfo[0].email
+                                userInfo['Skills'] = res.data.allInfo[0].Skills
+                                userInfo['languages'] = res.data.allInfo[0].languages
+                                userInfo['js_social_link'] = res.data.allInfo[0].js_social_link
+                                userInfo['experiences'] = res.data.allInfo[0].experiences
+                                userInfo['education'] = res.data.allInfo[0].education
+                                this.setUser(userInfo)
                             })
+
                             .catch((err) => {
                                 console.log(err);
                             })
                     }
                 })
+                .then(() => {
+                    setTimeout(() => {
+                        this.handlecloseCard()
+                    }, 2000)
+
+                })
                 .catch((err) => {
                     console.log(err);
                 })
-                .finally(() => { this.handlecloseCard() })
+            // .finally(() => { this.handlecloseCard() })
 
 
 

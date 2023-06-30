@@ -1,7 +1,9 @@
 <template>
     <div class="userprofile">
         <JobSearchNav />
-        <section class="user-profile">
+        <div v-if="reload" style="width: 100vw;height:100vh;background: #00000075;">
+        </div>
+        <section v-if="!reload" class="user-profile">
             <div class="title">
                 <h4>Welcome, {{ title }}</h4>
             </div>
@@ -91,6 +93,7 @@
 </template>
 
 <script>
+import { getCurrentInstance } from 'vue';
 import { mapActions, mapState } from 'pinia';
 import { useUserStore } from '../stores/users';
 import { useUserProfileStore } from '../stores/userprofile';
@@ -117,6 +120,7 @@ export default {
     data() {
         return {
             title: '',
+            reload: false,
             usersName: '',
             userOccupation: '',
             showModal: false,
@@ -198,6 +202,8 @@ export default {
         showPopup(index) {
             this.showModal = !this.showModal
             this.index = index
+            this.reload = !this.reload
+            this.forcesComponentUpdate()
         },
 
         handleEdit(itemId, itemIndex) {
@@ -206,6 +212,11 @@ export default {
             this.showPopup(itemIndex)
 
         },
+        forcesComponentUpdate() {
+            const instance = getCurrentInstance();
+            instance.forceUpdate();
+        },
+
         getAllUserInfo() {
             const token = JSON.parse(localStorage.getItem('userToken'))
             if (token) {

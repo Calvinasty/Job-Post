@@ -84,7 +84,7 @@ export default {
             updatedUserInfo.append('start_date', this.experience.start_date)
             updatedUserInfo.append('end_date', this.experience.end_date)
             // updatedUserInfo.append('end_date', this.education.end_date)
-            axios.post(`${BASE_URL_USER}/experience/addExperience`, updatedUserInfo, { headers: { token } })
+            axios.post(`${BASE_URL_USER}/jobSeeker/addExperience`, updatedUserInfo, { headers: { token } })
                 .then((res) => {
                     // if (res.data?.message) {
                     //     const msg = res.data.message
@@ -96,14 +96,27 @@ export default {
                         const token = JSON.parse(localStorage.getItem('userToken'))
                         axios.get(`${BASE_URL_USER}/jobSeeker/allInfo`, { headers: { token } })
                             .then((res) => {
+                                // localStorage.setItem("userDetails", JSON.stringify(res.data[0]))
+                                // user['photo'] = 'avatar.jpg'/
                                 if (res.data?.message) {
-                                    // let msg = res.data.message
-                                    this.showToast('Record Added Successful', 'success')
-                                    this.loading = false
+                                    let msg = res.data.message
+
+                                    this.showToast(msg, 'success')
+
                                 }
-                                console.log("Exp res data", res.data);
-                                this.setUser(res.data.allInfo[0])
+                                console.log('Personal res data', res.data);
+                                const userInfo = res.data.allInfo[0].job_seeker_profile
+                                // const userInfo = res.data.allInfo[0]
+                                userInfo['profile_id'] = res.data.allInfo[0].id
+                                userInfo['email'] = res.data.allInfo[0].email
+                                userInfo['Skills'] = res.data.allInfo[0].Skills
+                                userInfo['languages'] = res.data.allInfo[0].languages
+                                userInfo['js_social_link'] = res.data.allInfo[0].js_social_link
+                                userInfo['experiences'] = res.data.allInfo[0].experiences
+                                userInfo['education'] = res.data.allInfo[0].education
+                                this.setUser(userInfo)
                             })
+
                             .catch((err) => {
                                 let msg = err.response ? err.response.data.message : err.message
                                 this.showToast(msg, 'error')
