@@ -40,7 +40,7 @@ export default {
     cursor: pointer;
 }
 
-h1{ color: #7FBF4C; font-size: 20px;}
+h1{ color: #4E4E4E; font-size: 20px;}
 h3{ margin-bottom: 30px; font-size: 13px;}
 header{ 
     row-gap:20px;

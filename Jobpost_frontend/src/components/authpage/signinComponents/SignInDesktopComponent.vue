@@ -335,6 +335,7 @@ header h2 {
     font-weight: bolder;
     line-height: 41px;
     color: #7FBF4C;
+    
 }
 
 #btn {
@@ -364,7 +365,8 @@ header h2 {
 .signin-header h3 {
     font-weight: bolder;
     line-height: 38px;
-    color: #7FBF4C;
+    color: #4E4E4E;
+
 }
 
 .signin-header p {
