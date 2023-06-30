@@ -1,10 +1,10 @@
 <template>
     <div class="apply-section flex-center">
         <h2>
-            Apply Job
+            {{ title }}
         </h2>
         <div class="general-info ">
-            <form class="flex-center">
+            <form v-show="!applied" class="flex-center">
                 <h3>General Information</h3>
                 <ApplyInputComponent :id="inputInfo[0].id" :input-name="inputInfo[0].inputName"
                     :input-type="inputInfo[0].inputType" :label="inputInfo[0].label" :placeholder="inputInfo[0].placeholder"
@@ -44,7 +44,7 @@
                 </div>
 
             </form>
-
+            <button v-show="applied" class="apply-job-btn alt" type="button" @click.prevent="handleCancel">Back</button>
         </div>
         <ToastMessage style="width: fit-content; top:40%;" v-show="toast.active" :toast="toast" />
     </div>
@@ -62,7 +62,9 @@ export default {
 
     data() {
         return {
+            title: 'Apply Job',
             inputInfo: '',
+            applied: false,
             inputValues: [],
             application: {
                 cv: false,
@@ -76,10 +78,13 @@ export default {
         }
     },
     props: ['user', 'job', 'handleCancel'],
+    beforeMount() {
 
+    },
     created() {
         this.inputInfo = applyJobInput
         this.setInputValues()
+        this.checkAppliedJobs()
     },
 
     methods: {
@@ -99,6 +104,7 @@ export default {
             this.loading = true
             const userApply = new FormData()
             // userApply.append('js_id', this.user.id)
+
             userApply.append('job_id', this.job.id)
             userApply.append('company_id', this.job.company_id)
             userApply.append('cv_resume', this.application.cv)
@@ -109,9 +115,13 @@ export default {
                     if (res.data) {
                         let msg = res.data.message
                         this.showToast(msg, 'success')
+                        this.loading = false
+
+                        this.setAppliedJobs()
                         console.log(res.data);
                     }
                 })
+                .then(() => this.handleCancel())
                 .catch((err) => {
                     let msg
                     if (err.response)
@@ -141,6 +151,26 @@ export default {
             setTimeout(() => {
                 this.toast = { active: false, msg: '', color: '' }
             }, 1000)
+        },
+        setAppliedJobs() {
+            let appliedJobs = JSON.parse(localStorage.getItem('jobsApplied'))
+            if (!appliedJobs) {
+                localStorage.setItem('jobsApplied', JSON.stringify([this.job.id]))
+            } else {
+                localStorage.setItem('jobsApplied', JSON.stringify([...appliedJobs, this.job.id]))
+            }
+        },
+        checkAppliedJobs() {
+            const appliedJobs = JSON.parse(localStorage.getItem('jobsApplied'))
+            if (appliedJobs) {
+                appliedJobs.find((job) => job == this.job.id
+                    ? (this.applied = true, this.title = "Job Applied")
+                    : (this.applied = false, this.title = "Apply Job"))
+
+            } else {
+                this.applied = false
+                this.title = "Apply Job"
+            }
         }
 
 
