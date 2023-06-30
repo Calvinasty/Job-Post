@@ -27,18 +27,14 @@
         },
         data(){
             return{
-                componentId: 'analyticsView',
+                componentId: '',
             }   
         },
         beforeMount(){ //rendering based on slots, beforeMounts always get updated when a new slot is mounted
             this.componentId = this.$route.params.id
-            this.getCompanyInfo()
         },
-        watch:{ // watch route is ineffective in this code since we are rendering based on slots, beforeMounts always get updated
-            $route(to){
-                console.log(to.params.id);
-                this.componentId = to.params.id
-            }
+        mounted(){
+            this.getCompanyInfo()
         },
         methods: {
             ...mapActions(useCompanyStore, ['setCompany']),

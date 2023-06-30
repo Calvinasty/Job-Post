@@ -28,18 +28,21 @@ export default {
         ApplicantSummarySkills,
         ApplicantSumEducation
     },
+    props: [
+        'applicant'
+    ],
     data(){
         return{
 
             users: {
                 image: '/images/userprofile.svg',
-                name: 'Daniella McDan',
+                name: '',
             },
             addresses: {
                 address: 'Coral Avenue, Hse 3, Tantra Hills, Accra-Ghana. GHA-393-133',
                 gender: 'Female',
                 age: '27',
-                email: 'danmcdan@gmail.com',
+                email: '',
                 linkedin: 'linkedin.com/daniellamcdan',
                 number: '+233254775545'
             },
@@ -72,21 +75,14 @@ export default {
         }
     },
     mounted(){
-        this.getUser()
+        this.users.name = `${this.applicant.job_seeker_profile.first_name}  ${this.applicant.job_seeker_profile.last_name}`
+        this.addresses.email = this.applicant.email
+        this.experience = this.applicant.experiences
+        this.skills = this.applicant.Skills
+        this.educations = this.applicant.education
+
     },
     methods:{
-        getUser(){
-            // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3YWMzOTgyLTE4YTYtNDg5MS1iYTI4LWQyOWY2MjMzZDEwYiIsImZpcnN0X25hbWUiOiJTd2FuenkiLCJtaWRkbGVfbmFtZSI6IiIsImxhc3RfbmFtZSI6IkNpdHkiLCJkYXRlX29mX2JpcnRoIjoiMjAyMy0wMS0wMlQwMDowMDowMC4wMDBaIiwiZ2VuZGVyIjoibWFsZSIsImVtYWlsIjoiYXJhQGdtYWlsLmNvbSIsInBob25lIjoiIiwicGhvdG8iOiJwaG90b18xNjg2MTgwMzU0NjkyLmpwZWciLCJjcmVhdGVkQXQiOiIyMDIzLTA2LTA3VDIzOjE4OjM1LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIzLTA2LTA3VDIzOjI1OjU0LjAwMFoiLCJkZWxldGVkQXQiOm51bGwsImlhdCI6MTY4NjE4NDIwM30.KYBSAyAauxZarQnh5IBp08wy7QUceOMh9qO0HbNaMeI'
-            // axios.get('http://192.168.8.127:5000/jobSeeker/getAllInfo', {headers: {token}})
-            // .then((res) =>{
-            //     console.log('res', res)
-            // })
-            // .catch((err) =>{
-            //     console.log('err', err)
-            // })
-
-            
-        }
     }
 
 }

@@ -3,7 +3,7 @@
     <card v-if="cardItem.type == 'card1'" class="card1" :style="{backgroundColor: cardItem.color}">
         <span class="num">{{ cardItem.num }}</span>
         <span class="txt"> {{ cardItem.text }} </span>
-        <router-link :to="cardItem.link"> <span class="material-symbols-outlined"> chevron_right </span></router-link>
+        <router-link to="" style="cursor:default;"> <span class="material-symbols-outlined"> chevron_right </span></router-link>
     </card>
 
     <!-- Show card2 using conditional rendering -->

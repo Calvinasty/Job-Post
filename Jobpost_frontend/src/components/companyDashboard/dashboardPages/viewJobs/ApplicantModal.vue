@@ -33,7 +33,7 @@
             <span class="profile-head">
                 <span class="material-symbols-outlined" @click="handleClick('default')"> keyboard_backspace </span>
             </span>
-            <ApplicantSummary />
+            <ApplicantSummary :applicant="applicant.Job_seeker"/>
         </aside>
 
         <aside class="cv" v-if="navLink=='cv'">
@@ -49,7 +49,7 @@
 
 <script>
     import axios from 'axios'
-    import {mapState} from 'pinia'
+    import {mapState, mapActions} from 'pinia'
     import { useDashboardStore } from '../../../../stores/dashboard';
     const BASE_URL = import.meta.env.VITE_BASE_URL
 
@@ -97,6 +97,7 @@
             this.setStatus()
         },
         methods:{
+            ...mapActions(useDashboardStore, ['setAllApplicantsData']),
             setStatus(){
                 Object.keys(this.status).forEach((key,index) => {
                     if(this.applicant.status.toLowerCase() == this.status[index].link)
@@ -119,7 +120,10 @@
                 const companyToken = JSON.parse(localStorage.getItem('companyToken'))
                 axios.put(`${BASE_URL}/company/applications/status`, updateStatus, {headers: {companyToken}}).
                 then(res => {
-                    console.log(res.data);
+                    const allCompanyJobs = res.data.findAllApplicants
+                    const selectedJob = allCompanyJobs.find(item => item.id == this.job_id)
+                    const applicants = selectedJob.applications
+                    this.setAllApplicantsData(applicants)
                 })
                 .catch(err => {
                     console.log(err);

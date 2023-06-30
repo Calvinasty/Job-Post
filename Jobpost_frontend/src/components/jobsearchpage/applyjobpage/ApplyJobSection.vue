@@ -121,7 +121,7 @@ export default {
                         console.log(res.data);
                     }
                 })
-                .then(() => this.handleCancel())
+                .then(() => setTimeout(() => {this.handleCancel()}, 3000))
                 .catch((err) => {
                     let msg
                     if (err.response)
@@ -150,7 +150,7 @@ export default {
             }
             setTimeout(() => {
                 this.toast = { active: false, msg: '', color: '' }
-            }, 1000)
+            }, 3000)
         },
         setAppliedJobs() {
             let appliedJobs = JSON.parse(localStorage.getItem('jobsApplied'))

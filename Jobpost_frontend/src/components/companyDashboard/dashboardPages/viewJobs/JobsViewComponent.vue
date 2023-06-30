@@ -42,7 +42,7 @@
             this.getPostedJobs()
         },
         mounted(){
-            this.jobs = this.company?.Jobs
+            this.jobs = this.company.Jobs
         },
         methods: {
             ...mapActions(useCompanyStore, ['updateCompany']),
@@ -52,6 +52,7 @@
                 axios.get(`${BASE_URL}/company/getAll`, {headers: {token}})
                 .then(res => {
                     const companyInfo = res.data[0]
+                    console.log(companyInfo);
                     this.updateCompany(companyInfo)
                 })
                 .catch(err => {
