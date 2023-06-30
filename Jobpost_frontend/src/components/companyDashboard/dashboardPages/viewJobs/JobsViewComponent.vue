@@ -52,6 +52,7 @@
                 axios.get(`${BASE_URL}/company/getAll`, {headers: {token}})
                 .then(res => {
                     const companyInfo = res.data[0]
+                    console.log(res.data);
                     this.updateCompany(companyInfo)
                 })
                 .catch(err => {

@@ -46,6 +46,7 @@ export default {
     right: 70px;
     top: 70px;
     cursor: pointer;
+    z-index: 500;
 }
 
 button {

@@ -75,6 +75,7 @@ export default {
                 const selectedJob = allCompanyJobs.find(item => item.id == this.jobId)
                 const applicants = selectedJob.applications
                 this.applicants = applicants
+                console.log(this.applicants);
                 this.setApplicantsData()
 
                 // const jobSeeker = res.data[0].job_seeker
